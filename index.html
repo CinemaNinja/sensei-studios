@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sensei Studios | Master Cinematography, 3D Animation & FPV Drones</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Sensei Studios is a premiere video production, 3D animation, motion graphics, and FPV drone hyperlapse studio founded by cinematographer & digital ninja Daniel Kelly Brown. Based in Colorado.">
+  <meta name="keywords" content="Sensei Studios, Daniel Kelly Brown, Cinematographer, 3D Animation, Motion Graphics, Cinema 4D, After Effects, FPV Drone, Timelapse, 8K Motion Control, Colorado Video Production">
+  <meta property="og:title" content="Sensei Studios | The Zen of Cinema & 3D Animation">
+  <meta property="og:description" content="Master cinematography, 8K motion controlled timelapses, Cinema 4D animation, FPV drone hyperlapses, and high-octane motion design.">
+  <meta property="og:image" content="./assets/hero_bg.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <link rel="stylesheet" href="./styles.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProductionCompany",
+    "name": "Sensei Studios",
+    "founder": {
+      "@type": "Person",
+      "name": "Daniel Kelly Brown",
+      "jobTitle": "Cinematographer & 3D Motion Specialist"
+    },
+    "description": "High-end video production, 8K 4-axis motion-controlled timelapse, Cinema 4D/Blender animation, FPV drone hyperlapses, and commercial editing.",
+    "location": "Colorado, USA",
+    "logo": "https://senseistudios.com/assets/logo.png"
+  }
+  </script>
+</head>
+<body class="loading-lock">
+
+  <!-- Canvas Engine for Zen Water Particle Background -->
+  <canvas id="zen-canvas"></canvas>
+  <div id="custom-cursor"></div>
+
+  <!-- ==========================================================================
+       PRELOADER: ZEN ENSO & CAM APERTURE
+       ========================================================================== -->
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-enso-wrapper">
+      <div class="preloader-enso"></div>
+      <img src="./assets/cinema_ninja_logo_nav.webp" alt="Cinema Ninja Logo" class="preloader-logo">
+    </div>
+    <div class="preloader-title">CINEMA NINJA</div>
+    <div class="preloader-subtitle">ENTER THE DIGITAL DOJO</div>
+  </div>
+
+  <!-- ==========================================================================
+       SITE NAVIGATION
+       ========================================================================== -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <img src="./assets/cinema_ninja_logo_nav.webp" alt="Sensei Studios Logo" class="nav-logo-img">
+        <span class="nav-brand-title">SENSEI STUDIOS</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#work" class="nav-link" data-text="Portfolio">Portfolio</a></li>
+        <li><a href="#vfx" class="nav-link" data-text="3D & Motion">3D & Motion</a></li>
+        <li><a href="#woodwork" class="nav-link" data-text="Woodwork">Woodwork</a></li>
+        <li><a href="#arsenal" class="nav-link" data-text="The Dojo">The Dojo</a></li>
+        <li><a href="#bio" class="nav-link" data-text="Ninja Story">Ninja Story</a></li>
+        <li><a href="#estimator" class="nav-link" data-text="Scope">Scope</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta-btn">
+          <span class="nav-cta-text">Book Project</span>
+          <span class="nav-cta-icon">→</span>
+        </a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-wrapper">
+        <img src="./assets/hero_bg.png" alt="Sensei Studios Zen Mountain Studio Wallpaper" class="hero-bg-img">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-visual">
+          <img src="./assets/cinema_ninja_logo.webp" alt="Cinema Ninja Studio Logo" class="hero-ninja-logo">
+        </div>
+
+        <h1 class="hero-title">
+          Part Cinematographer. <br>
+          Part Ninja. <br>
+          <span class="typed-text" id="typed-output"></span>
+        </h1>
+
+        <p class="hero-description">
+          20 years of precision camera movement, 8K 4-axis motion-controlled timelapses, Cinema 4D animation, and FPV drone hyperlapses. A solo-ninja production powerhouse.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#work" class="hero-cta-link">Explore Reel & Work</a>
+          <a href="#woodwork" class="hero-cta-link">Aspen Woodwork</a>
+          <a href="#estimator" class="hero-cta-link">Project Scope</a>
+        </div>
+
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Years Shooting & Editing</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">8K</span>
+            <span class="stat-label">Motion-Controlled Timelapse</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2×</span>
+            <span class="stat-label">RTX Render Rigs</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">One-Man Band</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PORTFOLIO & VIDEO SHOWCASE SECTION
+         ========================================================================== -->
+    <section class="portfolio-section" id="work">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">THE REEL & ARCHIVE</span>
+          <h2 class="section-title text-gradient-teal">Selected Cinematic Works</h2>
+          <p class="section-desc">From Banff Film Festival honors to custom Boeing drone shows and Cinema 4D product animations, step into the Sensei archive.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all">All Works</button>
+          <button class="filter-btn" data-filter="reels">Video & Timelapses</button>
+          <button class="filter-btn" data-filter="vfx">3D & Motion Graphics</button>
+          <button class="filter-btn" data-filter="drone">FPV & Drone Hyperlapse</button>
+          <button class="filter-btn" data-filter="events">Drone Shows & Events</button>
+        </div>
+
+        <!-- Video Cards Grid -->
+        <div class="video-grid" id="video-grid">
+          
+          <!-- 1. Marvel Style Intro & Edit -->
+          <div class="video-card" data-category="vfx reels" data-video-type="vimeo" data-video-id="794249931">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/794249931.jpg" alt="Marvel Style Intro" class="video-thumbnail">
+              <span class="card-badge">MARVEL INTRO / EDIT</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Marvel-Style Intro & Comprehensive Edit</h3>
+              <p class="video-description">Custom 3D Cinema 4D marvel-style logo animation sequence, integrated with motion-controlled timelapse and cinematic outdoor video edit.</p>
+              <div class="video-tags">
+                <span class="video-tag">Cinema 4D</span>
+                <span class="video-tag">After Effects</span>
+                <span class="video-tag">Timelapse</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Official Video Reel -->
+          <div class="video-card" data-category="reels" data-video-type="youtube" data-video-id="9G1n3BTHkxw">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://img.youtube.com/vi/9G1n3BTHkxw/hqdefault.jpg" alt="Official Video Reel" class="video-thumbnail">
+              <span class="card-badge">DIRECTOR REEL</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Official Video Reel</h3>
+              <p class="video-description">High-energy highlight reel showcasing 20 years of ski gimbal operation, action sports, documentary footage, and commercial cinematography.</p>
+              <div class="video-tags">
+                <span class="video-tag">Sony Cinema</span>
+                <span class="video-tag">Ski Gimbal</span>
+                <span class="video-tag">Action Sports</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Motion-Controlled Timelapse Reel -->
+          <div class="video-card" data-category="reels" data-video-type="youtube" data-video-id="4DWPPwO02nk">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://img.youtube.com/vi/4DWPPwO02nk/hqdefault.jpg" alt="Time Lapse Reel" class="video-thumbnail">
+              <span class="card-badge">8K TIMELAPSE</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Motion-Controlled Timelapse Reel</h3>
+              <p class="video-description">8K resolution 4-axis motion-controlled robot timelapse sequences shifting light, cloudscapes, and night skies across Colorado wilderness.</p>
+              <div class="video-tags">
+                <span class="video-tag">4-Axis Robot</span>
+                <span class="video-tag">8K RAW</span>
+                <span class="video-tag">Astrophotography</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 3D Product Animation -->
+          <div class="video-card" data-category="vfx" data-video-type="vimeo" data-video-id="786699959">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/786699959.jpg" alt="3D Product Animation" class="video-thumbnail">
+              <span class="card-badge">3D PRODUCT</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Photoreal 3D Product Render</h3>
+              <p class="video-description">Precision Cinema 4D and Redshift product animation featuring procedural glass, metallic textures, and fluid micro-lighting transitions.</p>
+              <div class="video-tags">
+                <span class="video-tag">Cinema 4D</span>
+                <span class="video-tag">Redshift</span>
+                <span class="video-tag">Product Viz</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. FPV Drone & 3D Mapped Titles -->
+          <div class="video-card" data-category="drone vfx" data-video-type="vimeo" data-video-id="800368720">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/800368720.jpg" alt="FPV Drone and 3D Titles" class="video-thumbnail">
+              <span class="card-badge">FPV & 3D TITLES</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">FPV Drone & 3D Mapped Motion Titles</h3>
+              <p class="video-description">Aggressive FPV drone diving camera work seamlessly matched with 3D camera-tracked spatial typography integrated into the environment.</p>
+              <div class="video-tags">
+                <span class="video-tag">DJI Avata</span>
+                <span class="video-tag">3D Tracking</span>
+                <span class="video-tag">After Effects</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Boeing Drone Show Recap -->
+          <div class="video-card" data-category="events drone" data-video-type="vimeo" data-video-id="802295149">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/802295149.jpg" alt="Boeing Drone Show" class="video-thumbnail">
+              <span class="card-badge">BOEING SHOW</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Boeing UAV Light Show Event Recap</h3>
+              <p class="video-description">Full aerial event coverage and motion-controlled recap for Boeing's synchronized drone light show spectacle with HireUAV.</p>
+              <div class="video-tags">
+                <span class="video-tag">HireUAV</span>
+                <span class="video-tag">Boeing</span>
+                <span class="video-tag">Drone Show</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Kaley Cuoco Gender Reveal -->
+          <div class="video-card" data-category="events drone" data-video-type="vimeo" data-video-id="787747563">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/787747563.jpg" alt="Kaley Cuoco Gender Reveal" class="video-thumbnail">
+              <span class="card-badge">CELEBRITY EVENT</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Kaley Cuoco Drone Light Show</h3>
+              <p class="video-description">High-profile celebrity event recap featuring custom aerial light formations and multi-cam ground videography.</p>
+              <div class="video-tags">
+                <span class="video-tag">Kaley Cuoco</span>
+                <span class="video-tag">HireUAV</span>
+                <span class="video-tag">Event Recap</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cinematography Reel -->
+          <div class="video-card" data-category="reels" data-video-type="vimeo" data-video-id="133480201">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/133480201.jpg" alt="Cinematography Reel" class="video-thumbnail">
+              <span class="card-badge">CLASSIC REEL</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Cinematography Reel Showcase</h3>
+              <p class="video-description">Foundational cinematography work shot on RED Dragon cinema systems, featuring outdoor mountain culture and commercial shorts.</p>
+              <div class="video-tags">
+                <span class="video-tag">RED Dragon</span>
+                <span class="video-tag">Commercial</span>
+                <span class="video-tag">Outside TV</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Motion Timelapse Archive -->
+          <div class="video-card" data-category="reels" data-video-type="vimeo" data-video-id="122083716">
+            <div class="video-thumbnail-wrapper">
+              <img src="https://vumbnail.com/122083716.jpg" alt="Timelapse Reel" class="video-thumbnail">
+              <span class="card-badge">TIMELAPSE CLASSIC</span>
+              <div class="play-overlay">
+                <div class="play-icon-btn">▶</div>
+              </div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-title">Motion Timelapse Archive</h3>
+              <p class="video-description">Award-winning motion-controlled timelapse photography sold to Discovery Channel and screened worldwide.</p>
+              <div class="video-tags">
+                <span class="video-tag">Discovery Channel</span>
+                <span class="video-tag">Banff Fest</span>
+                <span class="video-tag">Motion Control</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ASPEN WOODWORK & SCULPTURE GALLERY (15 SCULPTURES FRAMEWORK)
+         ========================================================================== -->
+    <section class="woodwork-section" id="woodwork">
+      <div class="container">
+        <div class="section-header">
+          <div class="woodwork-header-badge">
+            <span>🌲</span> EXHIBITING AT ASPEN ART GALLERY
+          </div>
+          <h2 class="section-title text-gradient-gold">Aspen Woodwork & Sculptures</h2>
+          <p class="section-desc">
+            Handcrafted fine timber sculptures by Daniel Kelly Brown. Each piece features a unique QR code generated for gallery display in Aspen, allowing visitors to view live pricing, specs, and reserve directly from their phone.
+          </p>
+        </div>
+
+        <!-- Sculpture Cards Grid (15 Sculptures Framework) -->
+        <div class="sculpture-grid">
+          
+          <!-- Sculpture 01 -->
+          <div class="sculpture-card" id="sculpture-1" data-sculpture-id="1" data-title="Aspen Burl Flow" data-price="$4,800" data-specs="Colorado Aspen Burl & Liquid Gold Resin" data-dim="28&quot; x 16&quot; x 14&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 01 — Aspen Burl Flow" class="sculpture-img">
+              <span class="sculpture-price-tag">$4,800</span>
+              <span class="sculpture-number-badge">PIECE #01</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #1</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Aspen Burl Flow</h3>
+              <div class="sculpture-meta">Colorado Aspen Burl & Liquid Gold Resin</div>
+              <p class="sculpture-desc">Organic fluid form sculpted from rare Colorado Aspen burl with liquid gold resin veins glowing under light.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 28" x 16" x 14"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="1"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 02 -->
+          <div class="sculpture-card" id="sculpture-2" data-sculpture-id="2" data-title="Ironwood Zen Lotus" data-price="$6,500" data-specs="Desert Ironwood & Polished Obsidian" data-dim="34&quot; x 22&quot; x 18&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 02 — Ironwood Zen Lotus" class="sculpture-img">
+              <span class="sculpture-price-tag">$6,500</span>
+              <span class="sculpture-number-badge">PIECE #02</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #2</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Ironwood Zen Lotus</h3>
+              <div class="sculpture-meta">Desert Ironwood & Polished Obsidian</div>
+              <p class="sculpture-desc">Deep dense grain carved into a lotus bloom pedestal resting on a polished obsidian base.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 34" x 22" x 18"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="2"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 03 -->
+          <div class="sculpture-card" id="sculpture-3" data-sculpture-id="3" data-title="Mountain Ridge Monolith" data-price="$8,200" data-specs="Reclaimed Cedar & Smoked Resin" data-dim="48&quot; x 18&quot; x 12&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 03 — Mountain Ridge Monolith" class="sculpture-img">
+              <span class="sculpture-price-tag">$8,200</span>
+              <span class="sculpture-number-badge">PIECE #03</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #3</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Mountain Ridge Monolith</h3>
+              <div class="sculpture-meta">Reclaimed Cedar & Smoked Resin</div>
+              <p class="sculpture-desc">Vertical free-standing totem depicting the jagged topography of the Elk Mountain Range.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 48" x 18" x 12"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="3"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 04 -->
+          <div class="sculpture-card" id="sculpture-4" data-sculpture-id="4" data-title="Golden Vortex Bowl" data-price="$3,500" data-specs="Hand-Turned Aspen, 24K Gold Leaf" data-dim="18&quot; x 18&quot; x 10&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 04 — Golden Vortex Bowl" class="sculpture-img">
+              <span class="sculpture-price-tag">$3,500</span>
+              <span class="sculpture-number-badge">PIECE #04</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #4</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Golden Vortex Bowl</h3>
+              <div class="sculpture-meta">Hand-Turned Aspen, 24K Gold Leaf</div>
+              <p class="sculpture-desc">Lathe-spun thin-wall Aspen vessel with hand-gilded 24K gold interior void reflection.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 18" x 18" x 10"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="4"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 05 -->
+          <div class="sculpture-card" id="sculpture-5" data-sculpture-id="5" data-title="Alpine Eclipse Slab" data-price="$5,900" data-specs="Black Walnut & Brushed Copper" data-dim="32&quot; x 24&quot; x 16&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 05 — Alpine Eclipse Slab" class="sculpture-img">
+              <span class="sculpture-price-tag">$5,900</span>
+              <span class="sculpture-number-badge">PIECE #05</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #5</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Alpine Eclipse Slab</h3>
+              <div class="sculpture-meta">Black Walnut & Brushed Copper</div>
+              <p class="sculpture-desc">Live-edge black walnut slab with circular copper eclipse inlay inspired by solar twilight.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 32" x 24" x 16"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="5"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 06 -->
+          <div class="sculpture-card" id="sculpture-6" data-sculpture-id="6" data-title="Kuro Charcoal Vessel" data-price="$4,200" data-specs="Shou Sugi Ban Pine, Brass Inlay" data-dim="22&quot; x 14&quot; x 14&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 06 — Kuro Charcoal Vessel" class="sculpture-img">
+              <span class="sculpture-price-tag">$4,200</span>
+              <span class="sculpture-number-badge">PIECE #06</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #6</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Kuro Charcoal Vessel</h3>
+              <div class="sculpture-meta">Shou Sugi Ban Pine, Brass Inlay</div>
+              <p class="sculpture-desc">Japanese charring technique preserving deep textured black pine skin accented with brass seams.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 22" x 14" x 14"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="6"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 07 -->
+          <div class="sculpture-card" id="sculpture-7" data-sculpture-id="7" data-title="Sacred Ember Totem" data-price="$7,500" data-specs="Ancient Juniper & Crimson Epoxy" data-dim="52&quot; x 16&quot; x 16&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 07 — Sacred Ember Totem" class="sculpture-img">
+              <span class="sculpture-price-tag">$7,500</span>
+              <span class="sculpture-number-badge">PIECE #07</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #7</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Sacred Ember Totem</h3>
+              <div class="sculpture-meta">Ancient Juniper & Crimson Epoxy</div>
+              <p class="sculpture-desc">Weathered high-alpine twisted juniper trunk bonded with glowing translucent crimson resin.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 52" x 16" x 16"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="7"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 08 -->
+          <div class="sculpture-card" id="sculpture-8" data-sculpture-id="8" data-title="Roaring Fork River Wave" data-price="$6,800" data-specs="Colorado Aspen & Azure Resin" data-dim="38&quot; x 18&quot; x 15&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 08 — Roaring Fork River Wave" class="sculpture-img">
+              <span class="sculpture-price-tag">$6,800</span>
+              <span class="sculpture-number-badge">PIECE #08</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #8</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Roaring Fork River Wave</h3>
+              <div class="sculpture-meta">Colorado Aspen & Azure Resin</div>
+              <p class="sculpture-desc">Flowing wave silhouette evoking the meltwater currents of Aspen's alpine river basin.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 38" x 18" x 15"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="8"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 09 -->
+          <div class="sculpture-card" id="sculpture-9" data-sculpture-id="9" data-title="Snowmass White Ash Form" data-price="$5,400" data-specs="Carved White Ash, Matte Black Base" data-dim="30&quot; x 20&quot; x 12&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 09 — Snowmass White Ash Form" class="sculpture-img">
+              <span class="sculpture-price-tag">$5,400</span>
+              <span class="sculpture-number-badge">PIECE #09</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #9</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Snowmass White Ash Form</h3>
+              <div class="sculpture-meta">Carved White Ash, Matte Black Base</div>
+              <p class="sculpture-desc">Minimalist geometric curves carved from bleached white ash reminiscent of fresh powder drifts.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 30" x 20" x 12"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="9"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 10 -->
+          <div class="sculpture-card" id="sculpture-10" data-sculpture-id="10" data-title="Dragon Tail Juniper" data-price="$9,200" data-specs="Twisted Juniper Burl, Bronze Pedestal" data-dim="44&quot; x 26&quot; x 22&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 10 — Dragon Tail Juniper" class="sculpture-img">
+              <span class="sculpture-price-tag">$9,200</span>
+              <span class="sculpture-number-badge">PIECE #10</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #10</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Dragon Tail Juniper</h3>
+              <div class="sculpture-meta">Twisted Juniper Burl, Bronze Pedestal</div>
+              <p class="sculpture-desc">Dynamic spiraling root system mounted on heavy custom bronze pedestal for gallery centerpiece display.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 44" x 26" x 22"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="10"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 11 -->
+          <div class="sculpture-card" id="sculpture-11" data-sculpture-id="11" data-title="Midnight Pine Orb" data-price="$3,900" data-specs="Ebonized Pine, Gold Leaf Crackle" data-dim="16&quot; x 16&quot; x 16&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 11 — Midnight Pine Orb" class="sculpture-img">
+              <span class="sculpture-price-tag">$3,900</span>
+              <span class="sculpture-number-badge">PIECE #11</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #11</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Midnight Pine Orb</h3>
+              <div class="sculpture-meta">Ebonized Pine, Gold Leaf Crackle</div>
+              <p class="sculpture-desc">Spherical carved pine form ebonized black with glowing gold fissures running across the grain.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 16" x 16" x 16"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="11"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 12 -->
+          <div class="sculpture-card" id="sculpture-12" data-sculpture-id="12" data-title="Continental Divide Arc" data-price="$8,800" data-specs="Aspen Burl Arc & Raw Steel" data-dim="42&quot; x 28&quot; x 18&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 12 — Continental Divide Arc" class="sculpture-img">
+              <span class="sculpture-price-tag">$8,800</span>
+              <span class="sculpture-number-badge">PIECE #12</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #12</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Continental Divide Arc</h3>
+              <div class="sculpture-meta">Aspen Burl Arc & Raw Steel</div>
+              <p class="sculpture-desc">Suspended crescent arch bridging organic raw edge timber with industrial hand-welded steel.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 42" x 28" x 18"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="12"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 13 -->
+          <div class="sculpture-card" id="sculpture-13" data-sculpture-id="13" data-title="High Country Burl Sphere" data-price="$7,200" data-specs="Sculpted Oak Burl, Liquid Gold" data-dim="24&quot; x 24&quot; x 24&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 13 — High Country Burl Sphere" class="sculpture-img">
+              <span class="sculpture-price-tag">$7,200</span>
+              <span class="sculpture-number-badge">PIECE #13</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #13</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">High Country Burl Sphere</h3>
+              <div class="sculpture-meta">Sculpted Oak Burl, Liquid Gold</div>
+              <p class="sculpture-desc">Heavy solid orb sculpted from centuries-old oak burl with hollowed chamber lining.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 24" x 24" x 24"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="13"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 14 -->
+          <div class="sculpture-card" id="sculpture-14" data-sculpture-id="14" data-title="Aspen Leaf Bronze & Oak" data-price="$4,600" data-specs="Red Oak & Cast Bronze Inlay" data-dim="26&quot; x 18&quot; x 14&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 14 — Aspen Leaf Bronze & Oak" class="sculpture-img">
+              <span class="sculpture-price-tag">$4,600</span>
+              <span class="sculpture-number-badge">PIECE #14</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #14</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Aspen Leaf Bronze & Oak</h3>
+              <div class="sculpture-meta">Red Oak & Cast Bronze Inlay</div>
+              <p class="sculpture-desc">Stylized aspen leaf silhouette carved into quarter-sawn oak with molten bronze accent inlay.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 26" x 18" x 14"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="14"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sculpture 15 -->
+          <div class="sculpture-card" id="sculpture-15" data-sculpture-id="15" data-title="Zen Horizon Cantilever" data-price="$9,800" data-specs="Master Black Walnut & Titanium" data-dim="54&quot; x 22&quot; x 20&quot;" data-status="Available in Aspen Gallery">
+            <div class="sculpture-img-wrapper">
+              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 15 — Zen Horizon Cantilever" class="sculpture-img">
+              <span class="sculpture-price-tag">$9,800</span>
+              <span class="sculpture-number-badge">PIECE #15</span>
+              <span class="upload-placeholder-tag">📸 Upload Photo #15</span>
+            </div>
+            <div class="sculpture-card-body">
+              <h3 class="sculpture-title">Zen Horizon Cantilever</h3>
+              <div class="sculpture-meta">Master Black Walnut & Titanium</div>
+              <p class="sculpture-desc">Flagship gallery centerpiece featuring gravity-defying cantilevered black walnut wing balanced on titanium.</p>
+              <div class="sculpture-specs-row">
+                <span class="sculpture-dim">📐 54" x 22" x 20"</span>
+                <div class="sculpture-actions">
+                  <button class="btn-qr-trigger" data-id="15"><span>📱 QR Code</span></button>
+                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3D ANIMATION & MOTION GRAPHICS FEATURE
+         ========================================================================== -->
+    <section class="vfx-section" id="vfx">
+      <div class="container">
+        <div class="vfx-grid">
+          <div>
+            <span class="section-eyebrow">3D & MOTION DESIGN DOJO</span>
+            <h2 class="section-title text-gradient-gold">Cinema 4D & Blender Masterclass</h2>
+            <p class="section-desc" style="text-align: left; margin: 0 0 1.5rem 0;">
+              Over the past few years, Daniel has taken a deep dive into advanced 3D motion graphics, procedural texturing, and photoreal rendering. Equipped with dual 3090 NV-Linked and RTX 4090 monster workstation rigs, Sensei Studios brings Hollywood-grade VFX directly to your project.
+            </p>
+
+            <ul class="vfx-list">
+              <li>
+                <span class="vfx-list-icon">⚡</span>
+                <span><strong>Marvel-Style Title Intros</strong>: Epic 3D logo builds, procedural fragment explosions, and cinematic metallic shaders.</span>
+              </li>
+              <li>
+                <span class="vfx-list-icon">⚡</span>
+                <span><strong>3D Product Animations</strong>: Photoreal lighting, studio turnables, exploded component views, and liquid simulations.</span>
+              </li>
+              <li>
+                <span class="vfx-list-icon">⚡</span>
+                <span><strong>Spatial 3D Tracking in FPV Shots</strong>: Floating 3D graphics camera-tracked seamlessly into high-speed drone footage.</span>
+              </li>
+              <li>
+                <span class="vfx-list-icon">⚡</span>
+                <span><strong>Adobe After Effects Proficiency</strong>: Complete mastery of AE and Adobe Suite applications since their inception.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="vfx-feature-card">
+            <img src="./assets/3d_card.png" alt="3D Procedural Lens Aperture Render" style="width: 100%; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-gold); aspect-ratio: 16/9; object-fit: cover;">
+            <h3 style="font-size: 1.5rem; color: #FFF; margin-bottom: 1rem;">The Render Beast Farm</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+              Local render speed means zero waiting time. Complex Octane and Redshift scenes render natively at extreme speed.
+            </p>
+            <div style="background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-gold); font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-gold-bright);">
+              <div>⚡ MACHINE 01: DUAL RTX 3090 NV-LINKED (48GB VRAM)</div>
+              <div style="margin-top: 0.5rem;">⚡ MACHINE 02: NVIDIA RTX 4090 MONSTER RIG</div>
+              <div style="margin-top: 0.5rem;">⚡ REMOTE: FULLY KITTED MACBOOK PRO M-SERIES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         DOJO ARSENAL / EQUIPMENT SPECS
+         ========================================================================== -->
+    <section class="arsenal-section" id="arsenal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">HARDWARE & GEAR</span>
+          <h2 class="section-title text-gradient-teal">The Dojo Equipment Arsenal</h2>
+          <p class="section-desc">Bleeding-edge technology meticulously calibrated for maximum mobility, speed, and 8K visual fidelity.</p>
+        </div>
+
+        <div class="arsenal-grid">
+          <!-- 1. Motion Controlled Timelapse -->
+          <div class="arsenal-card">
+            <div class="arsenal-icon">🤖</div>
+            <h3 class="arsenal-title">8K Motion Control Rigs</h3>
+            <ul class="arsenal-specs-list">
+              <li>• 2x <span>8K 4-Axis Motion Rigs</span></li>
+              <li>• Multi-axis pan, tilt, slide & focus tracking</li>
+              <li>• Continuous & intervalometer day-to-night holy grail transitions</li>
+            </ul>
+          </div>
+
+          <!-- 2. Cinema Cameras -->
+          <div class="arsenal-card">
+            <div class="arsenal-icon">🎥</div>
+            <h3 class="arsenal-title">Cinema Camera Systems</h3>
+            <ul class="arsenal-specs-list">
+              <li>• 2x <span>RED Dragon Cinema Cameras</span></li>
+              <li>• Sony FX & Alpha Cinema line</li>
+              <li>• Specialized ski gimbal mount rigs</li>
+            </ul>
+          </div>
+
+          <!-- 3. Drone Fleet -->
+          <div class="arsenal-card">
+            <div class="arsenal-icon">🚁</div>
+            <h3 class="arsenal-title">FPV & Aerial Drones</h3>
+            <ul class="arsenal-specs-list">
+              <li>• <span>DJI Avata</span> FPV acrobatic diving</li>
+              <li>• <span>DJI Mavic 3 Cine</span> Apple ProRes</li>
+              <li>• 10 years flight mastery & hyperlapse</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         DIGITAL NINJA BIO & PHILOSOPHY
+         ========================================================================== -->
+    <section class="bio-section" id="bio">
+      <div class="container">
+        <div class="bio-wrapper">
+          <div>
+            <span class="section-eyebrow">ABOUT DANIEL KELLY BROWN</span>
+            <h2 class="section-title text-gradient-gold">Part Cinematographer. Part Ninja.</h2>
+            <div class="bio-text-content">
+              <p>
+                Daniel Kelly Brown is a cinematographer and artist based out of Colorado. Having spent over two decades honing his craft, Danny seamlessly blends technical mastery of robotics and 3D rendering with the raw instinct of an action sports filmmaker.
+              </p>
+              <div class="bio-quote">
+                "Efficiency of movement in life, and during video shoots. I practice and practice to ensure the client gets the perfect shot, every time."
+              </div>
+              <p>
+                Whether skiing at high speeds with a custom gimbal setup, setting up multiple motion-controlled 8K timelapses on mountain peaks, or flying tight FPV lines through architecture, Danny operates as a complete one-man band.
+              </p>
+            </div>
+          </div>
+
+          <div class="bio-milestones">
+            <img src="./assets/bio_art.png" alt="Daniel Kelly Brown Digital Ninja Cinematographer on Mountain Ridge" style="width: 100%; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-gold); aspect-ratio: 16/9; object-fit: cover;">
+            <div class="milestone-box">
+              <div class="milestone-year">BANFF FILM FESTIVAL</div>
+              <div class="milestone-desc">Honorable Mention Award Winner & Global Tour Screening</div>
+            </div>
+            <div class="milestone-box" style="margin-top: 1rem;">
+              <div class="milestone-year">DISCOVERY CHANNEL</div>
+              <div class="milestone-desc">Featured 8K Motion Control Timelapse Shots Sold & Broadcast</div>
+            </div>
+            <div class="milestone-box" style="margin-top: 1rem;">
+              <div class="milestone-year">OUTSIDE TV</div>
+              <div class="milestone-desc">Action Sports Cinematography Covering Virtually Every Outdoor Sport</div>
+            </div>
+            <div class="milestone-box" style="margin-top: 1rem;">
+              <div class="milestone-year">BOEING & HIREUAV</div>
+              <div class="milestone-desc">Aerial Light Show Production & Recaps Across the US</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         NINJA SCOPE ESTIMATOR CALCULATOR
+         ========================================================================== -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">PROJECT CALCULATOR</span>
+          <h2 class="section-title text-gradient-teal">Ninja Scope Estimator</h2>
+          <p class="section-desc">Select your desired production services to generate an instant estimate for your project scope.</p>
+        </div>
+
+        <div class="estimator-card">
+          <div class="estimator-grid">
+            <div class="estimator-options">
+              <div>
+                <h4 class="estimator-group-title">1. Select Production Capabilities</h4>
+                <div class="checkbox-cards-grid">
+                  <label class="checkbox-card selected">
+                    <input type="checkbox" class="scope-calc" data-price="2500" checked>
+                    <div>
+                      <strong>Video Production</strong>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">Gimbal & Multi-Cam Shoot</div>
+                    </div>
+                  </label>
+
+                  <label class="checkbox-card selected">
+                    <input type="checkbox" class="scope-calc" data-price="1800" checked>
+                    <div>
+                      <strong>8K Motion Timelapse</strong>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">4-Axis Robot Setup</div>
+                    </div>
+                  </label>
+
+                  <label class="checkbox-card">
+                    <input type="checkbox" class="scope-calc" data-price="3200">
+                    <div>
+                      <strong>3D Product / Logo</strong>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">Cinema 4D / Redshift</div>
+                    </div>
+                  </label>
+
+                  <label class="checkbox-card">
+                    <input type="checkbox" class="scope-calc" data-price="1500">
+                    <div>
+                      <strong>FPV & Drone Hyperlapse</strong>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">DJI Avata / Mavic 3</div>
+                    </div>
+                  </label>
+
+                  <label class="checkbox-card">
+                    <input type="checkbox" class="scope-calc" data-price="2000">
+                    <div>
+                      <strong>Post & AE Motion Graphics</strong>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">Marvel-Style Intro & Edit</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="estimator-summary">
+              <div>
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-teal);">ESTIMATED PROJECT TIER</span>
+                <div class="estimator-price-tag" id="estimated-price">$4,300</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  Includes full turn-key execution by Daniel Kelly Brown with all camera gear, render farm access, and editing suite included.
+                </p>
+              </div>
+              <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">Lock In Scope</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ZEN CONTACT & BOOKING PORTAL
+         ========================================================================== -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">COMMISSION A PROJECT</span>
+          <h2 class="section-title text-gradient-gold">Step Into The Dojo</h2>
+          <p class="section-desc">Have a vision for a video, 3D animation, or drone project? Let's make it extraordinary.</p>
+        </div>
+
+        <div class="contact-card">
+          <form id="sensei-contact-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="client-name">Your Name</label>
+                <input type="text" id="client-name" class="form-input" placeholder="e.g. Akira Kurosawa" required>
+              </div>
+
+              <div class="form-group">
+                <label for="client-email">Email Address</label>
+                <input type="email" id="client-email" class="form-input" placeholder="akira@studio.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="project-type">Primary Project Type</label>
+                <select id="project-type" class="form-select">
+                  <option value="Full Video & 3D Package">Full Video & 3D Package</option>
+                  <option value="3D Product Animation">3D Product / Logo Animation</option>
+                  <option value="8K Motion Timelapse">8K Motion Controlled Timelapse</option>
+                  <option value="FPV Drone & Hyperlapse">FPV Drone & Aerial Hyperlapse</option>
+                  <option value="Commercial Video Edit">Commercial Video Edit & Motion Graphics</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="budget-tier">Estimated Budget Tier</label>
+                <select id="budget-tier" class="form-select">
+                  <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+                  <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                  <option value="$10,000 - $25,000+">$10,000 - $25,000+</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="project-notes">Project Details & Vision</label>
+                <textarea id="project-notes" class="form-textarea" rows="4" placeholder="Tell us about your timeline, locations, or vision..." required></textarea>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+              <button type="submit" class="btn btn-gold" style="min-width: 260px;">Send Transmission ⚡</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       VIDEO MODAL THEATER PLAYER
+       ========================================================================== -->
+  <div class="video-modal" id="video-modal" aria-hidden="true">
+    <div class="modal-content-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Video">✕</button>
+      <div class="modal-iframe-container" id="modal-iframe-container">
+        <!-- Iframe injected via JS -->
+      </div>
+      <div class="modal-info-bar">
+        <div class="modal-info-title" id="modal-info-title">Sensei Studios Theater</div>
+        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-teal);">HD 1080p / 4K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SCULPTURE QR CODE & ACQUISITION MODAL
+       ========================================================================== -->
+  <div class="sculpture-modal" id="sculpture-qr-modal" aria-hidden="true">
+    <div class="sculpture-modal-card">
+      <button class="modal-close-btn" id="sculpture-modal-close" aria-label="Close Modal">✕</button>
+      <div class="modal-qr-preview-box">
+        <div class="modal-qr-img" id="qr-code-target"></div>
+        <div style="font-family: var(--font-cyber); font-size: 0.8rem; color: var(--accent-gold-bright); margin-bottom: 0.25rem;">GALLERY DISPLAY QR CODE</div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);" id="qr-direct-link">https://senseistudios.com/#sculpture-1</div>
+      </div>
+      <div style="padding: 2.25rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="woodwork-header-badge" id="modal-sculpture-status">EXHIBITING AT ASPEN GALLERY</span>
+          <h3 style="font-family: var(--font-heading); font-size: 2.2rem; color: #FFF; margin: 0.5rem 0;" id="modal-sculpture-title">Aspen Burl Flow</h3>
+          <div style="font-family: var(--font-mono); color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;" id="modal-sculpture-specs">Colorado Aspen Burl & Liquid Gold</div>
+          
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="color: var(--text-muted); font-size: 0.85rem;">Acquisition Price:</span>
+              <span style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--accent-gold-bright);" id="modal-sculpture-price">$4,800</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: var(--text-muted); font-size: 0.85rem;">Dimensions:</span>
+              <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #FFF;" id="modal-sculpture-dim">28" x 16" x 14"</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="#contact" class="btn btn-gold" style="width: 100%;" id="modal-reserve-btn">Reserve / Inquire For Acquisition</a>
+          <p style="font-size: 0.75rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem;">
+            Direct gallery hold request sent to Daniel Kelly Brown & Aspen Gallery staff.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">SENSEI STUDIOS</div>
+          <p style="color: var(--text-muted); max-width: 400px; font-size: 0.95rem;">
+            Master cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, and fine timber woodwork. Colorado based, worldwide operational capability.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="color: #FFF; margin-bottom: 1rem; font-family: var(--font-heading);">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#work">Portfolio Archive</a></li>
+            <li><a href="#woodwork">Aspen Woodwork</a></li>
+            <li><a href="#vfx">3D & VFX</a></li>
+            <li><a href="#arsenal">The Dojo Hardware</a></li>
+            <li><a href="#bio">Daniel Kelly Brown</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: #FFF; margin-bottom: 1rem; font-family: var(--font-heading);">Direct Contact</h4>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Email: <a href="mailto:danny@senseistudios.com" style="color: var(--accent-gold);">danny@senseistudios.com</a><br>
+            Colorado, USA
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Sensei Studios. All Rights Reserved. Crafted with Zen Precision.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="./script.js"></script>
+</body>
+</html>
