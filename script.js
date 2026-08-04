@@ -506,7 +506,7 @@ function initWoodworkSculptures() {
     modalSpecs.textContent = specs;
     modalPrice.textContent = price;
     modalDim.textContent = dim;
-    modalStatus.textContent = status || 'EXHIBITING AT ASPEN GALLERY';
+    modalStatus.textContent = status || 'EXHIBITING AT THE GROVE WITH BUCKHORN PUBLIC ARTS';
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
