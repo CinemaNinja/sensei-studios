@@ -138,6 +138,8 @@ function initTypedText() {
   const phrases = [
     "Master Cinematographer.",
     "3D Motion Graphics Specialist.",
+    "Motion Controlled Timelapse.",
+    "Fine Wood Sculptor.",
     "8K Timelapse Pioneer.",
     "FPV Drone Hyperlapse Pilot."
   ];
