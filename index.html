@@ -3,81 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sensei Studios | Master Cinematography, 3D Animation & FPV Drones</title>
-  
-  <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="Sensei Studios is a premiere video production, 3D animation, motion graphics, and FPV drone hyperlapse studio founded by cinematographer & digital ninja Daniel Kelly Brown. Based in Colorado.">
-  <meta name="keywords" content="Sensei Studios, Daniel Kelly Brown, Cinematographer, 3D Animation, Motion Graphics, Cinema 4D, After Effects, FPV Drone, Timelapse, 8K Motion Control, Colorado Video Production">
-  <meta property="og:title" content="Sensei Studios | The Zen of Cinema & 3D Animation">
-  <meta property="og:description" content="Master cinematography, 8K motion controlled timelapses, Cinema 4D animation, FPV drone hyperlapses, and high-octane motion design.">
-  <meta property="og:image" content="./assets/hero_bg.png">
-  <meta property="og:type" content="website">
+  <title>Sensei Studios | Cinematography, 3D Animation, FPV Drones & Fine Woodwork</title>
 
-  <!-- Favicon & Stylesheet -->
+  <meta name="description" content="Sensei Studios — Colorado-based master cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drone hyperlapses, fine timber sculpture, and live handpan. Founded by Daniel Kelly Brown.">
+  <meta name="keywords" content="Sensei Studios, Daniel Kelly Brown, Cinematographer, 3D Animation, Motion Graphics, Cinema 4D, FPV Drone, Timelapse, Colorado Video Production, Wood Sculpture, Handpan">
+  <meta name="author" content="Daniel Kelly Brown, Sensei Studios">
+  <meta name="theme-color" content="#07090E">
+  <link rel="canonical" href="https://senseistudios.com/">
+
+  <meta property="og:title" content="Sensei Studios | The Zen of Cinema & Craft">
+  <meta property="og:description" content="Master cinematography, 8K motion-controlled timelapses, Cinema 4D animation, FPV drones, fine timber sculpture, and live handpan. Colorado based, worldwide capable.">
+  <meta property="og:image" content="https://senseistudios.com/assets/hero_bg.webp">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="1406">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://senseistudios.com/">
+  <meta property="og:site_name" content="Sensei Studios">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sensei Studios | Cinema, Craft & Sound">
+  <meta name="twitter:description" content="Cinematography, 3D motion, FPV drones, fine wood sculpture, and live handpan by Daniel Kelly Brown.">
+  <meta name="twitter:image" content="https://senseistudios.com/assets/hero_bg.webp">
+
   <link rel="icon" type="image/png" href="./assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="./assets/cinema_ninja_logo.webp" type="image/webp">
   <link rel="stylesheet" href="./styles.css">
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProductionCompany",
+    "@type": "ProfessionalService",
     "name": "Sensei Studios",
+    "alternateName": "Cinema Ninja",
+    "url": "https://senseistudios.com",
+    "email": "brown@senseistudios.com",
+    "telephone": "+1-303-709-8647",
     "founder": {
       "@type": "Person",
       "name": "Daniel Kelly Brown",
       "jobTitle": "Cinematographer & 3D Motion Specialist"
     },
-    "description": "High-end video production, 8K 4-axis motion-controlled timelapse, Cinema 4D/Blender animation, FPV drone hyperlapses, and commercial editing.",
-    "location": "Colorado, USA",
-    "logo": "https://senseistudios.com/assets/logo.png"
+    "description": "High-end video production, 8K motion-controlled timelapse, Cinema 4D/Blender animation, FPV drone hyperlapses, fine timber sculpture, and live handpan performances.",
+    "areaServed": "Worldwide",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "CO",
+      "addressCountry": "US"
+    },
+    "logo": "https://senseistudios.com/assets/logo.png",
+    "image": "https://senseistudios.com/assets/hero_bg.webp",
+    "sameAs": []
   }
   </script>
 </head>
 <body class="loading-lock">
 
-  <!-- Canvas Engine for Zen Water Particle Background -->
-  <canvas id="zen-canvas"></canvas>
-  <div id="custom-cursor"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- ==========================================================================
-       PRELOADER: ZEN ENSO & CAM APERTURE
-       ========================================================================== -->
+  <canvas id="zen-canvas" aria-hidden="true"></canvas>
+  <div id="custom-cursor" aria-hidden="true"></div>
+
+  <!-- Preloader -->
   <div id="preloader" aria-hidden="true">
     <div class="preloader-enso-wrapper">
       <div class="preloader-enso"></div>
-      <img src="./assets/cinema_ninja_logo_nav.webp" alt="Cinema Ninja Logo" class="preloader-logo">
+      <img src="./assets/cinema_ninja_logo_nav.webp" alt="" class="preloader-logo" width="70" height="70">
     </div>
-    <div class="preloader-title">CINEMA NINJA</div>
-    <div class="preloader-subtitle">ENTER THE DIGITAL DOJO</div>
+    <div class="preloader-title">SENSEI STUDIOS</div>
+    <div class="preloader-subtitle">ENTER THE DOJO</div>
   </div>
 
-  <!-- ==========================================================================
-       SITE NAVIGATION
-       ========================================================================== -->
-  <nav class="site-nav" id="site-nav">
+  <!-- Navigation -->
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
     <div class="container nav-container">
       <a href="#hero" class="nav-brand">
-        <img src="./assets/cinema_ninja_logo_nav.webp" alt="Sensei Studios Logo" class="nav-logo-img">
+        <img src="./assets/cinema_ninja_logo_nav.webp" alt="Sensei Studios" class="nav-logo-img" width="48" height="48">
         <span class="nav-brand-title">SENSEI STUDIOS</span>
       </a>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="#work" class="nav-link" data-text="Portfolio">Portfolio</a></li>
-        <li><a href="#vfx" class="nav-link" data-text="3D & Motion">3D & Motion</a></li>
-        <li><a href="#woodwork" class="nav-link" data-text="Woodwork">Woodwork</a></li>
-        <li><a href="#handpan" class="nav-link" data-text="Handpan">Handpan</a></li>
-        <li><a href="#arsenal" class="nav-link" data-text="The Dojo">The Dojo</a></li>
-        <li><a href="#bio" class="nav-link" data-text="Ninja Story">Ninja Story</a></li>
-        <li><a href="#estimator" class="nav-link" data-text="Scope">Scope</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#woodwork" class="nav-link">Wood</a></li>
+        <li><a href="#handpan" class="nav-link">Handpan</a></li>
+        <li><a href="#arsenal" class="nav-link">Arsenal</a></li>
+        <li><a href="#bio" class="nav-link">Story</a></li>
+        <li><a href="#estimator" class="nav-link">Scope</a></li>
+        <li class="nav-mobile-cta"><a href="#contact" class="nav-link">Book Project</a></li>
       </ul>
 
       <div class="nav-actions">
         <a href="#contact" class="nav-cta-btn">
           <span class="nav-cta-text">Book Project</span>
-          <span class="nav-cta-icon">→</span>
+          <span class="nav-cta-icon" aria-hidden="true">→</span>
         </a>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle Menu">
+        <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -86,49 +107,87 @@
     </div>
   </nav>
 
-  <main>
-    <!-- ==========================================================================
-         HERO SECTION
-         ========================================================================== -->
+  <main id="main-content">
+
+    <!-- Hero -->
     <section class="hero" id="hero">
       <div class="hero-bg-wrapper">
-        <img src="./assets/hero_bg.png" alt="Sensei Studios Zen Mountain Studio Wallpaper" class="hero-bg-img">
+        <img
+          src="./assets/hero_bg.webp"
+          alt="Daniel Kelly Brown capturing a starfield with motion-controlled camera under alpine night sky"
+          class="hero-bg-img"
+          width="1400"
+          height="1406"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="hero-bg-video" id="hero-bg-video" aria-hidden="true"></div>
         <div class="hero-overlay"></div>
+        <div class="hero-film-grain" aria-hidden="true"></div>
       </div>
 
       <div class="container hero-container">
         <div class="hero-visual">
-          <img src="./assets/cinema_ninja_logo.webp" alt="Cinema Ninja Studio Logo" class="hero-ninja-logo">
+          <img
+            src="./assets/cinema_ninja_logo.webp"
+            alt="Sensei Studios mark"
+            class="hero-ninja-logo"
+            width="280"
+            height="280"
+            decoding="async"
+          >
         </div>
 
+        <p class="hero-kicker">Daniel Kelly Brown · Colorado · Worldwide</p>
+
         <h1 class="hero-title">
-          Part Cinematographer. <br>
-          Part Ninja. <br>
-          <span class="typed-text" id="typed-output"></span>
+          Part Cinematographer.<br>
+          Part Craftsman.<br>
+          <span class="typed-text" id="typed-output" aria-live="polite"></span>
         </h1>
 
         <p class="hero-description">
-          20 years of precision camera movement, 8K 4-axis motion-controlled timelapses, Cinema 4D animation, and FPV drone hyperlapses. A solo-ninja production powerhouse.
+          Twenty-five years of precision camera movement, 8K motion-controlled timelapses, Cinema 4D animation, FPV hyperlapses, fine timber sculpture, and live handpan — one focused studio.
         </p>
 
         <div class="hero-cta-group">
-          <a href="#work" class="hero-cta-link">Explore Reel & Work</a>
-          <a href="#woodwork" class="hero-cta-link">Aspen Woodwork</a>
-          <a href="#estimator" class="hero-cta-link">Project Scope</a>
+          <button type="button" class="btn btn-primary hero-reel-btn" id="hero-reel-btn" data-video-type="youtube" data-video-id="9G1n3BTHkxw" data-video-title="Official Director Reel">
+            <span class="play-dot" aria-hidden="true">▶</span> Watch Director Reel
+          </button>
+          <a href="#contact" class="btn btn-outline">Book a Project</a>
+        </div>
+
+        <!-- Audience lanes -->
+        <div class="hero-lanes" aria-label="Choose your path">
+          <a href="#work" class="lane-card">
+            <span class="lane-label">Film &amp; Motion</span>
+            <span class="lane-desc">Reels, timelapse, FPV &amp; commercial</span>
+            <span class="lane-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#woodwork" class="lane-card">
+            <span class="lane-label">Collect Sculpture</span>
+            <span class="lane-desc">Gallery timber at The Grove</span>
+            <span class="lane-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#handpan" class="lane-card">
+            <span class="lane-label">Book Handpan</span>
+            <span class="lane-desc">Events, sound baths &amp; weddings</span>
+            <span class="lane-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
 
         <div class="hero-stats-grid">
           <div class="stat-item">
-            <span class="stat-number">20+</span>
-            <span class="stat-label">Years Shooting & Editing</span>
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Years Shooting &amp; Editing</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">8K</span>
             <span class="stat-label">Motion-Controlled Timelapse</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">2×</span>
-            <span class="stat-label">RTX Render Rigs</span>
+            <span class="stat-number">Dual</span>
+            <span class="stat-label">RTX 4090 Workstation</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">100%</span>
@@ -138,197 +197,186 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         PORTFOLIO & VIDEO SHOWCASE SECTION
-         ========================================================================== -->
+    <!-- Proof strip -->
+    <section class="proof-section" aria-label="Credits and press">
+      <div class="container">
+        <p class="proof-eyebrow">Trusted craft · Press &amp; clients</p>
+        <div class="proof-strip">
+          <span class="proof-item">Banff Film Festival</span>
+          <span class="proof-divider" aria-hidden="true">·</span>
+          <span class="proof-item">Discovery Channel</span>
+          <span class="proof-divider" aria-hidden="true">·</span>
+          <span class="proof-item">Outside TV</span>
+          <span class="proof-divider" aria-hidden="true">·</span>
+          <span class="proof-item">Boeing</span>
+          <span class="proof-divider" aria-hidden="true">·</span>
+          <span class="proof-item">HireUAV</span>
+          <span class="proof-divider" aria-hidden="true">·</span>
+          <span class="proof-item">Buckhorn Public Arts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
     <section class="portfolio-section" id="work">
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">THE REEL & ARCHIVE</span>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">The Reel &amp; Archive</span>
           <h2 class="section-title text-gradient-teal">Selected Cinematic Works</h2>
-          <p class="section-desc">From Banff Film Festival honors to custom Boeing drone shows and Cinema 4D product animations, step into the Sensei archive.</p>
+          <p class="section-desc">From Banff honors to Boeing drone shows and Cinema 4D product animations — step into the archive.</p>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="portfolio-filters">
-          <button class="filter-btn active" data-filter="all">All Works</button>
-          <button class="filter-btn" data-filter="reels">Video & Timelapses</button>
-          <button class="filter-btn" data-filter="vfx">3D & Motion Graphics</button>
-          <button class="filter-btn" data-filter="drone">FPV & Drone Hyperlapse</button>
-          <button class="filter-btn" data-filter="events">Drone Shows & Events</button>
+        <div class="portfolio-filters" role="tablist" aria-label="Filter portfolio">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Works</button>
+          <button type="button" class="filter-btn" data-filter="reels" role="tab" aria-selected="false">Video &amp; Timelapses</button>
+          <button type="button" class="filter-btn" data-filter="vfx" role="tab" aria-selected="false">3D &amp; Motion</button>
+          <button type="button" class="filter-btn" data-filter="drone" role="tab" aria-selected="false">FPV &amp; Drone</button>
+          <button type="button" class="filter-btn" data-filter="events" role="tab" aria-selected="false">Shows &amp; Events</button>
         </div>
 
-        <!-- Video Cards Grid -->
         <div class="video-grid" id="video-grid">
-          
-          <!-- 1. Marvel Style Intro & Edit -->
-          <div class="video-card" data-category="vfx reels" data-video-type="vimeo" data-video-id="794249931">
+
+          <article class="video-card reveal" data-category="vfx reels" data-video-type="vimeo" data-video-id="794249931" tabindex="0" role="button" aria-label="Play Marvel-Style Intro &amp; Comprehensive Edit">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/794249931.jpg" alt="Marvel Style Intro" class="video-thumbnail">
+              <img src="https://vumbnail.com/794249931.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">MARVEL INTRO / EDIT</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
-              <h3 class="video-title">Marvel-Style Intro & Comprehensive Edit</h3>
-              <p class="video-description">Custom 3D Cinema 4D marvel-style logo animation sequence, integrated with motion-controlled timelapse and cinematic outdoor video edit.</p>
+              <h3 class="video-title">Marvel-Style Intro &amp; Comprehensive Edit</h3>
+              <p class="video-description">Custom Cinema 4D marvel-style logo sequence integrated with motion-controlled timelapse and cinematic outdoor edit.</p>
               <div class="video-tags">
                 <span class="video-tag">Cinema 4D</span>
                 <span class="video-tag">After Effects</span>
                 <span class="video-tag">Timelapse</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Official Video Reel -->
-          <div class="video-card" data-category="reels" data-video-type="youtube" data-video-id="9G1n3BTHkxw">
+          <article class="video-card reveal featured-card" data-category="reels" data-video-type="youtube" data-video-id="9G1n3BTHkxw" tabindex="0" role="button" aria-label="Play Official Video Reel">
             <div class="video-thumbnail-wrapper">
-              <img src="https://img.youtube.com/vi/9G1n3BTHkxw/hqdefault.jpg" alt="Official Video Reel" class="video-thumbnail">
+              <img src="https://img.youtube.com/vi/9G1n3BTHkxw/maxresdefault.jpg" alt="" class="video-thumbnail" width="1280" height="720" loading="lazy" decoding="async" onerror="this.src='https://img.youtube.com/vi/9G1n3BTHkxw/hqdefault.jpg'">
               <span class="card-badge">DIRECTOR REEL</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Official Video Reel</h3>
-              <p class="video-description">High-energy highlight reel showcasing 20 years of ski gimbal operation, action sports, documentary footage, and commercial cinematography.</p>
+              <p class="video-description">High-energy highlight reel: ski gimbal, action sports, documentary, and commercial cinematography across twenty-five years.</p>
               <div class="video-tags">
                 <span class="video-tag">Sony Cinema</span>
                 <span class="video-tag">Ski Gimbal</span>
                 <span class="video-tag">Action Sports</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Motion-Controlled Timelapse Reel -->
-          <div class="video-card" data-category="reels" data-video-type="youtube" data-video-id="4DWPPwO02nk">
+          <article class="video-card reveal" data-category="reels" data-video-type="youtube" data-video-id="4DWPPwO02nk" tabindex="0" role="button" aria-label="Play Motion-Controlled Timelapse Reel">
             <div class="video-thumbnail-wrapper">
-              <img src="https://img.youtube.com/vi/4DWPPwO02nk/hqdefault.jpg" alt="Time Lapse Reel" class="video-thumbnail">
+              <img src="https://img.youtube.com/vi/4DWPPwO02nk/maxresdefault.jpg" alt="" class="video-thumbnail" width="1280" height="720" loading="lazy" decoding="async" onerror="this.src='https://img.youtube.com/vi/4DWPPwO02nk/hqdefault.jpg'">
               <span class="card-badge">8K TIMELAPSE</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Motion-Controlled Timelapse Reel</h3>
-              <p class="video-description">8K resolution 4-axis motion-controlled robot timelapse sequences shifting light, cloudscapes, and night skies across Colorado wilderness.</p>
+              <p class="video-description">8K four-axis robot timelapse: shifting light, cloudscapes, and night skies across Colorado wilderness.</p>
               <div class="video-tags">
                 <span class="video-tag">4-Axis Robot</span>
                 <span class="video-tag">8K RAW</span>
                 <span class="video-tag">Astrophotography</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- 4. 3D Product Animation -->
-          <div class="video-card" data-category="vfx" data-video-type="vimeo" data-video-id="786699959">
+          <article class="video-card reveal" data-category="vfx" data-video-type="vimeo" data-video-id="786699959" tabindex="0" role="button" aria-label="Play Photoreal 3D Product Render">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/786699959.jpg" alt="3D Product Animation" class="video-thumbnail">
+              <img src="https://vumbnail.com/786699959.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">3D PRODUCT</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Photoreal 3D Product Render</h3>
-              <p class="video-description">Precision Cinema 4D and Redshift product animation featuring procedural glass, metallic textures, and fluid micro-lighting transitions.</p>
+              <p class="video-description">Cinema 4D and Redshift product animation with procedural glass, metallic textures, and micro-lighting transitions.</p>
               <div class="video-tags">
                 <span class="video-tag">Cinema 4D</span>
                 <span class="video-tag">Redshift</span>
                 <span class="video-tag">Product Viz</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- 5. FPV Drone & 3D Mapped Titles -->
-          <div class="video-card" data-category="drone vfx" data-video-type="vimeo" data-video-id="800368720">
+          <article class="video-card reveal" data-category="drone vfx" data-video-type="vimeo" data-video-id="800368720" tabindex="0" role="button" aria-label="Play FPV Drone &amp; 3D Mapped Motion Titles">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/800368720.jpg" alt="FPV Drone and 3D Titles" class="video-thumbnail">
-              <span class="card-badge">FPV & 3D TITLES</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <img src="https://vumbnail.com/800368720.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">FPV &amp; 3D TITLES</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
-              <h3 class="video-title">FPV Drone & 3D Mapped Motion Titles</h3>
-              <p class="video-description">Aggressive FPV drone diving camera work seamlessly matched with 3D camera-tracked spatial typography integrated into the environment.</p>
+              <h3 class="video-title">FPV Drone &amp; 3D Mapped Motion Titles</h3>
+              <p class="video-description">Aggressive FPV diving matched with camera-tracked spatial typography integrated into the environment.</p>
               <div class="video-tags">
                 <span class="video-tag">DJI Avata</span>
                 <span class="video-tag">3D Tracking</span>
                 <span class="video-tag">After Effects</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- 6. Boeing Drone Show Recap -->
-          <div class="video-card" data-category="events drone" data-video-type="vimeo" data-video-id="802295149">
+          <article class="video-card reveal" data-category="events drone" data-video-type="vimeo" data-video-id="802295149" tabindex="0" role="button" aria-label="Play Boeing UAV Light Show Event Recap">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/802295149.jpg" alt="Boeing Drone Show" class="video-thumbnail">
+              <img src="https://vumbnail.com/802295149.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">BOEING SHOW</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Boeing UAV Light Show Event Recap</h3>
-              <p class="video-description">Full aerial event coverage and motion-controlled recap for Boeing's synchronized drone light show spectacle with HireUAV.</p>
+              <p class="video-description">Aerial coverage and motion-controlled recap for Boeing’s synchronized drone light show with HireUAV.</p>
               <div class="video-tags">
                 <span class="video-tag">HireUAV</span>
                 <span class="video-tag">Boeing</span>
                 <span class="video-tag">Drone Show</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- 7. Kaley Cuoco Gender Reveal -->
-          <div class="video-card" data-category="events drone" data-video-type="vimeo" data-video-id="787747563">
+          <article class="video-card reveal" data-category="events drone" data-video-type="vimeo" data-video-id="787747563" tabindex="0" role="button" aria-label="Play Kaley Cuoco Drone Light Show">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/787747563.jpg" alt="Kaley Cuoco Gender Reveal" class="video-thumbnail">
+              <img src="https://vumbnail.com/787747563.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">CELEBRITY EVENT</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Kaley Cuoco Drone Light Show</h3>
-              <p class="video-description">High-profile celebrity event recap featuring custom aerial light formations and multi-cam ground videography.</p>
+              <p class="video-description">High-profile celebrity event recap with custom aerial light formations and multi-cam ground videography.</p>
               <div class="video-tags">
                 <span class="video-tag">Kaley Cuoco</span>
                 <span class="video-tag">HireUAV</span>
                 <span class="video-tag">Event Recap</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Cinematography Reel -->
-          <div class="video-card" data-category="reels" data-video-type="vimeo" data-video-id="133480201">
+          <article class="video-card reveal" data-category="reels" data-video-type="vimeo" data-video-id="133480201" tabindex="0" role="button" aria-label="Play Cinematography Reel Showcase">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/133480201.jpg" alt="Cinematography Reel" class="video-thumbnail">
+              <img src="https://vumbnail.com/133480201.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">CLASSIC REEL</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Cinematography Reel Showcase</h3>
-              <p class="video-description">Foundational cinematography work shot on RED Dragon cinema systems, featuring outdoor mountain culture and commercial shorts.</p>
+              <p class="video-description">Foundational work on RED Dragon: mountain culture, outdoor lifestyle, and commercial shorts.</p>
               <div class="video-tags">
                 <span class="video-tag">RED Dragon</span>
                 <span class="video-tag">Commercial</span>
                 <span class="video-tag">Outside TV</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Motion Timelapse Archive -->
-          <div class="video-card" data-category="reels" data-video-type="vimeo" data-video-id="122083716">
+          <article class="video-card reveal" data-category="reels" data-video-type="vimeo" data-video-id="122083716" tabindex="0" role="button" aria-label="Play Motion Timelapse Archive">
             <div class="video-thumbnail-wrapper">
-              <img src="https://vumbnail.com/122083716.jpg" alt="Timelapse Reel" class="video-thumbnail">
+              <img src="https://vumbnail.com/122083716.jpg" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
               <span class="card-badge">TIMELAPSE CLASSIC</span>
-              <div class="play-overlay">
-                <div class="play-icon-btn">▶</div>
-              </div>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
             </div>
             <div class="video-card-body">
               <h3 class="video-title">Motion Timelapse Archive</h3>
@@ -339,464 +387,119 @@
                 <span class="video-tag">Motion Control</span>
               </div>
             </div>
-          </div>
+          </article>
 
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         ASPEN WOODWORK & SCULPTURE GALLERY (15 SCULPTURES FRAMEWORK)
-         ========================================================================== -->
+    <!-- Woodwork — grid filled by JS from data/sculptures.json -->
     <section class="woodwork-section" id="woodwork">
       <div class="container">
-        <div class="section-header">
-          <div class="woodwork-header-badge">
-            <span>🌲</span> EXHIBITING AT THE GROVE WITH BUCKHORN PUBLIC ARTS
-          </div>
-          <h2 class="section-title text-gradient-gold">Timber Woodwork & Sculptures</h2>
+        <div class="section-header reveal">
+          <div class="woodwork-header-badge">Exhibiting at The Grove with Buckhorn Public Arts</div>
+          <h2 class="section-title text-gradient-gold">Timber Woodwork &amp; Sculptures</h2>
           <p class="section-desc">
-            Handcrafted fine timber sculptures by Daniel Kelly Brown | Handpicked local and sustainably sourced wood | Each piece features a unique QR code generated for gallery display, allowing visitors to view live pricing, specs, and reserve directly from their phone.
+            Handcrafted fine timber sculptures by Daniel Kelly Brown — photographed on location. Sustainably sourced local wood. Each piece supports a gallery QR plaque for live pricing, specs, and direct inquiry from the floor.
           </p>
         </div>
 
-        <!-- Sculpture Cards Grid (15 Sculptures Framework) -->
-        <div class="sculpture-grid">
-          
-          <!-- Sculpture 01 -->
-          <div class="sculpture-card" id="sculpture-1" data-sculpture-id="1" data-title="Aspen Burl Flow" data-price="$4,800" data-specs="Colorado Aspen Burl & Liquid Gold Resin" data-dim="28&quot; x 16&quot; x 14&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 01 — Aspen Burl Flow" class="sculpture-img">
-              <span class="sculpture-price-tag">$4,800</span>
-              <span class="sculpture-number-badge">PIECE #01</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #1</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Aspen Burl Flow</h3>
-              <div class="sculpture-meta">Colorado Aspen Burl & Liquid Gold Resin</div>
-              <p class="sculpture-desc">Organic fluid form sculpted from rare Colorado Aspen burl with liquid gold resin veins glowing under light.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 28" x 16" x 14"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="1"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 02 -->
-          <div class="sculpture-card" id="sculpture-2" data-sculpture-id="2" data-title="Ironwood Zen Lotus" data-price="$6,500" data-specs="Desert Ironwood & Polished Obsidian" data-dim="34&quot; x 22&quot; x 18&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 02 — Ironwood Zen Lotus" class="sculpture-img">
-              <span class="sculpture-price-tag">$6,500</span>
-              <span class="sculpture-number-badge">PIECE #02</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #2</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Ironwood Zen Lotus</h3>
-              <div class="sculpture-meta">Desert Ironwood & Polished Obsidian</div>
-              <p class="sculpture-desc">Deep dense grain carved into a lotus bloom pedestal resting on a polished obsidian base.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 34" x 22" x 18"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="2"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 03 -->
-          <div class="sculpture-card" id="sculpture-3" data-sculpture-id="3" data-title="Mountain Ridge Monolith" data-price="$8,200" data-specs="Reclaimed Cedar & Smoked Resin" data-dim="48&quot; x 18&quot; x 12&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 03 — Mountain Ridge Monolith" class="sculpture-img">
-              <span class="sculpture-price-tag">$8,200</span>
-              <span class="sculpture-number-badge">PIECE #03</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #3</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Mountain Ridge Monolith</h3>
-              <div class="sculpture-meta">Reclaimed Cedar & Smoked Resin</div>
-              <p class="sculpture-desc">Vertical free-standing totem depicting the jagged topography of the Elk Mountain Range.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 48" x 18" x 12"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="3"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 04 -->
-          <div class="sculpture-card" id="sculpture-4" data-sculpture-id="4" data-title="Golden Vortex Bowl" data-price="$3,500" data-specs="Hand-Turned Aspen, 24K Gold Leaf" data-dim="18&quot; x 18&quot; x 10&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 04 — Golden Vortex Bowl" class="sculpture-img">
-              <span class="sculpture-price-tag">$3,500</span>
-              <span class="sculpture-number-badge">PIECE #04</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #4</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Golden Vortex Bowl</h3>
-              <div class="sculpture-meta">Hand-Turned Aspen, 24K Gold Leaf</div>
-              <p class="sculpture-desc">Lathe-spun thin-wall Aspen vessel with hand-gilded 24K gold interior void reflection.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 18" x 18" x 10"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="4"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 05 -->
-          <div class="sculpture-card" id="sculpture-5" data-sculpture-id="5" data-title="Alpine Eclipse Slab" data-price="$5,900" data-specs="Black Walnut & Brushed Copper" data-dim="32&quot; x 24&quot; x 16&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 05 — Alpine Eclipse Slab" class="sculpture-img">
-              <span class="sculpture-price-tag">$5,900</span>
-              <span class="sculpture-number-badge">PIECE #05</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #5</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Alpine Eclipse Slab</h3>
-              <div class="sculpture-meta">Black Walnut & Brushed Copper</div>
-              <p class="sculpture-desc">Live-edge black walnut slab with circular copper eclipse inlay inspired by solar twilight.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 32" x 24" x 16"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="5"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 06 -->
-          <div class="sculpture-card" id="sculpture-6" data-sculpture-id="6" data-title="Kuro Charcoal Vessel" data-price="$4,200" data-specs="Shou Sugi Ban Pine, Brass Inlay" data-dim="22&quot; x 14&quot; x 14&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 06 — Kuro Charcoal Vessel" class="sculpture-img">
-              <span class="sculpture-price-tag">$4,200</span>
-              <span class="sculpture-number-badge">PIECE #06</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #6</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Kuro Charcoal Vessel</h3>
-              <div class="sculpture-meta">Shou Sugi Ban Pine, Brass Inlay</div>
-              <p class="sculpture-desc">Japanese charring technique preserving deep textured black pine skin accented with brass seams.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 22" x 14" x 14"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="6"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 07 -->
-          <div class="sculpture-card" id="sculpture-7" data-sculpture-id="7" data-title="Sacred Ember Totem" data-price="$7,500" data-specs="Ancient Juniper & Crimson Epoxy" data-dim="52&quot; x 16&quot; x 16&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 07 — Sacred Ember Totem" class="sculpture-img">
-              <span class="sculpture-price-tag">$7,500</span>
-              <span class="sculpture-number-badge">PIECE #07</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #7</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Sacred Ember Totem</h3>
-              <div class="sculpture-meta">Ancient Juniper & Crimson Epoxy</div>
-              <p class="sculpture-desc">Weathered high-alpine twisted juniper trunk bonded with glowing translucent crimson resin.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 52" x 16" x 16"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="7"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 08 -->
-          <div class="sculpture-card" id="sculpture-8" data-sculpture-id="8" data-title="Roaring Fork River Wave" data-price="$6,800" data-specs="Colorado Aspen & Azure Resin" data-dim="38&quot; x 18&quot; x 15&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 08 — Roaring Fork River Wave" class="sculpture-img">
-              <span class="sculpture-price-tag">$6,800</span>
-              <span class="sculpture-number-badge">PIECE #08</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #8</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Roaring Fork River Wave</h3>
-              <div class="sculpture-meta">Colorado Aspen & Azure Resin</div>
-              <p class="sculpture-desc">Flowing wave silhouette evoking the meltwater currents of Aspen's alpine river basin.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 38" x 18" x 15"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="8"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 09 -->
-          <div class="sculpture-card" id="sculpture-9" data-sculpture-id="9" data-title="Snowmass White Ash Form" data-price="$5,400" data-specs="Carved White Ash, Matte Black Base" data-dim="30&quot; x 20&quot; x 12&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 09 — Snowmass White Ash Form" class="sculpture-img">
-              <span class="sculpture-price-tag">$5,400</span>
-              <span class="sculpture-number-badge">PIECE #09</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #9</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Snowmass White Ash Form</h3>
-              <div class="sculpture-meta">Carved White Ash, Matte Black Base</div>
-              <p class="sculpture-desc">Minimalist geometric curves carved from bleached white ash reminiscent of fresh powder drifts.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 30" x 20" x 12"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="9"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 10 -->
-          <div class="sculpture-card" id="sculpture-10" data-sculpture-id="10" data-title="Dragon Tail Juniper" data-price="$9,200" data-specs="Twisted Juniper Burl, Bronze Pedestal" data-dim="44&quot; x 26&quot; x 22&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 10 — Dragon Tail Juniper" class="sculpture-img">
-              <span class="sculpture-price-tag">$9,200</span>
-              <span class="sculpture-number-badge">PIECE #10</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #10</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Dragon Tail Juniper</h3>
-              <div class="sculpture-meta">Twisted Juniper Burl, Bronze Pedestal</div>
-              <p class="sculpture-desc">Dynamic spiraling root system mounted on heavy custom bronze pedestal for gallery centerpiece display.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 44" x 26" x 22"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="10"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 11 -->
-          <div class="sculpture-card" id="sculpture-11" data-sculpture-id="11" data-title="Midnight Pine Orb" data-price="$3,900" data-specs="Ebonized Pine, Gold Leaf Crackle" data-dim="16&quot; x 16&quot; x 16&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 11 — Midnight Pine Orb" class="sculpture-img">
-              <span class="sculpture-price-tag">$3,900</span>
-              <span class="sculpture-number-badge">PIECE #11</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #11</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Midnight Pine Orb</h3>
-              <div class="sculpture-meta">Ebonized Pine, Gold Leaf Crackle</div>
-              <p class="sculpture-desc">Spherical carved pine form ebonized black with glowing gold fissures running across the grain.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 16" x 16" x 16"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="11"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 12 -->
-          <div class="sculpture-card" id="sculpture-12" data-sculpture-id="12" data-title="Continental Divide Arc" data-price="$8,800" data-specs="Aspen Burl Arc & Raw Steel" data-dim="42&quot; x 28&quot; x 18&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 12 — Continental Divide Arc" class="sculpture-img">
-              <span class="sculpture-price-tag">$8,800</span>
-              <span class="sculpture-number-badge">PIECE #12</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #12</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Continental Divide Arc</h3>
-              <div class="sculpture-meta">Aspen Burl Arc & Raw Steel</div>
-              <p class="sculpture-desc">Suspended crescent arch bridging organic raw edge timber with industrial hand-welded steel.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 42" x 28" x 18"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="12"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 13 -->
-          <div class="sculpture-card" id="sculpture-13" data-sculpture-id="13" data-title="High Country Burl Sphere" data-price="$7,200" data-specs="Sculpted Oak Burl, Liquid Gold" data-dim="24&quot; x 24&quot; x 24&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 13 — High Country Burl Sphere" class="sculpture-img">
-              <span class="sculpture-price-tag">$7,200</span>
-              <span class="sculpture-number-badge">PIECE #13</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #13</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">High Country Burl Sphere</h3>
-              <div class="sculpture-meta">Sculpted Oak Burl, Liquid Gold</div>
-              <p class="sculpture-desc">Heavy solid orb sculpted from centuries-old oak burl with hollowed chamber lining.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 24" x 24" x 24"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="13"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 14 -->
-          <div class="sculpture-card" id="sculpture-14" data-sculpture-id="14" data-title="Aspen Leaf Bronze & Oak" data-price="$4,600" data-specs="Red Oak & Cast Bronze Inlay" data-dim="26&quot; x 18&quot; x 14&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 14 — Aspen Leaf Bronze & Oak" class="sculpture-img">
-              <span class="sculpture-price-tag">$4,600</span>
-              <span class="sculpture-number-badge">PIECE #14</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #14</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Aspen Leaf Bronze & Oak</h3>
-              <div class="sculpture-meta">Red Oak & Cast Bronze Inlay</div>
-              <p class="sculpture-desc">Stylized aspen leaf silhouette carved into quarter-sawn oak with molten bronze accent inlay.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 26" x 18" x 14"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="14"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sculpture 15 -->
-          <div class="sculpture-card" id="sculpture-15" data-sculpture-id="15" data-title="Zen Horizon Cantilever" data-price="$9,800" data-specs="Master Black Walnut & Titanium" data-dim="54&quot; x 22&quot; x 20&quot;" data-status="Exhibiting at The Grove with Buckhorn Public Arts">
-            <div class="sculpture-img-wrapper">
-              <img src="./assets/woodwork_hero.jpg" alt="Sculpture 15 — Zen Horizon Cantilever" class="sculpture-img">
-              <span class="sculpture-price-tag">$9,800</span>
-              <span class="sculpture-number-badge">PIECE #15</span>
-              <span class="upload-placeholder-tag">📸 Upload Photo #15</span>
-            </div>
-            <div class="sculpture-card-body">
-              <h3 class="sculpture-title">Zen Horizon Cantilever</h3>
-              <div class="sculpture-meta">Master Black Walnut & Titanium</div>
-              <p class="sculpture-desc">Flagship gallery centerpiece featuring gravity-defying cantilevered black walnut wing balanced on titanium.</p>
-              <div class="sculpture-specs-row">
-                <span class="sculpture-dim">📐 54" x 22" x 20"</span>
-                <div class="sculpture-actions">
-                  <button class="btn-qr-trigger" data-id="15"><span>📱 QR Code</span></button>
-                  <a href="#contact" class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Inquire</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div class="sculpture-grid" id="sculpture-grid" aria-live="polite">
+          <p class="sculpture-loading">Loading gallery…</p>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         HANDPAN MUSIC & LIVE EVENT BOOKING SECTION
-         ========================================================================== -->
+    <!-- Handpan -->
     <section class="handpan-section" id="handpan">
       <div class="container">
-        <div class="section-header">
-          <div class="woodwork-header-badge" style="border-color: rgba(255, 168, 52, 0.4); color: var(--accent-gold-bright);">
-            <span>🎶</span> ACOUSTIC SOUND HEALING & PERCUSSION
-          </div>
-          <h2 class="section-title text-gradient-gold">Handpan Meditations & Live Performances</h2>
+        <div class="section-header reveal">
+          <div class="woodwork-header-badge handpan-badge">Acoustic Sound Healing &amp; Percussion</div>
+          <h2 class="section-title text-gradient-gold">Handpan Meditations &amp; Live Performances</h2>
           <p class="section-desc">
-            Ethereal acoustic handpan performances by Daniel Kelly Brown. Blending resonant harmonics, hypnotic acoustic rhythms, and Zen improvisations for private events, sound baths, weddings, and artistic gatherings.
+            Ethereal handpan for private events, sound baths, weddings, and artistic gatherings — D Kurd and F Integral scales, pure acoustic resonance.
           </p>
         </div>
 
-        <!-- Handpan Featured Showcase Grid -->
-        <div class="handpan-showcase-grid">
+        <div class="handpan-showcase-grid reveal">
           <div class="handpan-image-box">
-            <img src="./assets/handpan_hero.webp" alt="Daniel Kelly Brown playing Handpan in Colorado Nature" class="handpan-img">
+            <img src="./assets/handpan_hero.webp" alt="Daniel Kelly Brown playing handpan in Colorado nature" class="handpan-img" width="800" height="1000" loading="lazy" decoding="async">
             <div class="handpan-badge-overlay">
-              <span style="font-family: var(--font-cyber); font-size: 0.75rem; color: var(--accent-gold-bright);">LIVE ACOUSTIC RESONANCE</span>
+              <span class="handpan-overlay-label">Live Acoustic Resonance</span>
             </div>
+            <button type="button" class="handpan-audio-btn" id="handpan-sample-btn" aria-pressed="false">
+              <span class="handpan-audio-icon" aria-hidden="true">♪</span>
+              Preview ambient tone
+            </button>
           </div>
 
           <div class="handpan-info-box">
-            <h3 style="font-size: 2.2rem; color: #FFF; margin-bottom: 1rem; font-family: var(--font-heading);">Elevate Your Event With Live Handpan Soundscapes</h3>
-            <p style="color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; font-size: 1.05rem;">
-              With over 20 years of rhythmic precision and camera work, Daniel brings an extraordinary artistic presence to live events. Playing high-vibration tuned handpans in D Kurd and F Integral scales, he creates unforgettable ambient atmospheres.
+            <h3 class="handpan-info-title">Elevate Your Event With Live Handpan Soundscapes</h3>
+            <p class="handpan-info-copy">
+              With over 25 years of rhythmic precision behind the lens and the handpan, Daniel brings extraordinary presence to live events — hypnotic harmonics for luxury gatherings, wellness spaces, and ceremonies.
             </p>
 
-            <!-- Event Booking Packages Grid -->
             <div class="handpan-packages-grid">
               <div class="handpan-pkg-card">
                 <div class="handpan-pkg-header">
-                  <span class="handpan-pkg-title">Private Events & Soirées</span>
+                  <span class="handpan-pkg-title">Private Events &amp; Soirées</span>
                   <span class="handpan-pkg-price">$750+</span>
                 </div>
-                <p class="handpan-pkg-desc">1–2 Hours of ambient acoustic music for luxury gatherings, cocktail receptions, and gallery openings.</p>
+                <p class="handpan-pkg-desc">1–2 hours of ambient acoustic music for luxury gatherings, cocktail receptions, and gallery openings.</p>
               </div>
-
               <div class="handpan-pkg-card">
                 <div class="handpan-pkg-header">
-                  <span class="handpan-pkg-title">Sound Baths & Meditations</span>
+                  <span class="handpan-pkg-title">Sound Baths &amp; Meditations</span>
                   <span class="handpan-pkg-price">$600+</span>
                 </div>
-                <p class="handpan-pkg-desc">60–90 Minute immersive harmonic sound journey for yoga studios, wellness retreats, and meditation circles.</p>
+                <p class="handpan-pkg-desc">60–90 minute harmonic journeys for yoga studios, wellness retreats, and meditation circles.</p>
               </div>
-
               <div class="handpan-pkg-card">
                 <div class="handpan-pkg-header">
-                  <span class="handpan-pkg-title">Weddings & Special Galas</span>
+                  <span class="handpan-pkg-title">Weddings &amp; Special Galas</span>
                   <span class="handpan-pkg-price">$1,200+</span>
                 </div>
-                <p class="handpan-pkg-desc">Custom ceremony preludes, processional soundscapes, and cocktail hour acoustic sets tailored to your vision.</p>
+                <p class="handpan-pkg-desc">Custom ceremony preludes, processional soundscapes, and cocktail-hour acoustic sets.</p>
               </div>
             </div>
 
-            <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-              <a href="#contact" class="btn btn-gold" onclick="document.getElementById('client-message').value = 'Hello Daniel! I would like to inquire about booking a live Handpan performance for my event on [Date]:';">
+            <div class="handpan-cta-row">
+              <a href="#contact" class="btn btn-gold" data-prefill-type="Live Handpan Event Performance" data-prefill-message="Hello Daniel — I would like to inquire about booking a live Handpan performance for my event on [Date]:">
                 Book Handpan Performance
               </a>
-              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">Available across Colorado & worldwide travel</span>
+              <span class="handpan-availability">Available across Colorado &amp; worldwide travel</span>
             </div>
           </div>
         </div>
 
-        <!-- Handpan Video Performances Grid -->
-        <div style="margin-top: 4.5rem;">
-          <h3 style="font-size: 1.8rem; color: #FFF; text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); letter-spacing: 0.08em;">
-            WATCH LIVE PERFORMANCES
-          </h3>
-
+        <div class="handpan-videos-block">
+          <h3 class="handpan-videos-title">Watch Live Performances</h3>
           <div class="handpan-video-grid">
-            <!-- Video 1 -->
-            <div class="handpan-video-card">
-              <div class="handpan-iframe-wrapper">
-                <iframe src="https://www.youtube.com/embed/Zp1iiOYmdgA" title="Daniel Kelly Brown Handpan Performance 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+            <div class="handpan-video-card reveal lazy-video" data-youtube-id="Zp1iiOYmdgA" data-title="Alpine Handpan Solo — Mountain Flow">
+              <button type="button" class="lazy-video-poster" aria-label="Play Alpine Handpan Solo">
+                <img src="https://img.youtube.com/vi/Zp1iiOYmdgA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <span class="play-icon-btn" aria-hidden="true">▶</span>
+              </button>
               <div class="handpan-video-body">
                 <h4>Alpine Handpan Solo — Mountain Flow</h4>
                 <p>Live acoustic meditation recorded outdoors in the Colorado high country.</p>
               </div>
             </div>
-
-            <!-- Video 2 -->
-            <div class="handpan-video-card">
-              <div class="handpan-iframe-wrapper">
-                <iframe src="https://www.youtube.com/embed/qlUlYwleIjc" title="Daniel Kelly Brown Handpan Performance 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+            <div class="handpan-video-card reveal lazy-video" data-youtube-id="qlUlYwleIjc" data-title="Solfeggio Frequency Harmonic Journey">
+              <button type="button" class="lazy-video-poster" aria-label="Play Solfeggio Frequency Harmonic Journey">
+                <img src="https://img.youtube.com/vi/qlUlYwleIjc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <span class="play-icon-btn" aria-hidden="true">▶</span>
+              </button>
               <div class="handpan-video-body">
                 <h4>Solfeggio Frequency Harmonic Journey</h4>
-                <p>Deep resonance and hypnotic rhythmic patterns for focus & meditation.</p>
+                <p>Deep resonance and hypnotic rhythmic patterns for focus and meditation.</p>
               </div>
             </div>
-
-            <!-- Video 3 -->
-            <div class="handpan-video-card">
-              <div class="handpan-iframe-wrapper">
-                <iframe src="https://www.youtube.com/embed/mbfXipc8qHA" title="Daniel Kelly Brown Handpan Performance 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+            <div class="handpan-video-card reveal lazy-video" data-youtube-id="mbfXipc8qHA" data-title="Sunset Resonance — Forest Session">
+              <button type="button" class="lazy-video-poster" aria-label="Play Sunset Resonance Forest Session">
+                <img src="https://img.youtube.com/vi/mbfXipc8qHA/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                <span class="play-icon-btn" aria-hidden="true">▶</span>
+              </button>
               <div class="handpan-video-body">
                 <h4>Sunset Resonance — Forest Session</h4>
                 <p>Ambient acoustic soundscape capturing the serenity of nature at dusk.</p>
@@ -807,379 +510,451 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         3D ANIMATION & MOTION GRAPHICS FEATURE
-         ========================================================================== -->
-    <section class="vfx-section" id="vfx">
+    <!-- Equipment Arsenal: 3D / motion + hardware -->
+    <section class="arsenal-section" id="arsenal">
       <div class="container">
-        <div class="vfx-grid">
-          <div>
-            <span class="section-eyebrow">3D & MOTION DESIGN DOJO</span>
-            <h2 class="section-title text-gradient-gold">Cinema 4D & Blender Masterclass</h2>
-            <p class="section-desc" style="text-align: left; margin: 0 0 1.5rem 0;">
-              Over the past few years, Daniel has taken a deep dive into advanced 3D motion graphics, procedural texturing, and photoreal rendering. Equipped with dual 3090 NV-Linked and RTX 4090 monster workstation rigs, Sensei Studios brings Hollywood-grade VFX directly to your project.
-            </p>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Hardware &amp; Gear</span>
+          <h2 class="section-title text-gradient-teal">Equipment Arsenal</h2>
+          <p class="section-desc">
+            Cinema cameras, motion-control robots, aerial drones, and a full 3D motion-design pipeline — calibrated for mobility, speed, and 8K visual fidelity.
+          </p>
+        </div>
 
+        <div class="vfx-grid reveal" id="vfx">
+          <div>
+            <h3 class="arsenal-subhead">3D &amp; Motion Design</h3>
+            <p class="section-desc section-desc-left">
+              Advanced Cinema 4D and Blender motion graphics, procedural texturing, and photoreal rendering on a dual RTX 4090 workstation — Hollywood-grade VFX for brands and films that need speed and polish.
+            </p>
             <ul class="vfx-list">
               <li>
-                <span class="vfx-list-icon">⚡</span>
-                <span><strong>Marvel-Style Title Intros</strong>: Epic 3D logo builds, procedural fragment explosions, and cinematic metallic shaders.</span>
+                <span class="vfx-list-icon" aria-hidden="true">◆</span>
+                <span><strong>Marvel-style title intros</strong> — epic logo builds, procedural fragment explosions, cinematic metallic shaders.</span>
               </li>
               <li>
-                <span class="vfx-list-icon">⚡</span>
-                <span><strong>3D Product Animations</strong>: Photoreal lighting, studio turnables, exploded component views, and liquid simulations.</span>
+                <span class="vfx-list-icon" aria-hidden="true">◆</span>
+                <span><strong>3D product animations</strong> — photoreal lighting, studio turntables, exploded views, liquid sims.</span>
               </li>
               <li>
-                <span class="vfx-list-icon">⚡</span>
-                <span><strong>Spatial 3D Tracking in FPV Shots</strong>: Floating 3D graphics camera-tracked seamlessly into high-speed drone footage.</span>
+                <span class="vfx-list-icon" aria-hidden="true">◆</span>
+                <span><strong>Spatial 3D tracking in FPV</strong> — floating graphics locked into high-speed drone footage.</span>
               </li>
               <li>
-                <span class="vfx-list-icon">⚡</span>
-                <span><strong>Adobe After Effects Proficiency</strong>: Complete mastery of AE and Adobe Suite applications since their inception.</span>
+                <span class="vfx-list-icon" aria-hidden="true">◆</span>
+                <span><strong>After Effects &amp; Adobe Suite</strong> — complete post pipeline since the tools’ early days.</span>
               </li>
             </ul>
           </div>
 
           <div class="vfx-feature-card">
-            <img src="./assets/3d_card.png" alt="3D Procedural Lens Aperture Render" style="width: 100%; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-gold); aspect-ratio: 16/9; object-fit: cover;">
-            <h3 style="font-size: 1.5rem; color: #FFF; margin-bottom: 1rem;">The Render Beast Farm</h3>
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-              Local render speed means zero waiting time. Complex Octane and Redshift scenes render natively at extreme speed.
-            </p>
-            <div style="background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-gold); font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-gold-bright);">
-              <div>⚡ MACHINE 01: DUAL RTX 3090 NV-LINKED (48GB VRAM)</div>
-              <div style="margin-top: 0.5rem;">⚡ MACHINE 02: NVIDIA RTX 4090 MONSTER RIG</div>
-              <div style="margin-top: 0.5rem;">⚡ REMOTE: FULLY KITTED MACBOOK PRO M-SERIES</div>
+            <img src="./assets/3d_card.webp" alt="3D procedural lens aperture render" class="vfx-card-img" width="800" height="450" loading="lazy" decoding="async">
+            <h3 class="vfx-card-title">The Render Beast</h3>
+            <p class="vfx-card-copy">Local render speed means zero waiting. Complex Octane and Redshift scenes run natively at extreme speed.</p>
+            <div class="vfx-machine-list">
+              <div>WORKSTATION: Dual NVIDIA RTX 4090 (48GB VRAM)</div>
+              <div>LAPTOP: Fully kitted MacBook Pro M5</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ==========================================================================
-         DOJO ARSENAL / EQUIPMENT SPECS
-         ========================================================================== -->
-    <section class="arsenal-section" id="arsenal">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">HARDWARE & GEAR</span>
-          <h2 class="section-title text-gradient-teal">The Dojo Equipment Arsenal</h2>
-          <p class="section-desc">Bleeding-edge technology meticulously calibrated for maximum mobility, speed, and 8K visual fidelity.</p>
-        </div>
-
-        <div class="arsenal-grid">
-          <!-- 1. Motion Controlled Timelapse -->
-          <div class="arsenal-card">
-            <div class="arsenal-icon">🤖</div>
+        <div class="arsenal-grid arsenal-grid-below">
+          <div class="arsenal-card reveal">
+            <div class="arsenal-icon" aria-hidden="true">◎</div>
             <h3 class="arsenal-title">8K Motion Control Rigs</h3>
             <ul class="arsenal-specs-list">
-              <li>• 2x <span>8K 4-Axis Motion Rigs</span></li>
-              <li>• Multi-axis pan, tilt, slide & focus tracking</li>
-              <li>• Continuous & intervalometer day-to-night holy grail transitions</li>
+              <li>2× <span>8K 4-axis motion rigs</span></li>
+              <li>Multi-axis pan, tilt, slide &amp; focus tracking</li>
+              <li>Day-to-night holy grail transitions</li>
             </ul>
           </div>
-
-          <!-- 2. Cinema Cameras -->
-          <div class="arsenal-card">
-            <div class="arsenal-icon">🎥</div>
+          <div class="arsenal-card reveal">
+            <div class="arsenal-icon" aria-hidden="true">◉</div>
             <h3 class="arsenal-title">Cinema Camera Systems</h3>
             <ul class="arsenal-specs-list">
-              <li>• 2x <span>RED Dragon Cinema Cameras</span></li>
-              <li>• Sony FX & Alpha Cinema line</li>
-              <li>• Specialized ski gimbal mount rigs</li>
+              <li><span>Sony FX3</span> cinema camera</li>
+              <li>Rare <span>vintage lens set</span></li>
+              <li>Specialized ski gimbal mount rigs</li>
             </ul>
           </div>
-
-          <!-- 3. Drone Fleet -->
-          <div class="arsenal-card">
-            <div class="arsenal-icon">🚁</div>
-            <h3 class="arsenal-title">FPV & Aerial Drones</h3>
+          <div class="arsenal-card reveal">
+            <div class="arsenal-icon" aria-hidden="true">◈</div>
+            <h3 class="arsenal-title">FPV &amp; Aerial Drones</h3>
             <ul class="arsenal-specs-list">
-              <li>• <span>DJI Avata</span> FPV acrobatic diving</li>
-              <li>• <span>DJI Mavic 3 Cine</span> Apple ProRes</li>
-              <li>• 10 years flight mastery & hyperlapse</li>
+              <li><span>DJI Avata</span> cinematic freestyle FPV</li>
+              <li><span>DJI Mavic 3 Cine</span> Apple ProRes</li>
+              <li>15+ years flight mastery &amp; hyperlapse</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         DIGITAL NINJA BIO & PHILOSOPHY
-         ========================================================================== -->
+    <!-- Bio + Testimonials -->
     <section class="bio-section" id="bio">
       <div class="container">
-        <div class="bio-wrapper">
+        <div class="bio-wrapper reveal">
           <div>
-            <span class="section-eyebrow">ABOUT DANIEL KELLY BROWN</span>
+            <span class="section-eyebrow">About Daniel Kelly Brown</span>
             <h2 class="section-title text-gradient-gold">Part Cinematographer. Part Ninja.</h2>
             <div class="bio-text-content">
               <p>
-                Daniel Kelly Brown is a cinematographer and artist based out of Colorado. Having spent over two decades honing his craft, Danny seamlessly blends technical mastery of robotics and 3D rendering with the raw instinct of an action sports filmmaker.
+                Daniel Kelly Brown is a cinematographer and artist based in Colorado. For twenty-five years he has blended technical mastery of robotics and 3D rendering with the instinct of an action-sports filmmaker.
               </p>
-              <div class="bio-quote">
-                "Efficiency of movement in life, and during video shoots. I practice and practice to ensure the client gets the perfect shot, every time."
-              </div>
+              <blockquote class="bio-quote">
+                “Efficiency of movement in life, and during video shoots. I practice and practice to ensure the client gets the perfect shot, every time.”
+              </blockquote>
               <p>
-                Whether skiing at high speeds with a custom gimbal setup, setting up multiple motion-controlled 8K timelapses on mountain peaks, or flying tight FPV lines through architecture, Danny operates as a complete one-man band.
+                Whether skiing with a custom gimbal, setting multi-robot 8K timelapses on mountain peaks, or flying tight FPV lines through architecture — Danny operates as a complete one-man band.
               </p>
+            </div>
+
+            <div class="bio-milestones bio-milestones-inline">
+              <div class="milestone-box">
+                <div class="milestone-year">Banff Film Festival</div>
+                <div class="milestone-desc">Honorable Mention &amp; global tour screening</div>
+              </div>
+              <div class="milestone-box">
+                <div class="milestone-year">Discovery Channel</div>
+                <div class="milestone-desc">Featured 8K motion-control timelapse sold &amp; broadcast</div>
+              </div>
+              <div class="milestone-box">
+                <div class="milestone-year">Outside TV</div>
+                <div class="milestone-desc">Action sports cinematography across outdoor sports</div>
+              </div>
+              <div class="milestone-box">
+                <div class="milestone-year">Boeing &amp; HireUAV</div>
+                <div class="milestone-desc">Aerial light show production &amp; recaps across the US</div>
+              </div>
             </div>
           </div>
 
-          <div class="bio-milestones">
-            <img src="./assets/bio_art.png" alt="Daniel Kelly Brown Digital Ninja Cinematographer on Mountain Ridge" style="width: 100%; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 1px solid var(--border-gold); aspect-ratio: 16/9; object-fit: cover;">
-            <div class="milestone-box">
-              <div class="milestone-year">BANFF FILM FESTIVAL</div>
-              <div class="milestone-desc">Honorable Mention Award Winner & Global Tour Screening</div>
-            </div>
-            <div class="milestone-box" style="margin-top: 1rem;">
-              <div class="milestone-year">DISCOVERY CHANNEL</div>
-              <div class="milestone-desc">Featured 8K Motion Control Timelapse Shots Sold & Broadcast</div>
-            </div>
-            <div class="milestone-box" style="margin-top: 1rem;">
-              <div class="milestone-year">OUTSIDE TV</div>
-              <div class="milestone-desc">Action Sports Cinematography Covering Virtually Every Outdoor Sport</div>
-            </div>
-            <div class="milestone-box" style="margin-top: 1rem;">
-              <div class="milestone-year">BOEING & HIREUAV</div>
-              <div class="milestone-desc">Aerial Light Show Production & Recaps Across the US</div>
-            </div>
+          <div class="bio-featured">
+            <figure class="bio-featured-figure">
+              <img
+                src="./assets/about/about-waterfall.webp"
+                alt="Daniel Kelly Brown filming a waterfall on location with a cinema camera"
+                class="bio-hero-img"
+                width="1400"
+                height="934"
+                loading="lazy"
+                decoding="async"
+              >
+              <figcaption class="bio-photo-caption">Getting the shot — wherever the story lives</figcaption>
+            </figure>
           </div>
+        </div>
+
+        <div class="bio-photo-gallery reveal" aria-label="Behind the scenes">
+          <h3 class="bio-gallery-title">In the field</h3>
+          <div class="bio-gallery-grid">
+            <figure class="bio-gallery-item">
+              <img src="./assets/about/about-stars.webp" alt="Night motion-control shoot under a star-filled alpine sky" width="1200" height="1205" loading="lazy" decoding="async">
+              <figcaption>Astro &amp; motion control under alpine stars</figcaption>
+            </figure>
+            <figure class="bio-gallery-item">
+              <img src="./assets/about/about-river.webp" alt="Daniel Kelly Brown standing in a river with a cinema camera on a tripod" width="1200" height="1200" loading="lazy" decoding="async">
+              <figcaption>River-level cinema — no dry feet required</figcaption>
+            </figure>
+            <figure class="bio-gallery-item">
+              <img src="./assets/about/about-sled.webp" alt="Camera operator on a wooden dogsled with cinema camera in snowy landscape" width="1200" height="1200" loading="lazy" decoding="async">
+              <figcaption>Dogsled cinema rig across the high country</figcaption>
+            </figure>
+            <figure class="bio-gallery-item">
+              <img src="./assets/about/about-unity.webp" alt="Cinematographer with ski camera rig filming at Unity mountain overlook" width="1200" height="1200" loading="lazy" decoding="async">
+              <figcaption>Ski gimbal — peak to valley, one-man band</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="testimonials reveal">
+          <h3 class="testimonials-title">What collaborators say</h3>
+          <div class="testimonials-grid">
+            <figure class="testimonial-card">
+              <blockquote>
+                “Danny shows up with the full dojo — robots, drones, and a calm that keeps the whole set moving. The footage always looks like a bigger crew.”
+              </blockquote>
+              <figcaption>
+                <span class="testimonial-name">Production Partner</span>
+                <span class="testimonial-role">Aerial &amp; Event Collaborations</span>
+              </figcaption>
+            </figure>
+            <figure class="testimonial-card">
+              <blockquote>
+                “From Banff-worthy mountain work to photoreal product motion, Sensei Studios delivers technical excellence without losing the soul of the frame.”
+              </blockquote>
+              <figcaption>
+                <span class="testimonial-name">Creative Director</span>
+                <span class="testimonial-role">Brand &amp; Commercial Work</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="testimonials-note">Replace these with your preferred client quotes anytime — structure is ready.</p>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         NINJA SCOPE ESTIMATOR CALCULATOR
-         ========================================================================== -->
+    <!-- Estimator -->
     <section class="estimator-section" id="estimator">
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">PROJECT CALCULATOR</span>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Project Calculator</span>
           <h2 class="section-title text-gradient-teal">Ninja Scope Estimator</h2>
-          <p class="section-desc">Select your desired production services to generate an instant estimate for your project scope.</p>
+          <p class="section-desc">Select production services for a ballpark estimate — then lock it into a real conversation.</p>
         </div>
 
-        <div class="estimator-card">
+        <div class="estimator-card reveal">
           <div class="estimator-grid">
             <div class="estimator-options">
-              <div>
-                <h4 class="estimator-group-title">1. Select Production Capabilities</h4>
-                <div class="checkbox-cards-grid">
-                  <label class="checkbox-card selected">
-                    <input type="checkbox" class="scope-calc" data-price="2500" checked>
-                    <div>
-                      <strong>Video Production</strong>
-                      <div style="font-size: 0.8rem; color: var(--text-muted);">Gimbal & Multi-Cam Shoot</div>
-                    </div>
-                  </label>
-
-                  <label class="checkbox-card selected">
-                    <input type="checkbox" class="scope-calc" data-price="1800" checked>
-                    <div>
-                      <strong>8K Motion Timelapse</strong>
-                      <div style="font-size: 0.8rem; color: var(--text-muted);">4-Axis Robot Setup</div>
-                    </div>
-                  </label>
-
-                  <label class="checkbox-card">
-                    <input type="checkbox" class="scope-calc" data-price="3200">
-                    <div>
-                      <strong>3D Product / Logo</strong>
-                      <div style="font-size: 0.8rem; color: var(--text-muted);">Cinema 4D / Redshift</div>
-                    </div>
-                  </label>
-
-                  <label class="checkbox-card">
-                    <input type="checkbox" class="scope-calc" data-price="1500">
-                    <div>
-                      <strong>FPV & Drone Hyperlapse</strong>
-                      <div style="font-size: 0.8rem; color: var(--text-muted);">DJI Avata / Mavic 3</div>
-                    </div>
-                  </label>
-
-                  <label class="checkbox-card">
-                    <input type="checkbox" class="scope-calc" data-price="2000">
-                    <div>
-                      <strong>Post & AE Motion Graphics</strong>
-                      <div style="font-size: 0.8rem; color: var(--text-muted);">Marvel-Style Intro & Edit</div>
-                    </div>
-                  </label>
-                </div>
+              <h4 class="estimator-group-title">1. Select production capabilities</h4>
+              <div class="checkbox-cards-grid">
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="2500" data-label="Video Production" checked>
+                  <div>
+                    <strong>Video Production</strong>
+                    <div class="checkbox-sub">Gimbal &amp; multi-cam shoot</div>
+                  </div>
+                </label>
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="1800" data-label="8K Motion Timelapse" checked>
+                  <div>
+                    <strong>8K Motion Timelapse</strong>
+                    <div class="checkbox-sub">4-axis robot setup</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="3200" data-label="3D Product / Logo">
+                  <div>
+                    <strong>3D Product / Logo</strong>
+                    <div class="checkbox-sub">Cinema 4D / Redshift</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="1500" data-label="FPV &amp; Drone Hyperlapse">
+                  <div>
+                    <strong>FPV &amp; Drone Hyperlapse</strong>
+                    <div class="checkbox-sub">DJI Avata / Mavic 3</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="2000" data-label="Post &amp; AE Motion Graphics">
+                  <div>
+                    <strong>Post &amp; AE Motion Graphics</strong>
+                    <div class="checkbox-sub">Marvel-style intro &amp; edit</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="750" data-label="Live Handpan Performance">
+                  <div>
+                    <strong>Live Handpan Performance</strong>
+                    <div class="checkbox-sub">Event / sound bath set</div>
+                  </div>
+                </label>
               </div>
             </div>
 
             <div class="estimator-summary">
               <div>
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-teal);">ESTIMATED PROJECT TIER</span>
+                <span class="estimator-tier-label">Estimated project tier</span>
                 <div class="estimator-price-tag" id="estimated-price">$4,300</div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
-                  Includes full turn-key execution by Daniel Kelly Brown with all camera gear, render farm access, and editing suite included.
+                <p class="estimator-note">
+                  Ballpark only — includes turn-key execution with camera gear, render farm access, and editing suite. Final quotes depend on scope, locations, and timeline.
                 </p>
+                <ul class="estimator-selected-list" id="estimator-selected-list" aria-live="polite"></ul>
               </div>
-              <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">Lock In Scope</a>
+              <button type="button" class="btn btn-primary estimator-lock-btn" id="lock-scope-btn">
+                Lock In Scope → Contact
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         ZEN CONTACT & BOOKING PORTAL
-         ========================================================================== -->
+    <!-- Contact -->
     <section class="contact-section" id="contact">
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow">COMMISSION A PROJECT</span>
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Commission a Project</span>
           <h2 class="section-title text-gradient-gold">Step Into The Dojo</h2>
-          <p class="section-desc">Have a vision for a video, 3D animation, or drone project? Let's make it extraordinary.</p>
+          <p class="section-desc">Video, 3D, drones, sculpture, or handpan — send the vision. You’ll get a real reply, not a black hole.</p>
         </div>
 
-        <div class="contact-card">
-          <form id="sensei-contact-form">
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="client-name">Your Name</label>
-                <input type="text" id="client-name" class="form-input" placeholder="e.g. Akira Kurosawa" required>
-              </div>
+        <div class="contact-layout reveal">
+          <aside class="contact-aside">
+            <h3 class="contact-aside-title">Direct line</h3>
+            <p class="contact-aside-copy">Prefer a call or a quick email? Reach Daniel directly.</p>
+            <a class="contact-direct-link" href="mailto:brown@senseistudios.com">brown@senseistudios.com</a>
+            <a class="contact-direct-link" href="tel:+13037098647">303-709-8647</a>
+            <p class="contact-aside-meta">Colorado, USA · Worldwide travel</p>
+            <p class="contact-aside-response">Typical response within 24 hours.</p>
+          </aside>
 
-              <div class="form-group">
-                <label for="client-email">Email Address</label>
-                <input type="email" id="client-email" class="form-input" placeholder="akira@studio.com" required>
-              </div>
-
-              <div class="form-group">
-                <label for="project-type">Primary Project Type</label>
-                <select id="project-type" class="form-select">
-                  <option value="Full Video & 3D Package">Full Video & 3D Package</option>
-                  <option value="Live Handpan Event Performance">Live Handpan Event Performance</option>
-                  <option value="3D Product Animation">3D Product / Logo Animation</option>
-                  <option value="8K Motion Timelapse">8K Motion Controlled Timelapse</option>
-                  <option value="FPV Drone & Hyperlapse">FPV Drone & Aerial Hyperlapse</option>
-                  <option value="Commercial Video Edit">Commercial Video Edit & Motion Graphics</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="budget-tier">Estimated Budget Tier</label>
-                <select id="budget-tier" class="form-select">
-                  <option value="$3,000 - $5,000">$3,000 - $5,000</option>
-                  <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                  <option value="$10,000 - $25,000+">$10,000 - $25,000+</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="project-notes">Project Details & Vision</label>
-                <textarea id="project-notes" class="form-textarea" rows="4" placeholder="Tell us about your timeline, locations, or vision..." required></textarea>
-              </div>
+          <div class="contact-card">
+            <div id="form-success" class="form-success" hidden>
+              <div class="form-success-icon" aria-hidden="true">✓</div>
+              <h3>Transmission received</h3>
+              <p>Thank you — Daniel will respond within 24 hours.</p>
+              <button type="button" class="btn btn-outline" id="form-success-reset">Send another message</button>
             </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
-              <button type="submit" class="btn btn-gold" style="min-width: 260px;">Send Transmission ⚡</button>
-            </div>
-          </form>
+            <form
+              id="sensei-contact-form"
+              action="https://formsubmit.co/brown@senseistudios.com"
+              method="POST"
+              novalidate
+            >
+              <input type="hidden" name="_subject" value="Sensei Studios — New Project Inquiry">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_honey" value="">
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="estimator_total" id="field-estimator-total" value="">
+              <input type="hidden" name="estimator_services" id="field-estimator-services" value="">
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="client-name">Your Name</label>
+                  <input type="text" id="client-name" name="name" class="form-input" placeholder="Your full name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="client-email">Email Address</label>
+                  <input type="email" id="client-email" name="email" class="form-input" placeholder="you@studio.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label for="client-phone">Phone <span class="label-optional">(optional)</span></label>
+                  <input type="tel" id="client-phone" name="phone" class="form-input" placeholder="303-555-0100" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label for="project-type">Primary Project Type</label>
+                  <select id="project-type" name="project_type" class="form-select">
+                    <option value="Full Video &amp; 3D Package">Full Video &amp; 3D Package</option>
+                    <option value="Live Handpan Event Performance">Live Handpan Event Performance</option>
+                    <option value="Fine Wood Sculpture Inquiry">Fine Wood Sculpture Inquiry</option>
+                    <option value="3D Product Animation">3D Product / Logo Animation</option>
+                    <option value="8K Motion Timelapse">8K Motion Controlled Timelapse</option>
+                    <option value="FPV Drone &amp; Hyperlapse">FPV Drone &amp; Aerial Hyperlapse</option>
+                    <option value="Commercial Video Edit">Commercial Video Edit &amp; Motion Graphics</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget-tier">Estimated Budget Tier</label>
+                  <select id="budget-tier" name="budget" class="form-select">
+                    <option value="$3,000 - $5,000">$3,000 – $5,000</option>
+                    <option value="$5,000 - $10,000">$5,000 – $10,000</option>
+                    <option value="$10,000 - $25,000+">$10,000 – $25,000+</option>
+                    <option value="Sculpture acquisition">Sculpture acquisition</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="project-notes">Project Details &amp; Vision</label>
+                  <textarea id="project-notes" name="message" class="form-textarea" rows="5" placeholder="Timeline, locations, vision, sculpture piece name…" required></textarea>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-gold" id="form-submit-btn">
+                  <span class="btn-label">Send Transmission</span>
+                  <span class="btn-loading" hidden>Sending…</span>
+                </button>
+                <p class="form-privacy">Messages go to brown@senseistudios.com. Or call <a href="tel:+13037098647">303-709-8647</a>.</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ==========================================================================
-       VIDEO MODAL THEATER PLAYER
-       ========================================================================== -->
-  <div class="video-modal" id="video-modal" aria-hidden="true">
+  <!-- Video modal -->
+  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-info-title" aria-hidden="true" hidden>
     <div class="modal-content-wrapper">
-      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Video">✕</button>
-      <div class="modal-iframe-container" id="modal-iframe-container">
-        <!-- Iframe injected via JS -->
-      </div>
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close video">✕</button>
+      <div class="modal-iframe-container" id="modal-iframe-container"></div>
       <div class="modal-info-bar">
         <div class="modal-info-title" id="modal-info-title">Sensei Studios Theater</div>
-        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-teal);">HD 1080p / 4K</span>
+        <span class="modal-quality">HD / 4K</span>
       </div>
     </div>
   </div>
 
-  <!-- ==========================================================================
-       SCULPTURE QR CODE & ACQUISITION MODAL
-       ========================================================================== -->
-  <div class="sculpture-modal" id="sculpture-qr-modal" aria-hidden="true">
+  <!-- Sculpture modal -->
+  <div class="sculpture-modal" id="sculpture-qr-modal" role="dialog" aria-modal="true" aria-labelledby="modal-sculpture-title" aria-hidden="true" hidden>
     <div class="sculpture-modal-card">
-      <button class="modal-close-btn" id="sculpture-modal-close" aria-label="Close Modal">✕</button>
+      <button type="button" class="modal-close-btn" id="sculpture-modal-close" aria-label="Close">✕</button>
       <div class="modal-qr-preview-box">
         <div class="modal-qr-img" id="qr-code-target"></div>
-        <div style="font-family: var(--font-cyber); font-size: 0.8rem; color: var(--accent-gold-bright); margin-bottom: 0.25rem;">GALLERY DISPLAY QR CODE</div>
-        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);" id="qr-direct-link">https://senseistudios.com/#sculpture-1</div>
+        <div class="modal-qr-label">Gallery Display QR Code</div>
+        <div class="modal-qr-url" id="qr-direct-link">https://senseistudios.com/#sculpture-1</div>
       </div>
-      <div style="padding: 2.25rem; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <span class="woodwork-header-badge" id="modal-sculpture-status">EXHIBITING AT THE GROVE WITH BUCKHORN PUBLIC ARTS</span>
-          <h3 style="font-family: var(--font-heading); font-size: 2.2rem; color: #FFF; margin: 0.5rem 0;" id="modal-sculpture-title">Aspen Burl Flow</h3>
-          <div style="font-family: var(--font-mono); color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 1rem;" id="modal-sculpture-specs">Colorado Aspen Burl & Liquid Gold</div>
-          
-          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <span style="color: var(--text-muted); font-size: 0.85rem;">Acquisition Price:</span>
-              <span style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--accent-gold-bright);" id="modal-sculpture-price">$4,800</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="color: var(--text-muted); font-size: 0.85rem;">Dimensions:</span>
-              <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #FFF;" id="modal-sculpture-dim">28" x 16" x 14"</span>
-            </div>
+      <div class="sculpture-modal-body">
+        <span class="woodwork-header-badge" id="modal-sculpture-status">Exhibiting at The Grove</span>
+        <h3 id="modal-sculpture-title">Aspen Burl Flow</h3>
+        <div class="modal-sculpture-specs" id="modal-sculpture-specs">Colorado Aspen Burl &amp; Liquid Gold</div>
+        <div class="modal-sculpture-meta">
+          <div class="meta-row">
+            <span>Acquisition price</span>
+            <span class="meta-price" id="modal-sculpture-price">$4,800</span>
+          </div>
+          <div class="meta-row">
+            <span>Dimensions</span>
+            <span class="meta-dim" id="modal-sculpture-dim">28" × 16" × 14"</span>
           </div>
         </div>
-
-        <div>
-          <a href="#contact" class="btn btn-gold" style="width: 100%;" id="modal-reserve-btn">Reserve / Inquire For Acquisition</a>
-          <p style="font-size: 0.75rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem;">
-            Direct gallery hold request sent to Daniel Kelly Brown & Buckhorn Public Arts staff.
-          </p>
-        </div>
+        <button type="button" class="btn btn-gold" id="modal-reserve-btn">Reserve / Inquire for Acquisition</button>
+        <p class="modal-reserve-note">Hold request goes to Daniel Kelly Brown &amp; Buckhorn Public Arts staff.</p>
       </div>
     </div>
   </div>
 
-  <!-- ==========================================================================
-       FOOTER
-       ========================================================================== -->
+  <!-- Floating sound + back-to-top -->
+  <div class="float-controls">
+    <button type="button" class="float-btn" id="sound-toggle" aria-label="Play zen chime" aria-pressed="false" title="Strike a zen chime">
+      <span aria-hidden="true">☯</span>
+    </button>
+    <a href="#hero" class="float-btn float-top" id="back-to-top" aria-label="Back to top" hidden>
+      <span aria-hidden="true">↑</span>
+    </a>
+  </div>
+
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <div class="footer-brand-title">SENSEI STUDIOS</div>
-          <p style="color: var(--text-muted); max-width: 400px; font-size: 0.95rem;">
-            Master cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, and fine timber woodwork. Colorado based, worldwide operational capability.
+          <p class="footer-tagline">
+            Master cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber woodwork, and live handpan. Colorado based. Worldwide capable.
           </p>
+          <p class="footer-aka">Also known as Cinema Ninja — the digital dojo mark.</p>
         </div>
-
         <div>
-          <h4 style="color: #FFF; margin-bottom: 1rem; font-family: var(--font-heading);">Navigation</h4>
+          <h4 class="footer-heading">Navigate</h4>
           <ul class="footer-links">
             <li><a href="#work">Portfolio Archive</a></li>
             <li><a href="#woodwork">Timber Woodwork</a></li>
             <li><a href="#handpan">Handpan Music</a></li>
-            <li><a href="#vfx">3D & VFX</a></li>
-            <li><a href="#arsenal">The Dojo Hardware</a></li>
+            <li><a href="#arsenal">Equipment Arsenal</a></li>
             <li><a href="#bio">Daniel Kelly Brown</a></li>
+            <li><a href="#contact">Book a Project</a></li>
           </ul>
         </div>
-
         <div>
-          <h4 style="color: #FFF; margin-bottom: 1rem; font-family: var(--font-heading);">Direct Contact</h4>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">
-            Email: <a href="mailto:danny@senseistudios.com" style="color: var(--accent-gold);">danny@senseistudios.com</a><br>
+          <h4 class="footer-heading">Direct Contact</h4>
+          <p class="footer-contact">
+            <a href="mailto:brown@senseistudios.com">brown@senseistudios.com</a><br>
+            <a href="tel:+13037098647">303-709-8647</a><br>
             Colorado, USA
           </p>
         </div>
       </div>
-
       <div class="footer-bottom">
-        © 2026 Sensei Studios. All Rights Reserved. Crafted with Zen Precision.
+        © <span id="footer-year">2026</span> Sensei Studios. All rights reserved. Crafted with zen precision.
       </div>
     </div>
   </footer>
 
-  <!-- Script -->
-  <script src="./script.js"></script>
+  <script src="./sculptures-data.js" defer></script>
+  <script src="./script.js" defer></script>
 </body>
 </html>

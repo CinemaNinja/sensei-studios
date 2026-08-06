@@ -3,6 +3,13 @@ node_modules/
 .DS_Store
 .venv/
 
+# Keep original multi-MB sculpture photos local; optimized WebPs live in assets/sculptures/
+sculptures/*.jpg
+sculptures/*.JPG
+sculptures/*.jpeg
+sculptures/*.heic
+sculptures/*.HEIC
+
 .dev.vars*
 !.dev.vars.example
 .env*
