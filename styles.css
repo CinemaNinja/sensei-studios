@@ -1909,15 +1909,32 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-.bio-hero-img {
+/* Non-stretching photo frame: image always covers, never distorts */
+.bio-media {
+  position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #0a0c10;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.bio-media--featured {
+  aspect-ratio: 3 / 2;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-gold);
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  display: block;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.bio-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 
 .bio-photo-caption {
@@ -1980,17 +1997,21 @@ h1, h2, h3, h4 {
 
 .bio-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.15rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
 }
 
 .bio-gallery-item {
   margin: 0;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: var(--transition-smooth);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  min-width: 0;
 }
 
 .bio-gallery-item:hover {
@@ -1999,24 +2020,26 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 30px rgba(255, 168, 52, 0.12);
 }
 
-.bio-gallery-item img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  display: block;
+.bio-gallery-item .bio-media {
+  border-radius: 0;
+  flex: 0 0 auto;
+}
+
+.bio-gallery-item .bio-media img {
   transition: transform 0.5s ease;
 }
 
-.bio-gallery-item:hover img {
-  transform: scale(1.04);
+.bio-gallery-item:hover .bio-media img {
+  transform: scale(1.05);
 }
 
 .bio-gallery-item figcaption {
-  padding: 0.85rem 1rem 1rem;
+  padding: 0.9rem 1rem 1.05rem;
   font-size: 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
   line-height: 1.4;
+  flex: 1 1 auto;
 }
 
 .testimonials {
@@ -2539,7 +2562,7 @@ h1, h2, h3, h4 {
   }
 
   .bio-gallery-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .bio-milestones-inline {
