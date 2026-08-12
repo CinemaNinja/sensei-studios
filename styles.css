@@ -677,10 +677,10 @@ h1, h2, h3, h4 {
 
 .hero-lanes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 1040px;
   margin-bottom: 2.75rem;
 }
 
@@ -1730,6 +1730,201 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
+   WEB DESIGN
+   ========================================================================== */
+.web-section {
+  padding: 7rem 0;
+  background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(12, 16, 28, 0.92) 50%, var(--bg-dark) 100%);
+  position: relative;
+}
+
+.web-projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.web-project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(12px);
+}
+
+.web-project-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(255, 168, 52, 0.12);
+}
+
+.web-project-preview {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0a0c12;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.web-project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.55s ease;
+}
+
+.web-project-card:hover .web-project-preview img {
+  transform: scale(1.04);
+}
+
+.web-project-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  background: rgba(7, 9, 14, 0.88);
+  color: var(--accent-gold-bright);
+  border: 1px solid var(--border-gold);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.web-badge-proposal {
+  color: #fff;
+  border-color: rgba(255, 126, 95, 0.55);
+  background: rgba(255, 126, 95, 0.2);
+}
+
+.web-project-body {
+  padding: 1.5rem 1.6rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.55rem;
+}
+
+.web-project-title {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.web-project-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+  margin: 0;
+}
+
+.web-project-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0.25rem 0 0.5rem;
+  flex: 1;
+}
+
+.web-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.web-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.web-project-body .btn {
+  align-self: flex-start;
+}
+
+.web-proposals-block {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2.25rem;
+  align-items: stretch;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.web-proposals-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.web-proposals-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.web-proposals-copy {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 34rem;
+  margin: 0;
+}
+
+.web-proposals-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.5rem 0 0.75rem;
+  padding: 0;
+}
+
+.web-proposals-list li {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.web-proposals-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+  font-size: 0.65rem;
+  top: 0.35rem;
+}
+
+.web-proposal-card {
+  height: 100%;
+}
+
+/* ==========================================================================
    EQUIPMENT ARSENAL (3D + HARDWARE) / BIO
    ========================================================================== */
 .arsenal-section {
@@ -2557,8 +2752,13 @@ h1, h2, h3, h4 {
   .contact-layout,
   .testimonials-grid,
   .bio-gallery-grid,
-  .hero-lanes {
+  .web-projects-grid,
+  .web-proposals-block {
     grid-template-columns: 1fr;
+  }
+
+  .hero-lanes {
+    grid-template-columns: 1fr 1fr;
   }
 
   .bio-gallery-grid {
@@ -2666,6 +2866,10 @@ h1, h2, h3, h4 {
     width: 100%;
   }
 
+  .hero-lanes {
+    grid-template-columns: 1fr;
+  }
+
   .stat-label {
     font-size: 0.65rem;
   }
@@ -2673,6 +2877,7 @@ h1, h2, h3, h4 {
   .portfolio-section,
   .woodwork-section,
   .handpan-section,
+  .web-section,
   .arsenal-section,
   .bio-section,
   .estimator-section,

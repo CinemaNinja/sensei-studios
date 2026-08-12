@@ -445,7 +445,11 @@ function initEstimatorCalculator() {
     }
 
     if (projectType && services.length) {
-      if (services.some((s) => /Handpan/i.test(s))) {
+      if (services.some((s) => /Proposal|Pitch/i.test(s))) {
+        projectType.value = 'Web Design / Proposal Site';
+      } else if (services.some((s) => /Website|Web Design/i.test(s))) {
+        projectType.value = 'Web Design / Website';
+      } else if (services.some((s) => /Handpan/i.test(s))) {
         projectType.value = 'Live Handpan Event Performance';
       } else if (services.some((s) => /3D/i.test(s))) {
         projectType.value = '3D Product Animation';

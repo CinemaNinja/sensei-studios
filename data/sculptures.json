@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Charred Summit Arch",
+    "title": "Charred Summit",
     "price": "$950",
     "specs": "Flame-treated hardwood, geometric dual planes",
     "dim": "Floor sculpture",
@@ -13,19 +13,19 @@
   },
   {
     "id": 2,
-    "title": "Root Burl Spire",
+    "title": "Burl Spire",
     "price": "$2,400",
-    "specs": "Natural root burl & live edge, free-standing",
+    "specs": "Extremely rare burly aspen from Aspen Mountain",
     "dim": "Tall freestanding form",
     "status": "exhibiting",
     "statusLabel": "Exhibiting at The Grove",
-    "desc": "A towering organic spire rising from a dense root-burl base — raw growth patterns polished into a vertical statement piece.",
+    "desc": "Created from extremely rare burly aspen wood, sourced deep on Aspen Mountain — raw growth patterns rising into a vertical spire of pure high-country timber.",
     "image": "./assets/sculptures/piece-02-card.webp",
     "imageFull": "./assets/sculptures/piece-02.webp"
   },
   {
     "id": 3,
-    "title": "Faceted Aspen Spire",
+    "title": "Aspen Wood Spire",
     "price": "$3,600",
     "specs": "Hand-carved aspen, geometric stack form",
     "dim": "Tall freestanding form",
@@ -86,7 +86,7 @@
   {
     "id": 8,
     "title": "Aspen Gem Wood Panel 1",
-    "price": "$4,800",
+    "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -98,7 +98,7 @@
   {
     "id": 9,
     "title": "Aspen Gem Wood Panel 2",
-    "price": "$4,800",
+    "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -110,7 +110,7 @@
   {
     "id": 10,
     "title": "Aspen Gem Wood Panel 3",
-    "price": "$800",
+    "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -122,7 +122,7 @@
   {
     "id": 11,
     "title": "Aspen Gem Wood Panel 4",
-    "price": "$4,600",
+    "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -134,7 +134,7 @@
   {
     "id": 12,
     "title": "Organic Burl Column",
-    "price": "$5,250",
+    "price": "$3,750",
     "specs": "Solid burl timber, free-standing organic form",
     "dim": "Tall freestanding form",
     "status": "exhibiting",
