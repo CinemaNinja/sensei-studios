@@ -170,12 +170,15 @@ function initTypedText() {
 
   const phrases = [
     'Master Cinematographer.',
-    '3D Motion Graphics Specialist.',
-    'Acoustic Handpan Musician.',
-    'Motion-Controlled Timelapse.',
     'Fine Wood Sculptor.',
-    '8K Timelapse Pioneer.',
-    'FPV Drone Hyperlapse Pilot.'
+    'Acoustic Handpan Musician.',
+    '8K Motion-Controlled Timelapse.',
+    'Fine Wood Sculptor.',
+    'Drone Hyperlapse Timelapse Pioneer.',
+    'Elegant Zen Webdesign.',
+    '2D & 3D Motion Graphics.',
+    'Events and Commercial Videos.',
+    'Experienced Video Editor.'
   ];
 
   if (prefersReducedMotion()) {
