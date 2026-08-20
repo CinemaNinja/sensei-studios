@@ -16,7 +16,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 2,
     "title": "Nested Triangle Totem",
-    "price": "$4,800",
+    "price": "$3,200",
     "specs": "Sculpted layered timber, multi-pass nested relief",
     "dim": "Freestanding floor sculpture",
     "status": "exhibiting",
