@@ -160,7 +160,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 14,
     "title": "Organic Burl Column",
-    "price": "$3,750",
+    "price": "$2,200",
     "specs": "Solid burl timber, free-standing organic form",
     "dim": "Tall freestanding form",
     "status": "exhibiting",
