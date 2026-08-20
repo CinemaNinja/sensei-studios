@@ -791,7 +791,8 @@ function initWoodworkSculptures() {
   }
 
   function renderGrid(items) {
-    grid.innerHTML = items
+    const gridItems = items.filter((s) => s.id !== 1);
+    grid.innerHTML = gridItems
       .map((s) => {
         const img = s.image || './assets/woodwork_hero.webp';
         const full = s.imageFull || img;
@@ -831,7 +832,7 @@ function initWoodworkSculptures() {
       })
       .join('');
 
-    grid.querySelectorAll('.btn-qr-trigger').forEach((btn) => {
+    document.querySelectorAll('.btn-qr-trigger').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const card = btn.closest('.sculpture-card');
@@ -839,7 +840,7 @@ function initWoodworkSculptures() {
       });
     });
 
-    grid.querySelectorAll('.btn-inquire').forEach((btn) => {
+    document.querySelectorAll('.btn-inquire').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const card = btn.closest('.sculpture-card');
@@ -847,7 +848,7 @@ function initWoodworkSculptures() {
       });
     });
 
-    grid.querySelectorAll('.sculpture-card').forEach((card) => {
+    document.querySelectorAll('.sculpture-card').forEach((card) => {
       card.addEventListener('click', (e) => {
         if (e.target.closest('button')) return;
         openSculptureModal(card);

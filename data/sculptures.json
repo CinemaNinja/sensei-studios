@@ -1,6 +1,31 @@
 [
   {
     "id": 1,
+    "title": "Tree>Triangle",
+    "price": "$42,000",
+    "specs": "Hand-milled forest timber, Great Horned Owl geometric mosaic",
+    "dim": "48\" x 120\" Master Wall Mural",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "This mural is a sacred tribute to the enduring spirit of the Great Horned Owl. Born directly from the forest, the journey began by respectfully harvesting the trees and milling the timber by hand. I planed, cut, and sanded every single triangle, fitting them together like a complex, wooden puzzle. Pouring my energy into this artwork for 32 demanding days, the final piece is a reflection of both the natural beauty of the wood and the wisdom of the owl.",
+    "image": "./assets/sculptures/tree-triangle-mural-card.webp",
+    "imageFull": "./assets/sculptures/tree-triangle-mural.webp",
+    "isFeatured": true
+  },
+  {
+    "id": 2,
+    "title": "Nested Triangle Totem",
+    "price": "$4,800",
+    "specs": "Sculpted layered timber, multi-pass nested relief",
+    "dim": "Freestanding floor sculpture",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Sculpted nested triangular geometry layer by layer from solid timber into a fluid, volumetric silhouette.",
+    "image": "./assets/sculptures/nested-triangle-totem-card.webp",
+    "imageFull": "./assets/sculptures/nested-triangle-totem.webp"
+  },
+  {
+    "id": 3,
     "title": "Charred Summit",
     "price": "$950",
     "specs": "Flame-treated hardwood, geometric dual planes",
@@ -12,7 +37,7 @@
     "imageFull": "./assets/sculptures/piece-01.webp"
   },
   {
-    "id": 2,
+    "id": 4,
     "title": "Burl Spire",
     "price": "$2,400",
     "specs": "Extremely rare burly aspen from Aspen Mountain",
@@ -24,7 +49,7 @@
     "imageFull": "./assets/sculptures/piece-02.webp"
   },
   {
-    "id": 3,
+    "id": 5,
     "title": "Aspen Wood Spire",
     "price": "$3,600",
     "specs": "Hand-carved aspen, geometric stack form",
@@ -36,7 +61,7 @@
     "imageFull": "./assets/sculptures/piece-03.webp"
   },
   {
-    "id": 4,
+    "id": 6,
     "title": "Zigzag Mountain Totem",
     "price": "$4,600",
     "specs": "Solid timber, continuous zigzag relief",
@@ -48,9 +73,9 @@
     "imageFull": "./assets/sculptures/piece-04.webp"
   },
   {
-    "id": 5,
+    "id": 7,
     "title": "Zeenith",
-    "price": "$2,300",
+    "price": "$66,669",
     "specs": "Pierced geometric timber, open voids",
     "dim": "Tall freestanding form",
     "status": "exhibiting",
@@ -60,7 +85,7 @@
     "imageFull": "./assets/sculptures/piece-06.webp"
   },
   {
-    "id": 6,
+    "id": 8,
     "title": "Serrated Ridge Form",
     "price": "$1,650",
     "specs": "Angular relief carve, open mid-void",
@@ -72,7 +97,7 @@
     "imageFull": "./assets/sculptures/piece-07.webp"
   },
   {
-    "id": 7,
+    "id": 9,
     "title": "Aspen Burl Gem",
     "price": "$1,750",
     "specs": "Hand-chiseled aspen burl, radial starburst grain",
@@ -84,7 +109,7 @@
     "imageFull": "./assets/sculptures/piece-08.webp"
   },
   {
-    "id": 8,
+    "id": 10,
     "title": "Aspen Gem Wood Panel 1",
     "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -96,7 +121,7 @@
     "imageFull": "./assets/sculptures/piece-09.webp"
   },
   {
-    "id": 9,
+    "id": 11,
     "title": "Aspen Gem Wood Panel 2",
     "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -108,7 +133,7 @@
     "imageFull": "./assets/sculptures/piece-10.webp"
   },
   {
-    "id": 10,
+    "id": 12,
     "title": "Aspen Gem Wood Panel 3",
     "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -120,7 +145,7 @@
     "imageFull": "./assets/sculptures/piece-11.webp"
   },
   {
-    "id": 11,
+    "id": 13,
     "title": "Aspen Gem Wood Panel 4",
     "price": "$3,750",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -132,7 +157,7 @@
     "imageFull": "./assets/sculptures/piece-12.webp"
   },
   {
-    "id": 12,
+    "id": 14,
     "title": "Organic Burl Column",
     "price": "$3,750",
     "specs": "Solid burl timber, free-standing organic form",

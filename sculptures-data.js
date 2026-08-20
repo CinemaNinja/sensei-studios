@@ -1,2 +1,172 @@
 /* auto-embedded sculpture fallback */
-window.__SENSEI_SCULPTURES__ = [{"id":1,"title":"Charred Summit","price":"$950","specs":"Flame-treated hardwood, geometric dual planes","dim":"Floor sculpture","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Dark, flame-kissed grain carved into a sharp dual-plane arch — two peaks meeting like mountain ridges under alpine light.","image":"./assets/sculptures/piece-01-card.webp","imageFull":"./assets/sculptures/piece-01.webp"},{"id":2,"title":"Burl Spire","price":"$2,400","specs":"Extremely rare burly aspen from Aspen Mountain","dim":"Tall freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Created from extremely rare burly aspen wood, sourced deep on Aspen Mountain — raw growth patterns rising into a vertical spire of pure high-country timber.","image":"./assets/sculptures/piece-02-card.webp","imageFull":"./assets/sculptures/piece-02.webp"},{"id":3,"title":"Aspen Wood Spire","price":"$3,600","specs":"Hand-carved aspen, geometric stack form","dim":"Tall freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Pale aspen carved into stacked angular facets that taper to a needle peak — light and shadow dance across every plane.","image":"./assets/sculptures/piece-03-card.webp","imageFull":"./assets/sculptures/piece-03.webp"},{"id":4,"title":"Zigzag Mountain Totem","price":"$4,600","specs":"Solid timber, continuous zigzag relief","dim":"Tall freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"A continuous zigzag carve running the full height of the trunk — rhythm and ridge-line energy in one vertical form.","image":"./assets/sculptures/piece-04-card.webp","imageFull":"./assets/sculptures/piece-04.webp"},{"id":5,"title":"Zeenith","price":"$2,300","specs":"Pierced geometric timber, open voids","dim":"Tall freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Bold triangular voids cut through a twisted column — structure and negative space in equal measure.","image":"./assets/sculptures/piece-06-card.webp","imageFull":"./assets/sculptures/piece-06.webp"},{"id":6,"title":"Serrated Ridge Form","price":"$1,650","specs":"Angular relief carve, open mid-void","dim":"Mid-height freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Serrated geometric edges and an open interior void — dynamic, almost figurative energy in solid timber.","image":"./assets/sculptures/piece-07-card.webp","imageFull":"./assets/sculptures/piece-07.webp"},{"id":7,"title":"Aspen Burl Gem","price":"$1,750","specs":"Hand-chiseled aspen burl, radial starburst grain","dim":"Tabletop sculpture","status":"available","statusLabel":"Available","desc":"Compact aspen burl gem with a radiant starburst chisel pattern — intimate scale, museum-level craft.","image":"./assets/sculptures/piece-08-card.webp","imageFull":"./assets/sculptures/piece-08.webp"},{"id":8,"title":"Aspen Gem Wood Panel 1","price":"$3,750","specs":"Extremely rare local burl aspen, live-edge wall panel","dim":"Vertical wall mount","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Extremely rare local burl aspen wood — sculpted live-edge panel with flowing contours and natural knots. River energy fixed in timber.","image":"./assets/sculptures/piece-09-card.webp","imageFull":"./assets/sculptures/piece-09.webp"},{"id":9,"title":"Aspen Gem Wood Panel 2","price":"$3,750","specs":"Extremely rare local burl aspen, live-edge wall panel","dim":"Vertical wall mount","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Extremely rare local burl aspen wood — companion wall panel with swirling grain and organic silhouette for architectural columns and gallery walls.","image":"./assets/sculptures/piece-10-card.webp","imageFull":"./assets/sculptures/piece-10.webp"},{"id":10,"title":"Aspen Gem Wood Panel 3","price":"$3,750","specs":"Extremely rare local burl aspen, live-edge wall panel","dim":"Vertical wall mount","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Extremely rare local burl aspen wood — long vertical rhythm of knots, sapwood, and undulating live edge.","image":"./assets/sculptures/piece-11-card.webp","imageFull":"./assets/sculptures/piece-11.webp"},{"id":11,"title":"Aspen Gem Wood Panel 4","price":"$3,750","specs":"Extremely rare local burl aspen, live-edge wall panel","dim":"Vertical wall mount","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Extremely rare local burl aspen wood — warm honey tones and dramatic contour for modern interiors.","image":"./assets/sculptures/piece-12-card.webp","imageFull":"./assets/sculptures/piece-12.webp"},{"id":12,"title":"Organic Burl Column","price":"$3,750","specs":"Solid burl timber, free-standing organic form","dim":"Tall freestanding form","status":"exhibiting","statusLabel":"Exhibiting at The Grove","desc":"Massive free-standing organic column of swirling burl grain — raw, sculptural, and commanding in any room.","image":"./assets/sculptures/piece-13-card.webp","imageFull":"./assets/sculptures/piece-13.webp"}];
+window.__SENSEI_SCULPTURES__ = [
+  {
+    "id": 1,
+    "title": "Tree>Triangle",
+    "price": "$42,000",
+    "specs": "Hand-milled forest timber, Great Horned Owl geometric mosaic",
+    "dim": "48\" x 120\" Master Wall Mural",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "This mural is a sacred tribute to the enduring spirit of the Great Horned Owl. Born directly from the forest, the journey began by respectfully harvesting the trees and milling the timber by hand. I planed, cut, and sanded every single triangle, fitting them together like a complex, wooden puzzle. Pouring my energy into this artwork for 32 demanding days, the final piece is a reflection of both the natural beauty of the wood and the wisdom of the owl.",
+    "image": "./assets/sculptures/tree-triangle-mural-card.webp",
+    "imageFull": "./assets/sculptures/tree-triangle-mural.webp",
+    "isFeatured": true
+  },
+  {
+    "id": 2,
+    "title": "Nested Triangle Totem",
+    "price": "$4,800",
+    "specs": "Sculpted layered timber, multi-pass nested relief",
+    "dim": "Freestanding floor sculpture",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Sculpted nested triangular geometry layer by layer from solid timber into a fluid, volumetric silhouette.",
+    "image": "./assets/sculptures/nested-triangle-totem-card.webp",
+    "imageFull": "./assets/sculptures/nested-triangle-totem.webp"
+  },
+  {
+    "id": 3,
+    "title": "Charred Summit",
+    "price": "$950",
+    "specs": "Flame-treated hardwood, geometric dual planes",
+    "dim": "Floor sculpture",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Dark, flame-kissed grain carved into a sharp dual-plane arch — two peaks meeting like mountain ridges under alpine light.",
+    "image": "./assets/sculptures/piece-01-card.webp",
+    "imageFull": "./assets/sculptures/piece-01.webp"
+  },
+  {
+    "id": 4,
+    "title": "Burl Spire",
+    "price": "$2,400",
+    "specs": "Extremely rare burly aspen from Aspen Mountain",
+    "dim": "Tall freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Created from extremely rare burly aspen wood, sourced deep on Aspen Mountain — raw growth patterns rising into a vertical spire of pure high-country timber.",
+    "image": "./assets/sculptures/piece-02-card.webp",
+    "imageFull": "./assets/sculptures/piece-02.webp"
+  },
+  {
+    "id": 5,
+    "title": "Aspen Wood Spire",
+    "price": "$3,600",
+    "specs": "Hand-carved aspen, geometric stack form",
+    "dim": "Tall freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Pale aspen carved into stacked angular facets that taper to a needle peak — light and shadow dance across every plane.",
+    "image": "./assets/sculptures/piece-03-card.webp",
+    "imageFull": "./assets/sculptures/piece-03.webp"
+  },
+  {
+    "id": 6,
+    "title": "Zigzag Mountain Totem",
+    "price": "$4,600",
+    "specs": "Solid timber, continuous zigzag relief",
+    "dim": "Tall freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "A continuous zigzag carve running the full height of the trunk — rhythm and ridge-line energy in one vertical form.",
+    "image": "./assets/sculptures/piece-04-card.webp",
+    "imageFull": "./assets/sculptures/piece-04.webp"
+  },
+  {
+    "id": 7,
+    "title": "Zeenith",
+    "price": "$66,669",
+    "specs": "Pierced geometric timber, open voids",
+    "dim": "Tall freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Bold triangular voids cut through a twisted column — structure and negative space in equal measure.",
+    "image": "./assets/sculptures/piece-06-card.webp",
+    "imageFull": "./assets/sculptures/piece-06.webp"
+  },
+  {
+    "id": 8,
+    "title": "Serrated Ridge Form",
+    "price": "$1,650",
+    "specs": "Angular relief carve, open mid-void",
+    "dim": "Mid-height freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Serrated geometric edges and an open interior void — dynamic, almost figurative energy in solid timber.",
+    "image": "./assets/sculptures/piece-07-card.webp",
+    "imageFull": "./assets/sculptures/piece-07.webp"
+  },
+  {
+    "id": 9,
+    "title": "Aspen Burl Gem",
+    "price": "$1,750",
+    "specs": "Hand-chiseled aspen burl, radial starburst grain",
+    "dim": "Tabletop sculpture",
+    "status": "available",
+    "statusLabel": "Available",
+    "desc": "Compact aspen burl gem with a radiant starburst chisel pattern — intimate scale, museum-level craft.",
+    "image": "./assets/sculptures/piece-08-card.webp",
+    "imageFull": "./assets/sculptures/piece-08.webp"
+  },
+  {
+    "id": 10,
+    "title": "Aspen Gem Wood Panel 1",
+    "price": "$3,750",
+    "specs": "Extremely rare local burl aspen, live-edge wall panel",
+    "dim": "Vertical wall mount",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Extremely rare local burl aspen wood — sculpted live-edge panel with flowing contours and natural knots. River energy fixed in timber.",
+    "image": "./assets/sculptures/piece-09-card.webp",
+    "imageFull": "./assets/sculptures/piece-09.webp"
+  },
+  {
+    "id": 11,
+    "title": "Aspen Gem Wood Panel 2",
+    "price": "$3,750",
+    "specs": "Extremely rare local burl aspen, live-edge wall panel",
+    "dim": "Vertical wall mount",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Extremely rare local burl aspen wood — companion wall panel with swirling grain and organic silhouette for architectural columns and gallery walls.",
+    "image": "./assets/sculptures/piece-10-card.webp",
+    "imageFull": "./assets/sculptures/piece-10.webp"
+  },
+  {
+    "id": 12,
+    "title": "Aspen Gem Wood Panel 3",
+    "price": "$3,750",
+    "specs": "Extremely rare local burl aspen, live-edge wall panel",
+    "dim": "Vertical wall mount",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Extremely rare local burl aspen wood — long vertical rhythm of knots, sapwood, and undulating live edge.",
+    "image": "./assets/sculptures/piece-11-card.webp",
+    "imageFull": "./assets/sculptures/piece-11.webp"
+  },
+  {
+    "id": 13,
+    "title": "Aspen Gem Wood Panel 4",
+    "price": "$3,750",
+    "specs": "Extremely rare local burl aspen, live-edge wall panel",
+    "dim": "Vertical wall mount",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Extremely rare local burl aspen wood — warm honey tones and dramatic contour for modern interiors.",
+    "image": "./assets/sculptures/piece-12-card.webp",
+    "imageFull": "./assets/sculptures/piece-12.webp"
+  },
+  {
+    "id": 14,
+    "title": "Organic Burl Column",
+    "price": "$3,750",
+    "specs": "Solid burl timber, free-standing organic form",
+    "dim": "Tall freestanding form",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
+    "desc": "Massive free-standing organic column of swirling burl grain — raw, sculptural, and commanding in any room.",
+    "image": "./assets/sculptures/piece-13-card.webp",
+    "imageFull": "./assets/sculptures/piece-13.webp"
+  }
+];

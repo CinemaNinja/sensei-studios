@@ -1118,6 +1118,152 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
+/* ---- Masterpiece Hero Feature Card ---- */
+.woodwork-hero-masterpiece {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2rem;
+  background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 70%), var(--bg-card);
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 2.5rem;
+  margin-bottom: 3.5rem;
+  box-shadow: 0 16px 50px rgba(212, 175, 55, 0.25);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(20px);
+  position: relative;
+  cursor: pointer;
+}
+
+.woodwork-hero-masterpiece:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-gold-bright);
+  box-shadow: 0 20px 60px rgba(212, 175, 55, 0.35);
+}
+
+.masterpiece-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  background: #0d0a07;
+  overflow: hidden;
+}
+
+.masterpiece-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.woodwork-hero-masterpiece:hover .masterpiece-img {
+  transform: scale(1.04);
+}
+
+.masterpiece-content {
+  padding: 3rem 3rem 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.masterpiece-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 168, 52, 0.15);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold-bright);
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-cyber);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  width: fit-content;
+}
+
+.masterpiece-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  color: #FFF;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.masterpiece-price-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.masterpiece-price {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--accent-gold-bright);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.masterpiece-status {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 168, 52, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(7, 9, 14, 0.6);
+}
+
+.masterpiece-desc {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.masterpiece-specs-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 168, 52, 0.18);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.masterpiece-specs-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.masterpiece-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 992px) {
+  .woodwork-hero-masterpiece {
+    grid-template-columns: 1fr;
+  }
+  .masterpiece-content {
+    padding: 2rem;
+  }
+  .masterpiece-img-wrapper {
+    min-height: 280px;
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .sculpture-loading {
   grid-column: 1 / -1;
   text-align: center;
