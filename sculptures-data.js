@@ -64,7 +64,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 6,
     "title": "Zigzag Mountain Totem",
-    "price": "$4,600",
+    "price": "$2,850",
     "specs": "Solid timber, continuous zigzag relief",
     "dim": "Tall freestanding form",
     "status": "exhibiting",
