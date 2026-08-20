@@ -112,7 +112,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 10,
     "title": "Aspen Gem Wood Panel 1",
-    "price": "$3,750",
+    "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -124,7 +124,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 11,
     "title": "Aspen Gem Wood Panel 2",
-    "price": "$3,750",
+    "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -136,7 +136,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 12,
     "title": "Aspen Gem Wood Panel 3",
-    "price": "$3,750",
+    "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
@@ -148,7 +148,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 13,
     "title": "Aspen Gem Wood Panel 4",
-    "price": "$3,750",
+    "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
     "dim": "Vertical wall mount",
     "status": "exhibiting",
