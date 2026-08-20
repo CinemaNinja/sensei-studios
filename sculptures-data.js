@@ -88,7 +88,7 @@ window.__SENSEI_SCULPTURES__ = [
   {
     "id": 8,
     "title": "Serrated Ridge Form",
-    "price": "$1,650",
+    "price": "$1,750",
     "specs": "Angular relief carve, open mid-void",
     "dim": "Mid-height freestanding form",
     "status": "exhibiting",
