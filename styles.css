@@ -1229,6 +1229,24 @@ h1, h2, h3, h4 {
   margin-bottom: 1.5rem;
 }
 
+.masterpiece-desc p {
+  margin: 0 0 1rem;
+}
+
+.masterpiece-giving-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+}
+
+.masterpiece-giving-list li {
+  margin-bottom: 0.4rem;
+}
+
+.masterpiece-giving-list li:last-child {
+  margin-bottom: 0;
+}
+
 .masterpiece-specs-box {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 168, 52, 0.18);
