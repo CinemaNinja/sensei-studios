@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initZenCanvas();
   initTypedText();
   initPortfolioFilters();
+  initArsenalFilters();
   initVideoModal();
   initLazyVideos();
   initWoodworkSculptures();
@@ -254,6 +255,42 @@ function initPortfolioFilters() {
             card.style.display = 'none';
             card.hidden = true;
           }, 280);
+        }
+      });
+    });
+  });
+}
+
+/* ==========================================================================
+   5B. ARSENAL GEAR FILTERS
+   ========================================================================== */
+function initArsenalFilters() {
+  const filterBtns = document.querySelectorAll('.arsenal-filter-btn');
+  const gearCards = document.querySelectorAll('.tactical-gear-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      gearCards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        const show = filter === 'all' || cat === filter;
+
+        if (show) {
+          card.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px)';
+          setTimeout(() => {
+            card.classList.add('hidden');
+          }, 200);
         }
       });
     });

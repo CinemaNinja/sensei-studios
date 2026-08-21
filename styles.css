@@ -2073,146 +2073,261 @@ h1, h2, h3, h4 {
 /* ==========================================================================
    EQUIPMENT ARSENAL (3D + HARDWARE) / BIO
    ========================================================================== */
+/* ==========================================================================
+   ARSENAL & GEAR
+   ========================================================================== */
 .arsenal-section {
   padding: 7rem 0;
   background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(14, 18, 26, 0.85) 45%, var(--bg-dark) 100%);
   position: relative;
 }
 
-.arsenal-subhead {
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: #FFF;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+.arsenal-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 2.5rem 0 3.5rem;
 }
 
-.vfx-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  margin-bottom: 3.5rem;
-}
-
-.vfx-feature-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-gold);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  box-shadow: var(--shadow-glow-gold);
-  position: relative;
-  overflow: hidden;
-}
-
-.vfx-card-img {
-  width: 100%;
-  border-radius: var(--radius-md);
-  margin-bottom: 1.5rem;
-  border: 1px solid var(--border-gold);
-  aspect-ratio: 16/9;
-  object-fit: cover;
-}
-
-.vfx-card-title {
-  font-size: 1.5rem;
-  color: #FFF;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-
-.vfx-card-copy {
+.arsenal-filter-btn {
+  background: rgba(14, 18, 26, 0.8);
+  border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  font-family: var(--font-cyber);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
-.vfx-machine-list {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 1.25rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-gold);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--accent-gold-bright);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.arsenal-filter-btn:hover {
+  border-color: var(--accent-teal);
+  color: #FFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.15);
 }
 
-.vfx-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  margin-top: 2rem;
+.arsenal-filter-btn.active {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--accent-teal);
+  color: #38f8d4;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
 }
 
-.vfx-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-.vfx-list-icon {
-  color: var(--accent-gold);
-  font-size: 0.9rem;
-  margin-top: 0.35rem;
-}
-
-.arsenal-grid {
+.tactical-gear-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.25rem;
+  margin-bottom: 4rem;
 }
 
-.arsenal-grid-below {
-  border-top: 1px solid var(--border-subtle);
-  margin-top: 0.5rem;
-  padding-top: 3rem;
-}
-
-.arsenal-card {
+.tactical-gear-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: var(--transition-smooth);
-  backdrop-filter: blur(12px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(16px);
+  position: relative;
 }
 
-.arsenal-card:hover {
-  border-color: var(--accent-orange-bright);
-  transform: translateY(-5px);
+.tactical-gear-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 168, 52, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 168, 52, 0.15);
 }
 
-.arsenal-icon {
-  font-size: 1.8rem;
-  color: var(--accent-orange-bright);
+.tactical-gear-card.hidden {
+  display: none !important;
+}
+
+.gear-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #07090e;
+  overflow: hidden;
+}
+
+.gear-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.tactical-gear-card:hover .gear-img {
+  transform: scale(1.06);
+}
+
+.gear-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(7, 9, 14, 0.88);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold-bright);
+  font-family: var(--font-cyber);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  z-index: 2;
+}
+
+.gear-sub-badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.gear-card-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.gear-cat-tag {
+  font-family: var(--font-cyber);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #38f8d4;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.gear-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: #FFF;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.gear-description {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.gear-features-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gear-features-pills span {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* ---- Tactical Power & Field Redundancy Hub ---- */
+.tactical-power-hub {
+  background: radial-gradient(circle at left, rgba(0, 240, 255, 0.08), transparent 70%), var(--bg-card);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+}
+
+.hub-badge {
+  display: inline-block;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid var(--accent-teal);
+  color: #38f8d4;
+  font-family: var(--font-cyber);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-full);
   margin-bottom: 1rem;
 }
 
-.arsenal-title {
-  font-size: 1.3rem;
+.hub-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
   color: #FFF;
   margin-bottom: 0.75rem;
-  text-transform: uppercase;
 }
 
-.arsenal-specs-list {
-  list-style: none;
+.hub-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.tactical-hub-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.hub-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.88rem;
+}
+
+.hub-meta-item .meta-label {
   color: var(--text-muted);
 }
 
-.arsenal-specs-list span {
+.hub-meta-item .meta-val {
   color: var(--accent-gold-bright);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-align: right;
+}
+
+@media (max-width: 992px) {
+  .tactical-power-hub {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
 }
 
 .bio-section {
