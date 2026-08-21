@@ -103,8 +103,8 @@ window.__SENSEI_SCULPTURES__ = [
     "price": "$1,750",
     "specs": "Hand-chiseled aspen burl, radial starburst grain",
     "dim": "Tabletop sculpture",
-    "status": "available",
-    "statusLabel": "Available",
+    "status": "exhibiting",
+    "statusLabel": "Exhibiting at The Grove",
     "desc": "Compact aspen burl gem with a radiant starburst chisel pattern — intimate scale, museum-level craft.",
     "image": "./assets/sculptures/piece-08-card.webp",
     "imageFull": "./assets/sculptures/piece-08.webp"
