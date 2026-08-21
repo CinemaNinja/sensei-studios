@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film &amp; Motion | Sensei Studios</title>
+  <meta name="description" content="Director reel, 8K motion-controlled timelapse, FPV drone, Cinema 4D, and the equipment arsenal of Daniel Kelly Brown.">
+  <meta name="author" content="Daniel Kelly Brown, Sensei Studios">
+  <meta name="theme-color" content="#07090E">
+  <link rel="canonical" href="https://senseistudios.com/film/">
+  <meta property="og:title" content="Film &amp; Motion | Sensei Studios">
+  <meta property="og:description" content="Director reel, 8K motion-controlled timelapse, FPV drone, Cinema 4D, and the equipment arsenal of Daniel Kelly Brown.">
+  <meta property="og:image" content="https://senseistudios.com/assets/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://senseistudios.com/film/">
+  <meta property="og:site_name" content="Sensei Studios">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Film &amp; Motion | Sensei Studios">
+  <meta name="twitter:description" content="Director reel, 8K motion-controlled timelapse, FPV drone, Cinema 4D, and the equipment arsenal of Daniel Kelly Brown.">
+  <meta name="twitter:image" content="https://senseistudios.com/assets/og-cover.jpg">
+  <link rel="icon" type="image/png" href="/assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preload" as="image" href="/assets/cinema_ninja_logo.webp" type="image/webp">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sensei Studios",
+    "alternateName": "Cinema Ninja",
+    "url": "https://senseistudios.com",
+    "email": "brown@senseistudios.com",
+    "telephone": "+1-303-709-8647",
+    "founder": {
+      "@type": "Person",
+      "name": "Daniel Kelly Brown",
+      "jobTitle": "Cinematographer & Craftsman",
+      "address": { "@type": "PostalAddress", "addressRegion": "CO", "addressCountry": "US" }
+    },
+    "description": "Colorado cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber sculpture, and live handpan.",
+    "areaServed": "Worldwide",
+    "address": { "@type": "PostalAddress", "addressRegion": "CO", "addressCountry": "US" },
+    "logo": "https://senseistudios.com/assets/logo.png",
+    "image": "https://senseistudios.com/assets/og-cover.jpg",
+    "sameAs": [
+      "https://vimeo.com/danielkellybrown",
+      "https://www.youtube.com/@DanielKellyBrown",
+      "https://www.instagram.com/danielkellybrown/"
+    ]
+  }
+  </script>
+</head>
+<body class="loading-lock">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <canvas id="zen-canvas" aria-hidden="true"></canvas>
+  <div id="custom-cursor" aria-hidden="true"></div>
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-enso-wrapper">
+      <div class="preloader-enso"></div>
+      <img src="/assets/cinema_ninja_logo_nav.webp" alt="" class="preloader-logo" width="70" height="70">
+    </div>
+    <div class="preloader-title">SENSEI STUDIOS</div>
+    <div class="preloader-subtitle">ENTER THE DOJO</div>
+  </div>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
+    <div class="container nav-container">
+      <a href="/" class="nav-brand">
+        <img src="/assets/cinema_ninja_logo_nav.webp" alt="Sensei Studios" class="nav-logo-img" width="48" height="48">
+        <span class="nav-brand-title">SENSEI STUDIOS</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/film/" class="nav-link active">Film</a></li>
+        <li><a href="/wood/" class="nav-link">Wood</a></li>
+        <li><a href="/handpan/" class="nav-link">Handpan</a></li>
+        <li><a href="/web/" class="nav-link">Web</a></li>
+        <li><a href="/film/#arsenal" class="nav-link">Arsenal</a></li>
+        <li><a href="/story/" class="nav-link">Story</a></li>
+        <li><a href="/#estimator" class="nav-link">Scope</a></li>
+        <li class="nav-mobile-cta"><a href="#contact" class="nav-link">Book Project</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta-btn">
+          <span class="nav-cta-text">Book Project</span>
+          <span class="nav-cta-icon" aria-hidden="true">→</span>
+        </a>
+        <button class="nav-hamburger" id="nav-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <main id="main-content">
+    <!-- Portfolio -->
+    <section class="portfolio-section" id="work">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">The Reel &amp; Archive</span>
+          <h1 class="section-title text-gradient-teal">Selected Cinematic Works</h1>
+          <p class="section-desc">From Banff honors to Boeing drone shows and Cinema 4D product animations — step into the archive.</p>
+        </div>
+
+        <div class="portfolio-filters" role="tablist" aria-label="Filter portfolio">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" id="filter-all" aria-selected="true" aria-controls="video-grid" tabindex="0">All Works</button>
+          <button type="button" class="filter-btn" data-filter="reels" role="tab" id="filter-reels" aria-selected="false" aria-controls="video-grid" tabindex="-1">Video &amp; Timelapses</button>
+          <button type="button" class="filter-btn" data-filter="vfx" role="tab" id="filter-vfx" aria-selected="false" aria-controls="video-grid" tabindex="-1">3D &amp; Motion</button>
+          <button type="button" class="filter-btn" data-filter="drone" role="tab" id="filter-drone" aria-selected="false" aria-controls="video-grid" tabindex="-1">FPV &amp; Drone</button>
+          <button type="button" class="filter-btn" data-filter="events" role="tab" id="filter-events" aria-selected="false" aria-controls="video-grid" tabindex="-1">Shows &amp; Events</button>
+        </div>
+
+        <div class="video-grid film-lead" id="video-grid">
+
+          <article class="video-card reveal featured-card" data-category="reels" data-video-type="youtube" data-video-id="9G1n3BTHkxw">
+            <p class="featured-kicker">Director reel</p>
+            <button type="button" class="video-play-btn" aria-label="Play Official Video Reel">
+              <div class="video-thumbnail-wrapper">
+                <img src="/assets/thumbs/yt-9G1n3BTHkxw.webp" alt="" class="video-thumbnail" width="1280" height="720" loading="lazy" decoding="async">
+                <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+              </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Official Video Reel</h3>
+              <p class="video-description">Ski gimbal, action sports, documentary, and commercial cinematography — twenty-five years, one cut.</p>
+              <div class="video-tags">
+                <span class="video-tag">Sony Cinema</span>
+                <span class="video-tag">Ski Gimbal</span>
+                <span class="video-tag">Action Sports</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="vfx reels" data-video-type="vimeo" data-video-id="794249931">
+            <button type="button" class="video-play-btn" aria-label="Play Marvel-Style Intro &amp; Comprehensive Edit">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-794249931.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">MARVEL INTRO / EDIT</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Marvel-Style Intro &amp; Comprehensive Edit</h3>
+              <p class="video-description">Custom Cinema 4D marvel-style logo sequence integrated with motion-controlled timelapse and cinematic outdoor edit.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Custom logo sequence</span>
+                <span><strong>Role</strong> Cinema 4D + live action</span>
+                <span><strong>Result</strong> Hero brand open</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">Cinema 4D</span>
+                <span class="video-tag">After Effects</span>
+                <span class="video-tag">Timelapse</span>
+              </div>
+            </div>
+          </article>
+
+          
+
+          <article class="video-card reveal" data-category="reels" data-video-type="youtube" data-video-id="4DWPPwO02nk">
+            <button type="button" class="video-play-btn" aria-label="Play Motion-Controlled Timelapse Reel">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/yt-4DWPPwO02nk.webp" alt="" class="video-thumbnail" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="card-badge">8K TIMELAPSE</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Motion-Controlled Timelapse Reel</h3>
+              <p class="video-description">8K four-axis robot timelapse: shifting light, cloudscapes, and night skies across Colorado wilderness.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> 8K robot timelapse</span>
+                <span><strong>Role</strong> 4-axis motion control</span>
+                <span><strong>Result</strong> Discovery-ready skies</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">4-Axis Robot</span>
+                <span class="video-tag">8K RAW</span>
+                <span class="video-tag">Astrophotography</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="vfx" data-video-type="vimeo" data-video-id="786699959">
+            <button type="button" class="video-play-btn" aria-label="Play Photoreal 3D Product Render">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-786699959.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">3D PRODUCT</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Photoreal 3D Product Render</h3>
+              <p class="video-description">Cinema 4D and Redshift product animation with procedural glass, metallic textures, and micro-lighting transitions.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Product viz</span>
+                <span><strong>Role</strong> Cinema 4D / Redshift</span>
+                <span><strong>Result</strong> Photoreal glass &amp; metal</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">Cinema 4D</span>
+                <span class="video-tag">Redshift</span>
+                <span class="video-tag">Product Viz</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="drone vfx" data-video-type="vimeo" data-video-id="800368720">
+            <button type="button" class="video-play-btn" aria-label="Play FPV Drone &amp; 3D Mapped Motion Titles">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-800368720.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">FPV &amp; 3D TITLES</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">FPV Drone &amp; 3D Mapped Motion Titles</h3>
+              <p class="video-description">Aggressive FPV diving matched with camera-tracked spatial typography integrated into the environment.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> FPV + 3D titles</span>
+                <span><strong>Role</strong> Avata + camera track</span>
+                <span><strong>Result</strong> Environment-locked type</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">DJI Avata</span>
+                <span class="video-tag">3D Tracking</span>
+                <span class="video-tag">After Effects</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="events drone" data-video-type="vimeo" data-video-id="802295149">
+            <button type="button" class="video-play-btn" aria-label="Play Boeing UAV Light Show Event Recap">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-802295149.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">BOEING SHOW</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Boeing UAV Light Show Event Recap</h3>
+              <p class="video-description">Aerial coverage and motion-controlled recap for Boeing’s synchronized drone light show with HireUAV.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Event recap</span>
+                <span><strong>Role</strong> Multi-cam + aerial</span>
+                <span><strong>Result</strong> Boeing / HireUAV</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">HireUAV</span>
+                <span class="video-tag">Boeing</span>
+                <span class="video-tag">Drone Show</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="events drone" data-video-type="vimeo" data-video-id="787747563">
+            <button type="button" class="video-play-btn" aria-label="Play Kaley Cuoco Drone Light Show">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-787747563.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">CELEBRITY EVENT</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Kaley Cuoco Drone Light Show</h3>
+              <p class="video-description">High-profile celebrity event recap with custom aerial light formations and multi-cam ground videography.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Celebrity event</span>
+                <span><strong>Role</strong> Aerial formations + ground</span>
+                <span><strong>Result</strong> Light-show recap</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">Kaley Cuoco</span>
+                <span class="video-tag">HireUAV</span>
+                <span class="video-tag">Event Recap</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="reels" data-video-type="vimeo" data-video-id="133480201">
+            <button type="button" class="video-play-btn" aria-label="Play Cinematography Reel Showcase">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-133480201.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">CLASSIC REEL</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Cinematography Reel Showcase</h3>
+              <p class="video-description">Foundational work on RED Dragon: mountain culture, outdoor lifestyle, and commercial shorts.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Foundation reel</span>
+                <span><strong>Role</strong> RED Dragon</span>
+                <span><strong>Result</strong> Outdoor lifestyle + commercial</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">RED Dragon</span>
+                <span class="video-tag">Commercial</span>
+                <span class="video-tag">Outside TV</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="video-card reveal" data-category="reels" data-video-type="vimeo" data-video-id="122083716">
+            <button type="button" class="video-play-btn" aria-label="Play Motion Timelapse Archive">
+            <div class="video-thumbnail-wrapper">
+              <img src="/assets/thumbs/vm-122083716.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+              <span class="card-badge">TIMELAPSE CLASSIC</span>
+              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+            </div>
+            </button>
+            <div class="video-card-body">
+              <h3 class="video-title">Motion Timelapse Archive</h3>
+              <p class="video-description">Award-winning motion-controlled timelapse photography sold to Discovery Channel and screened worldwide.</p>
+              <div class="case-row">
+                <span><strong>Brief</strong> Classic motion control</span>
+                <span><strong>Role</strong> Sold to Discovery</span>
+                <span><strong>Result</strong> Banff-screened work</span>
+              </div>
+              <div class="video-tags">
+                <span class="video-tag">Discovery Channel</span>
+                <span class="video-tag">Banff Fest</span>
+                <span class="video-tag">Motion Control</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipment Arsenal: Complete Tactical Gear List & 3D Pipeline -->
+    <section class="arsenal-section" id="arsenal">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Production Hardware &amp; Rigs</span>
+          <h2 class="section-title text-gradient-teal">Equipment Arsenal</h2>
+          <p class="section-desc">
+            Cinema cameras, motion-control robots, aerial drones, vintage glass, and high-performance render compute — 100% owned, flight-ready, and calibrated for extreme mountain &amp; studio environments.
+          </p>
+        </div>
+
+        <!-- Arsenal Category Filter Tabs -->
+        <div class="arsenal-filter-bar reveal" role="tablist" aria-label="Gear categories">
+          <button type="button" class="arsenal-filter-btn active" data-filter="all">All Systems</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="drones">Drones &amp; FPV</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="cameras">Cinema Bodies</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="lenses">Cinema Glass</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="moco">MoCo &amp; Rigging</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="wireless">Gimbals &amp; Wireless</button>
+          <button type="button" class="arsenal-filter-btn" data-filter="compute">3D VFX &amp; Compute</button>
+        </div>
+
+        <!-- Tactical Gear Bento Grid -->
+        <div class="tactical-gear-grid reveal" id="tactical-gear-grid">
+
+          <!-- 1. DJI Mavic 3 Cine -->
+          <article class="tactical-gear-card" data-category="drones">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/dji_mavic_3_cine.webp" alt="DJI Mavic 3 Cine Apple ProRes Drone" class="gear-img" loading="lazy">
+              <span class="gear-badge">PRORES 5.1K</span>
+              <span class="gear-sub-badge">AERIAL WORKHORSE</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">AERIAL SYSTEM</div>
+              <h3 class="gear-title">DJI Mavic 3 Cine</h3>
+              <p class="gear-description">Hasselblad 4/3 CMOS sensor shooting native Apple ProRes 422 HQ directly to internal 1TB SSD. 46-minute flight endurance with omnidirectional vision sensing for high-altitude mountain tracking.</p>
+              <div class="gear-features-pills">
+                <span>Apple ProRes 422 HQ</span>
+                <span>5.1K / 50fps &amp; 4K / 120fps</span>
+                <span>Hasselblad Color L1D-20c</span>
+                <span>15km O3+ Transmission</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. DJI Avata FPV System -->
+          <article class="tactical-gear-card" data-category="drones">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/dji_avata_fpv_system.webp" alt="DJI Avata 1 & 2 FPV Drone System" class="gear-img" loading="lazy">
+              <span class="gear-badge">FPV CINEWHOOP</span>
+              <span class="gear-sub-badge">ULTRA-PROXIMITY</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">FPV &amp; HIGH-SPEED</div>
+              <h3 class="gear-title">DJI Avata 1 &amp; 2 Fleet + RC2</h3>
+              <p class="gear-description">Dual CineWhoop fleet with built-in ducted prop guards, ultra-wide 155° FOV, and low-latency manual FPV Remote Controller 2. Engineered for high-speed indoor fly-throughs, tight architectural gaps, and dynamic chase lines.</p>
+              <div class="gear-features-pills">
+                <span>4K / 60p &amp; 4K / 100p HDR</span>
+                <span>155° Super-Wide FOV</span>
+                <span>RockSteady &amp; HorizonSteady</span>
+                <span>DJI FPV RC2 Manual Acro</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Sony FX3 Cinema Line -->
+          <article class="tactical-gear-card" data-category="cameras">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/sony_fx3_cinema.webp" alt="Sony FX3 Cinema Line Camera Body" class="gear-img" loading="lazy">
+              <span class="gear-badge">FULL-FRAME 4K</span>
+              <span class="gear-sub-badge">DUAL BASE ISO</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">CINEMA CAMERA BODY</div>
+              <h3 class="gear-title">Sony FX3 Cinema Line</h3>
+              <p class="gear-description">Compact full-frame cinema powerhouse with active cooling fan for uninterrupted recording. Dual Base ISO (800 / 12,800) for extreme low-light sensitivity, 15+ stops dynamic range, S-Cinetone, and 4-channel XLR audio handle.</p>
+              <div class="gear-features-pills">
+                <span>4K 120p 10-bit 4:2:2 All-I</span>
+                <span>Dual Base ISO 800 / 12,800</span>
+                <span>16-Bit RAW HDMI Output</span>
+                <span>XLR Audio Top Handle</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Sony A7R III Body -->
+          <article class="tactical-gear-card" data-category="cameras">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/sony_a7r3_body.webp" alt="Sony A7R III High-Resolution Timelapse Body" class="gear-img" loading="lazy">
+              <span class="gear-badge">42.4MP 8K RAW</span>
+              <span class="gear-sub-badge">TIMELAPSE &amp; ASTRO</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">ULTRA-HIGH RES BODY</div>
+              <h3 class="gear-title">Sony A7R III</h3>
+              <p class="gear-description">Dedicated 42.4-megapixel Exmor R BSI CMOS sensor for 8K resolution motion-controlled timelapses, extreme astrophotography, and fine art gallery prints with 14-bit uncompressed RAW data capture.</p>
+              <div class="gear-features-pills">
+                <span>42.4MP BSI Sensor (8K Master)</span>
+                <span>14-Bit Uncompressed RAW</span>
+                <span>5-Axis SteadyShot INSIDE</span>
+                <span>Dual SD Slot Redundancy</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. DJI RS3 Pro Gimbal + LiDAR -->
+          <article class="tactical-gear-card" data-category="wireless">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/dji_rs3_pro_gimbal.webp" alt="DJI RS3 Pro Gimbal with LiDAR Range Finder" class="gear-img" loading="lazy">
+              <span class="gear-badge">LIDAR AUTOFOCUS</span>
+              <span class="gear-sub-badge">10 LB PAYLOAD</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">STABILIZATION &amp; FOCUS</div>
+              <h3 class="gear-title">DJI RS3 Pro + Ronin LiDAR</h3>
+              <p class="gear-description">Automated-axis carbon fiber gimbal paired with the Ronin LiDAR Range Finder (43,200 ranging points). Converts vintage and manual cinema glass into intelligent, continuous autofocus systems with instant subject tracking.</p>
+              <div class="gear-features-pills">
+                <span>Carbon Fiber Axis Arms</span>
+                <span>43,200 LiDAR Ranging Points</span>
+                <span>ActiveTrack Pro Integration</span>
+                <span>RS3 Pro Expansion Kit</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Cinema Glass & Vintage Primes -->
+          <article class="tactical-gear-card" data-category="lenses">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/cinema_glass_primes.webp" alt="Cinema & Vintage Prime Lenses Collection" class="gear-img" loading="lazy">
+              <span class="gear-badge">VINTAGE &amp; ART GLASS</span>
+              <span class="gear-sub-badge">SWIRLY BOKEH &amp; ZEISS T*</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">OPTICAL ARSENAL</div>
+              <h3 class="gear-title">Cinema Glass &amp; Vintage Primes</h3>
+              <p class="gear-description">Curated optical suite combining razor-sharp modern G-Master &amp; Sigma Art f/1.4 glass with legendary vintage Contax Zeiss T* primes (300mm, 50mm), Russian Helios rehoused primes (57mm, 35mm), and Canon 8-15mm Fisheye.</p>
+              <div class="gear-features-pills">
+                <span>Sony FE 24-70mm G-Master</span>
+                <span>Sigma 15mm &amp; 20mm f/1.4 Art</span>
+                <span>Contax Zeiss 50mm &amp; 300mm T*</span>
+                <span>Helios 35mm &amp; 57mm Rehoused</span>
+                <span>Canon 8-15mm f/4L Fisheye</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. eMotimo Spectrum ST4 MoCo -->
+          <article class="tactical-gear-card" data-category="moco">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/emotimo_spectrum_moco.webp" alt="eMotimo Spectrum ST4 4-Axis Robotic Motion Rig" class="gear-img" loading="lazy">
+              <span class="gear-badge">4-AXIS ROBOTIC</span>
+              <span class="gear-sub-badge">HOLY GRAIL TIMELAPSE</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">ROBOTIC MOTION CONTROL</div>
+              <h3 class="gear-title">eMotimo Spectrum ST4 &amp; Stage Zero</h3>
+              <p class="gear-description">4-Axis programmable robotic motion control rig (Pan, Tilt, Slide &amp; Focus) paired with Dynamic Perception Stage Zero carbon rails and extension tubes. Delivers sub-millimeter multi-day day-to-night holy grail transitions.</p>
+              <div class="gear-features-pills">
+                <span>4-Axis Synchronized Curves</span>
+                <span>Dynamic Perception Slider Rails</span>
+                <span>5x Heavy-Duty RRS Carbon Tripods</span>
+                <span>Day-to-Night Exposure Ramp</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. DJI Wireless Transmission Kit -->
+          <article class="tactical-gear-card" data-category="wireless">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/dji_transmission_wireless.webp" alt="DJI Transmission High-Bright Wireless Monitor" class="gear-img" loading="lazy">
+              <span class="gear-badge">20,000 FT WIRELESS</span>
+              <span class="gear-sub-badge">1500 NITS DIRECTOR MONITOR</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">WIRELESS MONITORING</div>
+              <h3 class="gear-title">DJI High-Bright Transmission Combo</h3>
+              <p class="gear-description">Integrated wireless video transmitter and 7-inch 1,500-nit daylight-viewable High-Bright Remote Monitor with Ronin 4D Handgrips. Gives directors, clients, and focus pullers instant wireless live view and remote gimbal control.</p>
+              <div class="gear-features-pills">
+                <span>20,000 ft Transmission Range</span>
+                <span>1,500 Nits Touchscreen Display</span>
+                <span>Ronin 4D Handgrips Combo</span>
+                <span>Independent Focus &amp; Gimbal Control</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. Lightpro 10ft Carbon Jib -->
+          <article class="tactical-gear-card" data-category="moco">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/lightpro_carbon_jib.webp" alt="Lightpro 10ft Ultra-Lightweight Carbon Jib" class="gear-img" loading="lazy">
+              <span class="gear-badge">10FT CRANE SWEEP</span>
+              <span class="gear-sub-badge">ULTRA-PORTABLE</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">CRANE &amp; ELEVATION</div>
+              <h3 class="gear-title">Lightpro 10ft Carbon Fiber Jib</h3>
+              <p class="gear-description">High-modulus carbon fiber camera crane capable of 10-foot vertical sweeps and sweeping high-angle cinematic reveals. Ultra-lightweight and field-deployable in remote backcountry and high-alpine locations.</p>
+              <div class="gear-features-pills">
+                <span>10ft Smooth Vertical Travel</span>
+                <span>Ultra-Light High-Modulus Carbon</span>
+                <span>Precision Counterweight System</span>
+                <span>Rapid Backcountry Assembly</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10. Dual RTX 4090 Workstation -->
+          <article class="tactical-gear-card" data-category="compute">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/dual_rtx4090_workstation.webp" alt="Dual NVIDIA RTX 4090 3D VFX Workstation" class="gear-img" loading="lazy">
+              <span class="gear-badge">48GB VRAM</span>
+              <span class="gear-sub-badge">REALTIME 3D &amp; VFX</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">VFX SUPERCOMPUTER</div>
+              <h3 class="gear-title">Dual NVIDIA RTX 4090 Workstation</h3>
+              <p class="gear-description">Liquid-cooled supercomputing tower with 48GB GDDR6X VRAM. Built for instant local Octane, Redshift, Cinema 4D, Blender, Gaussian Splatting, and Unreal Engine 5 real-time 8K rendering with zero cloud latency.</p>
+              <div class="gear-features-pills">
+                <span>Dual NVIDIA RTX 4090 (48GB VRAM)</span>
+                <span>Realtime Octane &amp; Redshift GPU</span>
+                <span>Cinema 4D &amp; Blender VFX Engine</span>
+                <span>Unreal Engine 5 Real-Time Virtual Prod</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. MacBook Pro M-Series Workstation -->
+          <article class="tactical-gear-card" data-category="compute">
+            <div class="gear-img-wrapper">
+              <img src="/assets/gear/macbook_pro_workstation.webp" alt="Space Black Apple MacBook Pro Workstation" class="gear-img" loading="lazy">
+              <span class="gear-badge">MOBILE DIT POWER</span>
+              <span class="gear-sub-badge">PRORES &amp; COLOR GRADING</span>
+            </div>
+            <div class="gear-card-body">
+              <div class="gear-cat-tag">FIELD DIT &amp; COLOR</div>
+              <h3 class="gear-title">Apple Silicon MacBook Pro Workstation</h3>
+              <p class="gear-description">Maxed portable studio powerhouse for real-time on-set DIT media offloading, DaVinci Resolve color grading, ProRes 422 HQ timeline scrubbing, and high-speed multi-cam ingestion on location.</p>
+              <div class="gear-features-pills">
+                <span>Liquid Retina XDR Extreme Dynamic Range</span>
+                <span>Hardware ProRes Acceleration</span>
+                <span>DaVinci Resolve &amp; Adobe Suite Hub</span>
+                <span>High-Speed Thunderbolt 4 Bus</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Tactical Power & Redundancy Banner -->
+        <div class="tactical-power-hub reveal">
+          <div class="tactical-hub-content">
+            <div class="hub-badge">CONTINUOUS POWER &amp; FIELD REDUNDANCY</div>
+            <h3 class="hub-title">Non-Stop Production Operations</h3>
+            <p class="hub-desc">
+              Extensive battery banks (TB-50 high-capacity flight packs, Intelligent Mavic 3 &amp; Avata flight cells, and Sony NP-FZ100 battery arrays) backed by dual high-speed charging stations ensure continuous, non-stop rotation from sunrise to deep astro night.
+            </p>
+          </div>
+          <div class="tactical-hub-meta">
+            <div class="hub-meta-item">
+              <span class="meta-label">FAA Certification:</span>
+              <span class="meta-val">Part 107 Commercial Remote Pilot</span>
+            </div>
+            <div class="hub-meta-item">
+              <span class="meta-label">Production Insurance:</span>
+              <span class="meta-val">Worldwide Equipment &amp; Flight Covered</span>
+            </div>
+            <div class="hub-meta-item">
+              <span class="meta-label">Deployment:</span>
+              <span class="meta-val">100% Owner-Operator Turnkey Ready</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- Estimator -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Project Calculator</span>
+          <h2 class="section-title text-gradient-teal">Scope Estimator</h2>
+          <p class="section-desc">Starting-at ranges for a conversation, not a bid. Final quotes depend on locations, crew, and timeline.</p>
+        </div>
+
+        <div class="estimator-card reveal">
+          <div class="estimator-grid">
+            <div class="estimator-options">
+              <h4 class="estimator-group-title">1. Select production capabilities</h4>
+              <div class="checkbox-cards-grid">
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="2500" data-label="Video Production" checked>
+                  <div>
+                    <strong>Video Production</strong>
+                    <div class="checkbox-sub">Gimbal &amp; multi-cam shoot</div>
+                  </div>
+                </label>
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="1800" data-label="8K Motion Timelapse" checked>
+                  <div>
+                    <strong>8K Motion Timelapse</strong>
+                    <div class="checkbox-sub">4-axis robot setup</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="3200" data-label="3D Product / Logo">
+                  <div>
+                    <strong>3D Product / Logo</strong>
+                    <div class="checkbox-sub">Cinema 4D / Redshift</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="1500" data-label="FPV &amp; Drone Hyperlapse">
+                  <div>
+                    <strong>FPV &amp; Drone Hyperlapse</strong>
+                    <div class="checkbox-sub">DJI Avata / Mavic 3</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="2000" data-label="Post &amp; AE Motion Graphics">
+                  <div>
+                    <strong>Post &amp; AE Motion Graphics</strong>
+                    <div class="checkbox-sub">Marvel-style intro &amp; edit</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="750" data-label="Live Handpan Performance">
+                  <div>
+                    <strong>Live Handpan Performance</strong>
+                    <div class="checkbox-sub">Event / sound bath set</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="3500" data-label="Custom Website Design">
+                  <div>
+                    <strong>Custom Website Design</strong>
+                    <div class="checkbox-sub">Marketing / product site</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="1800" data-label="Web Proposal / Pitch Site">
+                  <div>
+                    <strong>Web Proposal / Pitch Site</strong>
+                    <div class="checkbox-sub">Interactive presentation</div>
+                  </div>
+                </label>
+              </div>
+
+              <h4 class="estimator-group-title estimator-travel-title">2. Travel</h4>
+              <div class="travel-options" role="radiogroup" aria-label="Travel distance">
+                <label class="travel-card selected">
+                  <input type="radio" name="travel-range" class="travel-calc" value="1" data-label="Colorado / local" checked>
+                  <span class="travel-name">Colorado / local</span>
+                  <span class="travel-mult">1×</span>
+                </label>
+                <label class="travel-card">
+                  <input type="radio" name="travel-range" class="travel-calc" value="2" data-label="Cross-state">
+                  <span class="travel-name">Cross-state</span>
+                  <span class="travel-mult">2×</span>
+                </label>
+                <label class="travel-card">
+                  <input type="radio" name="travel-range" class="travel-calc" value="3" data-label="Cross-country">
+                  <span class="travel-name">Cross-country</span>
+                  <span class="travel-mult">3×</span>
+                </label>
+              </div>
+              <p class="travel-note">Travel multipliers are a starting point and negotiable depending on the job.</p>
+            </div>
+
+            <div class="estimator-summary">
+              <div>
+                <div class="estimator-starting">Starting at</div>
+                <span class="estimator-tier-label">Ballpark project range</span>
+                <div class="estimator-price-tag" id="estimated-price">$4,300</div>
+                <p class="estimator-travel-line" id="estimator-travel-line">Colorado / local · 1×</p>
+                <p class="estimator-note">
+                  Starting points, not invoices. Travel is doubled for cross-state and 3× for cross-country — always negotiable depending on the job.
+                </p>
+                <ul class="estimator-selected-list" id="estimator-selected-list" aria-live="polite"></ul>
+              </div>
+              <button type="button" class="btn btn-primary estimator-lock-btn" id="lock-scope-btn">
+                Lock In Scope → Contact
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Commission a Project</span>
+          <h2 class="section-title text-gradient-gold">Step Into The Dojo</h2>
+          <p class="section-desc">Video, web design, 3D, drones, sculpture, or handpan — send the vision. You’ll get a real reply, not a black hole.</p>
+        </div>
+
+        <div class="contact-layout reveal">
+          <aside class="contact-aside">
+            <h3 class="contact-aside-title">Direct line</h3>
+            <p class="contact-aside-copy">Prefer a call or a quick email? Reach Daniel directly.</p>
+            <a class="contact-direct-link" href="mailto:brown@senseistudios.com">brown@senseistudios.com</a>
+            <a class="contact-direct-link" href="tel:+13037098647">303-709-8647</a>
+            <p class="contact-aside-meta">Colorado, USA · Worldwide travel</p>
+            <p class="contact-aside-response">Typical response within 24 hours.</p>
+          </aside>
+
+          <div class="contact-card">
+            <div id="form-success" class="form-success" hidden>
+              <div class="form-success-icon" aria-hidden="true">✓</div>
+              <h3>Transmission received</h3>
+              <p>Thank you — Daniel will respond within 24 hours.</p>
+              <button type="button" class="btn btn-outline" id="form-success-reset">Send another message</button>
+            </div>
+
+            <form
+              id="sensei-contact-form"
+              action="/api/contact"
+              method="POST"
+              novalidate
+            >
+              <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="estimator_total" id="field-estimator-total" value="">
+              <input type="hidden" name="estimator_services" id="field-estimator-services" value="">
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="client-name">Your Name</label>
+                  <input type="text" id="client-name" name="name" class="form-input" placeholder="Your full name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="client-email">Email Address</label>
+                  <input type="email" id="client-email" name="email" class="form-input" placeholder="you@studio.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label for="client-phone">Phone <span class="label-optional">(optional)</span></label>
+                  <input type="tel" id="client-phone" name="phone" class="form-input" placeholder="303-555-0100" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label for="project-type">Primary Project Type</label>
+                  <select id="project-type" name="project_type" class="form-select">
+                    <option value="Full Video &amp; 3D Package">Full Video &amp; 3D Package</option>
+                    <option value="Web Design / Website">Web Design / Website</option>
+                    <option value="Web Design / Proposal Site">Web Design / Proposal Site</option>
+                    <option value="Live Handpan Event Performance">Live Handpan Event Performance</option>
+                    <option value="Fine Wood Sculpture Inquiry">Fine Wood Sculpture Inquiry</option>
+                    <option value="3D Product Animation">3D Product / Logo Animation</option>
+                    <option value="8K Motion Timelapse">8K Motion Controlled Timelapse</option>
+                    <option value="FPV Drone &amp; Hyperlapse">FPV Drone &amp; Aerial Hyperlapse</option>
+                    <option value="Commercial Video Edit">Commercial Video Edit &amp; Motion Graphics</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget-tier">Estimated Budget Tier</label>
+                  <select id="budget-tier" name="budget" class="form-select">
+                    <option value="$3,000 - $5,000">$3,000 – $5,000</option>
+                    <option value="$5,000 - $10,000">$5,000 – $10,000</option>
+                    <option value="$10,000 - $25,000+">$10,000 – $25,000+</option>
+                    <option value="Sculpture acquisition">Sculpture acquisition</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form-group full-width" id="piece-field-wrap" hidden>
+                  <label for="piece-name">Sculpture</label>
+                  <input type="text" id="piece-name" name="piece" class="form-input" placeholder="Piece title">
+                </div>
+                <div class="form-group" id="event-date-wrap" hidden>
+                  <label for="event-date">Event date <span class="label-optional">(handpan)</span></label>
+                  <input type="text" id="event-date" name="event_date" class="form-input" placeholder="June 14, 2027" autocomplete="off">
+                </div>
+                <div class="form-group" id="event-location-wrap" hidden>
+                  <label for="event-location">Event city <span class="label-optional">(handpan)</span></label>
+                  <input type="text" id="event-location" name="event_location" class="form-input" placeholder="Aspen, CO" autocomplete="address-level2">
+                </div>
+                <div class="form-group full-width">
+                  <label for="project-notes">Project details &amp; vision</label>
+                  <textarea id="project-notes" name="message" class="form-textarea" rows="5" placeholder="Timeline, locations, install notes, or the story of the piece…" required></textarea>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-gold" id="form-submit-btn">
+                  <span class="btn-label">Send Transmission</span>
+                  <span class="btn-loading" hidden>Sending…</span>
+                </button>
+                <p class="form-privacy">Messages go to brown@senseistudios.com. Or call <a href="tel:+13037098647">303-709-8647</a>. <a href="/privacy/">Privacy</a>.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">SENSEI STUDIOS</div>
+          <p class="footer-tagline">
+            Master cinematography, web design, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber woodwork, and live handpan. Colorado based. Worldwide capable — however, cross-state is double the cost and cross-country is 3×.
+          </p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://vimeo.com/danielkellybrown" target="_blank" rel="noopener noreferrer">Vimeo</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="/film/">Film &amp; Motion</a></li>
+            <li><a href="/wood/">Local Aspen Woodwork</a></li>
+            <li><a href="/handpan/">Handpan Music</a></li>
+            <li><a href="/web/">Web Design</a></li>
+            <li><a href="/film/#arsenal">Equipment Arsenal</a></li>
+            <li><a href="/story/">Daniel Kelly Brown</a></li>
+            <li><a href="/privacy/">Privacy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Direct Contact</h4>
+          <p class="footer-contact">
+            <a href="mailto:brown@senseistudios.com">brown@senseistudios.com</a><br>
+            <a href="tel:+13037098647">303-709-8647</a><br>
+            Colorado, USA
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="footer-year">2026</span> Sensei Studios. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="modal-info-title" aria-hidden="true" hidden>
+    <div class="modal-content-wrapper">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close video">✕</button>
+      <div class="modal-iframe-container" id="modal-iframe-container"></div>
+      <div class="modal-info-bar">
+        <div class="modal-info-title" id="modal-info-title">Sensei Studios Theater</div>
+        <span class="modal-quality">HD / 4K</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sculpture-modal" id="sculpture-qr-modal" role="dialog" aria-modal="true" aria-labelledby="modal-sculpture-title" aria-hidden="true" hidden>
+    <div class="sculpture-modal-card">
+      <button type="button" class="modal-close-btn" id="sculpture-modal-close" aria-label="Close">✕</button>
+      <div class="modal-qr-preview-box">
+        <div class="modal-qr-img" id="qr-code-target"></div>
+        <div class="modal-qr-label">Gallery piece</div>
+        <div class="modal-qr-url" id="qr-direct-link">https://senseistudios.com/wood/</div>
+        <p class="lightbox-zoom-hint">Highest-resolution file in the archive</p>
+      </div>
+      <div class="sculpture-modal-body">
+        <span class="woodwork-header-badge" id="modal-sculpture-status"></span>
+        <h3 id="modal-sculpture-title"></h3>
+        <div class="modal-sculpture-specs" id="modal-sculpture-specs"></div>
+        <div class="modal-sculpture-meta">
+          <div class="meta-row">
+            <span>Acquisition price</span>
+            <span class="meta-price" id="modal-sculpture-price"></span>
+          </div>
+          <div class="meta-row">
+            <span>Dimensions</span>
+            <span class="meta-dim" id="modal-sculpture-dim"></span>
+          </div>
+        </div>
+        <div id="modal-sculpture-story"></div>
+        <button type="button" class="btn btn-gold" id="modal-reserve-btn">Inquire about this piece</button>
+        <a class="btn btn-outline" id="modal-piece-link" href="/wood/" style="margin-top:0.75rem;text-align:center;">Open piece page</a>
+        <p class="modal-reserve-note">Inquiry goes to Daniel Kelly Brown &amp; Buckhorn Public Arts staff.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="float-controls">
+    <button type="button" class="float-btn" id="sound-toggle" aria-label="Play a chime" aria-pressed="false" title="Play a chime">
+      <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-1.2 2.4-4 4.4-4 8a4 4 0 1 0 8 0c0-3.6-2.8-5.6-4-8zm0 18v-3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+    </button>
+    <a href="#main-content" class="float-btn float-top" id="back-to-top" aria-label="Back to top" hidden>
+      <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="sticky-call" aria-label="Quick contact">
+    <a class="btn btn-outline" href="tel:+13037098647">Call Daniel</a>
+    <a class="btn btn-gold" href="#contact">Inquire</a>
+  </div>
+
+  <script src="/sculptures-data.js" defer></script>
+  <script src="/script.js" defer></script>
+</body>
+</html>

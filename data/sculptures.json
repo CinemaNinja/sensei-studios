@@ -1,19 +1,54 @@
 [
   {
     "id": 1,
+    "slug": "tree-triangle",
     "title": "Tree>Triangle",
     "price": "$42,000",
     "specs": "Hand-milled forest timber, Great Horned Owl geometric mosaic",
     "dim": "48\" x 120\" Master Wall Mural",
     "status": "exhibiting",
     "statusLabel": "Exhibiting at The Grove",
-    "desc": "This mural is a sacred tribute to the enduring spirit of the Great Horned Owl. Born directly from the forest, it is crafted from 95% locally and harmoniously sourced aspen wood. The journey began by respectfully harvesting the trees and milling the timber by hand. I planed, cut, and sanded every single triangle, fitting them together like a complex, wooden puzzle. Pouring my energy into this artwork for 32 demanding days, the final piece is a reflection of both the natural beauty of the wood and the wisdom of the owl.\n\nThis piece is available for $42,000. In the spirit of reciprocity and community support, 50% of the sale will be distributed as donations to local environmental, agricultural, and creative organizations:\n\n10% to The Grove in Aspen, the communal workspace where this artwork currently lives.\n\n10% to the Aspen Center for Environmental Studies (ACES).\n\n10% to the Central Rocky Mountain Permaculture Institute (CRMPI).\n\n10% to Sustainable Settings in Carbondale, CO.\n\n10% to The Farm Collaborative.",
+    "desc": "This mural is a sacred tribute to the enduring spirit of the Great Horned Owl. Born directly from the forest, it is crafted from 95% locally and harmoniously sourced aspen wood. The journey began by respectfully harvesting the trees and milling the timber by hand. I planed, cut, and sanded every single triangle, fitting them together like a complex, wooden puzzle. Pouring my energy into this artwork for 32 demanding days, the final piece is a reflection of both the natural beauty of the wood and the wisdom of the owl.",
+    "givingIntro": "This piece is available for $42,000. In the spirit of reciprocity and community support, 50% of the sale will be distributed as donations to local environmental, agricultural, and creative organizations:",
+    "giving": [
+      {
+        "pct": "10%",
+        "name": "The Grove in Aspen",
+        "detail": "— the communal workspace where this artwork currently lives.",
+        "url": "https://www.groveaspen.club/"
+      },
+      {
+        "pct": "10%",
+        "name": "Aspen Center for Environmental Studies (ACES)",
+        "detail": "",
+        "url": "https://aspennature.org/"
+      },
+      {
+        "pct": "10%",
+        "name": "Central Rocky Mountain Permaculture Institute (CRMPI)",
+        "detail": "",
+        "url": "https://crmpi.org/"
+      },
+      {
+        "pct": "10%",
+        "name": "Sustainable Settings in Carbondale, CO",
+        "detail": "",
+        "url": "https://www.sustainablesettings.org/"
+      },
+      {
+        "pct": "10%",
+        "name": "The Farm Collaborative",
+        "detail": "",
+        "url": "https://thefarmcollaborative.org/"
+      }
+    ],
     "image": "./assets/sculptures/tree-triangle-mural-card.webp",
     "imageFull": "./assets/sculptures/tree-triangle-mural.webp",
     "isFeatured": true
   },
   {
     "id": 2,
+    "slug": "nested-triangle-totem",
     "title": "Nested Triangle Totem",
     "price": "$3,200",
     "specs": "Sculpted layered timber, multi-pass nested relief",
@@ -26,6 +61,7 @@
   },
   {
     "id": 3,
+    "slug": "charred-summit",
     "title": "Charred Summit",
     "price": "$950",
     "specs": "Flame-treated hardwood, geometric dual planes",
@@ -38,6 +74,7 @@
   },
   {
     "id": 4,
+    "slug": "burl-spire",
     "title": "Burl Spire",
     "price": "$2,400",
     "specs": "Extremely rare burly aspen from Aspen Mountain",
@@ -50,6 +87,7 @@
   },
   {
     "id": 5,
+    "slug": "aspen-wood-spire",
     "title": "Aspen Wood Spire",
     "price": "$2,750",
     "specs": "Hand-carved aspen, geometric stack form",
@@ -62,6 +100,7 @@
   },
   {
     "id": 6,
+    "slug": "zigzag-mountain-totem",
     "title": "Zigzag Mountain Totem",
     "price": "$2,850",
     "specs": "Solid timber, continuous zigzag relief",
@@ -74,6 +113,7 @@
   },
   {
     "id": 7,
+    "slug": "zeenith",
     "title": "Zeenith",
     "price": "$66,669",
     "specs": "Pierced geometric timber, open voids",
@@ -86,6 +126,7 @@
   },
   {
     "id": 8,
+    "slug": "serrated-ridge-form",
     "title": "Serrated Ridge Form",
     "price": "$1,750",
     "specs": "Angular relief carve, open mid-void",
@@ -98,6 +139,7 @@
   },
   {
     "id": 9,
+    "slug": "aspen-burl-gem",
     "title": "Aspen Burl Gem",
     "price": "$1,750",
     "specs": "Hand-chiseled aspen burl, radial starburst grain",
@@ -110,6 +152,7 @@
   },
   {
     "id": 10,
+    "slug": "aspen-gem-wood-panel-1",
     "title": "Aspen Gem Wood Panel 1",
     "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -122,6 +165,7 @@
   },
   {
     "id": 11,
+    "slug": "aspen-gem-wood-panel-2",
     "title": "Aspen Gem Wood Panel 2",
     "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -134,6 +178,7 @@
   },
   {
     "id": 12,
+    "slug": "aspen-gem-wood-panel-3",
     "title": "Aspen Gem Wood Panel 3",
     "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -146,6 +191,7 @@
   },
   {
     "id": 13,
+    "slug": "aspen-gem-wood-panel-4",
     "title": "Aspen Gem Wood Panel 4",
     "price": "$1,950",
     "specs": "Extremely rare local burl aspen, live-edge wall panel",
@@ -158,6 +204,7 @@
   },
   {
     "id": 14,
+    "slug": "organic-burl-column",
     "title": "Organic Burl Column",
     "price": "$2,200",
     "specs": "Solid burl timber, free-standing organic form",

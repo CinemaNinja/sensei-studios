@@ -4,5 +4,8 @@
   "compatibility_date": "2026-08-04",
   "assets": {
     "directory": "."
+  },
+  "vars": {
+    "CONTACT_TO": "brown@senseistudios.com"
   }
 }

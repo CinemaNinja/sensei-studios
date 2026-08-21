@@ -1,0 +1,104 @@
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Commission a Project</span>
+          <h2 class="section-title text-gradient-gold">Step Into The Dojo</h2>
+          <p class="section-desc">Video, web design, 3D, drones, sculpture, or handpan — send the vision. You’ll get a real reply, not a black hole.</p>
+        </div>
+
+        <div class="contact-layout reveal">
+          <aside class="contact-aside">
+            <h3 class="contact-aside-title">Direct line</h3>
+            <p class="contact-aside-copy">Prefer a call or a quick email? Reach Daniel directly.</p>
+            <a class="contact-direct-link" href="mailto:brown@senseistudios.com">brown@senseistudios.com</a>
+            <a class="contact-direct-link" href="tel:+13037098647">303-709-8647</a>
+            <p class="contact-aside-meta">Colorado, USA · Worldwide travel</p>
+            <p class="contact-aside-response">Typical response within 24 hours.</p>
+          </aside>
+
+          <div class="contact-card">
+            <div id="form-success" class="form-success" hidden>
+              <div class="form-success-icon" aria-hidden="true">✓</div>
+              <h3>Transmission received</h3>
+              <p>Thank you — Daniel will respond within 24 hours.</p>
+              <button type="button" class="btn btn-outline" id="form-success-reset">Send another message</button>
+            </div>
+
+            <form
+              id="sensei-contact-form"
+              action="/api/contact"
+              method="POST"
+              novalidate
+            >
+              <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="hidden" name="estimator_total" id="field-estimator-total" value="">
+              <input type="hidden" name="estimator_services" id="field-estimator-services" value="">
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="client-name">Your Name</label>
+                  <input type="text" id="client-name" name="name" class="form-input" placeholder="Your full name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="client-email">Email Address</label>
+                  <input type="email" id="client-email" name="email" class="form-input" placeholder="you@studio.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label for="client-phone">Phone <span class="label-optional">(optional)</span></label>
+                  <input type="tel" id="client-phone" name="phone" class="form-input" placeholder="303-555-0100" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label for="project-type">Primary Project Type</label>
+                  <select id="project-type" name="project_type" class="form-select">
+                    <option value="Full Video &amp; 3D Package">Full Video &amp; 3D Package</option>
+                    <option value="Web Design / Website">Web Design / Website</option>
+                    <option value="Web Design / Proposal Site">Web Design / Proposal Site</option>
+                    <option value="Live Handpan Event Performance">Live Handpan Event Performance</option>
+                    <option value="Fine Wood Sculpture Inquiry">Fine Wood Sculpture Inquiry</option>
+                    <option value="3D Product Animation">3D Product / Logo Animation</option>
+                    <option value="8K Motion Timelapse">8K Motion Controlled Timelapse</option>
+                    <option value="FPV Drone &amp; Hyperlapse">FPV Drone &amp; Aerial Hyperlapse</option>
+                    <option value="Commercial Video Edit">Commercial Video Edit &amp; Motion Graphics</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget-tier">Estimated Budget Tier</label>
+                  <select id="budget-tier" name="budget" class="form-select">
+                    <option value="$3,000 - $5,000">$3,000 – $5,000</option>
+                    <option value="$5,000 - $10,000">$5,000 – $10,000</option>
+                    <option value="$10,000 - $25,000+">$10,000 – $25,000+</option>
+                    <option value="Sculpture acquisition">Sculpture acquisition</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                  </select>
+                </div>
+                <div class="form-group full-width" id="piece-field-wrap" hidden>
+                  <label for="piece-name">Sculpture</label>
+                  <input type="text" id="piece-name" name="piece" class="form-input" placeholder="Piece title">
+                </div>
+                <div class="form-group" id="event-date-wrap" hidden>
+                  <label for="event-date">Event date <span class="label-optional">(handpan)</span></label>
+                  <input type="text" id="event-date" name="event_date" class="form-input" placeholder="June 14, 2027" autocomplete="off">
+                </div>
+                <div class="form-group" id="event-location-wrap" hidden>
+                  <label for="event-location">Event city <span class="label-optional">(handpan)</span></label>
+                  <input type="text" id="event-location" name="event_location" class="form-input" placeholder="Aspen, CO" autocomplete="address-level2">
+                </div>
+                <div class="form-group full-width">
+                  <label for="project-notes">Project details &amp; vision</label>
+                  <textarea id="project-notes" name="message" class="form-textarea" rows="5" placeholder="Timeline, locations, install notes, or the story of the piece…" required></textarea>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="btn btn-gold" id="form-submit-btn">
+                  <span class="btn-label">Send Transmission</span>
+                  <span class="btn-loading" hidden>Sending…</span>
+                </button>
+                <p class="form-privacy">Messages go to brown@senseistudios.com. Or call <a href="tel:+13037098647">303-709-8647</a>. <a href="/privacy/">Privacy</a>.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>

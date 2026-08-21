@@ -1,0 +1,112 @@
+    <!-- Estimator -->
+    <section class="estimator-section" id="estimator">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Project Calculator</span>
+          <h2 class="section-title text-gradient-teal">Scope Estimator</h2>
+          <p class="section-desc">Starting-at ranges for a conversation, not a bid. Final quotes depend on locations, crew, and timeline.</p>
+        </div>
+
+        <div class="estimator-card reveal">
+          <div class="estimator-grid">
+            <div class="estimator-options">
+              <h4 class="estimator-group-title">1. Select production capabilities</h4>
+              <div class="checkbox-cards-grid">
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="2500" data-label="Video Production" checked>
+                  <div>
+                    <strong>Video Production</strong>
+                    <div class="checkbox-sub">Gimbal &amp; multi-cam shoot</div>
+                  </div>
+                </label>
+                <label class="checkbox-card selected">
+                  <input type="checkbox" class="scope-calc" data-price="1800" data-label="8K Motion Timelapse" checked>
+                  <div>
+                    <strong>8K Motion Timelapse</strong>
+                    <div class="checkbox-sub">4-axis robot setup</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="3200" data-label="3D Product / Logo">
+                  <div>
+                    <strong>3D Product / Logo</strong>
+                    <div class="checkbox-sub">Cinema 4D / Redshift</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="1500" data-label="FPV &amp; Drone Hyperlapse">
+                  <div>
+                    <strong>FPV &amp; Drone Hyperlapse</strong>
+                    <div class="checkbox-sub">DJI Avata / Mavic 3</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="2000" data-label="Post &amp; AE Motion Graphics">
+                  <div>
+                    <strong>Post &amp; AE Motion Graphics</strong>
+                    <div class="checkbox-sub">Marvel-style intro &amp; edit</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="750" data-label="Live Handpan Performance">
+                  <div>
+                    <strong>Live Handpan Performance</strong>
+                    <div class="checkbox-sub">Event / sound bath set</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="3500" data-label="Custom Website Design">
+                  <div>
+                    <strong>Custom Website Design</strong>
+                    <div class="checkbox-sub">Marketing / product site</div>
+                  </div>
+                </label>
+                <label class="checkbox-card">
+                  <input type="checkbox" class="scope-calc" data-price="1800" data-label="Web Proposal / Pitch Site">
+                  <div>
+                    <strong>Web Proposal / Pitch Site</strong>
+                    <div class="checkbox-sub">Interactive presentation</div>
+                  </div>
+                </label>
+              </div>
+
+              <h4 class="estimator-group-title estimator-travel-title">2. Travel</h4>
+              <div class="travel-options" role="radiogroup" aria-label="Travel distance">
+                <label class="travel-card selected">
+                  <input type="radio" name="travel-range" class="travel-calc" value="1" data-label="Colorado / local" checked>
+                  <span class="travel-name">Colorado / local</span>
+                  <span class="travel-mult">1×</span>
+                </label>
+                <label class="travel-card">
+                  <input type="radio" name="travel-range" class="travel-calc" value="2" data-label="Cross-state">
+                  <span class="travel-name">Cross-state</span>
+                  <span class="travel-mult">2×</span>
+                </label>
+                <label class="travel-card">
+                  <input type="radio" name="travel-range" class="travel-calc" value="3" data-label="Cross-country">
+                  <span class="travel-name">Cross-country</span>
+                  <span class="travel-mult">3×</span>
+                </label>
+              </div>
+              <p class="travel-note">Travel multipliers are a starting point and negotiable depending on the job.</p>
+            </div>
+
+            <div class="estimator-summary">
+              <div>
+                <div class="estimator-starting">Starting at</div>
+                <span class="estimator-tier-label">Ballpark project range</span>
+                <div class="estimator-price-tag" id="estimated-price">$4,300</div>
+                <p class="estimator-travel-line" id="estimator-travel-line">Colorado / local · 1×</p>
+                <p class="estimator-note">
+                  Starting points, not invoices. Travel is doubled for cross-state and 3× for cross-country — always negotiable depending on the job.
+                </p>
+                <ul class="estimator-selected-list" id="estimator-selected-list" aria-live="polite"></ul>
+              </div>
+              <button type="button" class="btn btn-primary estimator-lock-btn" id="lock-scope-btn">
+                Lock In Scope → Contact
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

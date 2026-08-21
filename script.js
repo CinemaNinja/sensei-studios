@@ -6,6 +6,8 @@ const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollMemory();
+  redirectLegacySculptureHash();
   initPreloader();
   initCustomCursor();
   initZenCanvas();
@@ -21,10 +23,92 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initContactForm();
   initPrefillLinks();
+  initInquiryTypeToggles();
   initScrollReveals();
   initBackToTop();
   initFooterYear();
+  initQueryPrefill();
+  initInstagramFeed();
 });
+
+/* ==========================================================================
+   0. KEEP PLACE ON REFRESH
+   ========================================================================== */
+function initScrollMemory() {
+  const storageKey = 'sensei:scroll';
+  const pageKey = location.pathname + location.search;
+
+  const navEntry = performance.getEntriesByType?.('navigation')?.[0];
+  const navType = navEntry?.type || (performance.navigation?.type === 1 ? 'reload' : 'navigate');
+
+  const save = () => {
+    try {
+      sessionStorage.setItem(
+        storageKey,
+        JSON.stringify({
+          page: pageKey,
+          hash: location.hash,
+          y: Math.round(window.scrollY || window.pageYOffset || 0)
+        })
+      );
+    } catch (_) {
+      /* private mode */
+    }
+  };
+
+  window.addEventListener('pagehide', save);
+  window.addEventListener('beforeunload', save);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') save();
+  });
+
+  let ticking = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        save();
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
+
+  if (navType === 'back_forward') {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+    return;
+  }
+
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (navType !== 'reload') return;
+
+  const restore = () => {
+    try {
+      const data = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
+      if (!data || data.page !== pageKey) return;
+      const y = Number(data.y);
+      if (!Number.isFinite(y) || y < 1) return;
+      const html = document.documentElement;
+      const previous = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, y);
+      html.style.scrollBehavior = previous;
+    } catch (_) {
+      /* ignore */
+    }
+  };
+
+  restore();
+  document.addEventListener('sensei:ready', restore);
+  window.addEventListener('load', () => {
+    restore();
+    setTimeout(restore, 60);
+    setTimeout(restore, 280);
+    setTimeout(restore, 700);
+  });
+}
 
 /* ==========================================================================
    1. PRELOADER
@@ -40,9 +124,11 @@ function initPreloader() {
     if (preloader.classList.contains('fade-out')) return;
     preloader.classList.add('fade-out');
     body.classList.remove('loading-lock');
+    document.dispatchEvent(new Event('sensei:ready'));
     setTimeout(() => {
       preloader.setAttribute('hidden', '');
       preloader.setAttribute('aria-hidden', 'true');
+      document.dispatchEvent(new Event('sensei:ready'));
     }, 700);
   }
 
@@ -177,7 +263,7 @@ function initTypedText() {
     'Fine Wood Sculptor.',
     'Drone Hyperlapse Timelapse Pioneer.',
     'Elegant Zen Webdesign.',
-    '2D & 3D Motion Graphics.',
+    '2D and 3D Motion Graphics Specialist.',
     'Events and Commercial Videos.',
     'Experienced Video Editor.'
   ];
@@ -223,41 +309,57 @@ function initTypedText() {
    5. PORTFOLIO FILTERS
    ========================================================================== */
 function initPortfolioFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  const tablist = document.querySelector('.portfolio-filters');
+  const filterBtns = [...document.querySelectorAll('.filter-btn')];
   const videoCards = document.querySelectorAll('.video-card');
+  if (!filterBtns.length) return;
+
+  function applyFilter(btn) {
+    filterBtns.forEach((b) => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+
+    const filter = btn.getAttribute('data-filter');
+    videoCards.forEach((card) => {
+      const categories = (card.getAttribute('data-category') || '').split(' ');
+      const show = filter === 'all' || categories.includes(filter);
+      if (show) {
+        card.hidden = false;
+        card.style.display = '';
+        requestAnimationFrame(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = prefersReducedMotion() ? 'none' : 'translateY(16px)';
+        setTimeout(() => {
+          card.style.display = 'none';
+          card.hidden = true;
+        }, prefersReducedMotion() ? 0 : 280);
+      }
+    });
+  }
 
   filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+    btn.addEventListener('click', () => applyFilter(btn));
+  });
 
-      const filter = btn.getAttribute('data-filter');
-
-      videoCards.forEach((card) => {
-        const categories = (card.getAttribute('data-category') || '').split(' ');
-        const show = filter === 'all' || categories.includes(filter);
-
-        if (show) {
-          card.hidden = false;
-          card.style.display = 'flex';
-          requestAnimationFrame(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          });
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(16px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-            card.hidden = true;
-          }, 280);
-        }
-      });
-    });
+  tablist?.addEventListener('keydown', (e) => {
+    const idx = filterBtns.indexOf(document.activeElement);
+    if (idx < 0) return;
+    let next = idx;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % filterBtns.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + filterBtns.length) % filterBtns.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = filterBtns.length - 1;
+    else return;
+    e.preventDefault();
+    filterBtns[next].focus();
+    applyFilter(filterBtns[next]);
   });
 }
 
@@ -341,21 +443,35 @@ function initVideoModal() {
     if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
   }
 
+  function embedInline(card, type, id, title) {
+    const wrap = card.querySelector('.video-thumbnail-wrapper');
+    if (!wrap) {
+      openVideo(type, id, title);
+      return;
+    }
+    let embedUrl = '';
+    if (type === 'vimeo') {
+      embedUrl = `https://player.vimeo.com/video/${id}?autoplay=1&color=ffa834&title=0&byline=0&portrait=0`;
+    } else if (type === 'youtube') {
+      embedUrl = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+    } else {
+      return;
+    }
+    wrap.innerHTML = `<iframe src="${embedUrl}" title="${escapeHtml(title || 'Video')}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    card.classList.add('is-playing');
+  }
+
   document.querySelectorAll('.video-card').forEach((card) => {
     const activate = () => {
-      openVideo(
-        card.getAttribute('data-video-type'),
-        card.getAttribute('data-video-id'),
-        card.querySelector('.video-title')?.textContent
-      );
+      const type = card.getAttribute('data-video-type');
+      const id = card.getAttribute('data-video-id');
+      const title = card.querySelector('.video-title')?.textContent;
+      if (card.getAttribute('data-inline') === 'true') embedInline(card, type, id, title);
+      else openVideo(type, id, title);
     };
-    card.addEventListener('click', activate);
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        activate();
-      }
-    });
+    const playBtn = card.querySelector('.video-play-btn');
+    if (playBtn) playBtn.addEventListener('click', (e) => { e.stopPropagation(); activate(); });
+    else card.addEventListener('click', activate);
   });
 
   document.getElementById('hero-reel-btn')?.addEventListener('click', (e) => {
@@ -404,6 +520,54 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function assetUrl(path) {
+  if (!path) return '';
+  if (/^https?:\/\//.test(path) || path.startsWith('/')) return path;
+  return '/' + path.replace(/^\.\//, '');
+}
+
+function pieceUrl(s) {
+  return `/wood/${s.slug || `piece-${s.id}`}/`;
+}
+
+function statusClass(status) {
+  if (status === 'available') return 'status-available';
+  if (status === 'reserved') return 'status-reserved';
+  if (status === 'sold') return 'status-sold';
+  return 'status-exhibiting';
+}
+
+function givingHTML(s) {
+  if (!s.giving || !s.giving.length) return '';
+  const intro = s.givingIntro
+    ? `<p class="modal-sculpture-story">${escapeHtml(s.givingIntro)}</p>`
+    : '';
+  const items = s.giving
+    .map((g) => {
+      const name = g.url
+        ? `<a href="${escapeHtml(g.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(g.name)}</a>`
+        : escapeHtml(g.name);
+      const detail = g.detail ? ` ${escapeHtml(g.detail)}` : '';
+      return `<li>${escapeHtml(g.pct)} to ${name}${detail}</li>`;
+    })
+    .join('');
+  return `${intro}<ul class="masterpiece-giving-list modal-giving-list">${items}</ul>`;
+}
+
+function storyHTML(s) {
+  const desc = s.desc ? `<p class="modal-sculpture-story">${escapeHtml(s.desc)}</p>` : '';
+  return desc + givingHTML(s);
+}
+
+function redirectLegacySculptureHash() {
+  const hash = window.location.hash || '';
+  const match = hash.match(/^#sculpture-(\d+)/);
+  if (!match) return;
+  const sculptures = window.__SENSEI_SCULPTURES__ || [];
+  const piece = sculptures.find((s) => String(s.id) === match[1]);
+  if (piece) window.location.replace(pieceUrl(piece));
+}
+
 /* ==========================================================================
    7. LAZY YOUTUBE EMBEDS (handpan)
    ========================================================================== */
@@ -430,26 +594,44 @@ function initLazyVideos() {
    ========================================================================== */
 function initEstimatorCalculator() {
   const checkboxes = document.querySelectorAll('.scope-calc');
+  const travelRadios = document.querySelectorAll('.travel-calc');
   const priceDisplay = document.getElementById('estimated-price');
   const selectedList = document.getElementById('estimator-selected-list');
+  const travelLine = document.getElementById('estimator-travel-line');
   const lockBtn = document.getElementById('lock-scope-btn');
   if (!priceDisplay) return;
 
+  function getTravel() {
+    const picked = [...travelRadios].find((r) => r.checked);
+    const multiplier = parseFloat(picked?.value) || 1;
+    const label = picked?.getAttribute('data-label') || 'Colorado / local';
+    return { multiplier, label };
+  }
+
   function getSelection() {
     const services = [];
-    let total = 0;
+    let base = 0;
     checkboxes.forEach((cb) => {
       if (cb.checked) {
-        total += parseInt(cb.getAttribute('data-price'), 10) || 0;
+        base += parseInt(cb.getAttribute('data-price'), 10) || 0;
         services.push(cb.getAttribute('data-label') || 'Service');
       }
     });
-    return { total, services };
+    const travel = getTravel();
+    const total = Math.round(base * travel.multiplier);
+    return { base, total, services, travel };
   }
 
   function render() {
-    const { total, services } = getSelection();
+    const { total, services, travel } = getSelection();
     animateValue(priceDisplay, total);
+
+    if (travelLine) {
+      const extra = travel.multiplier > 1
+        ? `${travel.label} · ${travel.multiplier}× (negotiable)`
+        : `${travel.label} · 1×`;
+      travelLine.textContent = extra;
+    }
 
     if (selectedList) {
       selectedList.innerHTML = services.length
@@ -461,14 +643,21 @@ function initEstimatorCalculator() {
       const parent = cb.closest('.checkbox-card');
       if (parent) parent.classList.toggle('selected', cb.checked);
     });
+    travelRadios.forEach((r) => {
+      const parent = r.closest('.travel-card');
+      if (parent) parent.classList.toggle('selected', r.checked);
+    });
   }
 
   checkboxes.forEach((cb) => {
     cb.addEventListener('change', render);
   });
+  travelRadios.forEach((r) => {
+    r.addEventListener('change', render);
+  });
 
   lockBtn?.addEventListener('click', () => {
-    const { total, services } = getSelection();
+    const { total, services, travel } = getSelection();
     const totalField = document.getElementById('field-estimator-total');
     const servicesField = document.getElementById('field-estimator-services');
     const notes = document.getElementById('project-notes');
@@ -480,7 +669,7 @@ function initEstimatorCalculator() {
 
     if (notes) {
       const userPart = notes.value.split('--- Scope Estimator ---')[0].trim();
-      const scopeBlock = `--- Scope Estimator ---\nEstimated total: $${total.toLocaleString()}\nServices: ${services.join(', ') || 'None'}`;
+      const scopeBlock = `--- Scope Estimator ---\nEstimated total: $${total.toLocaleString()}\nTravel: ${travel.label} (${travel.multiplier}×, negotiable depending on the job)\nServices: ${services.join(', ') || 'None'}`;
       notes.value = userPart ? `${userPart}\n\n${scopeBlock}` : scopeBlock;
     }
 
@@ -695,6 +884,49 @@ function initNavigation() {
 /* ==========================================================================
    11. CONTACT FORM (FormSubmit AJAX)
    ========================================================================== */
+function payloadFromForm(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  return {
+    name: data.name || '',
+    email: data.email || '',
+    phone: data.phone || '',
+    project_type: data.project_type || '',
+    budget: data.budget || '',
+    piece: data.piece || '',
+    event_date: data.event_date || '',
+    event_location: data.event_location || '',
+    estimator_total: data.estimator_total || '',
+    estimator_services: data.estimator_services || '',
+    message: data.message || '',
+    company: data.company || ''
+  };
+}
+
+function mailtoFallback(payload) {
+  const subject = encodeURIComponent(
+    payload.piece
+      ? `Sensei Studios — Sculpture inquiry: ${payload.piece}`
+      : 'Sensei Studios — Project Inquiry'
+  );
+  const body = encodeURIComponent(
+    [
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone || '—'}`,
+      `Type: ${payload.project_type || '—'}`,
+      `Budget: ${payload.budget || '—'}`,
+      payload.piece ? `Piece: ${payload.piece}` : null,
+      payload.event_date ? `Event date: ${payload.event_date}` : null,
+      payload.event_location ? `Event location: ${payload.event_location}` : null,
+      '',
+      payload.message
+    ]
+      .filter((line) => line !== null)
+      .join('\n')
+  );
+  window.location.href = `mailto:brown@senseistudios.com?subject=${subject}&body=${body}`;
+}
+
 function initContactForm() {
   const form = document.getElementById('sensei-contact-form');
   const success = document.getElementById('form-success');
@@ -720,40 +952,35 @@ function initContactForm() {
     if (label) label.hidden = true;
     if (loading) loading.hidden = false;
 
-    const formData = new FormData(form);
-    // FormSubmit AJAX endpoint
-    const action = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+    const payload = payloadFromForm(form);
 
     try {
-      const res = await fetch(action, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' }
+        headers: { 'content-type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
       });
+      const data = await res.json().catch(() => ({}));
 
-      if (!res.ok) throw new Error('Submit failed');
-
-      form.hidden = true;
-      if (success) {
-        success.hidden = false;
-        success.focus?.();
+      if (data.ok) {
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+          success.focus?.();
+        }
+        form.reset();
+        return;
       }
-      form.reset();
+
+      if (data.fallback === 'mailto' && data.mailto) {
+        const m = data.mailto;
+        window.location.href = `mailto:${m.to}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+        return;
+      }
+
+      throw new Error(data.error || 'Submit failed');
     } catch (err) {
-      // Fallback: open mailto so the lead is never lost
-      const subject = encodeURIComponent('Sensei Studios — Project Inquiry');
-      const body = encodeURIComponent(
-        [
-          `Name: ${name.value}`,
-          `Email: ${email.value}`,
-          `Phone: ${document.getElementById('client-phone')?.value || '—'}`,
-          `Type: ${document.getElementById('project-type')?.value || '—'}`,
-          `Budget: ${document.getElementById('budget-tier')?.value || '—'}`,
-          '',
-          notes.value
-        ].join('\n')
-      );
-      window.location.href = `mailto:brown@senseistudios.com?subject=${subject}&body=${body}`;
+      mailtoFallback(payload);
     } finally {
       if (submitBtn) submitBtn.disabled = false;
       if (label) label.hidden = false;
@@ -767,17 +994,54 @@ function initContactForm() {
   });
 }
 
+function setInquiryType(type) {
+  const projectType = document.getElementById('project-type');
+  if (type && projectType) projectType.value = type;
+  const isSculpture = /sculpture/i.test(type || projectType?.value || '');
+  const isHandpan = /handpan/i.test(type || projectType?.value || '');
+  document.getElementById('piece-field-wrap')?.toggleAttribute('hidden', !isSculpture);
+  document.getElementById('event-date-wrap')?.toggleAttribute('hidden', !isHandpan);
+  document.getElementById('event-location-wrap')?.toggleAttribute('hidden', !isHandpan);
+  if (isSculpture) {
+    const budget = document.getElementById('budget-tier');
+    if (budget) budget.value = 'Sculpture acquisition';
+  }
+}
+
+function initInquiryTypeToggles() {
+  const projectType = document.getElementById('project-type');
+  if (!projectType) return;
+  projectType.addEventListener('change', () => setInquiryType(projectType.value));
+  setInquiryType(projectType.value);
+}
+
 function initPrefillLinks() {
-  document.querySelectorAll('[data-prefill-type], [data-prefill-message]').forEach((el) => {
+  document.querySelectorAll('[data-prefill-type], [data-prefill-message], [data-prefill-piece]').forEach((el) => {
     el.addEventListener('click', () => {
       const type = el.getAttribute('data-prefill-type');
       const message = el.getAttribute('data-prefill-message');
+      const piece = el.getAttribute('data-prefill-piece');
       const projectType = document.getElementById('project-type');
       const notes = document.getElementById('project-notes');
+      const pieceField = document.getElementById('piece-name');
       if (type && projectType) projectType.value = type;
-      if (message && notes && !notes.value.trim()) notes.value = message;
+      setInquiryType(type || projectType?.value);
+      if (piece && pieceField) pieceField.value = piece;
+      if (message && notes) notes.value = message;
     });
   });
+}
+
+function initQueryPrefill() {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  const piece = params.get('piece');
+  if (type) setInquiryType(decodeURIComponent(type));
+  if (piece) {
+    const field = document.getElementById('piece-name');
+    if (field) field.value = decodeURIComponent(piece);
+    setInquiryType('Fine Wood Sculpture Inquiry');
+  }
 }
 
 /* ==========================================================================
@@ -785,8 +1049,9 @@ function initPrefillLinks() {
    ========================================================================== */
 function initWoodworkSculptures() {
   const grid = document.getElementById('sculpture-grid');
+  const featuredMount = document.getElementById('woodwork-featured');
   const modal = document.getElementById('sculpture-qr-modal');
-  if (!grid || !modal) return;
+  if (!modal || (!grid && !featuredMount)) return;
 
   const modalClose = document.getElementById('sculpture-modal-close');
   const qrTarget = document.getElementById('qr-code-target');
@@ -796,100 +1061,166 @@ function initWoodworkSculptures() {
   const modalPrice = document.getElementById('modal-sculpture-price');
   const modalDim = document.getElementById('modal-sculpture-dim');
   const modalStatus = document.getElementById('modal-sculpture-status');
+  const modalStory = document.getElementById('modal-sculpture-story');
+  const modalPieceLink = document.getElementById('modal-piece-link');
   const reserveBtn = document.getElementById('modal-reserve-btn');
+  const moreWrap = document.getElementById('gallery-more');
+  const moreBtn = document.getElementById('load-more-sculptures');
 
   let lastFocus = null;
   let currentPiece = null;
   let sculptures = [];
+  let showAll = false;
+  const PAGE_SIZE = 8;
+  const teaser = Boolean(grid?.hidden);
 
   const fallback = window.__SENSEI_SCULPTURES__ || [];
 
-  fetch('./data/sculptures.json')
+  fetch('/data/sculptures.json')
     .then((r) => {
       if (!r.ok) throw new Error('load failed');
       return r.json();
     })
     .then((data) => {
       sculptures = Array.isArray(data) && data.length ? data : fallback;
-      renderGrid(sculptures);
-      handleHashLink();
+      paint(sculptures);
     })
     .catch(() => {
       sculptures = fallback;
-      renderGrid(sculptures);
-      handleHashLink();
+      paint(sculptures);
     });
 
-  function statusClass(status) {
-    if (status === 'available') return 'status-available';
-    if (status === 'reserved') return 'status-reserved';
-    if (status === 'sold') return 'status-sold';
-    return 'status-exhibiting';
+  function paint(items) {
+    renderFeatured(items.find((s) => s.isFeatured) || items[0]);
+    if (grid && !teaser) renderGrid(items);
+    bindCards();
   }
 
-  function renderGrid(items) {
-    const gridItems = items.filter((s) => s.id !== 1);
-    grid.innerHTML = gridItems
-      .map((s) => {
-        const img = s.image || './assets/woodwork_hero.webp';
-        const full = s.imageFull || img;
-        return `
-      <article class="sculpture-card reveal reveal-visible" id="sculpture-${s.id}"
+  function renderFeatured(s) {
+    if (!featuredMount || !s) return;
+    const card = assetUrl(s.image);
+    const full = assetUrl(s.imageFull || s.image);
+    featuredMount.innerHTML = `
+      <article class="woodwork-hero-masterpiece reveal reveal-visible sculpture-card" id="sculpture-${s.id}"
         data-sculpture-id="${s.id}"
+        data-slug="${escapeHtml(s.slug || '')}"
         data-title="${escapeHtml(s.title)}"
         data-price="${escapeHtml(s.price)}"
         data-specs="${escapeHtml(s.specs)}"
         data-dim="${escapeHtml(s.dim)}"
         data-status="${escapeHtml(s.statusLabel || s.status)}"
-        data-desc="${escapeHtml(s.desc || '')}"
+        data-image-full="${escapeHtml(full)}">
+        <div class="masterpiece-img-wrapper">
+          <img src="${escapeHtml(full)}" srcset="${escapeHtml(card)} 1024w, ${escapeHtml(full)} 1600w"
+            sizes="(max-width: 992px) 100vw, 55vw"
+            alt="${escapeHtml(s.title)} — mural by Daniel Kelly Brown" class="masterpiece-img" width="1024" height="448" decoding="async">
+        </div>
+        <div class="masterpiece-content">
+          <div class="masterpiece-badge">Masterpiece mural · featured artwork</div>
+          <h3 class="masterpiece-title">${escapeHtml(s.title)}</h3>
+          <div class="masterpiece-price-row">
+            <span class="masterpiece-price">${escapeHtml(s.price)}</span>
+            <span class="masterpiece-status">${escapeHtml(s.statusLabel || '')}</span>
+          </div>
+          <div class="masterpiece-desc">
+            ${storyHTML(s)}
+          </div>
+          <div class="masterpiece-specs-box">
+            <div class="masterpiece-specs-item">
+              <span class="masterpiece-spec-label">Specs</span>
+              <span class="masterpiece-spec-value">${escapeHtml(s.specs)}</span>
+            </div>
+            <div class="masterpiece-specs-item" style="margin-top:0.4rem;">
+              <span class="masterpiece-spec-label">Craftsmanship</span>
+              <span class="masterpiece-spec-value gold">32 demanding days of handcut precision</span>
+            </div>
+          </div>
+          <div class="masterpiece-actions">
+            <button type="button" class="btn-qr-trigger btn btn-gold" data-id="${s.id}" aria-label="View ${escapeHtml(s.title)}">View piece</button>
+            <a class="btn btn-outline" href="${escapeHtml(pieceUrl(s))}">Piece page</a>
+            <button type="button" class="btn btn-outline btn-inquire" data-id="${s.id}">Inquire / reserve</button>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function cardHTML(s) {
+    const img = assetUrl(s.image || '/assets/woodwork_hero.webp');
+    const full = assetUrl(s.imageFull || img);
+    return `
+      <article class="sculpture-card reveal reveal-visible" id="sculpture-${s.id}"
+        data-sculpture-id="${s.id}"
+        data-slug="${escapeHtml(s.slug || '')}"
+        data-title="${escapeHtml(s.title)}"
+        data-price="${escapeHtml(s.price)}"
+        data-specs="${escapeHtml(s.specs)}"
+        data-dim="${escapeHtml(s.dim)}"
+        data-status="${escapeHtml(s.statusLabel || s.status)}"
         data-image-full="${escapeHtml(full)}">
         <div class="sculpture-img-wrapper">
           <img src="${escapeHtml(img)}"
+            srcset="${escapeHtml(img)} 506w, ${escapeHtml(full)} 787w"
+            sizes="(max-width: 700px) 100vw, 320px"
             alt="${escapeHtml(s.title)}"
             class="sculpture-img"
             width="506" height="900"
             loading="lazy" decoding="async">
           <span class="sculpture-price-tag">${escapeHtml(s.price)}</span>
           <span class="sculpture-number-badge">Piece #${String(s.id).padStart(2, '0')}</span>
-          <span class="sculpture-status-badge ${statusClass(s.status)}">${escapeHtml(s.statusLabel || s.status)}</span>
         </div>
         <div class="sculpture-card-body">
           <h3 class="sculpture-title">${escapeHtml(s.title)}</h3>
+          <span class="sculpture-status-badge ${statusClass(s.status)}">${escapeHtml(s.statusLabel || s.status)}</span>
           <div class="sculpture-meta">${escapeHtml(s.specs)}</div>
           <p class="sculpture-desc">${escapeHtml(s.desc || '')}</p>
           <div class="sculpture-specs-row">
             <span class="sculpture-dim">${escapeHtml(s.dim)}</span>
             <div class="sculpture-actions">
-              <button type="button" class="btn-qr-trigger" data-id="${s.id}" aria-label="QR code for ${escapeHtml(s.title)}">QR Code</button>
+              <button type="button" class="btn-qr-trigger" data-id="${s.id}" aria-label="View ${escapeHtml(s.title)}">View</button>
+              <a class="btn btn-outline btn-sm" href="${escapeHtml(pieceUrl(s))}">Page</a>
               <button type="button" class="btn btn-outline btn-sm btn-inquire" data-id="${s.id}">Inquire</button>
             </div>
           </div>
         </div>
       </article>`;
-      })
-      .join('');
+  }
 
+  function renderGrid(items) {
+    if (!grid) return;
+    const rest = items.filter((s) => !s.isFeatured);
+    const visible = showAll ? rest : rest.slice(0, PAGE_SIZE);
+    grid.innerHTML = visible.map(cardHTML).join('');
+    if (moreWrap && moreBtn) {
+      moreWrap.hidden = showAll || rest.length <= PAGE_SIZE;
+    }
+  }
+
+  moreBtn?.addEventListener('click', () => {
+    showAll = true;
+    renderGrid(sculptures);
+    bindCards();
+  });
+
+  function bindCards() {
     document.querySelectorAll('.btn-qr-trigger').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      btn.onclick = (e) => {
         e.stopPropagation();
         const card = btn.closest('.sculpture-card');
         if (card) openSculptureModal(card);
-      });
+      };
     });
-
     document.querySelectorAll('.btn-inquire').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      btn.onclick = (e) => {
         e.stopPropagation();
         const card = btn.closest('.sculpture-card');
         if (card) inquireSculpture(card);
-      });
+      };
     });
-
     document.querySelectorAll('.sculpture-card').forEach((card) => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('button')) return;
+      card.onclick = (e) => {
+        if (e.target.closest('button, a')) return;
         openSculptureModal(card);
-      });
+      };
     });
   }
 
@@ -900,21 +1231,23 @@ function initWoodworkSculptures() {
     const specs = card.getAttribute('data-specs');
     const dim = card.getAttribute('data-dim');
     const status = card.getAttribute('data-status');
-    const imageFull = card.getAttribute('data-image-full');
+    const imageFull = assetUrl(card.getAttribute('data-image-full'));
+    const slug = card.getAttribute('data-slug');
+    const piece = sculptures.find((s) => String(s.id) === String(id));
 
-    currentPiece = { id, title, price, specs, dim, status };
+    currentPiece = { id, title, price, specs, dim, status, slug };
     lastFocus = document.activeElement;
 
-    const targetUrl = `${window.location.origin}${window.location.pathname}#sculpture-${id}`;
+    const targetUrl = `${window.location.origin}${pieceUrl(piece || { slug, id })}`;
     const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(targetUrl)}`;
 
     if (qrTarget) {
       qrTarget.innerHTML = `
         <div class="modal-sculpture-photo">
-          <img src="${escapeHtml(imageFull || '')}" alt="${escapeHtml(title)}" width="400" height="711" loading="lazy">
+          <img src="${escapeHtml(imageFull || '')}" alt="${escapeHtml(title)}" width="787" height="1400">
         </div>
         <div class="modal-qr-code-wrap">
-          <img src="${qrApiUrl}" alt="QR code linking to ${escapeHtml(title)}" width="160" height="160" loading="lazy">
+          <img src="${qrApiUrl}" alt="QR code linking to ${escapeHtml(title)}" width="160" height="160">
         </div>`;
     }
     if (qrDirectLink) qrDirectLink.textContent = targetUrl;
@@ -923,6 +1256,8 @@ function initWoodworkSculptures() {
     if (modalPrice) modalPrice.textContent = price;
     if (modalDim) modalDim.textContent = dim;
     if (modalStatus) modalStatus.textContent = status || 'Exhibiting at The Grove';
+    if (modalStory) modalStory.innerHTML = piece ? storyHTML(piece) : '';
+    if (modalPieceLink) modalPieceLink.href = pieceUrl(piece || { slug, id });
 
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
@@ -944,16 +1279,13 @@ function initWoodworkSculptures() {
   function inquireSculpture(card) {
     const title = card.getAttribute('data-title');
     const price = card.getAttribute('data-price');
-    const projectType = document.getElementById('project-type');
-    const budget = document.getElementById('budget-tier');
+    setInquiryType('Fine Wood Sculpture Inquiry');
+    const pieceField = document.getElementById('piece-name');
     const notes = document.getElementById('project-notes');
-
-    if (projectType) projectType.value = 'Fine Wood Sculpture Inquiry';
-    if (budget) budget.value = 'Sculpture acquisition';
+    if (pieceField) pieceField.value = title || '';
     if (notes) {
-      notes.value = `Hello Daniel — I am interested in acquiring "${title}" (${price}). Please share availability and next steps.\n`;
+      notes.value = `Hello Daniel — I am interested in acquiring "${title}" (${price}). Please share availability, install, and next steps.\n`;
     }
-
     closeSculptureModal();
     document.getElementById('contact')?.scrollIntoView({
       behavior: prefersReducedMotion() ? 'auto' : 'smooth'
@@ -963,16 +1295,12 @@ function initWoodworkSculptures() {
 
   reserveBtn?.addEventListener('click', () => {
     if (!currentPiece) return;
-    const fakeCard = {
-      getAttribute: (k) => {
-        const map = {
-          'data-title': currentPiece.title,
-          'data-price': currentPiece.price
-        };
-        return map[k];
-      }
-    };
-    inquireSculpture(fakeCard);
+    inquireSculpture({
+      getAttribute: (k) => ({
+        'data-title': currentPiece.title,
+        'data-price': currentPiece.price
+      }[k])
+    });
   });
 
   modalClose?.addEventListener('click', closeSculptureModal);
@@ -984,36 +1312,19 @@ function initWoodworkSculptures() {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeSculptureModal();
     if (e.key === 'Tab' && modal.classList.contains('active')) trapFocus(e, modal);
   });
-
-  function handleHashLink() {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#sculpture-')) {
-      const targetCard = document.querySelector(hash);
-      if (targetCard) {
-        setTimeout(() => {
-          targetCard.scrollIntoView({
-            behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-            block: 'center'
-          });
-          targetCard.classList.add('sculpture-highlight');
-          openSculptureModal(targetCard);
-        }, 400);
-      }
-    }
-  }
-
-  window.addEventListener('hashchange', handleHashLink);
 }
 
 /* ==========================================================================
    13. SCROLL REVEALS
    ========================================================================== */
 function initScrollReveals() {
-  const els = document.querySelectorAll('.reveal');
+  const els = [...document.querySelectorAll('.reveal')];
   if (!els.length) return;
 
+  const show = (el) => el.classList.add('reveal-visible');
+
   if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
-    els.forEach((el) => el.classList.add('reveal-visible'));
+    els.forEach(show);
     return;
   }
 
@@ -1021,15 +1332,31 @@ function initScrollReveals() {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-visible');
+          show(entry.target);
           io.unobserve(entry.target);
         }
       });
     },
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    { rootMargin: '120px 0px 120px 0px', threshold: 0.01 }
   );
 
+  function paint() {
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      if (el.classList.contains('reveal-visible')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < vh + 160 && rect.bottom > -80) {
+        show(el);
+        io.unobserve(el);
+      }
+    });
+  }
+
   els.forEach((el) => io.observe(el));
+  paint();
+  window.addEventListener('load', paint);
+  window.addEventListener('scroll', paint, { passive: true });
+  document.addEventListener('sensei:ready', paint);
 }
 
 /* ==========================================================================
@@ -1051,4 +1378,61 @@ function initBackToTop() {
 function initFooterYear() {
   const el = document.getElementById('footer-year');
   if (el) el.textContent = String(new Date().getFullYear());
+}
+
+/* ==========================================================================
+   15. INSTAGRAM FEED
+   ========================================================================== */
+function initInstagramFeed() {
+  const grid = document.getElementById('instagram-grid');
+  if (!grid) return;
+
+  const statsEl = document.getElementById('instagram-stats');
+  const avatarEl = document.querySelector('.instagram-avatar');
+
+  function formatCount(n) {
+    const num = Number(n) || 0;
+    if (num >= 10000) return `${Math.round(num / 100) / 10}k`;
+    return num.toLocaleString();
+  }
+
+  function render(data) {
+    if (!data || !Array.isArray(data.posts) || !data.posts.length) return;
+    if (statsEl) {
+      const bits = ['Latest 3 posts'];
+      if (data.followers) bits.unshift(`${formatCount(data.followers)} followers`);
+      statsEl.textContent = bits.join(' · ');
+    }
+    if (avatarEl && data.profile_pic && !String(data.profile_pic).includes('cdninstagram')) {
+      avatarEl.src = data.profile_pic;
+    }
+    grid.innerHTML = data.posts
+      .slice(0, 3)
+      .map((p) => {
+        const local = p.shortcode ? `/assets/social/ig-${escapeHtml(p.shortcode)}.webp` : '';
+        const thumb = local || p.thumbnail || '/assets/social/instagram-avatar.webp';
+        const live = p.thumbnail && String(p.thumbnail).startsWith('http') ? p.thumbnail : '';
+        const video = p.is_video ? ' data-video="true"' : '';
+        const cap = escapeHtml((p.caption || 'Instagram post').slice(0, 90));
+        const src = live || thumb;
+        return `<a class="instagram-tile" href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer"${video}>
+          <img src="${escapeHtml(src)}" alt="${cap}" width="640" height="640" loading="lazy"${local ? ` onerror="this.onerror=null;this.src='${local}'"` : ''}>
+        </a>`;
+      })
+      .join('');
+  }
+
+  const apply = (data) => {
+    if (data && (data.ok || data.posts)) render(data);
+  };
+
+  fetch('/api/instagram')
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then(apply)
+    .catch(() => {
+      fetch('/data/instagram.json')
+        .then((r) => r.json())
+        .then(apply)
+        .catch(() => {});
+    });
 }
