@@ -5,6 +5,19 @@
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+const navigationType = (() => {
+  const entry = performance.getEntriesByType?.('navigation')?.[0];
+  if (entry?.type) return entry.type;
+  const legacy = performance.navigation?.type;
+  if (legacy === 1) return 'reload';
+  if (legacy === 2) return 'back_forward';
+  return 'navigate';
+})();
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = navigationType === 'back_forward' ? 'auto' : 'manual';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initScrollMemory();
   redirectLegacySculptureHash();
@@ -19,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initWoodworkSculptures();
   initEstimatorCalculator();
   initZenAudio();
-  initHandpanSample();
   initNavigation();
   initContactForm();
   initPrefillLinks();
@@ -37,11 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
 function initScrollMemory() {
   const storageKey = 'sensei:scroll';
   const pageKey = location.pathname + location.search;
+  const isReload = navigationType === 'reload';
+  const locked = () => document.body.classList.contains('loading-lock');
 
-  const navEntry = performance.getEntriesByType?.('navigation')?.[0];
-  const navType = navEntry?.type || (performance.navigation?.type === 1 ? 'reload' : 'navigate');
+  let holdSaves = isReload;
+  let restoring = false;
+  let restoreTimer = 0;
+  let layoutObserver = null;
 
   const save = () => {
+    if (holdSaves || locked()) return;
     try {
       sessionStorage.setItem(
         storageKey,
@@ -76,38 +93,127 @@ function initScrollMemory() {
     { passive: true }
   );
 
-  if (navType === 'back_forward') {
-    if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  if (navigationType === 'back_forward') return;
+
+  const scrollInstant = (y) => {
+    const html = document.documentElement;
+    const previous = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo({ top: y, left: 0, behavior: 'auto' });
+    html.style.scrollBehavior = previous;
+  };
+
+  const jumpToHash = () => {
+    if (locked() || !location.hash) return;
+    let id = location.hash.slice(1);
+    try {
+      id = decodeURIComponent(id);
+    } catch (_) {
+      /* keep raw */
+    }
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  };
+
+  if (!isReload) {
+    if (location.hash) {
+      const afterUnlock = () => {
+        jumpToHash();
+        requestAnimationFrame(jumpToHash);
+      };
+      document.addEventListener('sensei:ready', afterUnlock);
+      window.addEventListener('load', afterUnlock);
+      window.addEventListener('pageshow', (e) => {
+        if (!e.persisted) afterUnlock();
+      });
+    }
     return;
   }
 
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (navType !== 'reload') return;
-
-  const restore = () => {
+  const readSavedY = () => {
     try {
       const data = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
-      if (!data || data.page !== pageKey) return;
+      if (!data || data.page !== pageKey) return null;
       const y = Number(data.y);
-      if (!Number.isFinite(y) || y < 1) return;
-      const html = document.documentElement;
-      const previous = html.style.scrollBehavior;
-      html.style.scrollBehavior = 'auto';
-      window.scrollTo(0, y);
-      html.style.scrollBehavior = previous;
+      if (!Number.isFinite(y) || y < 1) return null;
+      return y;
     } catch (_) {
-      /* ignore */
+      return null;
     }
   };
 
-  restore();
-  document.addEventListener('sensei:ready', restore);
-  window.addEventListener('load', () => {
-    restore();
-    setTimeout(restore, 60);
-    setTimeout(restore, 280);
-    setTimeout(restore, 700);
+  const restore = () => {
+    if (!restoring || locked()) return;
+    const y = readSavedY();
+    if (y == null) return;
+    scrollInstant(y);
+  };
+
+  const stopRestoring = () => {
+    restoring = false;
+    holdSaves = false;
+    if (restoreTimer) {
+      clearTimeout(restoreTimer);
+      restoreTimer = 0;
+    }
+    if (layoutObserver) {
+      layoutObserver.disconnect();
+      layoutObserver = null;
+    }
+  };
+
+  const onUserTakeover = () => {
+    if (!restoring || locked()) return;
+    stopRestoring();
+    save();
+  };
+
+  window.addEventListener('wheel', onUserTakeover, { passive: true });
+  window.addEventListener('touchmove', onUserTakeover, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' '].includes(e.key)) {
+      onUserTakeover();
+    }
   });
+
+  const scheduleRestore = () => {
+    restore();
+    requestAnimationFrame(() => {
+      restore();
+      requestAnimationFrame(restore);
+    });
+  };
+
+  const armWatch = () => {
+    if (!restoring || locked()) return;
+    scheduleRestore();
+    if (!layoutObserver && 'ResizeObserver' in window) {
+      layoutObserver = new ResizeObserver(() => {
+        if (!restoring || locked()) return;
+        scheduleRestore();
+      });
+      layoutObserver.observe(document.documentElement);
+    }
+    if (restoreTimer) clearTimeout(restoreTimer);
+    restoreTimer = window.setTimeout(stopRestoring, 1600);
+  };
+
+  restoring = true;
+
+  document.addEventListener('sensei:ready', armWatch);
+  window.addEventListener('load', armWatch);
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      stopRestoring();
+      return;
+    }
+    armWatch();
+  });
+  document.fonts?.ready?.then(armWatch);
+
+  if (!document.getElementById('preloader') || !locked()) armWatch();
 }
 
 /* ==========================================================================
@@ -483,6 +589,16 @@ function initVideoModal() {
     );
   });
 
+  document.querySelectorAll('[data-open-video]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      openVideo(
+        btn.getAttribute('data-video-type') || 'youtube',
+        btn.getAttribute('data-video-id'),
+        btn.getAttribute('data-video-title')
+      );
+    });
+  });
+
   modalClose?.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
@@ -771,52 +887,6 @@ function initZenAudio() {
   }
 }
 
-function initHandpanSample() {
-  const btn = document.getElementById('handpan-sample-btn');
-  if (!btn) return;
-
-  let audioCtx = null;
-  let playing = false;
-
-  btn.addEventListener('click', async () => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    if (!audioCtx) audioCtx = new AudioContext();
-    if (audioCtx.state === 'suspended') await audioCtx.resume();
-
-    if (playing) return;
-    playing = true;
-    btn.setAttribute('aria-pressed', 'true');
-    btn.classList.add('playing');
-
-    // Soft handpan-like harmonic stack (approximation)
-    const master = audioCtx.createGain();
-    master.gain.value = 0.09;
-    master.connect(audioCtx.destination);
-
-    const base = 293.66; // D
-    [1, 1.5, 2, 2.5, 3].forEach((ratio, i) => {
-      const osc = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      osc.type = i % 2 === 0 ? 'sine' : 'triangle';
-      osc.frequency.value = base * ratio;
-      g.gain.setValueAtTime(0, audioCtx.currentTime);
-      g.gain.linearRampToValueAtTime(0.05 / (i + 1), audioCtx.currentTime + 0.4 + i * 0.1);
-      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 5);
-      osc.connect(g);
-      g.connect(master);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 5.2);
-    });
-
-    setTimeout(() => {
-      playing = false;
-      btn.setAttribute('aria-pressed', 'false');
-      btn.classList.remove('playing');
-    }, 5200);
-  });
-}
-
 /* ==========================================================================
    10. NAVIGATION
    ========================================================================== */
@@ -1064,15 +1134,10 @@ function initWoodworkSculptures() {
   const modalStory = document.getElementById('modal-sculpture-story');
   const modalPieceLink = document.getElementById('modal-piece-link');
   const reserveBtn = document.getElementById('modal-reserve-btn');
-  const moreWrap = document.getElementById('gallery-more');
-  const moreBtn = document.getElementById('load-more-sculptures');
 
   let lastFocus = null;
   let currentPiece = null;
   let sculptures = [];
-  let showAll = false;
-  const PAGE_SIZE = 8;
-  const teaser = Boolean(grid?.hidden);
 
   const fallback = window.__SENSEI_SCULPTURES__ || [];
 
@@ -1092,7 +1157,7 @@ function initWoodworkSculptures() {
 
   function paint(items) {
     renderFeatured(items.find((s) => s.isFeatured) || items[0]);
-    if (grid && !teaser) renderGrid(items);
+    if (grid) renderGrid(items);
     bindCards();
   }
 
@@ -1188,18 +1253,8 @@ function initWoodworkSculptures() {
   function renderGrid(items) {
     if (!grid) return;
     const rest = items.filter((s) => !s.isFeatured);
-    const visible = showAll ? rest : rest.slice(0, PAGE_SIZE);
-    grid.innerHTML = visible.map(cardHTML).join('');
-    if (moreWrap && moreBtn) {
-      moreWrap.hidden = showAll || rest.length <= PAGE_SIZE;
-    }
+    grid.innerHTML = rest.map(cardHTML).join('');
   }
-
-  moreBtn?.addEventListener('click', () => {
-    showAll = true;
-    renderGrid(sculptures);
-    bindCards();
-  });
 
   function bindCards() {
     document.querySelectorAll('.btn-qr-trigger').forEach((btn) => {
