@@ -367,14 +367,12 @@ function initTypedText() {
   const phrases = [
     'Master Cinematographer.',
     'Fine Wood Sculptor.',
-    'Acoustic Handpan Musician.',
-    '8K Motion-Controlled Timelapse.',
-    'Fine Wood Sculptor.',
-    'Drone Hyperlapse Timelapse Pioneer.',
-    'Elegant Zen Webdesign.',
-    '2D and 3D Motion Graphics Specialist.',
-    'Events and Commercial Videos.',
-    'Experienced Video Editor.'
+    'Handpan Musician.',
+    '8K Timelapse Pioneer.',
+    'FPV Drone Specialist.',
+    'Zen Web Designer.',
+    'Motion Graphics Artist.',
+    'Peace Protocol Architect.'
   ];
 
   if (prefersReducedMotion()) {
@@ -383,35 +381,37 @@ function initTypedText() {
   }
 
   let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+  let charIndex = phrases[0].length;
+  let isDeleting = true;
+  target.textContent = phrases[0];
 
   function typeStep() {
     const currentPhrase = phrases[phraseIndex];
 
     if (isDeleting) {
-      target.textContent = currentPhrase.substring(0, charIndex - 1);
       charIndex--;
+      target.textContent = charIndex > 0 ? currentPhrase.substring(0, charIndex) : '\u00A0';
     } else {
-      target.textContent = currentPhrase.substring(0, charIndex + 1);
       charIndex++;
+      target.textContent = currentPhrase.substring(0, charIndex);
     }
 
-    let delay = isDeleting ? 36 : 85;
+    let delay = isDeleting ? 32 : 75;
 
     if (!isDeleting && charIndex === currentPhrase.length) {
-      delay = 2000;
+      delay = 2400;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       phraseIndex = (phraseIndex + 1) % phrases.length;
-      delay = 350;
+      delay = 400;
     }
 
     setTimeout(typeStep, delay);
   }
 
-  typeStep();
+  // Initial delay before starting delete cycle
+  setTimeout(typeStep, 2000);
 }
 
 /* ==========================================================================
