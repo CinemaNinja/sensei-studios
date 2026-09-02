@@ -1,0 +1,16 @@
+---
+description: Always deploy the Worker after a git push so senseistudios.com updates
+alwaysApply: true
+---
+
+# Deploy after Git push
+
+This site is a Cloudflare Worker (`sensei-studios`). `git push` updates GitHub only. Production does not change until Cloudflare deploys.
+
+When the user asks to push, commit, or go live:
+
+1. Commit and push as requested.
+2. Immediately run `npx wrangler deploy` with full permissions.
+3. Confirm the live homepage at `https://senseistudios.com/` shows the new copy before calling it done.
+
+Do not wait for GitHub Actions. Treat Wrangler deploy as part of the same push.
