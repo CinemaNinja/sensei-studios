@@ -28,6 +28,12 @@
   "send_email": [
     { "name": "EMAIL", "destination_address": "brown@senseistudios.com" }
   ],
+  "analytics_engine_datasets": [
+    {
+      "binding": "SENSEI_ANALYTICS",
+      "dataset": "sensei_analytics"
+    }
+  ],
   "vars": {
     "CONTACT_TO": "brown@senseistudios.com"
   }
