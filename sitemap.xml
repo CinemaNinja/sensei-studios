@@ -25,6 +25,18 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://senseistudios.com/protocol/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/estimator/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/contact/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://senseistudios.com/privacy/</loc>
     <changefreq>weekly</changefreq>
   </url>

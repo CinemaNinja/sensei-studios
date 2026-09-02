@@ -90,6 +90,8 @@ The pilot should be wild in imagination and conservative in execution.
 
 If the first node works, Peace Protocol scales into food forests, virtual gardens, mobile wellness, open-source fabrication, robot-supported repair, community tool libraries, universal basic infrastructure, and monumental Stupas where humans, AI, and robots co-create public beauty.
 
+**The Story Engine:** Film has the power to shape reality. Alongside the physical pilot, Peace Protocol includes the creation of a Hollywood-style film depicting this vision playing out in the most beautiful way possible: planting the seed in more of humanity's minds on a global scale. The documentary proof loop and the cinematic feature work together: one proves it is real, the other helps the world imagine it at scale.
+
 ## 7. Temples of Practice & Civic Flourishing
 
 ### Temples of Practice

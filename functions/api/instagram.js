@@ -32,7 +32,7 @@ export async function onRequestGet() {
     if (!user) return json({ ok: false, error: 'instagram_empty' }, 502);
 
     const edges = user.edge_owner_to_timeline_media?.edges || [];
-    const posts = edges.slice(0, 3).map((e) => {
+    const posts = edges.slice(0, 6).map((e) => {
       const n = e.node || {};
       const capEdges = n.edge_media_to_caption?.edges || [];
       const caption = capEdges[0]?.node?.text || '';

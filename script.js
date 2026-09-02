@@ -5,6 +5,23 @@
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function senseiTrack(event, section) {
+  try {
+    const payload = JSON.stringify({
+      event: String(event || '').slice(0, 40),
+      section: String(section || '').slice(0, 40),
+      path: (location.pathname + location.hash).slice(0, 120)
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon('/api/event', new Blob([payload], { type: 'application/json' }));
+    } else {
+      fetch('/api/event', { method: 'POST', body: payload, headers: { 'content-type': 'application/json' }, keepalive: true }).catch(() => {});
+    }
+  } catch (_) {
+    /* analytics must never break the page */
+  }
+}
+
 const navigationType = (() => {
   const entry = performance.getEntriesByType?.('navigation')?.[0];
   if (entry?.type) return entry.type;
@@ -35,7 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initZenAudio();
   initNavigation();
   initSectionDropdowns();
+  initChapterRail();
   initContactForm();
+  initProtocolSubscribe();
+  initProtocolJoinFilm();
   initPrefillLinks();
   initInquiryTypeToggles();
   initScrollReveals();
@@ -67,6 +87,7 @@ function initScrollMemory() {
         JSON.stringify({
           page: pageKey,
           hash: location.hash,
+          open: pageDropdowns().filter((d) => d.open).map((d) => d.id),
           y: Math.round(window.scrollY || window.pageYOffset || 0)
         })
       );
@@ -105,33 +126,16 @@ function initScrollMemory() {
     html.style.scrollBehavior = previous;
   };
 
-  const jumpToHash = () => {
-    if (locked() || !location.hash) return;
-    let id = location.hash.slice(1);
-    try {
-      id = decodeURIComponent(id);
-    } catch (_) {
-      /* keep raw */
-    }
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (!el) return;
-    openHomeSection(id, { scroll: false, exclusive: false, updateUrl: false });
-    el.scrollIntoView({ behavior: 'auto', block: 'start' });
-  };
-
   if (!isReload) {
-    if (location.hash) {
-      const afterUnlock = () => {
-        jumpToHash();
-        requestAnimationFrame(jumpToHash);
-      };
-      document.addEventListener('sensei:ready', afterUnlock);
-      window.addEventListener('load', afterUnlock);
-      window.addEventListener('pageshow', (e) => {
-        if (!e.persisted) afterUnlock();
-      });
-    }
+    const afterUnlock = () => {
+      jumpToShareTarget();
+      requestAnimationFrame(jumpToShareTarget);
+    };
+    document.addEventListener('sensei:ready', afterUnlock);
+    window.addEventListener('load', afterUnlock);
+    window.addEventListener('pageshow', (e) => {
+      if (!e.persisted) afterUnlock();
+    });
     return;
   }
 
@@ -530,6 +534,7 @@ function initVideoModal() {
       return;
     }
 
+    senseiTrack('video_open', title || id);
     lastFocus = document.activeElement;
     iframeContainer.innerHTML = `<iframe src="${embedUrl}" title="${escapeHtml(title || 'Video')}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     if (modalTitle) modalTitle.textContent = title || 'Sensei Studios Theater';
@@ -558,6 +563,7 @@ function initVideoModal() {
       openVideo(type, id, title);
       return;
     }
+    senseiTrack('video_play_inline', title || id);
     let embedUrl = '';
     if (type === 'vimeo') {
       embedUrl = `https://player.vimeo.com/video/${id}?autoplay=1&color=ffa834&title=0&byline=0&portrait=0`;
@@ -919,8 +925,27 @@ const PATH_SECTION = {
   '/web': 'web',
   '/story': 'story',
   '/protocol': 'protocol',
-  '/vision': 'protocol'
+  '/vision': 'protocol',
+  '/estimator': 'estimator',
+  '/scope': 'estimator',
+  '/contact': 'contact'
 };
+
+const SECTION_SHARE_PATH = {
+  work: '/film',
+  woodwork: '/wood',
+  handpan: '/handpan',
+  web: '/web',
+  bio: '/story',
+  protocol: '/protocol',
+  estimator: '/estimator',
+  contact: '/contact',
+  arsenal: '/film#arsenal'
+};
+
+function sharePathFor(id) {
+  return SECTION_SHARE_PATH[id] || '/';
+}
 
 function sectionIdFromKey(key) {
   const raw = String(key || '')
@@ -957,18 +982,49 @@ function pageDropdowns() {
   return [...document.querySelectorAll('details.page-dropdown')];
 }
 
-function openAllPageDropdowns() {
+function setPageDropdownsOpen(keys) {
+  const wanted = new Set((keys || []).map((k) => sectionIdFromKey(k)));
   pageDropdowns().forEach((details) => {
-    if (!details.open) details.open = true;
+    const shouldOpen = wanted.size === 0 ? true : wanted.has(details.id);
+    if (details.open !== shouldOpen) details.open = shouldOpen;
     syncDropdownAria(details);
   });
+}
+
+function allChapterKeys() {
+  return pageDropdowns().map((details) => details.id);
+}
+
+function initialChapterKeys() {
+  return allChapterKeys();
+}
+
+function jumpToShareTarget() {
+  const { key } = homeOpenIntent();
+  if (!key) return false;
+  const id = sectionIdFromKey(key);
+  const el = document.getElementById(id);
+  if (!el) return false;
+  openHomeSection(id, { scroll: false, exclusive: false, updateUrl: false });
+  const html = document.documentElement;
+  const previous = html.style.scrollBehavior;
+  html.style.scrollBehavior = 'auto';
+  el.scrollIntoView({ behavior: 'auto', block: 'start' });
+  requestAnimationFrame(() => el.scrollIntoView({ behavior: 'auto', block: 'start' }));
+  setTimeout(() => el.scrollIntoView({ behavior: 'auto', block: 'start' }), 120);
+  setTimeout(() => el.scrollIntoView({ behavior: 'auto', block: 'start' }), 480);
+  html.style.scrollBehavior = previous;
+  return true;
 }
 
 function homeOpenIntent() {
   const params = new URLSearchParams(location.search);
   const open = params.get('open') || params.get('section');
   const hash = (location.hash || '').replace('#', '');
-  return { open, hash, key: open || hash };
+  const meta = document.querySelector('meta[name="sensei:section"]')?.getAttribute('content') || '';
+  const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+  const pathKey = PATH_SECTION[path] || '';
+  return { open, hash, key: open || hash || meta || pathKey };
 }
 
 function scheduleDropdownBootReveal() {
@@ -1020,10 +1076,11 @@ function openHomeSection(key, { scroll = true, exclusive = false, updateUrl = fa
   }
 
   if (updateUrl) {
-    const next = '#' + id;
-    if (location.pathname === '/' && location.hash !== next) {
+    const next = sharePathFor(id);
+    if ((location.pathname + location.hash) !== next) {
       history.pushState({ section: id }, '', next);
     }
+    senseiTrack('chapter_open', key);
   }
 
   if (scroll) {
@@ -1037,14 +1094,14 @@ function openHomeSection(key, { scroll = true, exclusive = false, updateUrl = fa
 
 function applyOpenIntent({ scroll = false } = {}) {
   if (!document.querySelector('details.page-dropdown')) return false;
-  openAllPageDropdowns();
   const { open, key } = homeOpenIntent();
   if (!key) return false;
   const ok = openHomeSection(key, { scroll, exclusive: false, updateUrl: false });
-  if (ok && open) {
-    const id = sectionIdFromKey(open);
-    if (id && (location.search || location.hash !== '#' + id)) {
-      history.replaceState(null, '', '/#' + id);
+  if (ok) {
+    const id = sectionIdFromKey(key);
+    const next = sharePathFor(id);
+    if (id && (location.search || (location.pathname + location.hash) !== next)) {
+      history.replaceState(null, '', next);
     }
   }
   return ok;
@@ -1099,7 +1156,7 @@ function initSectionDropdowns() {
     });
   }
 
-  openAllPageDropdowns();
+  setPageDropdownsOpen(initialChapterKeys());
   scheduleDropdownBootReveal();
 
   document.addEventListener('click', (e) => {
@@ -1125,9 +1182,156 @@ function initSectionDropdowns() {
   });
 
   document.addEventListener('sensei:ready', () => {
-    const key = (location.hash || '').replace('#', '');
-    if (!key) return;
-    openHomeSection(key, { scroll: true, exclusive: false, updateUrl: false });
+    jumpToShareTarget();
+  });
+}
+
+/* ==========================================================================
+   9B. CHAPTER RAIL (sticky side nav + scroll progress)
+   ========================================================================== */
+function initChapterRail() {
+  const dropdowns = pageDropdowns();
+  if (dropdowns.length < 3 || document.querySelector('.chapter-rail')) return;
+
+  const rail = document.createElement('nav');
+  rail.className = 'chapter-rail';
+  rail.setAttribute('aria-label', 'Chapters');
+
+  const progress = document.createElement('span');
+  progress.className = 'chapter-rail-progress';
+  progress.innerHTML = '<span class="chapter-rail-progress-bar"></span>';
+  rail.appendChild(progress);
+
+  const items = dropdowns.map((d, i) => {
+    const key = d.getAttribute('data-section') || d.id;
+    const label = d.querySelector('.page-dropdown-title')?.textContent?.trim() || key;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'chapter-rail-btn';
+    btn.setAttribute('data-chapter', d.id);
+    btn.setAttribute('aria-label', `Open chapter: ${label}`);
+    btn.innerHTML =
+      `<span class="chapter-rail-num">${String(i + 1).padStart(2, '0')}</span>` +
+      '<span class="chapter-rail-dot" aria-hidden="true"></span>' +
+      `<span class="chapter-rail-label">${escapeHtml(label)}</span>`;
+    btn.addEventListener('click', () => {
+      openHomeSection(key, { scroll: true, exclusive: false, updateUrl: true });
+    });
+    rail.appendChild(btn);
+    return { btn, id: d.id };
+  });
+
+  document.body.appendChild(rail);
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const match = items.find((item) => item.id === entry.target.id);
+          if (!match) return;
+          items.forEach((item) => item.btn.classList.toggle('is-active', item === match));
+        });
+      },
+      { rootMargin: '-30% 0px -55% 0px' }
+    );
+    dropdowns.forEach((d) => io.observe(d));
+  }
+
+  const bar = progress.querySelector('.chapter-rail-progress-bar');
+  let ticking = false;
+  const paintProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    if (bar) bar.style.transform = `scaleY(${pct})`;
+    ticking = false;
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(paintProgress);
+    },
+    { passive: true }
+  );
+  paintProgress();
+}
+
+/* ==========================================================================
+   9C. PEACE PROTOCOL MOVEMENT SIGNUP
+   ========================================================================== */
+function initProtocolJoinFilm() {
+  const video = document.getElementById('protocol-join-video');
+  if (!video || prefersReducedMotion()) return;
+
+  const playSafe = () => {
+    const play = video.play();
+    if (play && typeof play.catch === 'function') play.catch(() => {});
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    playSafe();
+    return;
+  }
+
+  const stage = video.closest('.protocol-join-film') || video;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) playSafe();
+        else video.pause();
+      });
+    },
+    { threshold: 0.25, rootMargin: '80px 0px' }
+  );
+  observer.observe(stage);
+}
+
+function initProtocolSubscribe() {
+  const form = document.getElementById('protocol-join-form');
+  if (!form) return;
+  const input = document.getElementById('protocol-join-email');
+  const btn = document.getElementById('protocol-join-btn');
+  const note = document.getElementById('protocol-join-note');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = input?.value.trim() || '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input?.focus();
+      if (note) note.textContent = 'Enter a valid email to follow the pilot.';
+      return;
+    }
+
+    const label = btn?.querySelector('.btn-label');
+    const loading = btn?.querySelector('.btn-loading');
+    if (btn) btn.disabled = true;
+    if (label) label.hidden = true;
+    if (loading) loading.hidden = false;
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          email,
+          source: 'protocol-section',
+          company: form.querySelector('[name="company"]')?.value || ''
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!data.ok) throw new Error('subscribe failed');
+      form.classList.add('is-done');
+      if (note) note.textContent = 'Welcome aboard. Field notes from the pilot will find you.';
+      if (input) input.value = '';
+    } catch (_) {
+      if (note) note.textContent = 'Something glitched on our end. Try again in a moment.';
+    } finally {
+      if (btn) btn.disabled = false;
+      if (label) label.hidden = false;
+      if (loading) loading.hidden = true;
+    }
   });
 }
 
@@ -1861,16 +2065,16 @@ function initInstagramFeed() {
 
   function render(data) {
     if (!data || !Array.isArray(data.posts) || !data.posts.length) return;
+    const posts = data.posts.slice(0, 6);
     if (statsEl) {
-      const bits = ['Latest 3 posts'];
+      const bits = [`Latest ${posts.length} posts`];
       if (data.followers) bits.unshift(`${formatCount(data.followers)} followers`);
       statsEl.textContent = bits.join(' · ');
     }
     if (avatarEl && data.profile_pic && !String(data.profile_pic).includes('cdninstagram')) {
       avatarEl.src = data.profile_pic;
     }
-    grid.innerHTML = data.posts
-      .slice(0, 3)
+    grid.innerHTML = posts
       .map((p) => {
         const local = p.shortcode ? `/assets/social/ig-${escapeHtml(p.shortcode)}.webp` : '';
         const thumb = local || p.thumbnail || '/assets/social/instagram-avatar.webp';
@@ -1880,18 +2084,25 @@ function initInstagramFeed() {
         const src = live || thumb;
         return `<a class="instagram-tile" href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer"${video}>
           <img src="${escapeHtml(src)}" alt="${cap}" width="640" height="640" loading="lazy"${local ? ` onerror="this.onerror=null;this.src='${local}'"` : ''}>
+          <span class="instagram-tile-cap">${cap}</span>
         </a>`;
       })
       .join('');
   }
 
   const apply = (data) => {
-    if (data && (data.ok || data.posts)) render(data);
+    if (data && Array.isArray(data.posts) && data.posts.length) {
+      render(data);
+      return true;
+    }
+    return false;
   };
 
   fetch('/api/instagram')
     .then((r) => (r.ok ? r.json() : Promise.reject()))
-    .then(apply)
+    .then((data) => {
+      if (!apply(data)) return Promise.reject();
+    })
     .catch(() => {
       fetch('/data/instagram.json')
         .then((r) => r.json())

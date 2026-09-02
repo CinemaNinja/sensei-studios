@@ -32,6 +32,36 @@ const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let pathname = decodeURIComponent(parsedUrl.pathname);
 
+  const apiPath = pathname.replace(/\/+$/, '') || '/';
+  if (apiPath === '/api/instagram' && (req.method === 'GET' || !req.method)) {
+    const igPath = path.join(ROOT, 'data', 'instagram.json');
+    try {
+      const data = JSON.parse(fs.readFileSync(igPath, 'utf8'));
+      const payload = {
+        ok: true,
+        username: data.username,
+        full_name: data.full_name,
+        biography: data.biography,
+        followers: data.followers,
+        following: data.following,
+        posts_count: data.posts_count,
+        profile_pic: data.profile_pic,
+        url: data.url,
+        posts: Array.isArray(data.posts) ? data.posts.slice(0, 6) : []
+      };
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'no-cache'
+      });
+      res.end(JSON.stringify(payload));
+    } catch {
+      res.writeHead(502, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: false, error: 'instagram_unavailable' }));
+    }
+    return;
+  }
+
   let filePath = path.join(ROOT, pathname);
 
   // Security check: ensure path stays within ROOT

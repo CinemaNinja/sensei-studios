@@ -11,8 +11,11 @@
   <meta property="og:title" content="Sensei Studios | Cinematography, Wood Sculpture, Handpan &amp; Web">
   <meta property="og:description" content="Colorado-based cinematography, 8K motion-controlled timelapse, Cinema 4D, FPV drones, fine aspen wood sculpture, and live handpan by Daniel Kelly Brown.">
   <meta property="og:image" content="https://senseistudios.com/assets/og-cover.jpg">
+  <meta property="og:image:secure_url" content="https://senseistudios.com/assets/og-cover.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sensei Studios">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://senseistudios.com/">
   <meta property="og:site_name" content="Sensei Studios">
@@ -24,33 +27,81 @@
   <link rel="icon" type="image/png" href="/assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" as="image" href="/assets/cinema_ninja_logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="/assets/hero_bg.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/cinema_samurai_logo.webp" type="image/webp">
+  <link rel="preload" as="font" href="/assets/fonts/teko-700.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-400.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-700.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Sensei Studios",
-    "alternateName": "Cinema Ninja",
-    "url": "https://senseistudios.com",
-    "email": "brown@senseistudios.com",
-    "telephone": "+1-303-709-8647",
-    "founder": {
-      "@type": "Person",
-      "name": "Daniel Kelly Brown",
-      "jobTitle": "Cinematographer & Craftsman",
-      "address": { "@type": "PostalAddress", "addressRegion": "CO", "addressCountry": "US" }
-    },
-    "description": "Colorado cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber sculpture, and live handpan.",
-    "areaServed": "Worldwide",
-    "address": { "@type": "PostalAddress", "addressRegion": "CO", "addressCountry": "US" },
-    "logo": "https://senseistudios.com/assets/logo.png",
-    "image": "https://senseistudios.com/assets/og-cover.jpg",
-    "sameAs": [
-      "https://vimeo.com/danielkellybrown",
-      "https://www.youtube.com/@DanielKellyBrown",
-      "https://www.instagram.com/danielkellybrown/"
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://senseistudios.com/#business",
+        "name": "Sensei Studios",
+        "alternateName": "Cinema Samurai",
+        "url": "https://senseistudios.com",
+        "email": "brown@senseistudios.com",
+        "telephone": "+1-303-709-8647",
+        "founder": { "@id": "https://senseistudios.com/#daniel" },
+        "description": "Colorado cinematography, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber sculpture, and live handpan.",
+        "areaServed": [
+          { "@type": "Place", "name": "Carbondale, CO" },
+          { "@type": "Place", "name": "Aspen, CO" },
+          { "@type": "Place", "name": "Roaring Fork Valley, CO" },
+          { "@type": "Place", "name": "Worldwide" }
+        ],
+        "foundingLocation": { "@type": "Place", "name": "Carbondale, CO" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Carbondale", "addressRegion": "CO", "addressCountry": "US" },
+        "logo": "https://senseistudios.com/assets/logo.png",
+        "image": "https://senseistudios.com/assets/og-cover.jpg",
+        "knowsAbout": [
+          "Cinematography",
+          "Motion-controlled timelapse",
+          "FPV drone filming",
+          "Drone light shows",
+          "Cinema 4D animation",
+          "Wood sculpture",
+          "Handpan performance",
+          "Web design"
+        ],
+        "makesOffer": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cinematography & Commercial Film" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "8K Motion-Controlled Timelapse" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FPV Drone & Drone Light Shows" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Living Proposals" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Live Handpan Performance" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Fine Timber Sculpture (sliding scale)" } }
+        ],
+        "sameAs": [
+          "https://vimeo.com/danielkellybrown",
+          "https://www.youtube.com/@DanielKellyBrown",
+          "https://www.instagram.com/danielkellybrown/"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://senseistudios.com/#daniel",
+        "name": "Daniel Kelly Brown",
+        "jobTitle": "Cinematographer & Craftsman",
+        "worksFor": { "@id": "https://senseistudios.com/#business" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Carbondale", "addressRegion": "CO", "addressCountry": "US" },
+        "sameAs": [
+          "https://vimeo.com/danielkellybrown",
+          "https://www.youtube.com/@DanielKellyBrown",
+          "https://www.instagram.com/danielkellybrown/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://senseistudios.com/#website",
+        "url": "https://senseistudios.com",
+        "name": "Sensei Studios",
+        "publisher": { "@id": "https://senseistudios.com/#business" }
+      }
     ]
   }
   </script>
@@ -62,7 +113,7 @@
   <div id="preloader" aria-hidden="true">
     <div class="preloader-enso-wrapper">
       <div class="preloader-enso"></div>
-      <img src="/assets/cinema_ninja_logo_nav.webp" alt="" class="preloader-logo" width="70" height="70">
+      <img src="/assets/cinema_samurai_logo_nav.webp" alt="" class="preloader-logo" width="70" height="70">
     </div>
     <div class="preloader-title">SENSEI STUDIOS</div>
     <div class="preloader-subtitle">ENTER THE DOJO</div>
@@ -70,22 +121,22 @@
   <nav class="site-nav" id="site-nav" aria-label="Primary">
     <div class="container nav-container">
       <a href="/" class="nav-brand">
-        <img src="/assets/cinema_ninja_logo_nav.webp" alt="Sensei Studios" class="nav-logo-img" width="48" height="48">
+        <img src="/assets/cinema_samurai_logo_nav.webp" alt="Cinema Samurai" class="nav-logo-img" width="48" height="48">
         <span class="nav-brand-title">SENSEI STUDIOS</span>
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#work" class="nav-link" data-open="film">Film</a></li>
-        <li><a href="#woodwork" class="nav-link" data-open="wood">Wood</a></li>
-        <li><a href="#handpan" class="nav-link" data-open="handpan">Handpan</a></li>
-        <li><a href="#web" class="nav-link" data-open="web">Web</a></li>
-        <li><a href="#arsenal" class="nav-link" data-open="arsenal">Arsenal</a></li>
-        <li><a href="#bio" class="nav-link" data-open="story">Story</a></li>
-        <li><a href="#protocol" class="nav-link" data-open="protocol">Vision</a></li>
-        <li><a href="#estimator" class="nav-link" data-open="estimator">Scope</a></li>
-        <li class="nav-mobile-cta"><a href="#contact" class="nav-link">Book Project</a></li>
+        <li><a href="/film" class="nav-link" data-open="film">Film</a></li>
+        <li><a href="/wood" class="nav-link" data-open="wood">Wood</a></li>
+        <li><a href="/handpan" class="nav-link" data-open="handpan">Handpan</a></li>
+        <li><a href="/web" class="nav-link" data-open="web">Web</a></li>
+        <li><a href="/film#arsenal" class="nav-link" data-open="arsenal">Arsenal</a></li>
+        <li><a href="/story" class="nav-link" data-open="story">Story</a></li>
+        <li><a href="/protocol" class="nav-link" data-open="protocol">Vision</a></li>
+        <li><a href="/estimator" class="nav-link" data-open="estimator">Scope</a></li>
+        <li class="nav-mobile-cta"><a href="/contact" class="nav-link">Book Project</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="#contact" class="nav-cta-btn">
+        <a href="/contact" class="nav-cta-btn">
           <span class="nav-cta-text">Book Project</span>
           <span class="nav-cta-icon" aria-hidden="true">→</span>
         </a>
@@ -118,11 +169,11 @@
       <div class="container hero-container">
         <div class="hero-visual">
           <img
-            src="/assets/cinema_ninja_logo.webp"
-            alt="Sensei Studios mark"
-            class="hero-ninja-logo"
+            src="/assets/cinema_samurai_logo.webp"
+            alt="Cinema Samurai, the Sensei Studios mark"
+            class="hero-samurai-logo"
             width="280"
-            height="280"
+            height="308"
             decoding="async"
           >
         </div>
@@ -136,7 +187,7 @@
         </h1>
 
         <p class="hero-description">
-          Twenty-five years of precision camera movement, 8K motion-controlled timelapses, Cinema 4D animation, FPV hyperlapses, fine timber sculpture, and live handpan — one focused studio.
+          Twenty-five years of cinema, sculpture, and handpan. I consider myself a samurai: my sole purpose is service, to help harmonize the community around me.
         </p>
 
         <div class="hero-cta-group">
@@ -148,27 +199,27 @@
 
         <!-- Audience lanes -->
         <div class="hero-lanes" aria-label="Choose your path">
-          <a href="#work" class="lane-card" data-open="film">
+          <a href="/film" class="lane-card" data-open="film">
             <span class="lane-label">Film &amp; Motion</span>
             <span class="lane-desc">Reels, timelapse, FPV &amp; commercial</span>
             <span class="lane-arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#web" class="lane-card" data-open="web">
+          <a href="/web" class="lane-card" data-open="web">
             <span class="lane-label">Web Design</span>
             <span class="lane-desc">Sites, proposals &amp; pitch decks</span>
             <span class="lane-arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#woodwork" class="lane-card" data-open="wood">
+          <a href="/wood" class="lane-card" data-open="wood">
             <span class="lane-label">Collect Sculpture</span>
             <span class="lane-desc">Gallery timber at The Grove</span>
             <span class="lane-arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#handpan" class="lane-card" data-open="handpan">
+          <a href="/handpan" class="lane-card" data-open="handpan">
             <span class="lane-label">Book Handpan</span>
             <span class="lane-desc">Events, sound baths &amp; weddings</span>
             <span class="lane-arrow" aria-hidden="true">→</span>
           </a>
-          <a href="#protocol" class="lane-card lane-card--protocol" data-open="protocol">
+          <a href="/protocol" class="lane-card lane-card--protocol" data-open="protocol">
             <span class="lane-label">Peace Protocol</span>
             <span class="lane-desc">Civilization prototype &amp; valley pilot</span>
             <span class="lane-arrow" aria-hidden="true">→</span>
@@ -229,7 +280,7 @@
     </section>
 
     <details class="page-dropdown film-home-section" id="work" data-section="film" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">01</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -249,6 +300,7 @@
           <span class="section-eyebrow">The Reel &amp; Archive</span>
           <h2 class="section-title text-gradient-teal">Selected Cinematic Works</h2>
           <p class="section-desc">From Banff honors to Boeing drone shows and Cinema 4D product animations — step into the archive.</p>
+          <a class="btn btn-outline btn-sm section-header-cta" href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
         </div>
 
         <div class="portfolio-filters" role="tablist" aria-label="Filter portfolio">
@@ -475,6 +527,122 @@
           </article>
 
         </div>
+
+        <!-- HireUAV Pro: featured recap block at the bottom of Film & Motion -->
+        <div class="milestone-box milestone-box--hireuav">
+            <div class="hireuav-feature-head">
+              <div>
+                <div class="milestone-year">HireUAV Pro</div>
+                <div class="milestone-desc">Clients include Boeing, Comcast, Jeeter, Six Flags, and Coachella.</div>
+              </div>
+              <a class="btn btn-gold btn-sm" href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
+            </div>
+            <details class="milestone-gallery">
+              <summary class="hireuav-recap-toggle">
+                <span class="hireuav-recap-pulse" aria-hidden="true">
+                  <span class="hireuav-recap-play">▶</span>
+                </span>
+                <span class="hireuav-recap-copy">
+                  <span class="hireuav-recap-kicker">5 event recaps</span>
+                  <span class="hireuav-recap-label hireuav-recap-label--closed">Watch light-show recaps</span>
+                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide light-show recaps</span>
+                </span>
+                <span class="hireuav-recap-chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="video-grid hireuav-video-grid">
+                <article class="video-card" data-video-type="youtube" data-video-id="QRo-zI-cq_E">
+                  <button type="button" class="video-play-btn" aria-label="Play Six Flags Drone Show">
+                    <div class="video-thumbnail-wrapper">
+                      <img src="/assets/thumbs/yt-QRo-zI-cq_E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                      <span class="card-badge">SIX FLAGS</span>
+                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                    </div>
+                  </button>
+                  <div class="video-card-body">
+                    <h3 class="video-title">Six Flags Drone Show</h3>
+                    <p class="video-description">Beetlejuice Beetlejuice x Six Flags — aerial light-show recap.</p>
+                    <div class="video-tags">
+                      <span class="video-tag">HireUAV Pro</span>
+                      <span class="video-tag">Six Flags</span>
+                      <span class="video-tag">Drone Show</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="video-card" data-video-type="youtube" data-video-id="YZM5-kKQbxg">
+                  <button type="button" class="video-play-btn" aria-label="Play San Francisco Skyline Drone Show">
+                    <div class="video-thumbnail-wrapper">
+                      <img src="/assets/thumbs/yt-YZM5-kKQbxg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                      <span class="card-badge">SAN FRANCISCO</span>
+                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                    </div>
+                  </button>
+                  <div class="video-card-body">
+                    <h3 class="video-title">San Francisco Skyline</h3>
+                    <p class="video-description">Drone show lighting up the San Francisco skyline.</p>
+                    <div class="video-tags">
+                      <span class="video-tag">HireUAV Pro</span>
+                      <span class="video-tag">Comcast</span>
+                      <span class="video-tag">Event Recap</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="video-card" data-video-type="youtube" data-video-id="aHpeGxorw4c">
+                  <button type="button" class="video-play-btn" aria-label="Play Coachella VIP Drone Party">
+                    <div class="video-thumbnail-wrapper">
+                      <img src="/assets/thumbs/yt-aHpeGxorw4c.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                      <span class="card-badge">COACHELLA</span>
+                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                    </div>
+                  </button>
+                  <div class="video-card-body">
+                    <h3 class="video-title">Coachella VIP Party</h3>
+                    <p class="video-description">350-drone VIP party at Coachella for Jeeter Tao.</p>
+                    <div class="video-tags">
+                      <span class="video-tag">HireUAV Pro</span>
+                      <span class="video-tag">Coachella</span>
+                      <span class="video-tag">Jeeter</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="video-card" data-video-type="youtube" data-video-id="rS58zO-BfZg">
+                  <button type="button" class="video-play-btn" aria-label="Play Kaley Cuoco Drone Light Show">
+                    <div class="video-thumbnail-wrapper">
+                      <img src="/assets/thumbs/yt-rS58zO-BfZg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                      <span class="card-badge">CELEBRITY EVENT</span>
+                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                    </div>
+                  </button>
+                  <div class="video-card-body">
+                    <h3 class="video-title">Kaley Cuoco Light Show</h3>
+                    <p class="video-description">450-drone gender reveal party recap in Los Angeles.</p>
+                    <div class="video-tags">
+                      <span class="video-tag">HireUAV Pro</span>
+                      <span class="video-tag">Kaley Cuoco</span>
+                      <span class="video-tag">Event Recap</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="video-card" data-video-type="youtube" data-video-id="pUYJyEizO3E">
+                  <button type="button" class="video-play-btn" aria-label="Play Boeing Drone Light Show">
+                    <div class="video-thumbnail-wrapper">
+                      <img src="/assets/thumbs/yt-pUYJyEizO3E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                      <span class="card-badge">BOEING</span>
+                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                    </div>
+                  </button>
+                  <div class="video-card-body">
+                    <h3 class="video-title">Boeing Drone Light Show</h3>
+                    <p class="video-description">Massive drone light show for Boeing in Huntington Beach.</p>
+                    <div class="video-tags">
+                      <span class="video-tag">HireUAV Pro</span>
+                      <span class="video-tag">Boeing</span>
+                      <span class="video-tag">Drone Show</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </details>
+          </div>
           </div>
         </section>
 
@@ -780,7 +948,7 @@
     </details>
     <!-- Woodwork — grid filled by JS from data/sculptures.json -->
     <details class="page-dropdown woodwork-section" id="woodwork" data-section="wood" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">02</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -825,7 +993,7 @@
     </details>
     <!-- Handpan -->
     <details class="page-dropdown handpan-section" id="handpan" data-section="handpan" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">03</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -936,7 +1104,7 @@
     </details>
     <!-- Web Design -->
     <details class="page-dropdown web-section" id="web" data-section="web" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">04</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -1066,7 +1234,7 @@
     </details>
     <!-- Bio + Testimonials -->
     <details class="page-dropdown bio-section" id="bio" data-section="story" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">05</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -1085,7 +1253,7 @@
         <div class="bio-wrapper reveal">
           <div>
             <span class="section-eyebrow">About Daniel Kelly Brown</span>
-            <h2 class="section-title text-gradient-gold">Part Cinematographer. Part Ninja.</h2>
+            <h2 class="section-title text-gradient-gold">Part Cinematographer. Part Samurai.</h2>
             <div class="bio-text-content">
               <p>
                 Daniel Kelly Brown is a cinematographer and artist based in Colorado. For twenty-five years he has blended technical mastery of robotics and 3D rendering with the instinct of an action-sports filmmaker.
@@ -1110,115 +1278,6 @@
               <div class="milestone-box">
                 <div class="milestone-year">Outside TV</div>
                 <div class="milestone-desc">Action sports cinematography across outdoor sports</div>
-              </div>
-              <div class="milestone-box milestone-box--hireuav">
-                <div class="milestone-year">HireUAV Pro</div>
-                <div class="milestone-desc">Clients include Boeing, Comcast, Jeeter, Six Flags, and Coachella.</div>
-                <details class="milestone-gallery">
-                  <summary class="hireuav-recap-toggle">
-                    <span class="hireuav-recap-pulse" aria-hidden="true">
-                      <span class="hireuav-recap-play">▶</span>
-                    </span>
-                    <span class="hireuav-recap-copy">
-                      <span class="hireuav-recap-kicker">5 event recaps</span>
-                      <span class="hireuav-recap-label hireuav-recap-label--closed">Watch light-show recaps</span>
-                      <span class="hireuav-recap-label hireuav-recap-label--open">Hide light-show recaps</span>
-                    </span>
-                    <span class="hireuav-recap-chevron" aria-hidden="true"></span>
-                  </summary>
-                  <div class="video-grid hireuav-video-grid">
-                    <article class="video-card" data-video-type="youtube" data-video-id="QRo-zI-cq_E">
-                      <button type="button" class="video-play-btn" aria-label="Play Six Flags Drone Show">
-                        <div class="video-thumbnail-wrapper">
-                          <img src="/assets/thumbs/yt-QRo-zI-cq_E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                          <span class="card-badge">SIX FLAGS</span>
-                          <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                        </div>
-                      </button>
-                      <div class="video-card-body">
-                        <h3 class="video-title">Six Flags Drone Show</h3>
-                        <p class="video-description">Beetlejuice Beetlejuice x Six Flags — aerial light-show recap.</p>
-                        <div class="video-tags">
-                          <span class="video-tag">HireUAV Pro</span>
-                          <span class="video-tag">Six Flags</span>
-                          <span class="video-tag">Drone Show</span>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="video-card" data-video-type="youtube" data-video-id="YZM5-kKQbxg">
-                      <button type="button" class="video-play-btn" aria-label="Play San Francisco Skyline Drone Show">
-                        <div class="video-thumbnail-wrapper">
-                          <img src="/assets/thumbs/yt-YZM5-kKQbxg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                          <span class="card-badge">SAN FRANCISCO</span>
-                          <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                        </div>
-                      </button>
-                      <div class="video-card-body">
-                        <h3 class="video-title">San Francisco Skyline</h3>
-                        <p class="video-description">Drone show lighting up the San Francisco skyline.</p>
-                        <div class="video-tags">
-                          <span class="video-tag">HireUAV Pro</span>
-                          <span class="video-tag">Comcast</span>
-                          <span class="video-tag">Event Recap</span>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="video-card" data-video-type="youtube" data-video-id="aHpeGxorw4c">
-                      <button type="button" class="video-play-btn" aria-label="Play Coachella VIP Drone Party">
-                        <div class="video-thumbnail-wrapper">
-                          <img src="/assets/thumbs/yt-aHpeGxorw4c.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                          <span class="card-badge">COACHELLA</span>
-                          <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                        </div>
-                      </button>
-                      <div class="video-card-body">
-                        <h3 class="video-title">Coachella VIP Party</h3>
-                        <p class="video-description">350-drone VIP party at Coachella for Jeeter Tao.</p>
-                        <div class="video-tags">
-                          <span class="video-tag">HireUAV Pro</span>
-                          <span class="video-tag">Coachella</span>
-                          <span class="video-tag">Jeeter</span>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="video-card" data-video-type="youtube" data-video-id="rS58zO-BfZg">
-                      <button type="button" class="video-play-btn" aria-label="Play Kaley Cuoco Drone Light Show">
-                        <div class="video-thumbnail-wrapper">
-                          <img src="/assets/thumbs/yt-rS58zO-BfZg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                          <span class="card-badge">CELEBRITY EVENT</span>
-                          <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                        </div>
-                      </button>
-                      <div class="video-card-body">
-                        <h3 class="video-title">Kaley Cuoco Light Show</h3>
-                        <p class="video-description">450-drone gender reveal party recap in Los Angeles.</p>
-                        <div class="video-tags">
-                          <span class="video-tag">HireUAV Pro</span>
-                          <span class="video-tag">Kaley Cuoco</span>
-                          <span class="video-tag">Event Recap</span>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="video-card" data-video-type="youtube" data-video-id="pUYJyEizO3E">
-                      <button type="button" class="video-play-btn" aria-label="Play Boeing Drone Light Show">
-                        <div class="video-thumbnail-wrapper">
-                          <img src="/assets/thumbs/yt-pUYJyEizO3E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                          <span class="card-badge">BOEING</span>
-                          <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                        </div>
-                      </button>
-                      <div class="video-card-body">
-                        <h3 class="video-title">Boeing Drone Light Show</h3>
-                        <p class="video-description">Massive drone light show for Boeing in Huntington Beach.</p>
-                        <div class="video-tags">
-                          <span class="video-tag">HireUAV Pro</span>
-                          <span class="video-tag">Boeing</span>
-                          <span class="video-tag">Drone Show</span>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                </details>
               </div>
             </div>
           </div>
@@ -1275,7 +1334,7 @@
 
     <!-- Chapter 06: Peace Protocol -->
     <details class="page-dropdown protocol-home-section" id="protocol" data-section="protocol" open>
-      <summary class="page-dropdown-summary" aria-expanded="true">
+      <summary class="page-dropdown-summary" aria-expanded="false">
         <span class="page-dropdown-index" aria-hidden="true">06</span>
         <span class="page-dropdown-enso" aria-hidden="true">
           <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" /></svg>
@@ -1290,15 +1349,16 @@
       </summary>
       <div class="page-dropdown-panel">
         <div class="container">
-          <div class="section-header reveal">
+            <div class="section-header reveal">
             <span class="section-eyebrow">Civilization Prototype · Roaring Fork Valley</span>
-            <h2 class="section-title text-gradient-teal">Harmonizing Humanity, Nature &amp; Intelligent Machines</h2>
+            <h2 class="section-title text-gradient-teal">Humanity Harmonizing System</h2>
+            <p class="section-subtitle">Nature, AI, &amp; Intelligent Machines</p>
             <p class="section-desc">
-              A grassroots technological roadmap starting small in the Roaring Fork Valley with modified Optimus robots, Cybercabs, and laser-welded fabrication: scaling automated revenue into a community fund that guarantees free food, transportation, shelter, and universal creative freedom.
+              A grassroots vision for the Roaring Fork Valley and beyond: a self-sustaining system that guarantees free food, free transportation, free shelter, and universal basic income, held together by a shift in human focus away from mere survival and toward the creation of art, where art is anything practiced with attention, imagination, and the desire to grow.
             </p>
           </div>
 
-          <!-- Featured Master Plan Card: The Grassroots Foundation -->
+          <!-- The Human Foundation & Automation Ethics -->
           <div class="protocol-master-card reveal">
             <div class="protocol-master-media">
               <img
@@ -1314,45 +1374,438 @@
               <span class="protocol-badge">Valley Master Plan · Grassroots Pilot</span>
             </div>
             <div class="protocol-master-body">
-              <div class="protocol-badge-kicker">The Grassroots Strategy &amp; Vision</div>
-              <h3 class="protocol-master-title">From Local Enterprise to Autonomous Abundance</h3>
+              <div class="protocol-badge-kicker">The Grassroots Vision &amp; The Human-Machine Alliance</div>
+              <h3 class="protocol-master-title">A New Beginning: Human Craft &amp; Robotic Kinship</h3>
               <p class="protocol-master-lead">
-                The Peace Protocol begins as a focused local enterprise in the Roaring Fork Valley. First-generation Optimus robots, modified with custom CNC hands and programmed for precision tooling, work alongside human craftsmen in dedicated wood fabrication, 3D printing, and laser tooling facilities: building high-end cabinetry, timber sculpture, and fine art while documenting the entire journey publicly.
+                The Peace Protocol begins as a hands-on local workshop in the Roaring Fork Valley. Human craftsmen work alongside supervised first-generation robotics to build fine cabinetry, timber sculpture, and community infrastructure, documenting the entire journey publicly as living proof that intelligent machines can serve human creativity rather than replace it.
               </p>
-              <p class="protocol-master-lead" style="margin-top: -1rem; margin-bottom: 2rem;">
-                As automated efficiency and clean logistics expand, revenue generated from the robotic workforce is funneled <strong>100% into a community fund</strong>. This fund directly finances living greenhouses, shared tool libraries, public maker temples, and regenerative civic infrastructure: removing artificial barriers so communities can flourish together.
+              <p class="protocol-master-lead">
+                <strong>100% of the revenue generated by automated production is channeled directly into a permanent community fund</strong>. This fund builds toward four guaranteed pillars of security: free food, free transportation, free shelter, and universal basic income. By erasing the daily struggle to survive, the protocol gives residents their time and attention back, redirecting human energy toward creation itself.
+              </p>
+              <p class="protocol-master-lead">
+                This blueprint unfolds at a macro scale across a dedicated 180-acre sanctuary in Old Snowmass: a physical proof ground where woodshops, greenhouses, subterranean gardens, and art temples are built in phases from real land. Rooted in transparency, craft, and planetary stewardship, it provides clean energy, living food, and regional mobility through automated infrastructure designed to make humans flourish and nature thrive.
               </p>
               <div class="protocol-metrics-grid">
                 <div class="protocol-metric-item">
-                  <span class="protocol-metric-val">Robotic Craft</span>
-                  <span class="protocol-metric-lbl">Supervised Optimus tooling for precision woodwork &amp; fabrication</span>
+                  <span class="protocol-metric-val">Shared Craft</span>
+                  <span class="protocol-metric-lbl">Supervised robotics building alongside human craftsmen</span>
                 </div>
                 <div class="protocol-metric-item">
                   <span class="protocol-metric-val">100% Community Fund</span>
-                  <span class="protocol-metric-lbl">Automated revenue directly financing local public infrastructure</span>
+                  <span class="protocol-metric-lbl">Automated revenue financing local public infrastructure</span>
                 </div>
                 <div class="protocol-metric-item">
-                  <span class="protocol-metric-val">Ecological Abundance</span>
-                  <span class="protocol-metric-lbl">Year-round food security, clean transit &amp; shared sanctuaries</span>
+                  <span class="protocol-metric-val">Free Essentials</span>
+                  <span class="protocol-metric-lbl">Clean transit, year-round food &amp; public sanctuaries</span>
                 </div>
                 <div class="protocol-metric-item">
                   <span class="protocol-metric-val">Universal Flourishing</span>
-                  <span class="protocol-metric-lbl">A transplantable, modular blueprint adaptable anywhere on Earth</span>
+                  <span class="protocol-metric-lbl">Time, tools &amp; mentorship for every resident to create</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Section Sub-Header for Core Initiatives -->
-          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 1rem;">
-            <span class="section-eyebrow">System Architecture</span>
-            <h3 class="section-title text-gradient-gold" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);">Core Initiatives Breakdown</h3>
+          <aside class="protocol-entropy-card reveal" aria-label="Entropy">
+            <p class="protocol-entropy-kicker">A law older than us</p>
+            <p class="protocol-entropy-term">Entropy</p>
+            <p class="protocol-entropy-def">the universal tendency toward disorder</p>
+            <p class="protocol-entropy-body">
+              Entropy is not new. Humanity has grappled with it since the dawn of time, and always will. Yet the vision of robots building robots, repairing robots, and sustaining systems across generations is one of our most profound acts of resistance.
+            </p>
+          </aside>
+
+          <!-- Section Sub-Header: Temples of Practice & Civic Architecture -->
+          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 2rem;">
+            <span class="section-eyebrow">Physical Spaces for Human Development</span>
+            <h3 class="section-title text-gradient-teal" style="font-size: clamp(1.8rem, 3.2vw, 2.6rem);">Temples of Practice</h3>
             <p class="section-desc">
-              A phased civic blueprint connecting automated craft, clean transit, shared botanical greenhouses, and public art sanctuaries into a self-sustaining regional ecosystem.
+              A creative civilization requires more than encouragement: it requires places. Places where people can gather, where tools are shared, where beginners are welcomed, and where people have permission to experiment, fail, practice, and begin again.
             </p>
           </div>
 
-          <!-- 9 Core Initiatives Bento Grid -->
+          <!-- Temples of Practice Master Feature Card -->
+          <div class="protocol-temples-card reveal">
+            <div class="protocol-master-media">
+              <img
+                src="/assets/protocol/45-community-tool-library-cathedral.webp"
+                alt="Community tool library and maker sanctuary cathedral for shared craft and multidisciplinary practice"
+                width="1400"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                class="protocol-master-img"
+              >
+              <div class="protocol-master-overlay"></div>
+              <span class="protocol-badge">Sanctuary Architecture · Shared Tool Access</span>
+            </div>
+            <div class="protocol-temples-body">
+              <div class="protocol-badge-kicker">Network of Shared Sanctuaries</div>
+              <h3 class="protocol-temples-title">Places for Gathering, Practice &amp; Human Reverence</h3>
+              
+              <div class="protocol-temples-lead-block">
+                <p class="protocol-master-lead">
+                  The Peace Protocol imagines a network of community spaces devoted to human development. These are temples not as religious institutions, but as physical places where a community treats learning, craft, and personal growth with reverence.
+                </p>
+              </div>
+
+              <!-- 4 Practice Domains Grid -->
+              <div class="protocol-practice-grid">
+                <div class="protocol-practice-item">
+                  <div class="protocol-practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  </div>
+                  <h4 class="protocol-practice-name">Physical Making &amp; Craft</h4>
+                  <p class="protocol-practice-desc">Woodworking, construction, ceramics, metalwork, and sustainable textiles.</p>
+                </div>
+                <div class="protocol-practice-item">
+                  <div class="protocol-practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                  </div>
+                  <h4 class="protocol-practice-name">Arts &amp; Creative Media</h4>
+                  <p class="protocol-practice-desc">Painting, music, dance, theater, writing, filmmaking, and digital design.</p>
+                </div>
+                <div class="protocol-practice-item">
+                  <div class="protocol-practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <h4 class="protocol-practice-name">Movement &amp; Awareness</h4>
+                  <p class="protocol-practice-desc">Athletics, functional movement, yoga, breath practice, and inhabiting the body with strength.</p>
+                </div>
+                <div class="protocol-practice-item">
+                  <div class="protocol-practice-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <h4 class="protocol-practice-name">Integrated Commons</h4>
+                  <p class="protocol-practice-desc">Multi-disciplinary hubs uniting makers, performers, teachers, and learners beneath one roof.</p>
+                </div>
+              </div>
+
+              <!-- Inclusion Callout: Open to Every Human -->
+              <div class="protocol-inclusion-card">
+                <h4 class="protocol-inclusion-heading">Open to Every Human</h4>
+                <div class="protocol-inclusion-chips">
+                  <div class="protocol-chip-item">
+                    <span class="protocol-chip-bullet">✦</span>
+                    <span><strong>Children:</strong> Picking up an instrument or tool for the very first time.</span>
+                  </div>
+                  <div class="protocol-chip-item">
+                    <span class="protocol-chip-bullet">✦</span>
+                    <span><strong>Adults:</strong> Learning a craft postponed for twenty years.</span>
+                  </div>
+                  <div class="protocol-chip-item">
+                    <span class="protocol-chip-bullet">✦</span>
+                    <span><strong>Elders:</strong> Passing down priceless knowledge and craft wisdom.</span>
+                  </div>
+                  <div class="protocol-chip-item">
+                    <span class="protocol-chip-bullet">✦</span>
+                    <span><strong>Artists:</strong> Gaining access to advanced tools impossible to afford alone.</span>
+                  </div>
+                  <div class="protocol-chip-item">
+                    <span class="protocol-chip-bullet">✦</span>
+                    <span><strong>Everyone:</strong> Discovering that creative genius was simply waiting for an invitation.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Robotics & Human Purpose Banner -->
+              <div class="protocol-machine-harmony-banner">
+                <div class="protocol-harmony-icon" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" stroke="#38f8d4" stroke-width="2"/></svg>
+                </div>
+                <div class="protocol-harmony-content">
+                  <h4 class="protocol-harmony-title">The Role of Advanced Tools &amp; Robotics</h4>
+                  <p class="protocol-harmony-copy">
+                    Robotics and advanced tools assist with difficult, repetitive, or dangerous tasks. Artificial intelligence helps people learn techniques, develop designs, and connect with mentors. Yet technology remains secondary to the human purpose of the space.
+                  </p>
+                  <p class="protocol-harmony-copy">
+                    Graphene is a carbon lattice that resists wear, so water, transit, and machines can be kept across generations. The vision stays humans and art: graphene is just one of the materials that lets the machines keep their promise.
+                  </p>
+                  <p class="protocol-harmony-quote">
+                    "The machines will not become the creators: they will expand what people are capable of creating."
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- The Virtual Garden & Botanical Sanctuary -->
+          <div class="protocol-garden-card reveal">
+            <div class="protocol-master-media">
+              <img
+                src="/assets/protocol/16-perfect-climate-controlled-chambers.webp"
+                alt="Subterranean grow pods utilizing refracted natural sunlight, precision botanical sensors, and clean automation"
+                width="1400"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                class="protocol-master-img"
+              >
+              <div class="protocol-master-overlay"></div>
+              <span class="protocol-badge">Living Food Sanctuary · Botanical Intelligence</span>
+            </div>
+            <div class="protocol-garden-body">
+              <div class="protocol-badge-kicker">Foundational Food Security &amp; Living Systems</div>
+              <h3 class="protocol-garden-title">The Virtual Garden &amp; The Grandfather Brain</h3>
+              <p class="protocol-master-lead">
+                At the core of physical abundance is guaranteed food security. The <em>Virtual Garden</em> is a living botanical system and time-lapse laboratory designed to model plant health, understand natural light, and support automated organic food production.
+              </p>
+              <p class="protocol-master-lead">
+                To protect alpine ecosystems and secure year-round harvests, the garden grows in climate-secure subterranean pods deep beneath the 180-acre sanctuary in Old Snowmass. Time-lapse cameras capture plant growth across varied micro-climates and light spectrums, refracting natural sunlight through mirror networks.
+              </p>
+              <p class="protocol-master-lead">
+                This data feeds directly into the <em>Grandfather Brain</em>: a nature-trained intelligence that understands soil, water, and plant needs. Modified robotics equipped with nutrient backpacks and precision injection fingers deliver exact biological care to each root system. The result is <strong>abundant, organic, completely free food</strong> across the Roaring Fork Valley, eliminating grocery costs and liberating human time for art, connection, and creative purpose.
+              </p>
+              <div class="protocol-metrics-grid">
+                <div class="protocol-metric-item">
+                  <span class="protocol-metric-val">Subterranean Pods</span>
+                  <span class="protocol-metric-lbl">Climate-secure growing beneath the Old Snowmass sanctuary</span>
+                </div>
+                <div class="protocol-metric-item">
+                  <span class="protocol-metric-val">The Grandfather Brain</span>
+                  <span class="protocol-metric-lbl">Nature-trained intelligence mapping plant health &amp; growth</span>
+                </div>
+                <div class="protocol-metric-item">
+                  <span class="protocol-metric-val">100% Free Food</span>
+                  <span class="protocol-metric-lbl">Universal food security eliminating grocery friction</span>
+                </div>
+                <div class="protocol-metric-item">
+                  <span class="protocol-metric-val">Ecological Rewilding</span>
+                  <span class="protocol-metric-lbl">High-yield indoor cultivation liberating land for wild nature</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3-Pillar Philosophy Grid: Art as Practice · Return of Play · Rhythm of Community -->
+          <div class="protocol-philosophy-grid">
+
+            <!-- Art as Practice -->
+            <article class="protocol-phil-card reveal">
+              <div class="protocol-phil-media">
+                <img
+                  src="/assets/protocol/03-youtube-station-documentation-first.webp"
+                  alt="Craftsmen and artists refining daily disciplines with focused attention"
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <span class="pillar-num-tag">Philosophy 01</span>
+              </div>
+              <div class="protocol-phil-body">
+                <div class="protocol-badge-kicker">Beyond Categories of Objects</div>
+                <h3 class="protocol-phil-title">Art as Practice</h3>
+                <p class="protocol-phil-lead">
+                  Art is not just paintings, songs, sculptures, or performances. It is a way of practicing life:
+                </p>
+                <ul class="protocol-practice-list">
+                  <li><strong>A runner</strong> refines movement.</li>
+                  <li><strong>A carpenter</strong> refines precision.</li>
+                  <li><strong>A gardener</strong> learns timing and relationship with the living world.</li>
+                  <li><strong>A cook</strong> transforms nourishment into hospitality.</li>
+                  <li><strong>A meditator</strong> practices attention.</li>
+                  <li><strong>An organizer</strong> practices bringing people together.</li>
+                </ul>
+                <p class="protocol-phil-desc">
+                  Art is anything practiced with attention, imagination, and the desire to grow. The temples do not divide people into artists and non-artists: they remind us that every life contains disciplines through which attention becomes skill, skill becomes expression, and expression becomes contribution.
+                </p>
+                <div class="protocol-pillar-tags">
+                  <span>Attention to Skill</span>
+                  <span>Skill to Expression</span>
+                  <span>Daily Life Mastery</span>
+                  <span>Creative Contribution</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- The Return of Play -->
+            <article class="protocol-phil-card reveal">
+              <div class="protocol-phil-media">
+                <img
+                  src="/assets/protocol/21-10000-fractal-stupas-in-valley.webp"
+                  alt="Celebratory gathering nodes and playful tribalism in the valley"
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <span class="pillar-num-tag">Philosophy 02</span>
+              </div>
+              <div class="protocol-phil-body">
+                <div class="protocol-badge-kicker">Discovery &amp; Celebration</div>
+                <h3 class="protocol-phil-title">The Return of Play</h3>
+                <p class="protocol-phil-lead">
+                  Modern civilization often treats play as preparation for serious life, expecting adults to surrender playfulness for productivity. Yet play is one of the primary ways human beings discover.
+                </p>
+                <p class="protocol-phil-desc">
+                  Through play, children test possibilities, adults improvise, artists experiment, and communities laugh together. A peaceful civilization should seek not only to reduce suffering, but to expand the conditions in which people can become playful again: music spilling into shared spaces, dances, games, shared meals, and spontaneous celebrations.
+                </p>
+                <p class="protocol-phil-highlight">
+                  The goal is not constant entertainment: it is the restoration of a social life in which joy is created together rather than consumed alone.
+                </p>
+                <div class="protocol-pillar-tags">
+                  <span>Spontaneous Play</span>
+                  <span>Collaborative Joy</span>
+                  <span>Unpressured Discovery</span>
+                  <span>Shared Celebrations</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- A Rhythm of Community Life -->
+            <article class="protocol-phil-card reveal">
+              <div class="protocol-phil-media">
+                <img
+                  src="/assets/protocol/58-floating-sauna-ice-bath-river-circuit.webp"
+                  alt="Community members gathering at riverfront sanctuaries for wellness and connection"
+                  width="700"
+                  height="450"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <span class="pillar-num-tag">Philosophy 03</span>
+              </div>
+              <div class="protocol-phil-body">
+                <div class="protocol-badge-kicker">Recurring Physical Experience</div>
+                <h3 class="protocol-phil-title">A Rhythm of Community Life</h3>
+                <p class="protocol-phil-lead">
+                  The temples become gathering points within the larger rhythm of the community:
+                </p>
+                <ul class="protocol-practice-list">
+                  <li><strong>Communal Meals:</strong> Sharing harvested food, hospitality, and conversation.</li>
+                  <li><strong>Concerts &amp; Dances:</strong> Acoustic, orchestral, and celebratory gatherings.</li>
+                  <li><strong>Craft Workshops:</strong> Hands-on mentorship led by experienced local artisans.</li>
+                  <li><strong>Movement &amp; Healing:</strong> Group yoga, breath practice, and deep meditation.</li>
+                  <li><strong>Story Circles:</strong> Children perform and elders share oral histories.</li>
+                </ul>
+                <p class="protocol-phil-desc">
+                  Some gatherings are celebratory; others quiet. Together they provide regular opportunities to be physically present with other human beings for purposes other than employment, commerce, or obligation. Community ceases to be an abstract ideal: it becomes a recurring experience.
+                </p>
+                <p class="protocol-phil-highlight">
+                  Community ceases to be an abstract ideal: it becomes a recurring, tangible experience.
+                </p>
+                <div class="protocol-pillar-tags">
+                  <span>Physical Presence</span>
+                  <span>Shared Feasts</span>
+                  <span>Intergenerational Bonds</span>
+                  <span>Civic Rhythm</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Freedom Made Tangible: Systemic Friction vs Essential Challenge -->
+          <div class="protocol-friction-card reveal">
+            <div class="protocol-friction-header">
+              <span class="section-eyebrow">The Purpose of Automation</span>
+              <h3 class="protocol-friction-title">Freedom Made Tangible</h3>
+              <p class="protocol-friction-lead">
+                The promise of technology is often described in terms of speed and efficiency. The Peace Protocol asks what that efficiency is ultimately for. If automation saves people time only so they can consume more, its achievement remains incomplete. If it creates time for learning, health, relationships, play, service, and creative practice, then freedom becomes tangible.
+              </p>
+            </div>
+
+            <div class="protocol-friction-grid">
+
+              <!-- Friction to Eliminate -->
+              <div class="protocol-friction-col protocol-friction-col--remove">
+                <div class="protocol-friction-col-header">
+                  <span class="friction-col-badge friction-col-badge--remove">Systemic Friction to Eliminate</span>
+                  <h4 class="protocol-friction-col-title">Artificial Barriers Preventing Human Flourishing</h4>
+                  <p class="protocol-friction-col-desc">The friction civilization must systematically reduce so that all people can access meaningful challenges:</p>
+                </div>
+                <ul class="protocol-friction-checklist protocol-friction-checklist--remove">
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Unaffordable Tools:</strong> High cost of specialized fabrication and studio equipment.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Inaccessible Facilities:</strong> Private workshops locked behind steep paywalls.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Unnecessary Bureaucracy:</strong> Gatekeeping and administrative friction.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Social Isolation:</strong> Lack of physical commons and genuine community hubs.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Transit Deficits:</strong> Lack of clean, reliable, free regional transportation.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>Instruction Scarcity:</strong> Lack of master mentorship, clear teaching, and time.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✕</span>
+                    <div><strong>The Starting Barrier:</strong> Lack of a welcoming, supportive place to begin.</div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Essential Challenges to Cultivate -->
+              <div class="protocol-friction-col protocol-friction-col--cultivate">
+                <div class="protocol-friction-col-header">
+                  <span class="friction-col-badge friction-col-badge--cultivate">Essential Challenges to Cultivate</span>
+                  <h4 class="protocol-friction-col-title">Demanding &amp; Rewarding Human Difficulties</h4>
+                  <p class="protocol-friction-col-desc">The purpose of reducing friction is not to remove every difficulty: essential challenges forge real vitality:</p>
+                </div>
+                <ul class="protocol-friction-checklist protocol-friction-checklist--cultivate">
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Mastering an Instrument:</strong> Cultivating acoustic finesse, rhythm, and ear.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Training the Physical Body:</strong> Building strength, endurance, balance, and grace.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Repairing Relationships:</strong> Deepening empathy, honest communication, and trust.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Mastering Fine Craft:</strong> Understanding grain, temper, acoustics, and form.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Patience &amp; Discipline:</strong> Enduring constructive failure to achieve excellence.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Courage &amp; Expression:</strong> Sharing vulnerable, authentic artistic contributions.</div>
+                  </li>
+                  <li>
+                    <span class="friction-check-icon">✓</span>
+                    <div><strong>Becoming Fully Alive:</strong> Directing human energy toward meaningful existence.</div>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            <div class="protocol-friction-footer">
+              <p class="protocol-friction-summary">
+                A regenerative community removes artificial barriers so that more people can direct their energy toward the demanding and deeply rewarding work of <strong>becoming fully alive</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Section Sub-Header for Supporting Infrastructure -->
+          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 3.5rem;">
+            <span class="section-eyebrow">Supporting Civic Infrastructure</span>
+            <h3 class="section-title text-gradient-gold" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);">Core Initiatives &amp; Living Systems</h3>
+            <p class="section-desc">
+              A phased civic blueprint connecting automated craft, clean transit, botanical intelligence, and public art sanctuaries into a self-sustaining regional ecosystem.
+            </p>
+          </div>
+
+          <!-- 9 Supporting Infrastructure Bento Grid -->
           <div class="protocol-pillars-grid">
 
             <!-- 01. Robotic Fabrication & Media -->
@@ -1371,13 +1824,13 @@
               <div class="protocol-pillar-body">
                 <h3 class="protocol-pillar-title">Robotic Fabrication &amp; Media Engine</h3>
                 <p class="protocol-pillar-desc">
-                  Deploying modified first-generation Optimus robots equipped with custom CNC hands, 3D printing systems, and laser tooling to produce premium cabinetry, timber sculpture, and fine art. The entire process is broadcast on a dedicated YouTube channel to generate revenue and provide transparent proof of human-machine collaboration.
+                  Supervised robotics equipped with custom CNC hands, 3D printing systems, and laser tooling produce premium cabinetry, timber sculpture, and fine art. The entire process is broadcast on a dedicated channel to generate revenue and provide transparent proof of human-machine collaboration.
                 </p>
                 <div class="protocol-pillar-tags">
-                  <span>Modified Optimus</span>
-                  <span>CNC Hands</span>
+                  <span>Shared Craft</span>
+                  <span>Precision Tooling</span>
                   <span>Fine Cabinetry</span>
-                  <span>YouTube Proof Loop</span>
+                  <span>Public Proof Loop</span>
                 </div>
               </div>
             </article>
@@ -1396,14 +1849,14 @@
                 <span class="pillar-num-tag">Initiative 02</span>
               </div>
               <div class="protocol-pillar-body">
-                <h3 class="protocol-pillar-title">Autonomous Regional Transit &amp; Logistics</h3>
+                <h3 class="protocol-pillar-title">Autonomous Regional Transit</h3>
                 <p class="protocol-pillar-desc">
-                  Cybercabs and electric semi-trucks provide on-demand, clean regional logistics connecting valley towns, studios, and mountain communities. Freeing residents from transit costs and congestion while mobilizing tools, materials, and build crews directly to project sites.
+                  Cybercabs and electric logistics provide on-demand, clean regional transit connecting valley towns, studios, and mountain communities. Freeing residents from transit costs and congestion while mobilizing tools, materials, and build crews directly to project sites.
                 </p>
                 <div class="protocol-pillar-tags">
-                  <span>Cybercab Transit</span>
-                  <span>Electric Logistics</span>
+                  <span>Clean Transit</span>
                   <span>Accessible Mobility</span>
+                  <span>Regional Logistics</span>
                   <span>Zero Emission</span>
                 </div>
               </div>
@@ -1431,17 +1884,17 @@
                   <span>100% Community Fund</span>
                   <span>Automated Reinvestment</span>
                   <span>Civic Infrastructure</span>
-                  <span>Nature-Trained AI</span>
+                  <span>Nature-Trained Stewardship</span>
                 </div>
               </div>
             </article>
 
-            <!-- 04. Botanical Sanctuaries & Year-Round Food -->
+            <!-- 04. The Virtual Garden & Subterranean Grow Pods -->
             <article class="protocol-pillar-card reveal">
               <div class="protocol-pillar-media">
                 <img
                   src="/assets/protocol/16-perfect-climate-controlled-chambers.webp"
-                  alt="Climate-sheltered growing environments and greenhouses providing fresh year-round food"
+                  alt="Subterranean grow pods utilizing refracted natural sunlight, precision botanical sensors, and clean automation"
                   width="700"
                   height="450"
                   loading="lazy"
@@ -1450,15 +1903,15 @@
                 <span class="pillar-num-tag">Initiative 04</span>
               </div>
               <div class="protocol-pillar-body">
-                <h3 class="protocol-pillar-title">Botanical Sanctuaries &amp; Food Security</h3>
+                <h3 class="protocol-pillar-title">The Virtual Garden &amp; Grow Pods</h3>
                 <p class="protocol-pillar-desc">
-                  Climate-secure growing environments utilizing passive solar architecture, refracted natural sunlight, and clean botanical sensors. Providing abundant, organic produce year-round to guarantee foundational food security across the Roaring Fork Valley.
+                  Climate-secure subterranean growing environments utilizing refracted natural sunlight, botanical time-lapse sensors, and robotic nutrient injection systems. Providing abundant, organic produce year-round to guarantee foundational food security across the Roaring Fork Valley.
                 </p>
                 <div class="protocol-pillar-tags">
-                  <span>Year-Round Harvest</span>
-                  <span>Passive Solar</span>
-                  <span>Organic Food Security</span>
-                  <span>Living Sanctuaries</span>
+                  <span>Subterranean Pods</span>
+                  <span>Refracted Sunlight</span>
+                  <span>Robotic Nutrient Injection</span>
+                  <span>Food Security</span>
                 </div>
               </div>
             </article>
@@ -1585,7 +2038,7 @@
                 <span class="pillar-num-tag">Initiative 09</span>
               </div>
               <div class="protocol-pillar-body">
-                <h3 class="protocol-pillar-title">Collaborative Art Commons &amp; Murals</h3>
+                <h3 class="protocol-pillar-title">Collaborative Art Commons</h3>
                 <p class="protocol-pillar-desc">
                   Monumental public ateliers, shared mural walls, and material libraries where artists, builders, and apprentices co-create without financial constraint. Providing unlimited materials, robotic handling assistance, and welcoming space for collective artistic expression.
                 </p>
@@ -1600,21 +2053,12 @@
 
           </div>
 
-          <!-- Section Sub-Header: Temples of Practice & Civic Architecture -->
-          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 3.5rem;">
-            <span class="section-eyebrow">Human Purpose &amp; Civic Architecture</span>
-            <h3 class="section-title text-gradient-teal" style="font-size: clamp(1.8rem, 3.2vw, 2.6rem);">Temples of Practice: The Heart of Civic Flourishing</h3>
-            <p class="section-desc">
-              A creative civilization requires more than encouragement: it requires physical places where tools are shared, beginners are welcomed, masters teach, and communities treat human development with reverence.
-            </p>
-          </div>
-
-          <!-- Temples of Practice Master Feature Card -->
-          <div class="protocol-temples-card reveal">
+          <!-- GEDI Training Course: General Equilibrium Development Institute -->
+          <div class="protocol-ropes-card reveal">
             <div class="protocol-master-media">
               <img
-                src="/assets/protocol/45-community-tool-library-cathedral.webp"
-                alt="Community tool library and maker sanctuary cathedral for shared craft and multidisciplinary practice"
+                src="/assets/protocol/60-ropes-course-night-aerial.webp"
+                alt="Night aerial of the GEDI forest ropes course with tree platforms, canopy bridges, climbing nets, course lights, and a creek running through the sanctuary"
                 width="1400"
                 height="800"
                 loading="lazy"
@@ -1622,319 +2066,146 @@
                 class="protocol-master-img"
               >
               <div class="protocol-master-overlay"></div>
-              <span class="protocol-badge">Sanctuary Architecture · Shared Tool Access</span>
+              <span class="protocol-badge">Jedi with a G · Old Snowmass</span>
             </div>
-            <div class="protocol-temples-body">
-              <div class="protocol-badge-kicker">Network of Shared Sanctuaries</div>
-              <h3 class="protocol-temples-title">Places for Gathering, Practice &amp; Human Reverence</h3>
-              
-              <div class="protocol-temples-lead-block">
-                <p class="protocol-master-lead">
-                  A creative civilization requires more than encouragement. It requires places: places where people can gather, where tools are shared, where beginners are welcomed, where masters can teach, and where people have permission to experiment, fail, practice, and begin again.
-                </p>
-                <p class="protocol-master-lead" style="margin-top: -1rem;">
-                  The Peace Protocol imagines a network of community spaces devoted to this purpose: temples not as religious institutions, but as places where a community treats human development with reverence.
-                </p>
-              </div>
+            <div class="protocol-ropes-body">
+              <div class="protocol-badge-kicker">General Equilibrium Development Institute</div>
+              <h3 class="protocol-ropes-title">The GEDI Training Course</h3>
+              <p class="protocol-master-lead">
+                People hear Jedi. We mean <strong>GEDI</strong>: the General Equilibrium Development Institute. This is the sanctuary ropes course, rebuilt as a training path that brings a person into general equilibrium: body, attention, emotion, and purpose moving as one.
+              </p>
+              <p class="protocol-master-lead">
+                Canopy bridges, creek crossings, rope swings, climbing nets, and balance lines become daily practice in flow and in the zone. Breath, rhythm, and attention move with the body until the nervous system settles. The purpose is better health and wellness, emotional and physical. Beginners are welcomed. Artists, athletes, children, and elders share the same forest lines.
+              </p>
+              <p class="protocol-master-lead">
+                <strong>Ambidexterity training is a key element of this design:</strong> both hands and both feet, trained as one intelligence. Rings, ropes, nets, and creek lines ask the left side to lead as often as the right, and the feet to think as clearly as the hands.
+              </p>
+              <p class="protocol-master-lead">
+                That equilibrium is not for the self alone. GEDI trains people as samurai in the older sense: skill offered in service to the community around them. You leave the canopy more able to help, build, carry, and protect the people you live among.
+              </p>
 
-              <!-- 4 Practice Domains Grid -->
-              <div class="protocol-practice-grid">
+              <div class="protocol-practice-grid protocol-ropes-grid">
                 <div class="protocol-practice-item">
                   <div class="protocol-practice-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20c4-8 6-12 9-16 3 4 5 8 9 16"/><path d="M8 14h8"/></svg>
                   </div>
-                  <h4 class="protocol-practice-name">Physical Making &amp; Craft</h4>
-                  <p class="protocol-practice-desc">Woodworking, fine cabinetry, stone carving, construction, ceramics, metalwork, and sustainable textiles.</p>
+                  <h4 class="protocol-practice-name">Flow &amp; Zone Training</h4>
+                  <p class="protocol-practice-desc">Daily lines through canopy and creek that train presence, breath, and the quiet focus of being in the zone.</p>
                 </div>
                 <div class="protocol-practice-item">
                   <div class="protocol-practice-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                   </div>
-                  <h4 class="protocol-practice-name">Arts &amp; Creative Media</h4>
-                  <p class="protocol-practice-desc">Painting, acoustic music, dance, theater, creative writing, filmmaking, and cutting-edge digital design.</p>
+                  <h4 class="protocol-practice-name">Emotional &amp; Physical Wellness</h4>
+                  <p class="protocol-practice-desc">Harmonizing individuals through movement that strengthens the body while settling fear, scatter, and isolation.</p>
                 </div>
                 <div class="protocol-practice-item">
                   <div class="protocol-practice-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
                   </div>
-                  <h4 class="protocol-practice-name">Movement &amp; Awareness</h4>
-                  <p class="protocol-practice-desc">Athletics, functional movement, yoga, breath practice, meditation, and inhabiting the body with strength.</p>
+                  <h4 class="protocol-practice-name">Ambidexterity Training</h4>
+                  <p class="protocol-practice-desc">A core element: both hands and both feet trained together, so left and right, grip and step, become one fluent practice.</p>
                 </div>
                 <div class="protocol-practice-item">
                   <div class="protocol-practice-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                   </div>
-                  <h4 class="protocol-practice-name">Integrated Commons</h4>
-                  <p class="protocol-practice-desc">Multi-disciplinary gathering hubs uniting makers, performers, teachers, and learners beneath one roof.</p>
+                  <h4 class="protocol-practice-name">Samurai Service</h4>
+                  <p class="protocol-practice-desc">The vow at the end of the line: trained people who carry their skill back to the community, not only back to themselves.</p>
                 </div>
               </div>
 
-              <!-- Inclusion Callout: Open to Every Human -->
-              <div class="protocol-inclusion-card">
-                <h4 class="protocol-inclusion-heading">Never Reserved for Professionals</h4>
-                <div class="protocol-inclusion-chips">
-                  <div class="protocol-chip-item">
-                    <span class="protocol-chip-bullet">✦</span>
-                    <span><strong>Children:</strong> Picking up a musical instrument or tool for the very first time.</span>
-                  </div>
-                  <div class="protocol-chip-item">
-                    <span class="protocol-chip-bullet">✦</span>
-                    <span><strong>Adults:</strong> Entering a workshop to learn a craft postponed for twenty years.</span>
-                  </div>
-                  <div class="protocol-chip-item">
-                    <span class="protocol-chip-bullet">✦</span>
-                    <span><strong>Elders:</strong> Passing down priceless ancestral knowledge and craft wisdom.</span>
-                  </div>
-                  <div class="protocol-chip-item">
-                    <span class="protocol-chip-bullet">✦</span>
-                    <span><strong>Artists:</strong> Gaining access to advanced machinery impossible to afford alone.</span>
-                  </div>
-                  <div class="protocol-chip-item">
-                    <span class="protocol-chip-bullet">✦</span>
-                    <span><strong>Everyone:</strong> Discovering that creative genius was simply waiting for an invitation.</span>
-                  </div>
-                </div>
+              <div class="protocol-ropes-gallery" aria-label="Ropes course views">
+                <figure>
+                  <img
+                    src="/assets/protocol/61-ropes-course-flow.webp"
+                    alt="Mountain ropes course with swings, monkey bars, bridges, balance beams, athletes in flow, and robot safety spotters"
+                    width="700"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <figcaption>Flow lines through the canopy</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="/assets/protocol/62-ropes-course-creek-aerial.webp"
+                    alt="Daytime aerial of a forest ropes course crossing a creek with tree platforms, bridges, nets, and a practice arena"
+                    width="700"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <figcaption>Creek traverse and tree platforms</figcaption>
+                </figure>
+                <figure>
+                  <img
+                    src="/assets/protocol/63-ropes-course-creek-close.webp"
+                    alt="Close view of a creekside forest ropes course with harnessed participants, glowing rings, platforms, and safety mats"
+                    width="700"
+                    height="480"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                  <figcaption>Ambidexterity, rings, and creek crossing</figcaption>
+                </figure>
               </div>
 
-              <!-- Robotics & Human Purpose Banner -->
               <div class="protocol-machine-harmony-banner">
                 <div class="protocol-harmony-icon" aria-hidden="true">
                   <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="12" stroke="#38f8d4" stroke-width="2"/></svg>
                 </div>
                 <div class="protocol-harmony-content">
-                  <h4 class="protocol-harmony-title">The Role of Advanced Intelligence &amp; Robotics</h4>
+                  <h4 class="protocol-harmony-title">Machines Spot. Humans Train as GEDI.</h4>
                   <p class="protocol-harmony-copy">
-                    Robotics and advanced tools assist with difficult, repetitive, or dangerous tasks. Artificial intelligence helps people learn techniques, develop designs, understand materials, and connect with mentors: yet technology remains secondary to the human purpose of the space.
-                  </p>
-                  <p class="protocol-harmony-quote">
-                    "The machines will not become the creators: they will expand what people are capable of creating."
+                    Robotics can watch the line, catch a fall, and keep the course safe. The training itself stays human: breath, both hands, both feet, rhythm, and the courage to serve. GEDI belongs to the Temples of Practice as Movement and Awareness made physical among the trees, then carried home as service.
                   </p>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <!-- 3-Pillar Philosophy Grid: Art as Practice · Return of Play · Rhythm of Community -->
-          <div class="protocol-philosophy-grid">
-
-            <!-- Art as Practice -->
-            <article class="protocol-phil-card reveal">
-              <div class="protocol-phil-media">
-                <img
-                  src="/assets/protocol/03-youtube-station-documentation-first.webp"
-                  alt="Craftsmen and artists refining daily disciplines with focused attention"
-                  width="700"
-                  height="450"
-                  loading="lazy"
-                  decoding="async"
-                >
-                <span class="pillar-num-tag">Philosophy 01</span>
-              </div>
-              <div class="protocol-phil-body">
-                <div class="protocol-badge-kicker">Beyond Categories of Objects</div>
-                <h3 class="protocol-phil-title">Art as Practice</h3>
-                <p class="protocol-phil-lead">
-                  Art is often treated as a category of objects: paintings, songs, sculptures, books, and performances. But art can also be understood as a way of practicing life.
-                </p>
-                <ul class="protocol-practice-list">
-                  <li><strong>A runner</strong> refines movement and physical endurance.</li>
-                  <li><strong>A carpenter</strong> refines precision, grain, and structural balance.</li>
-                  <li><strong>A gardener</strong> learns timing, patience, and living relation.</li>
-                  <li><strong>A dancer</strong> develops balance, expression, and kinetic awareness.</li>
-                  <li><strong>A cook</strong> transforms nourishment into hospitality and care.</li>
-                  <li><strong>A meditator</strong> practices presence and conscious attention.</li>
-                  <li><strong>An organizer</strong> practices bringing humans together in trust.</li>
-                </ul>
-                <p class="protocol-phil-desc">
-                  In this broader sense, art is anything practiced with attention, imagination, and the desire to grow. The temples do not divide people into artists and non-artists: they remind us that every life contains disciplines through which attention becomes skill, skill becomes expression, and expression becomes contribution.
-                </p>
-                <div class="protocol-pillar-tags">
-                  <span>Attention to Skill</span>
-                  <span>Skill to Expression</span>
-                  <span>Expression to Contribution</span>
-                  <span>Daily Life Mastery</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- The Return of Play -->
-            <article class="protocol-phil-card reveal">
-              <div class="protocol-phil-media">
-                <img
-                  src="/assets/protocol/21-10000-fractal-stupas-in-valley.webp"
-                  alt="Celebratory gathering nodes and playful tribalism in the valley"
-                  width="700"
-                  height="450"
-                  loading="lazy"
-                  decoding="async"
-                >
-                <span class="pillar-num-tag">Philosophy 02</span>
-              </div>
-              <div class="protocol-phil-body">
-                <div class="protocol-badge-kicker">Discovery &amp; Celebration</div>
-                <h3 class="protocol-phil-title">The Return of Play</h3>
-                <p class="protocol-phil-lead">
-                  Modern civilization often treats play as mere preparation for serious life, expecting adults to surrender playfulness for productivity. Yet play is the primary way human beings discover.
-                </p>
-                <p class="protocol-phil-desc">
-                  Through play, children test possibilities, adults improvise, artists experiment, scientists ask unusual questions, and communities laugh together. New relationships form without the pressure of transaction. Play is not the opposite of meaningful activity: it is often the birthplace of it.
-                </p>
-                <p class="protocol-phil-desc">
-                  A peaceful civilization seeks not only to reduce suffering, but to expand the conditions in which people can become playful again. Music spills into shared spaces. People gather for dances, games, meals, athletic events, and spontaneous celebrations.
-                </p>
-                <p class="protocol-phil-highlight">
-                  The goal is not constant entertainment: it is the restoration of a social life in which joy is created together rather than consumed alone.
-                </p>
-                <div class="protocol-pillar-tags">
-                  <span>Spontaneous Play</span>
-                  <span>Collaborative Joy</span>
-                  <span>Unpressured Discovery</span>
-                  <span>Playful Tribalism</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- A Rhythm of Community Life -->
-            <article class="protocol-phil-card reveal">
-              <div class="protocol-phil-media">
-                <img
-                  src="/assets/protocol/58-floating-sauna-ice-bath-river-circuit.webp"
-                  alt="Community members gathering at riverfront sanctuaries for wellness and connection"
-                  width="700"
-                  height="450"
-                  loading="lazy"
-                  decoding="async"
-                >
-                <span class="pillar-num-tag">Philosophy 03</span>
-              </div>
-              <div class="protocol-phil-body">
-                <div class="protocol-badge-kicker">Recurring Physical Experience</div>
-                <h3 class="protocol-phil-title">A Rhythm of Community Life</h3>
-                <p class="protocol-phil-lead">
-                  The temples become vibrant gathering points within the larger rhythm of the community.
-                </p>
-                <ul class="protocol-practice-list">
-                  <li><strong>Communal Meals:</strong> Sharing harvested food, hospitality, and conversation.</li>
-                  <li><strong>Concerts &amp; Dances:</strong> Acoustic, orchestral, and celebratory gatherings.</li>
-                  <li><strong>Craft Workshops:</strong> Hands-on mentorship led by experienced local artisans.</li>
-                  <li><strong>Movement &amp; Healing:</strong> Group yoga, breath practice, and deep meditation.</li>
-                  <li><strong>Story Circles:</strong> Children perform and elders share oral histories.</li>
-                </ul>
-                <p class="protocol-phil-desc">
-                  Some gatherings are celebratory; others quiet. Some invite excellence and friendly competition; others emphasize cooperation, reflection, and healing. Together they provide regular opportunities to be physically present with other human beings for purposes other than employment, commerce, or obligation.
-                </p>
-                <p class="protocol-phil-highlight">
-                  Community ceases to be an abstract ideal: it becomes a recurring, tangible experience.
-                </p>
-                <div class="protocol-pillar-tags">
-                  <span>Physical Presence</span>
-                  <span>Shared Feasts</span>
-                  <span>Intergenerational Bonds</span>
-                  <span>Civic Rhythm</span>
-                </div>
-              </div>
-            </article>
-
-          </div>
-
-          <!-- Freedom Made Tangible: Systemic Friction vs Essential Challenge -->
-          <div class="protocol-friction-card reveal">
-            <div class="protocol-friction-header">
-              <span class="section-eyebrow">The Purpose of Automation</span>
-              <h3 class="protocol-friction-title">Freedom Made Tangible</h3>
-              <p class="protocol-friction-lead">
-                The promise of technology is often described in terms of speed and efficiency. The Peace Protocol asks what that efficiency is ultimately for. If automation saves people time only so they can consume more, its achievement remains incomplete. If it creates time for learning, health, relationships, play, service, and creative practice, then freedom becomes tangible.
+          <!-- Join the Movement: Story Engine + Pilot Updates -->
+          <div class="protocol-join-card reveal">
+            <div class="protocol-join-copy">
+              <span class="section-eyebrow">The Story Engine · Join the Movement</span>
+              <h3 class="protocol-join-title">Film Plants the Seed. You Watch It Grow.</h3>
+              <p class="protocol-join-lead">
+                Film has the power to shape reality. Alongside the physical pilot, we are creating a Hollywood-style film depicting this vision playing out in the most beautiful way possible: planting the seed in more of humanity's minds on a global scale.
+              </p>
+              <p class="protocol-join-lead">
+                Leave your email to follow the 180-acre Old Snowmass pilot: build milestones, film releases, and ways to participate as the protocol comes alive.
               </p>
             </div>
-
-            <div class="protocol-friction-grid">
-
-              <!-- Friction to Eliminate -->
-              <div class="protocol-friction-col protocol-friction-col--remove">
-                <div class="protocol-friction-col-header">
-                  <span class="friction-col-badge friction-col-badge--remove">Systemic Friction to Eliminate</span>
-                  <h4 class="protocol-friction-col-title">Artificial Barriers Preventing Human Flourishing</h4>
-                  <p class="protocol-friction-col-desc">The friction civilization must systematically reduce so that all people can access meaningful challenges:</p>
-                </div>
-                <ul class="protocol-friction-checklist protocol-friction-checklist--remove">
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Unaffordable Tools:</strong> High cost of specialized fabrication and studio equipment.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Inaccessible Facilities:</strong> Private workshops locked behind steep paywalls.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Unnecessary Bureaucracy:</strong> Gatekeeping and administrative friction.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Social Isolation:</strong> Lack of physical commons and genuine community hubs.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Transit Deficits:</strong> Lack of clean, reliable, free regional transportation.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>Instruction Scarcity:</strong> Lack of master mentorship, clear teaching, and time.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✕</span>
-                    <div><strong>The Starting Barrier:</strong> Lack of a welcoming, supportive place to begin.</div>
-                  </li>
-                </ul>
+            <figure class="protocol-join-film">
+              <video
+                id="protocol-join-video"
+                class="protocol-join-video"
+                poster="/assets/protocol/robot-tree-poster.webp"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                width="1280"
+                height="722"
+                aria-label="A human and a robot planting a young tree together"
+              >
+                <source src="/assets/protocol/robot-tree.mp4" type="video/mp4">
+              </video>
+              <figcaption>Human and machine planting the seed</figcaption>
+            </figure>
+            <form class="protocol-join-form" id="protocol-join-form" novalidate>
+              <label class="protocol-join-label" for="protocol-join-email">Field notes from the pilot</label>
+              <div class="protocol-join-row">
+                <input type="email" id="protocol-join-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                <input type="text" name="company" class="protocol-join-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <button type="submit" class="btn btn-gold" id="protocol-join-btn">
+                  <span class="btn-label">Follow the Pilot</span>
+                  <span class="btn-loading" hidden>Joining…</span>
+                </button>
               </div>
-
-              <!-- Essential Challenges to Cultivate -->
-              <div class="protocol-friction-col protocol-friction-col--cultivate">
-                <div class="protocol-friction-col-header">
-                  <span class="friction-col-badge friction-col-badge--cultivate">Essential Challenges to Cultivate</span>
-                  <h4 class="protocol-friction-col-title">Demanding &amp; Rewarding Human Difficulties</h4>
-                  <p class="protocol-friction-col-desc">The purpose of reducing friction is not to remove every difficulty: essential challenges forge real vitality:</p>
-                </div>
-                <ul class="protocol-friction-checklist protocol-friction-checklist--cultivate">
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Mastering an Instrument:</strong> Cultivating acoustic finesse, rhythm, and ear.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Training the Physical Body:</strong> Building strength, endurance, balance, and grace.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Repairing Relationships:</strong> Deepening empathy, honest communication, and trust.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Mastering Fine Craft:</strong> Understanding grain, temper, acoustics, and form.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Patience &amp; Discipline:</strong> Enduring constructive failure to achieve excellence.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Courage &amp; Expression:</strong> Sharing vulnerable, authentic artistic contributions.</div>
-                  </li>
-                  <li>
-                    <span class="friction-check-icon">✓</span>
-                    <div><strong>Becoming Fully Alive:</strong> Directing human energy toward meaningful existence.</div>
-                  </li>
-                </ul>
-              </div>
-
-            </div>
-
-            <div class="protocol-friction-footer">
-              <p class="protocol-friction-summary">
-                A regenerative community removes artificial barriers so that more people can direct their energy toward the demanding and deeply rewarding work of <strong>becoming fully alive</strong>.
-              </p>
-            </div>
+              <p class="protocol-join-note" id="protocol-join-note">Occasional, meaningful updates. No noise, no spam, ever.</p>
+            </form>
           </div>
 
           <!-- Proposal Call to Action Banner -->
@@ -1961,35 +2232,6 @@
         </div>
       </div>
     </details>
-    <section class="instagram-section" id="instagram">
-      <div class="container">
-        <div class="ig-widget">
-          <div class="ig-widget-bar">
-            <div class="ig-widget-identity">
-              <span class="ig-avatar-wrap">
-                <img class="instagram-avatar" src="/assets/social/instagram-avatar.webp" alt="" width="56" height="56">
-              </span>
-              <div>
-                <a class="ig-handle" href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">@danielkellybrown</a>
-                <p class="instagram-stats"><span class="ig-live"><span class="ig-live-dot" aria-hidden="true"></span> Live</span> <span id="instagram-stats">Latest 3 posts</span></p>
-              </div>
-            </div>
-            <a class="btn btn-gold btn-sm" href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">Follow</a>
-          </div>
-          <div class="instagram-grid" id="instagram-grid" aria-label="Three latest Instagram posts">
-            <a class="instagram-tile" href="https://www.instagram.com/p/DbUZ39iDZD1/" target="_blank" rel="noopener noreferrer">
-              <img src="/assets/social/ig-DbUZ39iDZD1.webp" alt="Latest Instagram post by Daniel Kelly Brown" width="640" height="640" loading="lazy">
-            </a>
-            <a class="instagram-tile" href="https://www.instagram.com/p/DR2s3i3ETMV/" target="_blank" rel="noopener noreferrer" data-video="true">
-              <img src="/assets/social/ig-DR2s3i3ETMV.webp" alt="Instagram reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
-            </a>
-            <a class="instagram-tile" href="https://www.instagram.com/p/DY04AdpNJJK/" target="_blank" rel="noopener noreferrer" data-video="true">
-              <img src="/assets/social/ig-DY04AdpNJJK.webp" alt="Instagram reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- Estimator -->
     <section class="estimator-section" id="estimator">
       <div class="container">
@@ -2210,6 +2452,61 @@
         </div>
       </div>
     </section>
+
+    <!-- Instagram Live Feed -->
+    <section class="instagram-section" id="instagram">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Live from Instagram</span>
+          <h2 class="section-title text-gradient-gold">Behind the Scenes</h2>
+          <p class="section-desc">Fresh frames from the studio, the sawmill, and the high country — the latest posts, straight off <a href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">@danielkellybrown</a>.</p>
+        </div>
+        <div class="ig-widget reveal">
+          <div class="ig-widget-bar">
+            <div class="ig-widget-identity">
+              <span class="ig-avatar-wrap">
+                <img class="instagram-avatar" src="/assets/social/instagram-avatar.webp" alt="" width="56" height="56">
+              </span>
+              <div>
+                <a class="ig-handle" href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">@danielkellybrown</a>
+                <p class="instagram-stats"><span class="ig-live"><span class="ig-live-dot" aria-hidden="true"></span> Live</span> <span id="instagram-stats">Latest 6 posts</span></p>
+              </div>
+            </div>
+            <a class="btn btn-gold btn-sm" href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">Follow</a>
+          </div>
+          <div class="instagram-grid" id="instagram-grid" aria-label="Six latest Instagram posts">
+            <a class="instagram-tile" href="https://www.instagram.com/p/DbUZ39iDZD1/" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/social/ig-DbUZ39iDZD1.webp" alt="Wood-splitting win post by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Took home the wood-splitting win again this year — non-dominant hand this round.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/p/DR2s3i3ETMV/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="/assets/social/ig-DR2s3i3ETMV.webp" alt="Instagram reel about Aspen by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">So much love for this magical town I was lucky enough to be born into.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/p/DY04AdpNJJK/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="/assets/social/ig-DY04AdpNJJK.webp" alt="Sawmill reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Good ol Milly Nelson is cutting like buttah. This one's a brain tickler.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/p/DbY4EPPJjPV/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="/assets/social/ig-DbY4EPPJjPV.webp" alt="Handpan reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Mission Impossible / Dark Knight theme on handpan — "Terminal Velocity".</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/p/DZmISahOz_9/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="/assets/social/ig-DZmISahOz_9.webp" alt="AI mushroom timelapse reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Mushroom timelapse experiment — AI is suspiciously good at these.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/p/Da9OgBXtam2/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="/assets/social/ig-Da9OgBXtam2.webp" alt="Chainsaw carving reel by Daniel Kelly Brown" width="640" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Not quite sure how I did this. @stihl</span>
+            </a>
+          </div>
+          <p class="ig-widget-foot">
+            <span class="ig-widget-foot-note">Live feed · updates with every new post</span>
+            <a class="ig-widget-foot-link" href="https://www.instagram.com/danielkellybrown/" target="_blank" rel="noopener noreferrer">See all on Instagram →</a>
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -2229,13 +2526,13 @@
         <div>
           <h4 class="footer-heading">Navigate</h4>
           <ul class="footer-links">
-            <li><a href="#work" data-open="film">Film &amp; Motion</a></li>
-            <li><a href="#woodwork" data-open="wood">Local Aspen Woodwork</a></li>
-            <li><a href="#handpan" data-open="handpan">Handpan Music</a></li>
-            <li><a href="#web" data-open="web">Web Design</a></li>
-            <li><a href="#arsenal" data-open="arsenal">Equipment Arsenal</a></li>
-            <li><a href="#bio" data-open="story">Daniel Kelly Brown</a></li>
-            <li><a href="#protocol" data-open="protocol">Peace Protocol</a></li>
+            <li><a href="/film" data-open="film">Film &amp; Motion</a></li>
+            <li><a href="/wood" data-open="wood">Local Aspen Woodwork</a></li>
+            <li><a href="/handpan" data-open="handpan">Handpan Music</a></li>
+            <li><a href="/web" data-open="web">Web Design</a></li>
+            <li><a href="/story" data-open="story">Daniel Kelly Brown</a></li>
+            <li><a href="/protocol" data-open="protocol">Peace Protocol</a></li>
+            <li><a href="/film#arsenal" data-open="arsenal">Equipment Arsenal</a></li>
             <li><a href="/privacy/">Privacy</a></li>
           </ul>
         </div>

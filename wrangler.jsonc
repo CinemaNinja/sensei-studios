@@ -2,9 +2,32 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sensei-studios",
   "compatibility_date": "2026-08-04",
+  "main": "worker.js",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/",
+      "/api/*",
+      "/film", "/film/",
+      "/wood", "/wood/",
+      "/woodwork", "/woodwork/",
+      "/sculptures", "/sculptures/",
+      "/handpan", "/handpan/",
+      "/web", "/web/",
+      "/story", "/story/",
+      "/bio", "/bio/",
+      "/work", "/work/",
+      "/protocol", "/protocol/",
+      "/vision", "/vision/",
+      "/estimator", "/estimator/",
+      "/scope", "/scope/",
+      "/contact", "/contact/"
+    ]
   },
+  "send_email": [
+    { "name": "EMAIL", "destination_address": "brown@senseistudios.com" }
+  ],
   "vars": {
     "CONTACT_TO": "brown@senseistudios.com"
   }
