@@ -68,6 +68,84 @@
     return { x: cx + p.x * r, y: cy - p.y * r, z: p.z, v: p };
   }
 
+  function decodeLandRings(data) {
+    return (data && data.rings ? data.rings : []).map((ring) => {
+      const vecs = [];
+      for (let i = 0; i < ring.length; i++) {
+        const lat = ring[i][0] / 10;
+        const lng = ring[i][1] / 10;
+        if (i > 0 && ring[i][0] === ring[0][0] && ring[i][1] === ring[0][1] && i === ring.length - 1) {
+          break;
+        }
+        vecs.push(latLngToVec(lat, lng));
+      }
+      return vecs;
+    }).filter((ring) => ring.length >= 3);
+  }
+
+  function limbPoint(a, b, rotY, rotX, cx, cy, r) {
+    const pa = rotateX(rotateY(a, rotY), rotX);
+    const pb = rotateX(rotateY(b, rotY), rotX);
+    const t = pa.z / (pa.z - pb.z);
+    const x = pa.x + (pb.x - pa.x) * t;
+    const y = pa.y + (pb.y - pa.y) * t;
+    return { x: cx + x * r, y: cy - y * r, z: 0 };
+  }
+
+  function frontLandChains(ring, rotY, rotX, cx, cy, r) {
+    const n = ring.length;
+    if (n < 3) return [];
+    const proj = new Array(n);
+    for (let i = 0; i < n; i++) proj[i] = project(ring[i], rotY, rotX, cx, cy, r);
+    const chains = [];
+    let cur = [];
+    for (let i = 0; i < n; i++) {
+      const a = proj[i];
+      const b = proj[(i + 1) % n];
+      if (a.z >= 0) cur.push(a);
+      if ((a.z >= 0) !== (b.z >= 0)) {
+        const h = limbPoint(ring[i], ring[(i + 1) % n], rotY, rotX, cx, cy, r);
+        cur.push(h);
+        if (a.z >= 0) {
+          if (cur.length >= 3) chains.push(cur);
+          cur = [];
+        } else {
+          cur = [h];
+        }
+      }
+    }
+    if (cur.length >= 3) chains.push(cur);
+    return chains;
+  }
+
+  function drawLand(ctx, rings, rotY, rotX, cx, cy, r) {
+    if (!rings || !rings.length) return;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 1.2;
+    for (let i = 0; i < rings.length; i++) {
+      const chains = frontLandChains(rings[i], rotY, rotX, cx, cy, r);
+      for (let c = 0; c < chains.length; c++) {
+        const pts = chains[c];
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let p = 1; p < pts.length; p++) ctx.lineTo(pts[p].x, pts[p].y);
+        ctx.closePath();
+        let depth = 0;
+        for (let p = 0; p < pts.length; p++) depth += Math.max(0, pts[p].z);
+        depth /= pts.length;
+        ctx.fillStyle = `rgba(118, 156, 168, ${0.48 + depth * 0.38})`;
+        ctx.fill();
+        ctx.strokeStyle = `rgba(214, 244, 232, ${0.28 + depth * 0.32})`;
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
   function lerp(a, b, t) {
     return a + (b - a) * t;
   }
@@ -119,10 +197,10 @@
 
   function drawSphere(ctx, cx, cy, r) {
     const shade = ctx.createRadialGradient(cx - r * 0.32, cy - r * 0.38, r * 0.08, cx, cy, r * 1.05);
-    shade.addColorStop(0, 'rgba(70, 88, 110, 0.95)');
-    shade.addColorStop(0.22, 'rgba(22, 32, 48, 0.96)');
-    shade.addColorStop(0.62, 'rgba(8, 12, 20, 0.98)');
-    shade.addColorStop(1, 'rgba(2, 4, 8, 1)');
+    shade.addColorStop(0, 'rgba(38, 56, 78, 0.96)');
+    shade.addColorStop(0.22, 'rgba(12, 20, 34, 0.98)');
+    shade.addColorStop(0.62, 'rgba(5, 9, 16, 0.99)');
+    shade.addColorStop(1, 'rgba(1, 3, 7, 1)');
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fillStyle = shade;
@@ -172,7 +250,7 @@
           drawing = false;
           continue;
         }
-        const alpha = 0.04 + Math.max(0, p.z) * 0.1;
+        const alpha = 0.02 + Math.max(0, p.z) * 0.055;
         if (!drawing) {
           ctx.strokeStyle = `rgba(180, 220, 230, ${alpha})`;
           ctx.moveTo(p.x, p.y);
@@ -195,7 +273,7 @@
           drawing = true;
         } else ctx.lineTo(p.x, p.y);
       }
-      ctx.strokeStyle = 'rgba(180, 220, 230, 0.08)';
+      ctx.strokeStyle = 'rgba(180, 220, 230, 0.045)';
       ctx.stroke();
     }
   }
@@ -251,6 +329,7 @@
     const stars = buildStars(90);
     const points = [];
     const arcs = [];
+    let landRings = [];
     let rotY = -toRad(VALLEY.lng);
     let rotX = 0.38;
     let velY = 0;
@@ -330,6 +409,7 @@
 
       drawAtmosphere(ctx, cx, cy, r);
       drawSphere(ctx, cx, cy, r);
+      drawLand(ctx, landRings, rotY, rotX, cx, cy, r);
       drawGrid(ctx, rotY, rotX, cx, cy, r);
 
       const night = ctx.createRadialGradient(cx + r * 0.45, cy + r * 0.1, r * 0.2, cx, cy, r);
@@ -424,6 +504,14 @@
     }
 
     startLoop();
+
+    fetch('/data/world-land.json', { headers: { Accept: 'application/json' } })
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data) => {
+        landRings = decodeLandRings(data);
+        startLoop();
+      })
+      .catch(() => {});
 
     fetch('/api/protocol-presence', { headers: { Accept: 'application/json' }, cache: 'no-cache' })
       .then((res) => (res.ok ? res.json() : Promise.reject()))
