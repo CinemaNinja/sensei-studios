@@ -977,6 +977,42 @@ function syncDropdownAria(details) {
   summary.setAttribute('aria-expanded', String(details.open));
 }
 
+/* ── Enso fill: each circle reflects how many chapters are open ──
+   Circumference = 2π·12 ≈ 75.4  (stroke-dasharray 78 in CSS gives a
+   tiny visual cap).  Each enso fills a fraction = openCount / total.
+   Its *own* chapter being open is shown by a brighter stroke + glow;
+   the arc length is always the global ratio so every circle reads like
+   a consistent gauge.                                                */
+function syncEnsoFill() {
+  const all = pageDropdowns();
+  if (!all.length) return;
+  const total    = all.length;
+  const openCount = all.filter(d => d.open).length;
+  const C = 78;                       // matches stroke-dasharray in CSS
+  const filled = C * (openCount / total);
+  const gap    = C - filled;
+
+  all.forEach(d => {
+    const circle = d.querySelector('.page-dropdown-enso circle');
+    if (!circle) return;
+
+    // Arc length = filled portion; gap = remainder
+    circle.style.strokeDasharray  = `${filled} ${gap}`;
+    circle.style.strokeDashoffset = '0';
+
+    // Brighter when this chapter is open
+    if (d.open) {
+      circle.style.stroke  = 'var(--accent-gold-bright)';
+      circle.style.filter  = 'drop-shadow(0 0 8px rgba(255,215,0,0.6))';
+      circle.style.opacity = '1';
+    } else {
+      circle.style.stroke  = 'var(--accent-gold)';
+      circle.style.filter  = 'drop-shadow(0 0 4px rgba(255,177,66,0.3))';
+      circle.style.opacity = '0.55';
+    }
+  });
+}
+
 function scrollToSectionEl(el) {
   if (!el) return;
   const reduce = prefersReducedMotion();
@@ -1150,8 +1186,12 @@ function initSectionDropdowns() {
 
     details.addEventListener('toggle', () => {
       syncDropdownAria(details);
+      syncEnsoFill();
     });
   });
+
+  // Initial enso fill on load
+  syncEnsoFill();
 
   // Track Arsenal sub-dropdown
   const arsenalDropdown = document.getElementById('arsenal');
@@ -1203,13 +1243,18 @@ function initChapterRail() {
   const dropdowns = pageDropdowns();
   if (dropdowns.length < 3 || document.querySelector('.chapter-rail')) return;
 
+  const C = 2 * Math.PI * 11; // ring circumference for r=11
+
   const rail = document.createElement('nav');
   rail.className = 'chapter-rail';
   rail.setAttribute('aria-label', 'Chapters');
 
   const progress = document.createElement('span');
   progress.className = 'chapter-rail-progress';
-  progress.innerHTML = '<span class="chapter-rail-progress-bar"></span>';
+  progress.innerHTML =
+    '<span class="chapter-rail-progress-track" aria-hidden="true"></span>' +
+    '<span class="chapter-rail-progress-bar" aria-hidden="true"></span>' +
+    '<span class="chapter-rail-progress-ember" aria-hidden="true"></span>';
   rail.appendChild(progress);
 
   const items = dropdowns.map((d, i) => {
@@ -1219,20 +1264,48 @@ function initChapterRail() {
     btn.type = 'button';
     btn.className = 'chapter-rail-btn';
     btn.setAttribute('data-chapter', d.id);
-    btn.setAttribute('aria-label', `Open chapter: ${label}`);
+    btn.setAttribute('aria-label', label);
+    if (!prefersReducedMotion()) {
+      btn.style.animationDelay = `${1.4 + i * 0.1}s`;
+    }
     btn.innerHTML =
-      `<span class="chapter-rail-num">${String(i + 1).padStart(2, '0')}</span>` +
+      '<span class="chapter-rail-ring" aria-hidden="true">' +
+        '<svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="11" /></svg>' +
+      '</span>' +
       '<span class="chapter-rail-dot" aria-hidden="true"></span>' +
       `<span class="chapter-rail-label">${escapeHtml(label)}</span>`;
     btn.addEventListener('click', () => {
       openHomeSection(key, { scroll: true, exclusive: false, updateUrl: true });
     });
     rail.appendChild(btn);
-    return { btn, id: d.id };
+    return { btn, id: d.id, circle: btn.querySelector('circle') };
   });
 
   document.body.appendChild(rail);
+  let requestPaint = () => {};
 
+  /* ── Sync ring arcs to global open ratio + per-chapter state ── */
+  function syncRailRings() {
+    const total = dropdowns.length;
+    const openCount = dropdowns.filter(d => d.open).length;
+    const filled = C * (openCount / total);
+    const gap = C - filled;
+    items.forEach(({ btn, id, circle }) => {
+      const d = document.getElementById(id);
+      const isOpen = d?.open;
+      btn.classList.toggle('is-chapter-open', !!isOpen);
+      if (circle) {
+        circle.style.strokeDasharray = `${filled} ${gap}`;
+      }
+    });
+  }
+
+  dropdowns.forEach(d => {
+    d.addEventListener('toggle', syncRailRings);
+  });
+  syncRailRings();
+
+  /* ── Scroll-linked active chapter via IntersectionObserver ── */
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
       (entries) => {
@@ -1241,6 +1314,7 @@ function initChapterRail() {
           const match = items.find((item) => item.id === entry.target.id);
           if (!match) return;
           items.forEach((item) => item.btn.classList.toggle('is-active', item === match));
+          requestPaint();
         });
       },
       { rootMargin: '-30% 0px -55% 0px' }
@@ -1248,23 +1322,84 @@ function initChapterRail() {
     dropdowns.forEach((d) => io.observe(d));
   }
 
+  /* ── Show rail only after scrolling past the hero ── */
+  const heroEnd = document.querySelector('details.page-dropdown');
+  if (heroEnd && 'IntersectionObserver' in window) {
+    const visObs = new IntersectionObserver(
+      ([entry]) => {
+        rail.classList.toggle('is-visible', entry.isIntersecting || entry.boundingClientRect.top < 0);
+        requestPaint();
+      },
+      { rootMargin: '0px 0px 200px 0px', threshold: 0 }
+    );
+    visObs.observe(heroEnd);
+  } else {
+    rail.classList.add('is-visible');
+  }
+
+  /* ── Chapter-linked progress: fill reaches the current section, not page % ── */
   const bar = progress.querySelector('.chapter-rail-progress-bar');
+  const ember = progress.querySelector('.chapter-rail-progress-ember');
   let ticking = false;
-  const paintProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-    if (bar) bar.style.transform = `scaleY(${pct})`;
-    ticking = false;
+
+  const layoutTrack = () => {
+    const first = items[0]?.btn;
+    const last = items[items.length - 1]?.btn;
+    if (!first || !last) return;
+    const railRect = rail.getBoundingClientRect();
+    const a = first.getBoundingClientRect();
+    const b = last.getBoundingClientRect();
+    const top = a.top + a.height / 2 - railRect.top;
+    const bottom = railRect.bottom - (b.top + b.height / 2);
+    progress.style.top = `${Math.max(0, top)}px`;
+    progress.style.bottom = `${Math.max(0, bottom)}px`;
   };
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(paintProgress);
-    },
-    { passive: true }
-  );
+
+  const chapterProgress = () => {
+    const n = dropdowns.length;
+    if (n < 2) return 0;
+    const marker = window.scrollY + window.innerHeight * 0.38;
+    const starts = dropdowns.map((d) => d.getBoundingClientRect().top + window.scrollY);
+    const lastEnd = starts[n - 1] + Math.max(dropdowns[n - 1].offsetHeight || 0, window.innerHeight * 0.5);
+
+    let i = 0;
+    for (; i < n - 1; i++) {
+      if (marker < starts[i + 1]) break;
+    }
+    const start = starts[i];
+    const end = i < n - 1 ? starts[i + 1] : lastEnd;
+    const span = Math.max(1, end - start);
+    const local = Math.min(1, Math.max(0, (marker - start) / span));
+    return Math.min(1, (i + local) / (n - 1));
+  };
+
+  const paintProgress = () => {
+    layoutTrack();
+    const pct = chapterProgress();
+    rail.style.setProperty('--rail-progress', String(pct));
+    if (bar) bar.style.height = `${pct * 100}%`;
+    if (ember) {
+      ember.style.top = `${pct * 100}%`;
+      ember.style.opacity = pct > 0.02 ? '1' : '0';
+    }
+    items.forEach((item, i) => {
+      const reached = pct >= i / Math.max(1, items.length - 1) - 0.02;
+      item.btn.classList.toggle('is-reached', reached);
+    });
+  };
+
+  requestPaint = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      paintProgress();
+    });
+  };
+
+  window.addEventListener('scroll', requestPaint, { passive: true });
+  window.addEventListener('resize', requestPaint, { passive: true });
+  dropdowns.forEach((d) => d.addEventListener('toggle', requestPaint));
   paintProgress();
 }
 
