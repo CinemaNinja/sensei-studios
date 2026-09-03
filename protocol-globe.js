@@ -68,82 +68,112 @@
     return { x: cx + p.x * r, y: cy - p.y * r, z: p.z, v: p };
   }
 
-  function decodeLandRings(data) {
-    return (data && data.rings ? data.rings : []).map((ring) => {
-      const vecs = [];
-      for (let i = 0; i < ring.length; i++) {
-        const lat = ring[i][0] / 10;
-        const lng = ring[i][1] / 10;
-        if (i > 0 && ring[i][0] === ring[0][0] && ring[i][1] === ring[0][1] && i === ring.length - 1) {
-          break;
-        }
-        vecs.push(latLngToVec(lat, lng));
-      }
-      return vecs;
-    }).filter((ring) => ring.length >= 3);
-  }
-
-  function limbPoint(a, b, rotY, rotX, cx, cy, r) {
-    const pa = rotateX(rotateY(a, rotY), rotX);
-    const pb = rotateX(rotateY(b, rotY), rotX);
-    const t = pa.z / (pa.z - pb.z);
-    const x = pa.x + (pb.x - pa.x) * t;
-    const y = pa.y + (pb.y - pa.y) * t;
-    return { x: cx + x * r, y: cy - y * r, z: 0 };
-  }
-
-  function frontLandChains(ring, rotY, rotX, cx, cy, r) {
-    const n = ring.length;
-    if (n < 3) return [];
-    const proj = new Array(n);
-    for (let i = 0; i < n; i++) proj[i] = project(ring[i], rotY, rotX, cx, cy, r);
-    const chains = [];
-    let cur = [];
-    for (let i = 0; i < n; i++) {
-      const a = proj[i];
-      const b = proj[(i + 1) % n];
-      if (a.z >= 0) cur.push(a);
-      if ((a.z >= 0) !== (b.z >= 0)) {
-        const h = limbPoint(ring[i], ring[(i + 1) % n], rotY, rotX, cx, cy, r);
-        cur.push(h);
-        if (a.z >= 0) {
-          if (cur.length >= 3) chains.push(cur);
-          cur = [];
-        } else {
-          cur = [h];
-        }
+  function splitRingAntimeridian(ring) {
+    const parts = [];
+    let cur = [ring[0]];
+    for (let i = 1; i < ring.length; i++) {
+      const prev = cur[cur.length - 1];
+      if (Math.abs(ring[i][1] / 10 - prev[1] / 10) > 180) {
+        if (cur.length >= 3) parts.push(cur);
+        cur = [ring[i]];
+      } else {
+        cur.push(ring[i]);
       }
     }
-    if (cur.length >= 3) chains.push(cur);
-    return chains;
+    if (cur.length >= 3) parts.push(cur);
+    return parts.length ? parts : [ring];
   }
 
-  function drawLand(ctx, rings, rotY, rotX, cx, cy, r) {
-    if (!rings || !rings.length) return;
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.lineJoin = 'round';
-    ctx.lineWidth = 1.2;
-    for (let i = 0; i < rings.length; i++) {
-      const chains = frontLandChains(rings[i], rotY, rotX, cx, cy, r);
-      for (let c = 0; c < chains.length; c++) {
-        const pts = chains[c];
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for (let p = 1; p < pts.length; p++) ctx.lineTo(pts[p].x, pts[p].y);
-        ctx.closePath();
-        let depth = 0;
-        for (let p = 0; p < pts.length; p++) depth += Math.max(0, pts[p].z);
-        depth /= pts.length;
-        ctx.fillStyle = `rgba(118, 156, 168, ${0.48 + depth * 0.38})`;
-        ctx.fill();
-        ctx.strokeStyle = `rgba(214, 244, 232, ${0.28 + depth * 0.32})`;
-        ctx.stroke();
+  function buildLandTexture(rings) {
+    const w = 1024;
+    const h = 512;
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const g = canvas.getContext('2d');
+    if (!g) return null;
+    g.fillStyle = 'rgba(122, 160, 172, 0.92)';
+    g.strokeStyle = 'rgba(214, 244, 232, 0.35)';
+    g.lineWidth = 1;
+    g.lineJoin = 'round';
+    (rings || []).forEach((ring) => {
+      splitRingAntimeridian(ring).forEach((part) => {
+        g.beginPath();
+        for (let i = 0; i < part.length; i++) {
+          const x = ((part[i][1] / 10 + 180) / 360) * w;
+          const y = ((90 - part[i][0] / 10) / 180) * h;
+          if (i === 0) g.moveTo(x, y);
+          else g.lineTo(x, y);
+        }
+        g.closePath();
+        g.fill();
+        g.stroke();
+      });
+    });
+    return g.getImageData(0, 0, w, h);
+  }
+
+  function createLandPainter() {
+    const view = document.createElement('canvas');
+    const viewCtx = view.getContext('2d');
+    let pixels = null;
+    let res = 0;
+    return function drawLand(ctx, map, rotY, rotX, cx, cy, r) {
+      if (!map || !viewCtx) return;
+      const next = Math.max(148, Math.min(200, Math.round(r * 1.85)));
+      if (res !== next) {
+        res = next;
+        view.width = res;
+        view.height = res;
+        pixels = viewCtx.createImageData(res, res);
       }
-    }
-    ctx.restore();
+      const out = pixels.data;
+      out.fill(0);
+      const src = map.data;
+      const sw = map.width;
+      const sh = map.height;
+      const cr = (res - 1) * 0.5;
+      const cX = Math.cos(rotX);
+      const sX = Math.sin(rotX);
+      const cY = Math.cos(rotY);
+      const sY = Math.sin(rotY);
+      for (let py = 0; py < res; py++) {
+        const ny = (cr - py) / cr;
+        const ny2 = ny * ny;
+        for (let px = 0; px < res; px++) {
+          const nx = (px - cr) / cr;
+          const n2 = nx * nx + ny2;
+          if (n2 > 0.992) continue;
+          const nz = Math.sqrt(1 - n2);
+          const y1 = ny * cX + nz * sX;
+          const z1 = -ny * sX + nz * cX;
+          const x0 = nx * cY - z1 * sY;
+          const z0 = nx * sY + z1 * cY;
+          const lat = Math.asin(Math.max(-1, Math.min(1, y1)));
+          const lng = Math.atan2(x0, z0);
+          let mx = Math.floor(((lng / Math.PI + 1) * 0.5) * sw);
+          let my = Math.floor(((0.5 - lat / Math.PI) * sh));
+          if (my < 0 || my >= sh) continue;
+          mx = ((mx % sw) + sw) % sw;
+          const si = (my * sw + mx) * 4;
+          const a = src[si + 3];
+          if (a < 10) continue;
+          const shade = 0.42 + nz * 0.58;
+          const di = (py * res + px) * 4;
+          out[di] = src[si] * shade;
+          out[di + 1] = src[si + 1] * shade;
+          out[di + 2] = src[si + 2] * shade;
+          out[di + 3] = a * (0.72 + nz * 0.28);
+        }
+      }
+      viewCtx.putImageData(pixels, 0, 0);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(view, cx - r, cy - r, r * 2, r * 2);
+      ctx.restore();
+    };
   }
 
   function lerp(a, b, t) {
@@ -239,45 +269,6 @@
     ctx.stroke();
   }
 
-  function drawGrid(ctx, rotY, rotX, cx, cy, r) {
-    ctx.lineWidth = 0.7;
-    for (let mer = -180; mer < 180; mer += 30) {
-      ctx.beginPath();
-      let drawing = false;
-      for (let lat = -90; lat <= 90; lat += 4) {
-        const p = project(latLngToVec(lat, mer), rotY, rotX, cx, cy, r);
-        if (p.z < -0.02) {
-          drawing = false;
-          continue;
-        }
-        const alpha = 0.02 + Math.max(0, p.z) * 0.055;
-        if (!drawing) {
-          ctx.strokeStyle = `rgba(180, 220, 230, ${alpha})`;
-          ctx.moveTo(p.x, p.y);
-          drawing = true;
-        } else ctx.lineTo(p.x, p.y);
-      }
-      ctx.stroke();
-    }
-    for (let par = -60; par <= 60; par += 30) {
-      ctx.beginPath();
-      let drawing = false;
-      for (let lng = -180; lng <= 180; lng += 4) {
-        const p = project(latLngToVec(par, lng), rotY, rotX, cx, cy, r);
-        if (p.z < -0.02) {
-          drawing = false;
-          continue;
-        }
-        if (!drawing) {
-          ctx.moveTo(p.x, p.y);
-          drawing = true;
-        } else ctx.lineTo(p.x, p.y);
-      }
-      ctx.strokeStyle = 'rgba(180, 220, 230, 0.045)';
-      ctx.stroke();
-    }
-  }
-
   function drawArc(ctx, pts, rotY, rotX, cx, cy, r, t) {
     const projected = pts.map((p) => project(p, rotY, rotX, cx, cy, r));
     ctx.lineCap = 'round';
@@ -329,7 +320,8 @@
     const stars = buildStars(90);
     const points = [];
     const arcs = [];
-    let landRings = [];
+    const drawLand = createLandPainter();
+    let landMap = null;
     let rotY = -toRad(VALLEY.lng);
     let rotX = 0.38;
     let velY = 0;
@@ -409,8 +401,7 @@
 
       drawAtmosphere(ctx, cx, cy, r);
       drawSphere(ctx, cx, cy, r);
-      drawLand(ctx, landRings, rotY, rotX, cx, cy, r);
-      drawGrid(ctx, rotY, rotX, cx, cy, r);
+      drawLand(ctx, landMap, rotY, rotX, cx, cy, r);
 
       const night = ctx.createRadialGradient(cx + r * 0.45, cy + r * 0.1, r * 0.2, cx, cy, r);
       night.addColorStop(0, 'rgba(0, 0, 0, 0)');
@@ -508,7 +499,7 @@
     fetch('/data/world-land.json', { headers: { Accept: 'application/json' } })
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => {
-        landRings = decodeLandRings(data);
+        landMap = buildLandTexture(data && data.rings);
         startLoop();
       })
       .catch(() => {});
