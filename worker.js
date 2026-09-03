@@ -175,6 +175,19 @@ function queueProtocolPresence(request, env, ctx) {
   return true;
 }
 
+function isHtmlDocumentRequest(request, path) {
+  if (request.method !== 'GET') return false;
+  if (!(request.headers.get('accept') || '').includes('text/html')) return false;
+  if (/\.[a-z0-9]{2,5}$/i.test(path) && !/\.html?$/i.test(path)) return false;
+  return true;
+}
+
+function stampPresence(request, env, ctx, res, path) {
+  if (!res || !isHtmlDocumentRequest(request, path)) return res;
+  const recorded = queueProtocolPresence(request, env, ctx);
+  return recorded ? withSetCookie(res, presenceSetCookie(request)) : res;
+}
+
 async function handleProtocolPresence(env) {
   if (!env.PROTOCOL_PRESENCE) {
     return json({ ok: true, total: 0, countryCount: 0, countries: [] });
@@ -288,7 +301,7 @@ async function serveSection(request, env, section) {
     .transform(res);
 }
 
-async function handleEvent(request, env, ctx) {
+async function handleEvent(request, env) {
   let body = {};
   try {
     body = await request.json();
@@ -304,12 +317,7 @@ async function handleEvent(request, env, ctx) {
     section,
     clip(body.path, 120)
   ]);
-  let res = json({ ok: true });
-  if (event === 'chapter_open' && section === 'protocol') {
-    const recorded = queueProtocolPresence(request, env, ctx);
-    if (recorded) res = withSetCookie(res, presenceSetCookie(request));
-  }
-  return res;
+  return json({ ok: true });
 }
 
 function buildContactEmail(body) {
@@ -511,7 +519,7 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
-    if (url.pathname === '/api/event' && request.method === 'POST') return handleEvent(request, env, ctx);
+    if (url.pathname === '/api/event' && request.method === 'POST') return handleEvent(request, env);
     if (url.pathname === '/api/contact' && request.method === 'POST') return handleContact(request, env);
     if (url.pathname === '/api/subscribe' && request.method === 'POST') return handleSubscribe(request, env);
     if (url.pathname === '/api/instagram' && request.method === 'GET') return handleInstagram();
@@ -539,14 +547,11 @@ export default {
         if (request.method === 'HEAD') {
           return new Response(null, { status: page.status, headers: page.headers });
         }
-        if (section === 'protocol' && request.method === 'GET' && acceptsHtml) {
-          const recorded = queueProtocolPresence(request, env, ctx);
-          return recorded ? withSetCookie(page, presenceSetCookie(request)) : page;
-        }
-        return page;
+        return stampPresence(request, env, ctx, page, path);
       }
     }
 
-    return env.ASSETS.fetch(request);
+    const asset = await env.ASSETS.fetch(request);
+    return stampPresence(request, env, ctx, asset, path);
   }
 };
