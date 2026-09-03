@@ -34,6 +34,12 @@
       "dataset": "sensei_analytics"
     }
   ],
+  "kv_namespaces": [
+    {
+      "binding": "PROTOCOL_PRESENCE",
+      "id": "def2ec654a2a4c4c89eaab3236b7bdb0"
+    }
+  ],
   "vars": {
     "CONTACT_TO": "brown@senseistudios.com"
   }

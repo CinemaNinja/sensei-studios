@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initProtocolSubscribe();
   initProtocolJoinFilm();
+  if (typeof initProtocolGlobe === 'function') initProtocolGlobe();
   initPrefillLinks();
   initInquiryTypeToggles();
   initScrollReveals();
@@ -1081,6 +1082,14 @@ function openHomeSection(key, { scroll = true, exclusive = false, updateUrl = fa
       history.pushState({ section: id }, '', next);
     }
     senseiTrack('chapter_open', key);
+    if (key === 'protocol') {
+      try {
+        const secure = location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = `ss_protocol_presence=1; Path=/; Max-Age=86400; SameSite=Lax${secure}`;
+      } catch (_) {
+        /* presence cookie is best-effort */
+      }
+    }
   }
 
   if (scroll) {

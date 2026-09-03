@@ -33,6 +33,41 @@ const server = http.createServer((req, res) => {
   let pathname = decodeURIComponent(parsedUrl.pathname);
 
   const apiPath = pathname.replace(/\/+$/, '') || '/';
+  if (apiPath === '/api/protocol-presence' && (req.method === 'GET' || !req.method)) {
+    const payload = {
+      ok: true,
+      total: 86,
+      countryCount: 18,
+      countries: [
+        { code: 'US', n: 31 },
+        { code: 'CA', n: 8 },
+        { code: 'GB', n: 7 },
+        { code: 'DE', n: 6 },
+        { code: 'JP', n: 5 },
+        { code: 'AU', n: 4 },
+        { code: 'BR', n: 4 },
+        { code: 'IN', n: 3 },
+        { code: 'FR', n: 3 },
+        { code: 'MX', n: 3 },
+        { code: 'KR', n: 2 },
+        { code: 'IT', n: 2 },
+        { code: 'NL', n: 2 },
+        { code: 'SE', n: 2 },
+        { code: 'NZ', n: 1 },
+        { code: 'ZA', n: 1 },
+        { code: 'KE', n: 1 },
+        { code: 'IS', n: 1 }
+      ]
+    };
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache'
+    });
+    res.end(JSON.stringify(payload));
+    return;
+  }
+
   if (apiPath === '/api/instagram' && (req.method === 'GET' || !req.method)) {
     const igPath = path.join(ROOT, 'data', 'instagram.json');
     try {

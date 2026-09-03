@@ -83,14 +83,15 @@ const LEGACY_REDIRECTS = {
   '/bio': '/story'
 };
 
-function json(data, status = 200) {
+function json(data, status = 200, extraHeaders) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       'content-type': 'application/json; charset=utf-8',
       'access-control-allow-origin': '*',
       'access-control-allow-headers': 'content-type',
-      'access-control-allow-methods': 'POST, GET, OPTIONS'
+      'access-control-allow-methods': 'POST, GET, OPTIONS',
+      ...(extraHeaders || {})
     }
   });
 }
@@ -110,6 +111,93 @@ function track(env, blobs) {
   } catch (_) {
     /* analytics must never break a request */
   }
+}
+
+const PRESENCE_COOKIE = 'ss_protocol_presence';
+
+function isLikelyBot(request) {
+  const ua = (request.headers.get('user-agent') || '').toLowerCase();
+  if (!ua) return true;
+  return /bot|crawl|spider|slurp|wget|curl|python-requests|python-urllib|headless|lighthouse|pagespeed/.test(ua);
+}
+
+function hasPresenceCookie(request) {
+  const raw = request.headers.get('cookie') || '';
+  return new RegExp(`(?:^|;\\s*)${PRESENCE_COOKIE}=1(?:;|$)`).test(raw);
+}
+
+function presenceSetCookie(request) {
+  const secure = (() => {
+    try {
+      return new URL(request.url).protocol === 'https:' ? '; Secure' : '';
+    } catch (_) {
+      return '';
+    }
+  })();
+  return `${PRESENCE_COOKIE}=1; Path=/; Max-Age=86400; SameSite=Lax${secure}`;
+}
+
+function withSetCookie(res, cookie) {
+  if (!cookie || !res) return res;
+  const headers = new Headers(res.headers);
+  headers.append('Set-Cookie', cookie);
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
+function countryCode(request) {
+  const code = clip(request.cf && request.cf.country, 8).toUpperCase();
+  if (!code || code === 'XX' || code === 'T1') return 'XX';
+  return code;
+}
+
+async function recordProtocolPresence(request, env) {
+  if (!env.PROTOCOL_PRESENCE || isLikelyBot(request)) return;
+  const country = countryCode(request);
+  const snap = (await env.PROTOCOL_PRESENCE.get('snapshot', { type: 'json' })) || {
+    total: 0,
+    countries: {}
+  };
+  snap.total = (Number(snap.total) || 0) + 1;
+  snap.countries = snap.countries && typeof snap.countries === 'object' ? snap.countries : {};
+  if (country !== 'XX') {
+    snap.countries[country] = (Number(snap.countries[country]) || 0) + 1;
+  }
+  snap.updated = Date.now();
+  await env.PROTOCOL_PRESENCE.put('snapshot', JSON.stringify(snap));
+}
+
+function queueProtocolPresence(request, env, ctx) {
+  if (hasPresenceCookie(request)) return false;
+  if (isLikelyBot(request)) return false;
+  if (env.PROTOCOL_PRESENCE && ctx && typeof ctx.waitUntil === 'function') {
+    ctx.waitUntil(recordProtocolPresence(request, env));
+  }
+  return true;
+}
+
+async function handleProtocolPresence(env) {
+  if (!env.PROTOCOL_PRESENCE) {
+    return json({ ok: true, total: 0, countryCount: 0, countries: [] });
+  }
+  const snap = (await env.PROTOCOL_PRESENCE.get('snapshot', { type: 'json' })) || {
+    total: 0,
+    countries: {}
+  };
+  const countries = Object.entries(snap.countries || {})
+    .map(([code, n]) => ({ code: String(code).slice(0, 8), n: Number(n) || 0 }))
+    .filter((row) => row.n > 0 && /^[A-Z]{2}$/.test(row.code) && row.code !== 'XX' && row.code !== 'T1')
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 120);
+  return json(
+    {
+      ok: true,
+      total: Number(snap.total) || 0,
+      countryCount: countries.length,
+      countries
+    },
+    200,
+    { 'cache-control': 'public, max-age=15' }
+  );
 }
 
 function publicOrigin(request) {
@@ -200,7 +288,7 @@ async function serveSection(request, env, section) {
     .transform(res);
 }
 
-async function handleEvent(request, env) {
+async function handleEvent(request, env, ctx) {
   let body = {};
   try {
     body = await request.json();
@@ -209,13 +297,19 @@ async function handleEvent(request, env) {
   }
   const event = clip(body.event, 40);
   if (!event) return json({ ok: false }, 400);
+  const section = clip(body.section, 40);
   track(env, [
     'event',
     event,
-    clip(body.section, 40),
+    section,
     clip(body.path, 120)
   ]);
-  return json({ ok: true });
+  let res = json({ ok: true });
+  if (event === 'chapter_open' && section === 'protocol') {
+    const recorded = queueProtocolPresence(request, env, ctx);
+    if (recorded) res = withSetCookie(res, presenceSetCookie(request));
+  }
+  return res;
 }
 
 function buildContactEmail(body) {
@@ -417,10 +511,13 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
-    if (url.pathname === '/api/event' && request.method === 'POST') return handleEvent(request, env);
+    if (url.pathname === '/api/event' && request.method === 'POST') return handleEvent(request, env, ctx);
     if (url.pathname === '/api/contact' && request.method === 'POST') return handleContact(request, env);
     if (url.pathname === '/api/subscribe' && request.method === 'POST') return handleSubscribe(request, env);
     if (url.pathname === '/api/instagram' && request.method === 'GET') return handleInstagram();
+    if ((url.pathname === '/api/protocol-presence' || path === '/api/protocol-presence') && request.method === 'GET') {
+      return handleProtocolPresence(env);
+    }
     if (url.pathname.startsWith('/api/') && request.method === 'OPTIONS') return json({ ok: true });
 
     if (request.method === 'GET' || request.method === 'HEAD') {
@@ -441,6 +538,10 @@ export default {
         const page = await serveSection(request, env, section);
         if (request.method === 'HEAD') {
           return new Response(null, { status: page.status, headers: page.headers });
+        }
+        if (section === 'protocol' && request.method === 'GET' && acceptsHtml) {
+          const recorded = queueProtocolPresence(request, env, ctx);
+          return recorded ? withSetCookie(page, presenceSetCookie(request)) : page;
         }
         return page;
       }

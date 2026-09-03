@@ -5527,6 +5527,140 @@ details.arsenal-dropdown > summary {
   }
 }
 
+/* ---- The Weight of Belief + presence globe ---- */
+.protocol-belief-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  background:
+    radial-gradient(90% 130% at 0% 0%, rgba(255, 177, 66, 0.12), transparent 52%),
+    radial-gradient(100% 140% at 100% 100%, rgba(56, 248, 212, 0.1), transparent 50%),
+    var(--bg-card);
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: 3.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 36px rgba(255, 177, 66, 0.1);
+  backdrop-filter: blur(16px);
+}
+
+.protocol-belief-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: #fff;
+  margin: 0.35rem 0 1rem;
+}
+
+.protocol-belief-lead {
+  font-size: clamp(1.02rem, 1.15vw, 1.12rem);
+  color: var(--text-main);
+  line-height: 1.75;
+  margin: 0 0 1.1rem;
+}
+
+.protocol-belief-lead:last-of-type {
+  margin-bottom: 1.75rem;
+}
+
+.protocol-presence-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.protocol-presence-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--accent-gold-bright);
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.28);
+}
+
+.protocol-presence-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.protocol-globe-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.protocol-globe-frame {
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+#protocol-globe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+#protocol-globe:active {
+  cursor: grabbing;
+}
+
+.protocol-globe-pin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0.28rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  background: rgba(7, 9, 14, 0.82);
+  color: var(--accent-gold-bright);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.protocol-globe-caption {
+  max-width: 34rem;
+  margin: 1.1rem 0 0;
+  padding: 0 0.5rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+@media (max-width: 992px) {
+  .protocol-belief-card {
+    grid-template-columns: 1fr;
+  }
+
+  .protocol-presence-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ==========================================================================
    FLOAT CONTROLS + FOOTER
    ========================================================================== */
