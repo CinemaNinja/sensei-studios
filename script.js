@@ -71,9 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================================================== */
 function initScrollMemory() {
   const storageKey = 'sensei:scroll';
-  const pageKey = location.pathname + location.search;
   const isReload = navigationType === 'reload';
   const locked = () => document.body.classList.contains('loading-lock');
+
+  const pageKey = () => {
+    const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    if (path === '/' || PATH_SECTION[path]) return 'home';
+    return path + (location.search || '');
+  };
 
   let holdSaves = isReload;
   let restoring = false;
@@ -81,12 +86,12 @@ function initScrollMemory() {
   let layoutObserver = null;
 
   const save = () => {
-    if (holdSaves || locked()) return;
+    if (holdSaves || locked() || restoring) return;
     try {
       sessionStorage.setItem(
         storageKey,
         JSON.stringify({
-          page: pageKey,
+          page: pageKey(),
           hash: location.hash,
           open: pageDropdowns().filter((d) => d.open).map((d) => d.id),
           y: Math.round(window.scrollY || window.pageYOffset || 0)
@@ -140,13 +145,13 @@ function initScrollMemory() {
     return;
   }
 
-  const readSavedY = () => {
+  const readSaved = () => {
     try {
       const data = JSON.parse(sessionStorage.getItem(storageKey) || 'null');
-      if (!data || data.page !== pageKey) return null;
+      if (!data || data.page !== pageKey()) return null;
       const y = Number(data.y);
       if (!Number.isFinite(y) || y < 1) return null;
-      return y;
+      return data;
     } catch (_) {
       return null;
     }
@@ -154,9 +159,12 @@ function initScrollMemory() {
 
   const restore = () => {
     if (!restoring || locked()) return;
-    const y = readSavedY();
-    if (y == null) return;
-    scrollInstant(y);
+    const data = readSaved();
+    if (!data) return;
+    if (Array.isArray(data.open) && data.open.length && typeof setPageDropdownsOpen === 'function') {
+      setPageDropdownsOpen(data.open);
+    }
+    scrollInstant(Number(data.y));
   };
 
   const stopRestoring = () => {
@@ -170,12 +178,12 @@ function initScrollMemory() {
       layoutObserver.disconnect();
       layoutObserver = null;
     }
+    save();
   };
 
   const onUserTakeover = () => {
     if (!restoring || locked()) return;
     stopRestoring();
-    save();
   };
 
   window.addEventListener('wheel', onUserTakeover, { passive: true });
@@ -205,7 +213,7 @@ function initScrollMemory() {
       layoutObserver.observe(document.documentElement);
     }
     if (restoreTimer) clearTimeout(restoreTimer);
-    restoreTimer = window.setTimeout(stopRestoring, 1600);
+    restoreTimer = window.setTimeout(stopRestoring, 2800);
   };
 
   restoring = true;
@@ -1183,6 +1191,7 @@ function initSectionDropdowns() {
   });
 
   document.addEventListener('sensei:ready', () => {
+    if (navigationType === 'reload') return;
     jumpToShareTarget();
   });
 }
