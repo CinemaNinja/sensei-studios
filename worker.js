@@ -8,8 +8,8 @@ const SECTION_META = {
   film: {
     title: 'Film & Motion | Sensei Studios',
     description:
-      'Director reel, 8K motion-controlled timelapse, FPV drone hyperlapses, Cinema 4D, and commercial cinematography by Daniel Kelly Brown.',
-    image: '/assets/og-film.jpg',
+      'Cinematography, photography, timelapse, drone, editing, and 3D & 2D animation by Daniel Kelly Brown.',
+    image: '/assets/og-film.jpg?v=2',
     canonical: '/film'
   },
   wood: {
