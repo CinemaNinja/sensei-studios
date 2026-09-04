@@ -241,7 +241,9 @@ function initPreloader() {
   const body = document.body;
   if (!preloader) return;
 
-  const maxWait = prefersReducedMotion() ? 200 : 900;
+  const minShow = prefersReducedMotion() ? 180 : 2400;
+  const hardCap = prefersReducedMotion() ? 400 : 4200;
+  const started = performance.now();
 
   function removePreloader() {
     if (preloader.classList.contains('fade-out')) return;
@@ -252,14 +254,19 @@ function initPreloader() {
       preloader.setAttribute('hidden', '');
       preloader.setAttribute('aria-hidden', 'true');
       document.dispatchEvent(new Event('sensei:ready'));
-    }, 700);
+    }, 750);
+  }
+
+  function releaseWhenReady() {
+    const wait = Math.max(0, minShow - (performance.now() - started));
+    setTimeout(removePreloader, wait);
   }
 
   if (document.readyState === 'complete') {
-    setTimeout(removePreloader, maxWait);
+    releaseWhenReady();
   } else {
-    window.addEventListener('load', () => setTimeout(removePreloader, maxWait * 0.4));
-    setTimeout(removePreloader, maxWait + 400);
+    window.addEventListener('load', releaseWhenReady, { once: true });
+    setTimeout(removePreloader, hardCap);
   }
 }
 
@@ -383,7 +390,7 @@ function initTypedText() {
     'Fine Wood Sculptor.',
     'Handpan Musician.',
     '8K Timelapse Pioneer.',
-    'FPV Drone Specialist.',
+    'Drone Specialist.',
     'Zen Web Designer.',
     'Motion Graphics Artist.',
     'Peace Protocol Architect.'

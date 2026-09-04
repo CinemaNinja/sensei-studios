@@ -60,12 +60,36 @@
   <canvas id="zen-canvas" aria-hidden="true"></canvas>
   <div id="custom-cursor" aria-hidden="true"></div>
   <div id="preloader" aria-hidden="true">
-    <div class="preloader-enso-wrapper">
-      <div class="preloader-enso"></div>
-      <img src="/assets/cinema_samurai_logo_nav.webp" alt="" class="preloader-logo" width="70" height="70">
+    <div class="preloader-grain" aria-hidden="true"></div>
+    <div class="preloader-vignette" aria-hidden="true"></div>
+    <div class="preloader-stage">
+      <div class="preloader-aura" aria-hidden="true"></div>
+      <div class="preloader-mark">
+        <svg class="preloader-tri preloader-tri--outer" viewBox="0 0 240 220" fill="none" aria-hidden="true">
+          <polygon class="preloader-tri-ghost" points="120,18 226,202 14,202" />
+          <polygon class="preloader-tri-track" points="120,18 226,202 14,202" />
+          <polygon class="preloader-tri-bar" pathLength="1" points="120,18 226,202 14,202" />
+        </svg>
+        <svg class="preloader-tri preloader-tri--inner" viewBox="0 0 240 220" fill="none" aria-hidden="true">
+          <polygon class="preloader-tri-inner" points="120,52 194,184 46,184" />
+        </svg>
+        <span class="preloader-vertex preloader-vertex--apex" aria-hidden="true"></span>
+        <span class="preloader-vertex preloader-vertex--left" aria-hidden="true"></span>
+        <span class="preloader-vertex preloader-vertex--right" aria-hidden="true"></span>
+        <img
+          src="/assets/cinema_samurai_logo.webp"
+          alt=""
+          class="preloader-logo"
+          width="934"
+          height="1024"
+        >
+      </div>
+      <div class="preloader-copy">
+        <p class="preloader-kicker">Cinema Samurai</p>
+        <p class="preloader-title">SENSEI STUDIOS</p>
+        <p class="preloader-subtitle">ENTER THE DOJO</p>
+      </div>
     </div>
-    <div class="preloader-title">SENSEI STUDIOS</div>
-    <div class="preloader-subtitle">ENTER THE DOJO</div>
   </div>
   <nav class="site-nav" id="site-nav" aria-label="Primary">
     <div class="container nav-container">
