@@ -26,7 +26,11 @@
     SN: [14.5, -14.5], SV: [13.8, -88.9], TH: [15.9, 101.0], TJ: [38.9, 71.0], TM: [39.0, 59.6],
     TN: [34.0, 9.5], TR: [39.0, 35.2], TW: [23.7, 121.0], TZ: [-6.4, 34.9],
     UA: [49.0, 32.0], UG: [1.3, 32.3], US: [39.8, -98.6], UY: [-32.5, -55.8], UZ: [41.4, 64.6],
-    VE: [6.4, -66.6], VN: [16.2, 107.8], ZA: [-29.0, 25.0], ZM: [-13.1, 27.8], ZW: [-19.0, 29.9]
+    VE: [6.4, -66.6], VN: [16.2, 107.8], ZA: [-29.0, 25.0], ZM: [-13.1, 27.8], ZW: [-19.0, 29.9],
+    HT: [19.0, -72.4], ME: [42.7, 19.4], MK: [41.6, 21.7], MD: [47.4, 28.5], MN: [46.9, 103.8],
+    MM: [21.9, 96.0], MT: [35.9, 14.4], MC: [43.7, 7.4], LI: [47.2, 9.5], SM: [43.9, 12.5],
+    VA: [41.9, 12.5], XK: [42.6, 20.9], BS: [25.0, -77.4], BB: [13.2, -59.5], BM: [32.3, -64.8],
+    CI: [7.5, -5.5], CD: [-4.0, 21.8], CG: [-0.7, 15.8]
   };
 
   const GOLD = [255, 215, 0];
@@ -278,10 +282,10 @@
       if (a.z < 0 && b.z < 0) continue;
       const u = i / projected.length;
       const pulse = 0.55 + 0.45 * Math.max(0, Math.sin((u - (t % 1)) * Math.PI * 2));
-      const alpha = Math.max(0.12, Math.min(a.z, b.z, 1) * 0.75) * (0.45 + pulse * 0.7);
+      const alpha = Math.max(0.22, Math.min(a.z, b.z, 1) * 0.92) * (0.55 + pulse * 0.7);
       const g = lerp(TEAL[1], GOLD[1], u);
       ctx.strokeStyle = `rgba(${lerp(TEAL[0], GOLD[0], u)}, ${g}, ${lerp(TEAL[2], GOLD[2], u)}, ${alpha})`;
-      ctx.lineWidth = 1.4 + pulse * 1.8;
+      ctx.lineWidth = 1.7 + pulse * 2.1;
       ctx.beginPath();
       ctx.moveTo(a.x, a.y);
       ctx.lineTo(b.x, b.y);
@@ -355,21 +359,28 @@
       arcs.length = 0;
       const rows = Array.isArray(data && data.countries) ? data.countries : [];
       const maxN = rows.reduce((m, row) => Math.max(m, Number(row.n) || 0), 1);
+      let plotted = 0;
       rows.forEach((row) => {
         const ll = CENTROIDS[row.code];
         if (!ll) return;
-        const vec = latLngToVec(ll[0], ll[1]);
         const n = Number(row.n) || 1;
-        points.push({
-          vec,
-          n,
-          radius: 2.2 + Math.sqrt(n / maxN) * 4.6,
-          phase: Math.random() * Math.PI * 2
-        });
-        arcs.push(greatArc(vec, valley, 28));
+        const copies = Math.min(14, Math.max(1, Math.round(Math.sqrt(Math.max(1, n)) / 1.6)));
+        plotted += 1;
+        for (let i = 0; i < copies; i++) {
+          const jitterLat = ll[0] + (Math.random() - 0.5) * (copies > 1 ? 7.5 : 1.2);
+          const jitterLng = ll[1] + (Math.random() - 0.5) * (copies > 1 ? 9.5 : 1.2);
+          const vec = latLngToVec(jitterLat, jitterLng);
+          points.push({
+            vec,
+            n,
+            radius: 2.1 + Math.sqrt(n / maxN) * 4.4,
+            phase: Math.random() * Math.PI * 2
+          });
+          arcs.push(greatArc(vec, valley, 26 + (i % 6)));
+        }
       });
       animateCount(totalEl, data && data.total);
-      animateCount(countriesEl, data && data.countryCount);
+      animateCount(countriesEl, data && data.countryCount ? data.countryCount : plotted);
     }
 
     function frame(ts) {

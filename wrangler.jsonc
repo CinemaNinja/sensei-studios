@@ -44,6 +44,7 @@
   "vars": {
     "CONTACT_TO": "brown@senseistudios.com",
     "CF_ACCOUNT_ID": "cd07e1c8dff3eafedb2d534a44c9e556",
+    "CF_ZONE_TAG": "e2c15ca55bc56dc98c694fc922727b9d",
     "CF_WEB_ANALYTICS_SITE_TAG": "ac8e716aa0b44369aa153cfce7e8e1e2"
   }
 }

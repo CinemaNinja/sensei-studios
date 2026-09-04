@@ -180,9 +180,11 @@ function queueProtocolPresence(request, env, ctx) {
 
 function isHtmlDocumentRequest(request, path) {
   if (request.method !== 'GET') return false;
-  if (!(request.headers.get('accept') || '').includes('text/html')) return false;
   if (/\.[a-z0-9]{2,5}$/i.test(path) && !/\.html?$/i.test(path)) return false;
-  return true;
+  const accept = request.headers.get('accept') || '';
+  if (accept.includes('text/html')) return true;
+  if (path === '/' || PATH_SECTION[path]) return !accept || accept.includes('*/*');
+  return false;
 }
 
 function stampPresence(request, env, ctx, res, path) {
@@ -192,8 +194,22 @@ function stampPresence(request, env, ctx, res, path) {
 }
 
 const CF_ACCOUNT_ID = 'cd07e1c8dff3eafedb2d534a44c9e556';
+const CF_ZONE_TAG = 'e2c15ca55bc56dc98c694fc922727b9d';
 const CF_WEB_ANALYTICS_SITE_TAG = 'ac8e716aa0b44369aa153cfce7e8e1e2';
 const ANALYTICS_TTL_MS = 15 * 60 * 1000;
+
+function asCountryCode(value) {
+  const raw = String(value || '').trim().toUpperCase();
+  if (/^[A-Z]{2}$/.test(raw)) return raw;
+  return '';
+}
+
+function addCountryCount(countries, code, n) {
+  const key = asCountryCode(code);
+  const count = Number(n) || 0;
+  if (!key || key === 'XX' || key === 'T1' || count <= 0) return;
+  countries[key] = (Number(countries[key]) || 0) + count;
+}
 
 function presencePayload(snap) {
   const countries = Object.entries(snap.countries || {})
@@ -228,19 +244,28 @@ async function queryCloudflareWebAnalytics(env) {
   if (!token) return null;
   const accountId = env.CF_ACCOUNT_ID || CF_ACCOUNT_ID;
   const siteTag = env.CF_WEB_ANALYTICS_SITE_TAG || CF_WEB_ANALYTICS_SITE_TAG;
-  const start = new Date(Date.now() - 90 * 24 * 3600 * 1000).toISOString();
+  const zoneTag = env.CF_ZONE_TAG || CF_ZONE_TAG;
+  const rumStart = new Date(Date.now() - 90 * 24 * 3600 * 1000).toISOString();
+  const zoneStart = new Date(Date.now() - 23 * 3600 * 1000).toISOString();
   const end = new Date().toISOString();
-  const query = `query($accountTag: string!, $start: Time!, $end: Time!, $siteTag: string) {
+  const query = `query($accountTag: string!, $zoneTag: string!, $rumStart: Time!, $zoneStart: Time!, $end: Time!, $siteTag: string) {
     viewer {
       accounts(filter: { accountTag: $accountTag }) {
         totals: rumPageloadEventsAdaptiveGroups(
           limit: 1
-          filter: { datetime_geq: $start, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
+          filter: { datetime_geq: $rumStart, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
         ) { count sum { visits } }
-        byCountry: rumPageloadEventsAdaptiveGroups(
+        rumCountries: rumPageloadEventsAdaptiveGroups(
           limit: 200
-          filter: { datetime_geq: $start, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
+          filter: { datetime_geq: $rumStart, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
         ) { count sum { visits } dimensions { countryName } }
+      }
+      zones(filter: { zoneTag: $zoneTag }) {
+        zoneCountries: httpRequestsAdaptiveGroups(
+          limit: 200
+          filter: { datetime_geq: $zoneStart, datetime_lt: $end, requestSource: "eyeball" }
+          orderBy: [count_DESC]
+        ) { count sum { visits } dimensions { clientCountryName } }
       }
     }
   }`;
@@ -253,20 +278,25 @@ async function queryCloudflareWebAnalytics(env) {
       },
       body: JSON.stringify({
         query,
-        variables: { accountTag: accountId, start, end, siteTag }
+        variables: { accountTag: accountId, zoneTag, rumStart, zoneStart, end, siteTag }
       })
     });
     if (!res.ok) return null;
     const body = await res.json();
-    const acct = body && body.data && body.data.viewer && body.data.viewer.accounts && body.data.viewer.accounts[0];
-    if (!acct) return null;
-    const totalRow = acct.totals && acct.totals[0];
+    const viewer = body && body.data && body.data.viewer;
+    const acct = viewer && viewer.accounts && viewer.accounts[0];
+    const zone = viewer && viewer.zones && viewer.zones[0];
+    const totalRow = acct && acct.totals && acct.totals[0];
     const total = Number(totalRow && totalRow.sum && totalRow.sum.visits) || Number(totalRow && totalRow.count) || 0;
     const countries = {};
-    for (const row of acct.byCountry || []) {
-      const code = String((row.dimensions && row.dimensions.countryName) || '').toUpperCase().slice(0, 2);
+    for (const row of (acct && acct.rumCountries) || []) {
       const n = Number(row.sum && row.sum.visits) || Number(row.count) || 0;
-      if (/^[A-Z]{2}$/.test(code) && n > 0) countries[code] = (countries[code] || 0) + n;
+      addCountryCount(countries, row.dimensions && row.dimensions.countryName, n);
+    }
+    for (const row of (zone && zone.zoneCountries) || []) {
+      const visits = Number(row.sum && row.sum.visits) || 0;
+      const requests = Number(row.count) || 0;
+      addCountryCount(countries, row.dimensions && row.dimensions.clientCountryName, Math.max(visits, requests));
     }
     return {
       total,
