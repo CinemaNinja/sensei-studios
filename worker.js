@@ -45,7 +45,7 @@ const SECTION_META = {
     description:
       'A civilization prototype on 180 acres in Old Snowmass: free food, free transportation, free shelter, and universal basic income, held together by a new focus on art.',
     image: '/assets/protocol/og-protocol.jpg',
-    canonical: '/protocol'
+    canonical: '/peace-protocol'
   },
   estimator: {
     title: 'Scope Estimator | Sensei Studios',
@@ -69,6 +69,7 @@ const PATH_SECTION = {
   '/handpan': 'handpan',
   '/web': 'web',
   '/story': 'story',
+  '/peace-protocol': 'protocol',
   '/protocol': 'protocol',
   '/vision': 'protocol',
   '/estimator': 'estimator',
@@ -80,7 +81,9 @@ const LEGACY_REDIRECTS = {
   '/woodwork': '/wood',
   '/sculptures': '/wood',
   '/work': '/film',
-  '/bio': '/story'
+  '/bio': '/story',
+  '/protocol': '/peace-protocol',
+  '/vision': '/peace-protocol'
 };
 
 function json(data, status = 200, extraHeaders) {
@@ -188,29 +191,112 @@ function stampPresence(request, env, ctx, res, path) {
   return recorded ? withSetCookie(res, presenceSetCookie(request)) : res;
 }
 
-async function handleProtocolPresence(env) {
-  if (!env.PROTOCOL_PRESENCE) {
-    return json({ ok: true, total: 0, countryCount: 0, countries: [] });
-  }
-  const snap = (await env.PROTOCOL_PRESENCE.get('snapshot', { type: 'json' })) || {
-    total: 0,
-    countries: {}
-  };
+const CF_ACCOUNT_ID = 'cd07e1c8dff3eafedb2d534a44c9e556';
+const CF_WEB_ANALYTICS_SITE_TAG = 'ac8e716aa0b44369aa153cfce7e8e1e2';
+const ANALYTICS_TTL_MS = 15 * 60 * 1000;
+
+function presencePayload(snap) {
   const countries = Object.entries(snap.countries || {})
-    .map(([code, n]) => ({ code: String(code).slice(0, 8), n: Number(n) || 0 }))
+    .map(([code, n]) => ({ code: String(code).toUpperCase().slice(0, 8), n: Number(n) || 0 }))
     .filter((row) => row.n > 0 && /^[A-Z]{2}$/.test(row.code) && row.code !== 'XX' && row.code !== 'T1')
     .sort((a, b) => b.n - a.n)
     .slice(0, 120);
-  return json(
-    {
-      ok: true,
-      total: Number(snap.total) || 0,
-      countryCount: countries.length,
-      countries
-    },
-    200,
-    { 'cache-control': 'public, max-age=15' }
-  );
+  return {
+    ok: true,
+    total: Number(snap.total) || 0,
+    countryCount: countries.length,
+    countries,
+    source: snap.source || 'cloudflare-web-analytics'
+  };
+}
+
+function mergePresence(a, b) {
+  const countries = { ...(a && a.countries) };
+  for (const [code, n] of Object.entries((b && b.countries) || {})) {
+    countries[code] = Math.max(Number(countries[code]) || 0, Number(n) || 0);
+  }
+  return {
+    total: Math.max(Number(a && a.total) || 0, Number(b && b.total) || 0),
+    countries,
+    updated: Math.max(Number(a && a.updated) || 0, Number(b && b.updated) || 0),
+    source: (a && a.source) || (b && b.source) || 'cloudflare-web-analytics'
+  };
+}
+
+async function queryCloudflareWebAnalytics(env) {
+  const token = env.CF_ANALYTICS_TOKEN;
+  if (!token) return null;
+  const accountId = env.CF_ACCOUNT_ID || CF_ACCOUNT_ID;
+  const siteTag = env.CF_WEB_ANALYTICS_SITE_TAG || CF_WEB_ANALYTICS_SITE_TAG;
+  const start = new Date(Date.now() - 90 * 24 * 3600 * 1000).toISOString();
+  const end = new Date().toISOString();
+  const query = `query($accountTag: string!, $start: Time!, $end: Time!, $siteTag: string) {
+    viewer {
+      accounts(filter: { accountTag: $accountTag }) {
+        totals: rumPageloadEventsAdaptiveGroups(
+          limit: 1
+          filter: { datetime_geq: $start, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
+        ) { count sum { visits } }
+        byCountry: rumPageloadEventsAdaptiveGroups(
+          limit: 200
+          filter: { datetime_geq: $start, datetime_lt: $end, AND: [{ siteTag: $siteTag }] }
+        ) { count sum { visits } dimensions { countryName } }
+      }
+    }
+  }`;
+  try {
+    const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query,
+        variables: { accountTag: accountId, start, end, siteTag }
+      })
+    });
+    if (!res.ok) return null;
+    const body = await res.json();
+    const acct = body && body.data && body.data.viewer && body.data.viewer.accounts && body.data.viewer.accounts[0];
+    if (!acct) return null;
+    const totalRow = acct.totals && acct.totals[0];
+    const total = Number(totalRow && totalRow.sum && totalRow.sum.visits) || Number(totalRow && totalRow.count) || 0;
+    const countries = {};
+    for (const row of acct.byCountry || []) {
+      const code = String((row.dimensions && row.dimensions.countryName) || '').toUpperCase().slice(0, 2);
+      const n = Number(row.sum && row.sum.visits) || Number(row.count) || 0;
+      if (/^[A-Z]{2}$/.test(code) && n > 0) countries[code] = (countries[code] || 0) + n;
+    }
+    return {
+      total,
+      countries,
+      updated: Date.now(),
+      source: 'cloudflare-web-analytics'
+    };
+  } catch (_) {
+    return null;
+  }
+}
+
+async function handleProtocolPresence(env, ctx) {
+  if (!env.PROTOCOL_PRESENCE) {
+    return json({ ok: true, total: 0, countryCount: 0, countries: [] });
+  }
+  const analytics = await env.PROTOCOL_PRESENCE.get('analytics', { type: 'json' });
+  const snapshot = await env.PROTOCOL_PRESENCE.get('snapshot', { type: 'json' });
+  let snap = mergePresence(analytics, snapshot);
+  const stale = !snap.updated || Date.now() - Number(snap.updated) > ANALYTICS_TTL_MS;
+  if (stale && env.CF_ANALYTICS_TOKEN) {
+    const fresh = await queryCloudflareWebAnalytics(env);
+    if (fresh) {
+      snap = mergePresence(fresh, snapshot);
+      const write = env.PROTOCOL_PRESENCE.put('analytics', JSON.stringify(fresh));
+      if (ctx && typeof ctx.waitUntil === 'function') ctx.waitUntil(write);
+      else await write;
+    }
+  }
+  return json(presencePayload(snap), 200, { 'cache-control': 'public, max-age=15' });
 }
 
 function publicOrigin(request) {
@@ -524,7 +610,7 @@ export default {
     if (url.pathname === '/api/subscribe' && request.method === 'POST') return handleSubscribe(request, env);
     if (url.pathname === '/api/instagram' && request.method === 'GET') return handleInstagram();
     if ((url.pathname === '/api/protocol-presence' || path === '/api/protocol-presence') && request.method === 'GET') {
-      return handleProtocolPresence(env);
+      return handleProtocolPresence(env, ctx);
     }
     if (url.pathname.startsWith('/api/') && request.method === 'OPTIONS') return json({ ok: true });
 

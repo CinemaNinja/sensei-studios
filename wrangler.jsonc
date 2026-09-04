@@ -19,6 +19,7 @@
       "/bio", "/bio/",
       "/work", "/work/",
       "/protocol", "/protocol/",
+      "/peace-protocol", "/peace-protocol/",
       "/vision", "/vision/",
       "/estimator", "/estimator/",
       "/scope", "/scope/",
@@ -41,6 +42,8 @@
     }
   ],
   "vars": {
-    "CONTACT_TO": "brown@senseistudios.com"
+    "CONTACT_TO": "brown@senseistudios.com",
+    "CF_ACCOUNT_ID": "cd07e1c8dff3eafedb2d534a44c9e556",
+    "CF_WEB_ANALYTICS_SITE_TAG": "ac8e716aa0b44369aa153cfce7e8e1e2"
   }
 }

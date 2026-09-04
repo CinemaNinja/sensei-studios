@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initSectionDropdowns();
   initChapterRail();
+  initEntropyGlyph();
   initContactForm();
   initProtocolSubscribe();
   initProtocolJoinFilm();
@@ -933,6 +934,7 @@ const PATH_SECTION = {
   '/handpan': 'handpan',
   '/web': 'web',
   '/story': 'story',
+  '/peace-protocol': 'protocol',
   '/protocol': 'protocol',
   '/vision': 'protocol',
   '/estimator': 'estimator',
@@ -946,7 +948,7 @@ const SECTION_SHARE_PATH = {
   handpan: '/handpan',
   web: '/web',
   bio: '/story',
-  protocol: '/protocol',
+  protocol: '/peace-protocol',
   estimator: '/estimator',
   contact: '/contact',
   arsenal: '/film#arsenal'
@@ -1404,7 +1406,284 @@ function initChapterRail() {
 }
 
 /* ==========================================================================
-   9C. PEACE PROTOCOL MOVEMENT SIGNUP
+   9C. ENTROPY GLYPH (pixels drip off the word, then the white rebuilds)
+   ========================================================================== */
+function initEntropyGlyph() {
+  const term = document.querySelector('.protocol-entropy-term');
+  const word = term?.querySelector('.protocol-entropy-word');
+  if (!term || !word) return;
+  if (prefersReducedMotion()) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'protocol-entropy-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  term.appendChild(canvas);
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
+
+  const off = document.createElement('canvas');
+  const octx = off.getContext('2d', { willReadFrequently: true, alpha: true });
+  if (!octx) return;
+
+  let dpr = 1;
+  let w = 0;
+  let h = 0;
+  let textH = 0;
+  let source = null;
+  let live = null;
+  let glyphs = [];
+  let stolen = [];
+  let particles = [];
+  let phase = 'hold';
+  let phaseUntil = 0;
+  let running = false;
+  let raf = 0;
+
+  const now = () => performance.now();
+
+  const indexOf = (x, y) => (y * w + x) * 4;
+
+  const rebuildGlyphIndex = () => {
+    glyphs = [];
+    if (!source) return;
+    for (let y = 0; y < textH; y++) {
+      for (let x = 0; x < w; x++) {
+        const i = indexOf(x, y);
+        if (source[i + 3] > 140) {
+          const below = y + 1 >= textH ? 0 : source[indexOf(x, y + 1) + 3];
+          glyphs.push({ i, x, y, edge: below < 80 });
+        }
+      }
+    }
+  };
+
+  const paintWord = () => {
+    const cs = getComputedStyle(word);
+    const rect = word.getBoundingClientRect();
+    if (rect.width < 8 || rect.height < 8) return false;
+
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    textH = Math.ceil(rect.height * dpr);
+    const dripRoom = Math.ceil(rect.height * 0.85 * dpr);
+    w = Math.ceil(rect.width * dpr);
+    h = textH + dripRoom;
+
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${h / dpr}px`;
+    off.width = w;
+    off.height = textH;
+
+    octx.clearRect(0, 0, w, textH);
+    octx.fillStyle = '#ffffff';
+    octx.font = cs.font;
+    octx.textAlign = 'center';
+    octx.textBaseline = 'middle';
+    octx.letterSpacing = cs.letterSpacing;
+    octx.scale(dpr, dpr);
+    octx.fillText((word.textContent || 'ENTROPY').trim().toUpperCase(), rect.width / 2, rect.height / 2);
+    octx.setTransform(1, 0, 0, 1, 0, 0);
+
+    const img = octx.getImageData(0, 0, w, textH);
+    source = new Uint8ClampedArray(img.data);
+    live = new Uint8ClampedArray(img.data);
+    stolen = [];
+    particles = [];
+    rebuildGlyphIndex();
+    term.classList.add('is-glyph-live');
+    phase = 'hold';
+    phaseUntil = now() + 1400;
+    return glyphs.length > 40;
+  };
+
+  const stealPixel = (g) => {
+    if (live[g.i + 3] < 40) return;
+    stolen.push({
+      i: g.i,
+      r: source[g.i],
+      g: source[g.i + 1],
+      b: source[g.i + 2],
+      a: source[g.i + 3],
+    });
+    live[g.i] = 0;
+    live[g.i + 1] = 0;
+    live[g.i + 2] = 0;
+    live[g.i + 3] = 0;
+    for (const n of glyphs) {
+      if (n.i === g.i) continue;
+      if (Math.abs(n.x - g.x) > 1 || Math.abs(n.y - g.y) > 1) continue;
+      if (live[n.i + 3] < 40) continue;
+      stolen.push({
+        i: n.i,
+        r: source[n.i],
+        g: source[n.i + 1],
+        b: source[n.i + 2],
+        a: source[n.i + 3],
+      });
+      live[n.i] = live[n.i + 1] = live[n.i + 2] = live[n.i + 3] = 0;
+    }
+    particles.push({
+      x: g.x + 0.5,
+      y: g.y + 0.5,
+      vx: (Math.random() - 0.5) * 0.12,
+      vy: 0.28 + Math.random() * 0.4,
+      life: 0,
+      max: 46 + Math.random() * 32,
+      r: 255,
+      g: 255,
+      b: 255,
+      s: 1.4 + Math.random() * 1.3,
+    });
+  };
+
+  const pickGlyph = () => {
+    if (!glyphs.length) return null;
+    const bias = Math.random();
+    if (bias < 0.88) {
+      const edges = glyphs.filter((g) => g.edge && live[g.i + 3] > 40);
+      if (edges.length) return edges[(Math.random() * edges.length) | 0];
+    }
+    const liveGlyphs = glyphs.filter((g) => live[g.i + 3] > 40);
+    if (!liveGlyphs.length) return null;
+    liveGlyphs.sort((a, b) => b.y - a.y);
+    const tail = liveGlyphs.slice(0, Math.max(8, (liveGlyphs.length * 0.35) | 0));
+    return tail[(Math.random() * tail.length) | 0];
+  };
+
+  const hasLiveNeighbor = (i) => {
+    const pixel = i / 4;
+    const x = pixel % w;
+    const y = (pixel / w) | 0;
+    for (let oy = -1; oy <= 1; oy++) {
+      for (let ox = -1; ox <= 1; ox++) {
+        if (!ox && !oy) continue;
+        const nx = x + ox;
+        const ny = y + oy;
+        if (nx < 0 || ny < 0 || nx >= w || ny >= textH) continue;
+        if (live[indexOf(nx, ny) + 3] > 120) return true;
+      }
+    }
+    return false;
+  };
+
+  const tick = (t) => {
+    if (!running || !live || !source) {
+      raf = 0;
+      return;
+    }
+
+    if (t >= phaseUntil) {
+      if (phase === 'hold') {
+        phase = 'dissolve';
+        phaseUntil = t + 5200;
+      } else if (phase === 'dissolve') {
+        phase = 'rebuild';
+        phaseUntil = t + 3200;
+      } else {
+        phase = 'hold';
+        phaseUntil = t + 1600;
+      }
+    }
+
+    if (phase === 'dissolve') {
+      const budget = 2 + ((Math.random() * 3) | 0);
+      const maxStolen = (glyphs.length * 0.16) | 0;
+      for (let n = 0; n < budget && stolen.length < maxStolen; n++) {
+        const g = pickGlyph();
+        if (g) stealPixel(g);
+      }
+    }
+
+    if (phase === 'rebuild' && stolen.length) {
+      stolen.sort((a, b) => {
+        const an = hasLiveNeighbor(a.i) ? 0 : 1;
+        const bn = hasLiveNeighbor(b.i) ? 0 : 1;
+        return an - bn;
+      });
+      const restore = Math.min(stolen.length, 14 + ((Math.random() * 10) | 0));
+      for (let n = 0; n < restore; n++) {
+        const p = stolen.shift();
+        live[p.i] = p.r;
+        live[p.i + 1] = p.g;
+        live[p.i + 2] = p.b;
+        live[p.i + 3] = p.a;
+      }
+    }
+
+    ctx.clearRect(0, 0, w, h);
+    const img = octx.createImageData(w, textH);
+    img.data.set(live);
+    octx.putImageData(img, 0, 0);
+    ctx.drawImage(off, 0, 0);
+
+    const next = [];
+    for (const p of particles) {
+      p.life += 1;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.045;
+      const k = 1 - p.life / p.max;
+      if (k <= 0 || p.y > h) continue;
+      ctx.globalAlpha = Math.max(0, k * 0.95);
+      ctx.fillStyle = `rgb(${p.r},${p.g},${p.b})`;
+      const rw = Math.max(1.6, dpr * p.s);
+      const rh = rw * (1.8 + (1 - k) * 1.4);
+      ctx.beginPath();
+      ctx.ellipse(p.x, p.y, rw, rh, 0, 0, Math.PI * 2);
+      ctx.fill();
+      next.push(p);
+    }
+    particles = next;
+    ctx.globalAlpha = 1;
+
+    raf = requestAnimationFrame(tick);
+  };
+
+  const start = () => {
+    if (running) return;
+    running = true;
+    if (!raf) raf = requestAnimationFrame(tick);
+  };
+
+  const stop = () => {
+    running = false;
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
+  };
+
+  const boot = () => {
+    if (!paintWord()) {
+      term.classList.remove('is-glyph-live');
+      return;
+    }
+    start();
+  };
+
+  const fontsReady = document.fonts?.ready || Promise.resolve();
+  fontsReady.then(() => requestAnimationFrame(boot));
+
+  let resizeWait = 0;
+  const onResize = () => {
+    clearTimeout(resizeWait);
+    resizeWait = setTimeout(boot, 160);
+  };
+  window.addEventListener('resize', onResize, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      },
+      { rootMargin: '80px 0px' }
+    );
+    io.observe(term);
+  }
+}
+
+/* ==========================================================================
+   9D. PEACE PROTOCOL MOVEMENT SIGNUP
    ========================================================================== */
 function initProtocolJoinFilm() {
   const video = document.getElementById('protocol-join-video');
