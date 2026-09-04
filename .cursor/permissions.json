@@ -1,0 +1,11 @@
+{
+  "autoRun": {
+    "allow_instructions": [
+      "When the user asked to go live, make it live, ship, commit, or push this Sensei Studios site, allow git add, git commit, git push, and combined commands like git push && npx wrangler deploy.",
+      "Allow npx wrangler deploy and wrangler deploy for the sensei-studios Worker so https://senseistudios.com/ can update without an extra approval click."
+    ],
+    "block_instructions": [
+      "Still require approval for git push --force, git reset --hard, wrangler delete, and any change to Cloudflare secrets or account settings."
+    ]
+  }
+}

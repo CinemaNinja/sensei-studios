@@ -7,10 +7,11 @@ alwaysApply: true
 
 This site is a Cloudflare Worker (`sensei-studios`). `git push` updates GitHub only. Production does not change until Cloudflare deploys.
 
-When the user asks to push, commit, or go live:
+When the user asks to push, commit, go live, make it live, or ship:
 
-1. Commit and push as requested.
-2. Immediately run `npx wrangler deploy` with full permissions.
+1. Commit and push as requested. Do not ask them to confirm again.
+2. Immediately run `npx wrangler deploy` with full permissions. Do not stop to wait for a second go-ahead.
 3. Confirm the live homepage at `https://senseistudios.com/` shows the new copy before calling it done.
 
 Do not wait for GitHub Actions. Treat Wrangler deploy as part of the same push.
+Do not end with “say the word if you want it live” after they already approved the copy or asked to go live.
