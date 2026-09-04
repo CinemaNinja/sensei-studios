@@ -4079,15 +4079,33 @@ details.arsenal-dropdown > summary {
 }
 
 .protocol-entropy-term {
+  position: relative;
   font-family: var(--font-heading);
   font-size: clamp(2.4rem, 6vw, 4.4rem);
   letter-spacing: 0.08em;
   line-height: 0.95;
   text-transform: uppercase;
   color: #fff;
-  margin: 0 0 0.45rem;
-  filter: url(#entropy-melt);
-  will-change: filter;
+  margin: 0 0 0.35rem;
+  padding-bottom: 0.85em;
+}
+
+.protocol-entropy-word {
+  display: inline-block;
+}
+
+.protocol-entropy-term.is-glyph-live .protocol-entropy-word {
+  visibility: hidden;
+}
+
+.protocol-entropy-canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  display: block;
+  z-index: 1;
 }
 
 .protocol-entropy-def {
@@ -4095,7 +4113,7 @@ details.arsenal-dropdown > summary {
   font-size: clamp(1.05rem, 2.1vw, 1.45rem);
   letter-spacing: 0.04em;
   color: #38f8d4;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 1.1rem;
   max-width: 38rem;
 }
 
@@ -7267,8 +7285,13 @@ main > section:first-child:not(.hero) {
     transition: none;
   }
 
-  .protocol-entropy-term {
+  .protocol-entropy-word {
+    visibility: visible;
     filter: none;
+  }
+
+  .protocol-entropy-canvas {
+    display: none;
   }
 }
 

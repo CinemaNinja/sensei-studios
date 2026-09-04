@@ -1412,12 +1412,17 @@ function initEntropyGlyph() {
   const term = document.querySelector('.protocol-entropy-term');
   const word = term?.querySelector('.protocol-entropy-word');
   if (!term || !word) return;
+  if (term.dataset.entropyGlyph === '1') return;
   if (prefersReducedMotion()) return;
+  term.dataset.entropyGlyph = '1';
 
-  const canvas = document.createElement('canvas');
-  canvas.className = 'protocol-entropy-canvas';
-  canvas.setAttribute('aria-hidden', 'true');
-  term.appendChild(canvas);
+  let canvas = term.querySelector('.protocol-entropy-canvas');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.className = 'protocol-entropy-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    term.appendChild(canvas);
+  }
   const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return;
 
