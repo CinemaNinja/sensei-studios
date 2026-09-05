@@ -545,13 +545,11 @@ h1, h2, h3, h4 {
 }
 
 .preloader-title {
-  font-family: var(--font-mark);
-  font-size: clamp(1.2rem, 3.4vw, 1.7rem);
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  line-height: 1.15;
-  color: #fff;
-  margin: 0 0 0.55rem;
+  display: block;
+  width: min(22rem, 78vw);
+  height: auto;
+  max-width: none;
+  margin: 0 auto 0.55rem;
   opacity: 0;
   transform: translateY(10px);
   animation: copyIn 0.85s ease 1.05s forwards;
@@ -629,7 +627,7 @@ h1, h2, h3, h4 {
   }
 
   .preloader-title {
-    letter-spacing: 0.12em;
+    width: min(18rem, 84vw);
   }
 }
 
@@ -645,6 +643,7 @@ h1, h2, h3, h4 {
   z-index: 1000;
   overflow: visible;
   background: transparent;
+  padding-right: var(--rail-gutter);
   transition: background 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
   border-bottom: 1px solid transparent;
 }
@@ -665,6 +664,26 @@ h1, h2, h3, h4 {
   gap: 1.5rem;
   min-width: 0;
   overflow: visible;
+}
+
+@media (min-width: 1201px) {
+  .nav-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .nav-brand {
+    justify-self: start;
+  }
+
+  .nav-links {
+    flex: 0 0 auto;
+    justify-self: center;
+  }
+
+  .nav-actions {
+    justify-self: end;
+  }
 }
 
 .nav-brand {
@@ -1996,14 +2015,15 @@ details.arsenal-dropdown > summary {
   font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.6;
-  margin-bottom: 1.25rem;
-  flex-grow: 1;
+  margin-bottom: 0.85rem;
+  flex-grow: 0;
 }
 
 .video-tags {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .video-tag {
@@ -3972,6 +3992,35 @@ details.arsenal-dropdown > summary {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
   gap: 1.25rem;
   margin-top: 1.35rem;
+}
+
+.more-work-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
+
+.more-work .milestone-gallery {
+  margin-top: 0;
+}
+
+.more-work-empty {
+  margin: 1.1rem 0 0.15rem;
+  padding: 1.15rem 1.25rem;
+  color: var(--text-muted);
+  border: 1px dashed rgba(255, 177, 66, 0.28);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.95rem;
+}
+
+.more-work-feature {
+  grid-column: 1 / -1;
+}
+
+.more-work-feature .video-title {
+  font-size: 1.15rem;
 }
 
 @keyframes hireuav-shimmer {
@@ -7335,6 +7384,24 @@ main > section:first-child:not(.hero) {
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.video-card-body .case-row {
+  display: grid;
+  gap: 0.38rem;
+  margin-top: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.video-card-body .case-row > span {
+  display: grid;
+  grid-template-columns: 3.7rem minmax(0, 1fr);
+  column-gap: 0.55rem;
+  align-items: baseline;
+}
+
+.video-card-body .case-row strong {
+  margin-right: 0;
 }
 
 .sculpture-modal-card {
