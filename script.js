@@ -299,7 +299,7 @@ function initCustomCursor() {
   }
   animateCursor();
 
-  const selector = 'a, button, .video-card, .checkbox-card, .lane-card, input, select, textarea, .lazy-video-poster';
+  const selector = 'a, button, .video-card, .checkbox-card, input, select, textarea, .lazy-video-poster';
   document.querySelectorAll(selector).forEach((el) => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
