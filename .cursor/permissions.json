@@ -1,8 +1,23 @@
 {
+  "terminalAllowlist": [
+    "git status",
+    "git diff",
+    "git log",
+    "git add",
+    "git commit",
+    "git push",
+    "npx wrangler deploy",
+    "wrangler deploy",
+    "curl",
+    "python3",
+    "node"
+  ],
   "autoRun": {
     "allow_instructions": [
-      "When the user asked to go live, make it live, ship, commit, or push this Sensei Studios site, allow git add, git commit, git push, and combined commands like git push && npx wrangler deploy.",
-      "Allow npx wrangler deploy and wrangler deploy for the sensei-studios Worker so https://senseistudios.com/ can update without an extra approval click."
+      "When the user asked to go live, make it live, ship, commit, or push this Sensei Studios site, allow git add, git commit, git push, and combined commands like git add && git commit && git push && npx wrangler deploy.",
+      "Allow npx wrangler deploy and wrangler deploy for the sensei-studios Worker so https://senseistudios.com/ can update without an extra approval click.",
+      "Allow a single combined go-live command that commits, pushes, and deploys in one shot.",
+      "Allow curl or similar read-only checks of https://senseistudios.com/ after a deploy to confirm the live homepage."
     ],
     "block_instructions": [
       "Still require approval for git push --force, git reset --hard, wrangler delete, and any change to Cloudflare secrets or account settings."

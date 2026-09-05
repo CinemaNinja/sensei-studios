@@ -10,8 +10,9 @@ This site is a Cloudflare Worker (`sensei-studios`). `git push` updates GitHub o
 When the user asks to push, commit, go live, make it live, or ship:
 
 1. Commit and push as requested. Do not ask them to confirm again.
-2. Immediately run `npx wrangler deploy` with full permissions. Do not stop to wait for a second go-ahead.
-3. Confirm the live homepage at `https://senseistudios.com/` shows the new copy before calling it done.
+2. Prefer one shell command (`git add` + `git commit` + `git push` + `npx wrangler deploy`) so they get at most one approval card.
+3. Immediately run `npx wrangler deploy` with full permissions. Do not stop to wait for a second go-ahead.
+4. Confirm the live homepage at `https://senseistudios.com/` shows the new copy before calling it done.
 
 Do not wait for GitHub Actions. Treat Wrangler deploy as part of the same push.
 Do not end with “say the word if you want it live” after they already approved the copy or asked to go live.

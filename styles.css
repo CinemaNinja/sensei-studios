@@ -321,7 +321,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 0.7s ease, visibility 0.7s ease;
+  transition: opacity 0.85s ease, visibility 0.85s ease;
 }
 
 #preloader.fade-out,
@@ -332,13 +332,13 @@ h1, h2, h3, h4 {
 }
 
 #preloader.fade-out .preloader-mark {
-  transform: scale(1.08);
-  filter: blur(10px);
-  opacity: 0.2;
+  transform: translateY(22px) scale(0.9);
+  filter: blur(16px);
+  opacity: 0;
 }
 
 #preloader.fade-out .preloader-copy {
-  transform: translateY(12px);
+  transform: translateY(-10px);
   opacity: 0;
 }
 
@@ -350,7 +350,7 @@ h1, h2, h3, h4 {
 }
 
 .preloader-grain {
-  opacity: 0.07;
+  opacity: 0.075;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px;
   mix-blend-mode: overlay;
@@ -359,7 +359,7 @@ h1, h2, h3, h4 {
 
 .preloader-vignette {
   background:
-    radial-gradient(ellipse at 50% 42%, transparent 18%, rgba(0, 0, 0, 0.55) 72%, #000 100%);
+    radial-gradient(ellipse at 50% 46%, transparent 16%, rgba(0, 0, 0, 0.5) 70%, #000 100%);
 }
 
 .preloader-stage {
@@ -374,37 +374,26 @@ h1, h2, h3, h4 {
 
 .preloader-aura {
   position: absolute;
-  top: 8%;
+  top: 4%;
   left: 50%;
-  width: min(28rem, 80vw);
-  height: min(28rem, 80vw);
+  width: min(32rem, 86vw);
+  height: min(28rem, 74vw);
   transform: translateX(-50%);
-  border-radius: 46%;
-  background: radial-gradient(circle, rgba(255, 168, 52, 0.22), transparent 68%);
-  filter: blur(36px);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 168, 52, 0.28), transparent 62%),
+    radial-gradient(circle at 50% 72%, rgba(255, 255, 255, 0.08), transparent 46%);
+  filter: blur(28px);
   pointer-events: none;
-  animation: preloaderAura 3.2s ease-in-out infinite;
+  animation: preloaderAura 3.6s ease-in-out infinite;
 }
 
 .preloader-mark {
   position: relative;
-  width: min(22rem, 78vw);
-  aspect-ratio: 240 / 220;
-  margin-bottom: 1.75rem;
-  transition: transform 0.7s ease, filter 0.7s ease, opacity 0.7s ease;
-}
-
-.preloader-mark::after {
-  content: "";
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  top: 8%;
-  height: 22%;
-  background: linear-gradient(180deg, transparent, rgba(255, 168, 52, 0.16), transparent);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  animation: preloaderScan 2.6s ease-in-out infinite;
+  width: min(24rem, 82vw);
+  aspect-ratio: 240 / 210;
+  margin-bottom: 1.6rem;
+  transition: transform 0.85s ease, filter 0.85s ease, opacity 0.85s ease;
 }
 
 .preloader-tri {
@@ -415,79 +404,132 @@ h1, h2, h3, h4 {
   overflow: visible;
 }
 
+.preloader-tri-halo {
+  fill: none;
+  stroke: rgba(255, 177, 66, 0.1);
+  stroke-width: 16;
+  stroke-linejoin: miter;
+  filter: blur(2px);
+  animation: triBreathe 3.8s ease-in-out infinite;
+}
+
 .preloader-tri-ghost {
   fill: none;
-  stroke: rgba(255, 213, 74, 0.08);
-  stroke-width: 14;
-  stroke-linejoin: round;
+  stroke: rgba(255, 213, 74, 0.07);
+  stroke-width: 12;
+  stroke-linejoin: miter;
 }
 
 .preloader-tri-track {
   fill: none;
-  stroke: rgba(255, 168, 52, 0.18);
-  stroke-width: 2.4;
-  stroke-linejoin: round;
+  stroke: rgba(200, 208, 220, 0.22);
+  stroke-width: 1.6;
+  stroke-linejoin: miter;
 }
 
 .preloader-tri-bar {
   fill: none;
   stroke: #ffb142;
-  stroke-width: 3.2;
-  stroke-linejoin: round;
+  stroke-width: 2.8;
+  stroke-linejoin: miter;
   stroke-linecap: square;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  filter: drop-shadow(0 0 8px rgba(255, 168, 52, 0.85));
-  animation: triDraw 2.25s cubic-bezier(0.22, 0.78, 0.18, 1) forwards;
+  filter: drop-shadow(0 0 10px rgba(255, 168, 52, 0.9));
+  animation: triDraw 2.6s cubic-bezier(0.22, 0.78, 0.18, 1) forwards;
 }
 
 .preloader-tri--inner {
-  animation: triBreathe 3.6s ease-in-out infinite;
+  animation: triBreathe 4s ease-in-out 0.4s infinite;
 }
 
 .preloader-tri-inner {
   fill: none;
-  stroke: rgba(255, 213, 74, 0.22);
-  stroke-width: 1;
-  stroke-linejoin: round;
-  stroke-dasharray: 5 7;
-  animation: triDash 8s linear infinite;
+  stroke: rgba(214, 220, 230, 0.55);
+  stroke-width: 1.15;
+  stroke-linejoin: miter;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: triDraw 2.2s cubic-bezier(0.22, 0.78, 0.18, 1) 0.35s forwards;
 }
 
 .preloader-vertex {
   position: absolute;
-  width: 9px;
-  height: 9px;
-  margin: -4.5px 0 0 -4.5px;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
   border-radius: 1px;
   background: #ffd36a;
-  box-shadow: 0 0 12px #ffa834, 0 0 24px rgba(255, 168, 52, 0.7);
+  box-shadow: 0 0 12px #ffa834, 0 0 22px rgba(255, 168, 52, 0.75);
   opacity: 0;
   transform: rotate(45deg) scale(0.4);
-  animation: vertexStrike 2.25s cubic-bezier(0.22, 0.78, 0.18, 1) forwards;
+  animation: vertexStrike 2.6s cubic-bezier(0.22, 0.78, 0.18, 1) forwards;
 }
 
-.preloader-vertex--apex { left: 50%; top: 8.2%; animation-delay: 0.05s; }
-.preloader-vertex--right { left: 94.2%; top: 91.8%; animation-delay: 0.78s; }
-.preloader-vertex--left { left: 5.8%; top: 91.8%; animation-delay: 1.48s; }
+.preloader-vertex--left { left: 7.6%; top: 7.2%; animation-delay: 0.04s; }
+.preloader-vertex--right { left: 92.4%; top: 7.2%; animation-delay: 0.92s; }
+.preloader-vertex--apex { left: 50%; top: 93.4%; animation-delay: 1.72s; }
+
+.preloader-crest {
+  position: absolute;
+  inset: 5% 7% 6%;
+  display: grid;
+  place-items: center;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
 
 .preloader-logo {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  opacity: 0;
+  transform: scale(0.92) translateY(-8px);
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+  animation: logoArrive 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+
+.preloader-shutter {
+  position: absolute;
+  inset: 5% 7% 6%;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(5, 7, 11, 0.15) 8%, #05070b 46%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  animation: shutterOpen 1.9s cubic-bezier(0.22, 0.78, 0.18, 1) 0.42s forwards;
+  pointer-events: none;
+}
+
+.preloader-lens {
   position: absolute;
   left: 50%;
-  top: 56%;
-  width: 54%;
-  height: auto;
-  transform: translate(-50%, -50%) scale(0.88);
+  top: 59%;
+  width: 15%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.62) 0%, rgba(255, 168, 52, 0.38) 26%, transparent 70%);
+  mix-blend-mode: screen;
   opacity: 0;
-  object-fit: contain;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  filter: drop-shadow(0 0 18px rgba(255, 168, 52, 0.28));
-  animation: logoArrive 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
+  pointer-events: none;
+  animation: lensPulse 2.8s ease-in-out 1.15s infinite;
+}
+
+.preloader-scan {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 8%;
+  height: 18%;
+  background: linear-gradient(180deg, transparent, rgba(255, 168, 52, 0.18), transparent);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: preloaderScan 2.8s ease-in-out 0.7s infinite;
 }
 
 .preloader-copy {
   position: relative;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: transform 0.7s ease, opacity 0.7s ease;
 }
 
 .preloader-kicker {
@@ -499,7 +541,7 @@ h1, h2, h3, h4 {
   margin: 0 0 0.55rem;
   opacity: 0;
   transform: translateY(8px);
-  animation: copyIn 0.8s ease 0.55s forwards;
+  animation: copyIn 0.8s ease 0.85s forwards;
 }
 
 .preloader-title {
@@ -512,7 +554,7 @@ h1, h2, h3, h4 {
   margin: 0 0 0.55rem;
   opacity: 0;
   transform: translateY(10px);
-  animation: copyIn 0.85s ease 0.75s forwards;
+  animation: copyIn 0.85s ease 1.05s forwards;
 }
 
 .preloader-subtitle {
@@ -523,33 +565,39 @@ h1, h2, h3, h4 {
   margin: 0;
   opacity: 0;
   transform: translateY(8px);
-  animation: copyIn 0.85s ease 1s forwards;
+  animation: copyIn 0.85s ease 1.28s forwards;
 }
 
 @keyframes triDraw {
   to { stroke-dashoffset: 0; }
 }
 
-@keyframes triDash {
-  to { stroke-dashoffset: -80; }
-}
-
 @keyframes triBreathe {
-  0%, 100% { opacity: 0.45; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.015); }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.012); }
 }
 
 @keyframes vertexStrike {
   0% { opacity: 0; transform: rotate(45deg) scale(0.3); }
-  18% { opacity: 1; transform: rotate(45deg) scale(1.15); }
+  16% { opacity: 1; transform: rotate(45deg) scale(1.2); }
   100% { opacity: 0.85; transform: rotate(45deg) scale(1); }
 }
 
 @keyframes logoArrive {
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1) translateY(0);
   }
+}
+
+@keyframes shutterOpen {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.12); }
+}
+
+@keyframes lensPulse {
+  0%, 100% { opacity: 0.25; transform: translate(-50%, -50%) scale(0.92); }
+  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.08); }
 }
 
 @keyframes copyIn {
@@ -560,8 +608,8 @@ h1, h2, h3, h4 {
 }
 
 @keyframes preloaderAura {
-  0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(0.96); }
-  50% { opacity: 0.9; transform: translateX(-50%) scale(1.06); }
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(0.96); }
+  50% { opacity: 0.88; transform: translateX(-50%) scale(1.05); }
 }
 
 @keyframes preloaderGrain {
@@ -570,18 +618,14 @@ h1, h2, h3, h4 {
 
 @keyframes preloaderScan {
   0% { transform: translateY(0); opacity: 0; }
-  18% { opacity: 1; }
-  100% { transform: translateY(280%); opacity: 0; }
+  16% { opacity: 1; }
+  100% { transform: translateY(320%); opacity: 0; }
 }
 
 @media (max-width: 640px) {
   .preloader-mark {
-    width: min(19rem, 86vw);
-    margin-bottom: 1.35rem;
-  }
-
-  .preloader-logo {
-    width: 50%;
+    width: min(20rem, 88vw);
+    margin-bottom: 1.25rem;
   }
 
   .preloader-title {
@@ -637,13 +681,13 @@ h1, h2, h3, h4 {
 .nav-brand::before {
   content: "";
   position: absolute;
-  left: -10px;
+  left: -12px;
   top: 50%;
-  width: 86px;
-  height: 86px;
+  width: 104px;
+  height: 88px;
   transform: translateY(-50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 168, 52, 0.32) 0%, transparent 68%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: radial-gradient(circle at 50% 36%, rgba(255, 168, 52, 0.4) 0%, transparent 70%);
   filter: blur(10px);
   pointer-events: none;
   z-index: 0;
@@ -653,7 +697,7 @@ h1, h2, h3, h4 {
 .nav-logo-img {
   position: relative;
   z-index: 1;
-  height: 80px;
+  height: 66px;
   width: auto;
   max-width: none;
   object-fit: contain;
@@ -673,15 +717,21 @@ h1, h2, h3, h4 {
 }
 
 .nav-brand-title {
-  font-family: var(--font-mark);
-  font-size: clamp(0.86rem, 1.05vw, 1.05rem);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
-  color: #FFF;
-  white-space: nowrap;
-  overflow: visible;
+  position: relative;
+  z-index: 1;
+  height: 30px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
   flex-shrink: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-brand:hover .nav-brand-title {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
 }
 
 .nav-links {
@@ -1568,28 +1618,62 @@ details.arsenal-dropdown > summary {
 
 .hero-logo-mark {
   position: relative;
-  display: inline-block;
+  display: inline-grid;
+  place-items: center;
   isolation: isolate;
 }
 
 .hero-logo-mark::before {
   content: "";
   position: absolute;
-  inset: 12% 8% 8%;
-  border-radius: 46%;
-  background: radial-gradient(circle at 50% 46%, rgba(255, 168, 52, 0.34), transparent 64%);
-  filter: blur(28px);
+  inset: 4% 2% 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: radial-gradient(circle at 50% 38%, rgba(255, 168, 52, 0.38), transparent 66%);
+  filter: blur(26px);
   z-index: 0;
   pointer-events: none;
   animation: logoAura 16s ease-in-out infinite;
 }
 
+.hero-logo-ring {
+  position: absolute;
+  inset: -6% -4% -2%;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.hero-logo-ring polygon {
+  fill: none;
+  stroke: rgba(255, 177, 66, 0.28);
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 10px rgba(255, 168, 52, 0.35));
+  animation: heroRingBreathe 8s ease-in-out infinite;
+}
+
 .hero-samurai-logo {
   position: relative;
   z-index: 1;
-  width: clamp(168px, 24vw, 280px);
+  width: clamp(188px, 28vw, 320px);
   height: auto;
-  animation: floatMark 6s ease-in-out infinite;
+  animation: floatMark 7s ease-in-out infinite;
+}
+
+.hero-logo-lens {
+  position: absolute;
+  left: 50%;
+  top: 59%;
+  width: 14%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.42) 0%, rgba(255, 168, 52, 0.28) 30%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 2;
+  animation: lensPulse 4.8s ease-in-out infinite;
 }
 
 @keyframes floatMark {
@@ -1600,6 +1684,11 @@ details.arsenal-dropdown > summary {
 @keyframes logoAura {
   0%, 100% { opacity: 0.22; transform: scale(0.98); }
   50% { opacity: 0.55; transform: scale(1.04); }
+}
+
+@keyframes heroRingBreathe {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.018); }
 }
 
 .hero-kicker {
@@ -6401,24 +6490,40 @@ body { padding-right: var(--rail-gutter); }
 
   .preloader-grain,
   .preloader-aura,
+  .preloader-tri-halo,
   .preloader-tri-bar,
   .preloader-tri--inner,
   .preloader-tri-inner,
   .preloader-vertex,
   .preloader-logo,
+  .preloader-shutter,
+  .preloader-lens,
+  .preloader-scan,
   .preloader-kicker,
   .preloader-title,
-  .preloader-subtitle {
+  .preloader-subtitle,
+  .hero-logo-ring polygon,
+  .hero-logo-lens {
     animation: none;
   }
 
-  .preloader-tri-bar {
+  .preloader-tri-bar,
+  .preloader-tri-inner {
     stroke-dashoffset: 0;
   }
 
   .preloader-logo {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: none;
+  }
+
+  .preloader-shutter {
+    opacity: 0;
+  }
+
+  .preloader-lens,
+  .hero-logo-lens {
+    opacity: 0.35;
   }
 
   .preloader-kicker,
@@ -6541,12 +6646,16 @@ body { padding-right: var(--rail-gutter); }
   }
 
   .nav-logo-img {
-    height: 72px;
+    height: 64px;
+  }
+
+  .nav-brand-title {
+    height: 24px;
   }
 
   .nav-brand::before {
-    width: 88px;
-    height: 88px;
+    width: 92px;
+    height: 78px;
   }
 }
 
@@ -6560,17 +6669,16 @@ body { padding-right: var(--rail-gutter); }
   }
 
   .nav-logo-img {
-    height: 76px;
+    height: 68px;
   }
 
   .nav-brand::before {
-    width: 92px;
-    height: 92px;
+    width: 98px;
+    height: 82px;
   }
 
   .nav-brand-title {
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
+    height: 26px;
   }
 
   .nav-link {
@@ -7636,7 +7744,7 @@ main > section:first-child:not(.hero) {
   }
 
   .hero-samurai-logo {
-    width: clamp(220px, 15vw, 300px);
+    width: clamp(240px, 18vw, 340px);
   }
 
   .hero-stats-grid {
@@ -7737,7 +7845,7 @@ main > section:first-child:not(.hero) {
   }
 
   .hero-samurai-logo {
-    width: 300px;
+    width: 340px;
   }
 }
 

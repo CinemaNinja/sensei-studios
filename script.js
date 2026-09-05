@@ -241,8 +241,8 @@ function initPreloader() {
   const body = document.body;
   if (!preloader) return;
 
-  const minShow = prefersReducedMotion() ? 180 : 2400;
-  const hardCap = prefersReducedMotion() ? 400 : 4200;
+  const minShow = prefersReducedMotion() ? 180 : 3200;
+  const hardCap = prefersReducedMotion() ? 400 : 5200;
   const started = performance.now();
 
   function removePreloader() {

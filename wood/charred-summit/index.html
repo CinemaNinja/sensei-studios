@@ -87,24 +87,32 @@
     <div class="preloader-stage">
       <div class="preloader-aura" aria-hidden="true"></div>
       <div class="preloader-mark">
-        <svg class="preloader-tri preloader-tri--outer" viewBox="0 0 240 220" fill="none" aria-hidden="true">
-          <polygon class="preloader-tri-ghost" points="120,18 226,202 14,202" />
-          <polygon class="preloader-tri-track" points="120,18 226,202 14,202" />
-          <polygon class="preloader-tri-bar" pathLength="1" points="120,18 226,202 14,202" />
+        <svg class="preloader-tri preloader-tri--halo" viewBox="0 0 240 210" fill="none" aria-hidden="true">
+          <polygon class="preloader-tri-halo" points="18,14 222,14 120,196" />
         </svg>
-        <svg class="preloader-tri preloader-tri--inner" viewBox="0 0 240 220" fill="none" aria-hidden="true">
-          <polygon class="preloader-tri-inner" points="120,52 194,184 46,184" />
+        <svg class="preloader-tri preloader-tri--outer" viewBox="0 0 240 210" fill="none" aria-hidden="true">
+          <polygon class="preloader-tri-ghost" points="18,14 222,14 120,196" />
+          <polygon class="preloader-tri-track" points="18,14 222,14 120,196" />
+          <polygon class="preloader-tri-bar" pathLength="1" points="18,14 222,14 120,196" />
         </svg>
-        <span class="preloader-vertex preloader-vertex--apex" aria-hidden="true"></span>
+        <svg class="preloader-tri preloader-tri--inner" viewBox="0 0 240 210" fill="none" aria-hidden="true">
+          <polygon class="preloader-tri-inner" pathLength="1" points="42,34 198,34 120,168" />
+        </svg>
         <span class="preloader-vertex preloader-vertex--left" aria-hidden="true"></span>
         <span class="preloader-vertex preloader-vertex--right" aria-hidden="true"></span>
-        <img
-          src="/assets/cinema_samurai_logo.webp"
-          alt=""
-          class="preloader-logo"
-          width="934"
-          height="1024"
-        >
+        <span class="preloader-vertex preloader-vertex--apex" aria-hidden="true"></span>
+        <div class="preloader-crest">
+          <img
+            src="/assets/cinema_samurai_logo.webp"
+            alt=""
+            class="preloader-logo"
+            width="916"
+            height="800"
+          >
+        </div>
+        <span class="preloader-shutter" aria-hidden="true"></span>
+        <span class="preloader-lens" aria-hidden="true"></span>
+        <span class="preloader-scan" aria-hidden="true"></span>
       </div>
       <div class="preloader-copy">
         <p class="preloader-kicker">Cinema Samurai</p>
@@ -116,8 +124,8 @@
   <nav class="site-nav" id="site-nav" aria-label="Primary">
     <div class="container nav-container">
       <a href="/" class="nav-brand">
-        <img src="/assets/cinema_samurai_logo_nav.webp?v=2" alt="Sensei Studios" class="nav-logo-img" width="48" height="48">
-        <span class="nav-brand-title">SENSEI STUDIOS</span>
+        <img src="/assets/cinema_samurai_logo_nav.webp?v=3" alt="Sensei Studios" class="nav-logo-img" width="48" height="48">
+        <img src="/assets/sensei_studios_wordmark.webp" alt="Sensei Studios" class="nav-brand-title" width="114" height="30">
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="/#work" class="nav-link">Film</a></li>
