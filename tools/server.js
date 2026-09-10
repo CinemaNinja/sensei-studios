@@ -38,6 +38,19 @@ const server = http.createServer((req, res) => {
       ok: true,
       total: 86,
       countryCount: 18,
+      daysLive: (() => {
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/Denver',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).formatToParts(new Date());
+        const year = Number(parts.find((part) => part.type === 'year').value);
+        const month = Number(parts.find((part) => part.type === 'month').value);
+        const day = Number(parts.find((part) => part.type === 'day').value);
+        return Math.max(1, Math.round((Date.UTC(year, month - 1, day) - Date.UTC(2026, 8, 1)) / 86400000) + 1);
+      })(),
+      liveSince: '2026-09-01',
       countries: [
         { code: 'US', n: 31 },
         { code: 'CA', n: 8 },

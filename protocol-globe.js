@@ -35,6 +35,7 @@
 
   const GOLD = [255, 215, 0];
   const TEAL = [56, 248, 212];
+  const VISION_LIVE_DATE = '2026-09-01';
 
   function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -216,6 +217,34 @@
     el.textContent = formatCount(Number(target) || 0);
   }
 
+  function daysVisionLive(isoDate) {
+    const start = String(isoDate || VISION_LIVE_DATE).slice(0, 10);
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Denver',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const year = Number(parts.find((part) => part.type === 'year').value);
+    const month = Number(parts.find((part) => part.type === 'month').value);
+    const day = Number(parts.find((part) => part.type === 'day').value);
+    const [sy, sm, sd] = start.split('-').map(Number);
+    const elapsed = Math.round((Date.UTC(year, month - 1, day) - Date.UTC(sy, sm - 1, sd)) / 86400000);
+    return Math.max(1, elapsed + 1);
+  }
+
+  function fillDaysLive(days) {
+    const daysEl = document.getElementById('protocol-presence-days');
+    const labelEl = document.getElementById('protocol-presence-days-label');
+    const stats = document.querySelector('.protocol-presence-stats');
+    const liveSince = stats && stats.getAttribute('data-vision-live');
+    const count = Number(days) > 0 ? Number(days) : daysVisionLive(liveSince);
+    animateCount(daysEl, count);
+    if (labelEl) {
+      labelEl.textContent = count === 1 ? 'day this vision has been live' : 'days this vision has been live';
+    }
+  }
+
   function buildStars(n) {
     const stars = [];
     for (let i = 0; i < n; i++) {
@@ -314,6 +343,7 @@
     const pin = document.getElementById('protocol-globe-pin');
     const totalEl = document.getElementById('protocol-presence-total');
     const countriesEl = document.getElementById('protocol-presence-countries');
+    fillDaysLive();
     if (!canvas || !stage) return;
 
     const reduced = prefersReducedMotion();
@@ -381,6 +411,7 @@
       });
       animateCount(totalEl, data && data.total);
       animateCount(countriesEl, data && data.countryCount ? data.countryCount : plotted);
+      fillDaysLive(data && data.daysLive);
     }
 
     function frame(ts) {

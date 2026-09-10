@@ -211,6 +211,23 @@ function addCountryCount(countries, code, n) {
   countries[key] = (Number(countries[key]) || 0) + count;
 }
 
+const VISION_LIVE_DATE = '2026-09-01';
+
+function daysVisionLive(now = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Denver',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(now);
+  const year = Number(parts.find((part) => part.type === 'year').value);
+  const month = Number(parts.find((part) => part.type === 'month').value);
+  const day = Number(parts.find((part) => part.type === 'day').value);
+  const [sy, sm, sd] = VISION_LIVE_DATE.split('-').map(Number);
+  const elapsed = Math.round((Date.UTC(year, month - 1, day) - Date.UTC(sy, sm - 1, sd)) / 86400000);
+  return Math.max(1, elapsed + 1);
+}
+
 function presencePayload(snap) {
   const countries = Object.entries(snap.countries || {})
     .map(([code, n]) => ({ code: String(code).toUpperCase().slice(0, 8), n: Number(n) || 0 }))
@@ -222,6 +239,8 @@ function presencePayload(snap) {
     total: Number(snap.total) || 0,
     countryCount: countries.length,
     countries,
+    daysLive: daysVisionLive(),
+    liveSince: VISION_LIVE_DATE,
     source: snap.source || 'cloudflare-web-analytics'
   };
 }
@@ -311,7 +330,7 @@ async function queryCloudflareWebAnalytics(env) {
 
 async function handleProtocolPresence(env, ctx) {
   if (!env.PROTOCOL_PRESENCE) {
-    return json({ ok: true, total: 0, countryCount: 0, countries: [] });
+    return json({ ok: true, total: 0, countryCount: 0, countries: [], daysLive: daysVisionLive(), liveSince: VISION_LIVE_DATE });
   }
   const analytics = await env.PROTOCOL_PRESENCE.get('analytics', { type: 'json' });
   const snapshot = await env.PROTOCOL_PRESENCE.get('snapshot', { type: 'json' });
