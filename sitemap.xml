@@ -5,35 +5,59 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/film/</loc>
+    <loc>https://senseistudios.com/film</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/wood/</loc>
+    <loc>https://senseistudios.com/film/product-animation</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/handpan/</loc>
+    <loc>https://senseistudios.com/film/shows-events</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/web/</loc>
+    <loc>https://senseistudios.com/film/arsenal</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/wood</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/story/</loc>
+    <loc>https://senseistudios.com/handpan</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/protocol/</loc>
+    <loc>https://senseistudios.com/web</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/estimator/</loc>
+    <loc>https://senseistudios.com/story</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://senseistudios.com/contact/</loc>
+    <loc>https://senseistudios.com/peace-protocol</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/peace-protocol/entropy</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/peace-protocol/temples</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/peace-protocol/initiatives</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/estimator</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://senseistudios.com/contact</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>

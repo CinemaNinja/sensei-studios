@@ -34,7 +34,7 @@
   <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-700.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/assets/fonts/shojumaru-400.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=15">
+  <link rel="stylesheet" href="/styles.css?v=16">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,7 +75,23 @@
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FPV Drone & Drone Light Shows" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Living Proposals" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Live Handpan Performance" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Fine Timber Sculpture (sliding scale)" } }
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Fine Timber Sculpture (sliding scale)",
+              "url": "https://senseistudios.com/wood",
+              "image": "https://senseistudios.com/assets/og-wood.jpg",
+              "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "USD",
+                "lowPrice": "950",
+                "highPrice": "66669",
+                "availability": "https://schema.org/InStock",
+                "url": "https://senseistudios.com/wood"
+              }
+            }
+          }
         ],
         "sameAs": [
           "https://vimeo.com/danielkellybrown",
@@ -162,7 +178,7 @@
         <li><a href="/wood" class="nav-link" data-open="wood">Wood</a></li>
         <li><a href="/handpan" class="nav-link" data-open="handpan">Handpan</a></li>
         <li><a href="/web" class="nav-link" data-open="web">Web</a></li>
-        <li><a href="/film#arsenal" class="nav-link" data-open="arsenal">Arsenal</a></li>
+        <li><a href="/film/arsenal" class="nav-link" data-open="arsenal">Arsenal</a></li>
         <li><a href="/story" class="nav-link" data-open="story">Story</a></li>
         <li><a href="/peace-protocol" class="nav-link" data-open="protocol">Vision</a></li>
         <li><a href="/estimator" class="nav-link" data-open="estimator">Scope</a></li>
@@ -314,7 +330,7 @@
           <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">The Reel &amp; Archive</span>
-          <h2 class="section-title text-gradient-teal">Selected Cinematic Works</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-teal" href="/film">Selected Cinematic Works</a></h2>
           <p class="section-desc">From Banff honors to Boeing drone shows and Cinema 4D product animations — step into the archive.</p>
           <a class="btn btn-outline btn-sm section-header-cta" href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
         </div>
@@ -620,7 +636,7 @@
         <div class="milestone-box milestone-box--hireuav product-animation" id="product-animation">
           <div class="hireuav-feature-head">
             <div>
-              <div class="milestone-year">Product Animation</div>
+              <div class="milestone-year"><a class="section-share-link" href="/film/product-animation">Product Animation</a></div>
               <div class="milestone-desc">Stop-motion unboxings and Cinema 4D product films from the Vimeo Product Animation showcase: f-stop, Sideshow, Gura Gear, eMotimo, Canon, and AeroGarden.</div>
             </div>
             <a class="btn btn-gold btn-sm" href="https://vimeo.com/showcase/1793221" target="_blank" rel="noopener noreferrer">View Vimeo Showcase</a>
@@ -837,7 +853,7 @@
         <div class="milestone-box milestone-box--hireuav archive-lane" id="shows-events" hidden>
           <div class="hireuav-feature-head">
             <div>
-              <div class="milestone-year">Shows &amp; Events</div>
+              <div class="milestone-year"><a class="section-share-link" href="/film/shows-events">Shows &amp; Events</a></div>
               <div class="milestone-desc">HireUAV Pro drone light shows first, then Aspen and Snowmass event films from the Vimeo showcase.</div>
             </div>
             <a class="btn btn-gold btn-sm" href="https://vimeo.com/showcase/1793233" target="_blank" rel="noopener noreferrer">View Vimeo Showcase</a>
@@ -1640,7 +1656,7 @@
               <div class="container">
                 <div class="section-header reveal">
                   <span class="section-eyebrow">Production Hardware &amp; Rigs</span>
-                  <h3 class="section-title text-gradient-teal">Equipment Arsenal</h3>
+                  <h3 class="section-title"><a class="section-share-link text-gradient-teal" href="/film/arsenal">Equipment Arsenal</a></h3>
                   <p class="section-desc">
                     Cinema cameras, motion-control robots, aerial drones, vintage glass, and high-performance render compute — 100% owned, flight-ready, and calibrated for extreme mountain &amp; studio environments.
                   </p>
@@ -1934,7 +1950,7 @@
       <div class="container">
         <div class="section-header reveal">
           <div class="woodwork-header-badge">Exhibiting at The Grove with Buckhorn Public Arts</div>
-          <h2 class="section-title text-gradient-gold">Local Aspen Woodwork &amp; Sculptures</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-gold" href="/wood">Local Aspen Woodwork &amp; Sculptures</a></h2>
           <p class="section-desc">
             Handcrafted fine timber sculptures by Daniel Kelly Brown — photographed on location. Sustainably sourced local wood. Each piece has a live page for suggested pricing, specs, and direct inquiry from the floor.
           </p>
@@ -1979,7 +1995,7 @@
       <div class="container">
         <div class="section-header reveal">
           <div class="woodwork-header-badge handpan-badge">Acoustic Sound Healing &amp; Percussion</div>
-          <h2 class="section-title text-gradient-gold">Handpan Meditations &amp; Live Performances</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-gold" href="/handpan">Handpan Meditations &amp; Live Performances</a></h2>
           <p class="section-desc">
             Ethereal handpan for private events, sound baths, weddings, and artistic gatherings — D Kurd and F Integral scales, pure acoustic resonance.
           </p>
@@ -2090,7 +2106,7 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">Digital Craft</span>
-          <h2 class="section-title text-gradient-teal">Web Design &amp; Experiences</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-teal" href="/web">Web Design &amp; Experiences</a></h2>
           <p class="section-desc">
             High-end websites built with the same cinematic precision as the film work — fast, on-brand, and built to convert. From local service brands to science-forward product launches.
           </p>
@@ -2221,7 +2237,7 @@
         <div class="bio-wrapper reveal">
           <div>
             <span class="section-eyebrow">About Daniel Kelly Brown</span>
-            <h2 class="section-title text-gradient-gold">Part Cinematographer. Part Samurai.</h2>
+            <h2 class="section-title"><a class="section-share-link text-gradient-gold" href="/story">Part Cinematographer. Part Samurai.</a></h2>
             <div class="bio-text-content">
               <p>
                 Daniel Kelly Brown is a cinematographer and artist based in Colorado. For twenty-five years he has blended technical mastery of robotics and 3D rendering with the instinct of an action-sports filmmaker.
@@ -2319,7 +2335,7 @@
         <div class="container">
             <div class="section-header reveal">
             <span class="section-eyebrow">Civilization Prototype · Roaring Fork Valley</span>
-            <h2 class="section-title text-gradient-teal">Humanity Harmonizing System</h2>
+            <h2 class="section-title"><a class="section-share-link text-gradient-teal" href="/peace-protocol">Humanity Harmonizing System</a></h2>
             <p class="section-subtitle">Nature, AI, &amp; Intelligent Machines</p>
             <p class="section-desc">
               A grassroots vision for the Roaring Fork Valley and beyond: a self-sustaining system that guarantees free food, free transportation, free shelter, and universal basic income, held together by a shift in human focus away from mere survival and toward the creation of art, where art is anything practiced with attention, imagination, and the desire to grow.
@@ -2394,24 +2410,24 @@
             </div>
           </div>
 
-          <aside class="protocol-entropy-card reveal" aria-label="Entropy">
+          <aside class="protocol-entropy-card reveal" id="protocol-entropy" aria-label="Entropy">
             <p class="protocol-entropy-kicker">A law older than us</p>
             <p class="protocol-entropy-term">
-              <span class="protocol-entropy-word">Entropy</span>
+              <a class="section-share-link protocol-entropy-word" href="/peace-protocol/entropy">Entropy</a>
             </p>
             <p class="protocol-entropy-def">the universal tendency toward disorder</p>
             <p class="protocol-entropy-body">
               Entropy is not new. Humanity has grappled with it since the dawn of time, and always will. Yet the vision of robots building robots, repairing robots, and sustaining systems across generations is one of our most profound acts of resistance.
             </p>
             <p class="protocol-entropy-body">
-              Graphene is a possible way to meet that law without pretending we can eliminate it. A carbon lattice that resists wear, so water, transit, and machines can be kept long enough for the next generation to keep them again.
+              Graphene is a possible way to meet that law without pretending we can eliminate it. A carbon lattice that resists wear, so water, transit, and machines can be kept long enough for the next generation to keep them again. The same long-game craft lives in the <a href="/film">Film &amp; Motion</a> archive.
             </p>
           </aside>
 
           <!-- Section Sub-Header: Temples of Practice & Civic Architecture -->
-          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 2rem;">
+          <div class="section-header reveal" id="protocol-temples" style="margin-bottom: 2.25rem; margin-top: 2rem;">
             <span class="section-eyebrow">Physical Spaces for Human Development</span>
-            <h3 class="section-title text-gradient-teal" style="font-size: clamp(1.8rem, 3.2vw, 2.6rem);">Temples of Practice</h3>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 3.2vw, 2.6rem);"><a class="section-share-link text-gradient-teal" href="/peace-protocol/temples">Temples of Practice</a></h3>
             <p class="section-desc">
               A creative civilization requires more than encouragement: it requires places. Places where people can gather, where tools are shared, where beginners are welcomed, and where people have permission to experiment, fail, practice, and begin again.
             </p>
@@ -2796,9 +2812,9 @@
           </div>
 
           <!-- Section Sub-Header for Supporting Infrastructure -->
-          <div class="section-header reveal" style="margin-bottom: 2.25rem; margin-top: 3.5rem;">
+          <div class="section-header reveal" id="protocol-initiatives" style="margin-bottom: 2.25rem; margin-top: 3.5rem;">
             <span class="section-eyebrow">Supporting Civic Infrastructure</span>
-            <h3 class="section-title text-gradient-gold" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);">Core Initiatives &amp; Living Systems</h3>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem);"><a class="section-share-link text-gradient-gold" href="/peace-protocol/initiatives">Core Initiatives &amp; Living Systems</a></h3>
             <p class="section-desc">
               A phased civic blueprint connecting automated craft, clean transit, botanical intelligence, and public art sanctuaries into a self-sustaining regional ecosystem.
             </p>
@@ -3273,7 +3289,7 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">Project Calculator</span>
-          <h2 class="section-title text-gradient-teal">Scope Estimator</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-teal" href="/estimator">Scope Estimator</a></h2>
           <p class="section-desc">Starting-at ranges for a conversation, not a bid. Final quotes depend on locations, crew, and timeline.</p>
           <p class="estimator-scale-note">
             These numbers are a sliding scale. The estimate is the most I would hope a project pays — a ceiling, not a floor. If the price comes down, it will be primarily because it is work I want to help support. If the range is out of reach, <a href="#contact">write me</a> and we can talk.
@@ -3388,7 +3404,7 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="section-eyebrow">Commission a Project</span>
-          <h2 class="section-title text-gradient-gold">Step Into The Dojo</h2>
+          <h2 class="section-title"><a class="section-share-link text-gradient-gold" href="/contact">Step Into The Dojo</a></h2>
           <p class="section-desc">Video, web design, 3D, drones, sculpture, or handpan — send the vision. You’ll get a real reply, not a black hole.</p>
         </div>
 
@@ -3568,7 +3584,7 @@
             <li><a href="/web" data-open="web">Web Design</a></li>
             <li><a href="/story" data-open="story">Daniel Kelly Brown</a></li>
             <li><a href="/peace-protocol" data-open="protocol">Peace Protocol</a></li>
-            <li><a href="/film#arsenal" data-open="arsenal">Equipment Arsenal</a></li>
+            <li><a href="/film/arsenal" data-open="arsenal">Equipment Arsenal</a></li>
             <li><a href="/privacy/">Privacy</a></li>
           </ul>
         </div>
@@ -3644,6 +3660,6 @@
 
   <script src="/sculptures-data.js" defer></script>
   <script src="/protocol-globe.js?v=2" defer></script>
-  <script src="/script.js?v=7" defer></script>
+  <script src="/script.js?v=8" defer></script>
 </body>
 </html>

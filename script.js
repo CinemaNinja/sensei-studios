@@ -36,7 +36,6 @@ if ('scrollRestoration' in history) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  applyOpenIntent({ scroll: false });
   initScrollMemory();
   redirectLegacySculptureHash();
   initPreloader();
@@ -44,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initZenCanvas();
   initTypedText();
   initPortfolioFilters();
+  applyOpenIntent({ scroll: false });
   initArsenalFilters();
   initVideoModal();
   initLazyVideos();
@@ -77,7 +77,7 @@ function initScrollMemory() {
 
   const pageKey = () => {
     const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
-    if (path === '/' || PATH_SECTION[path]) return 'home';
+    if (path === '/' || PATH_SECTION[path] || NESTED_PATHS[path]) return 'home';
     return path + (location.search || '');
   };
 
@@ -461,7 +461,21 @@ function initPortfolioFilters() {
     }
   }
 
-  function applyFilter(btn) {
+  function filmPathForFilter(filter) {
+    if (filter === 'product') return '/film/product-animation';
+    if (filter === 'events') return '/film/shows-events';
+    return '/film';
+  }
+
+  function syncFilmFilterUrl(filter) {
+    const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    if (path !== '/film' && !path.startsWith('/film/')) return;
+    const next = filmPathForFilter(filter);
+    if (path !== next) history.replaceState({ section: 'work' }, '', next);
+  }
+
+  function applyFilter(btn, { scroll = true, updateUrl = true } = {}) {
+    if (!btn) return;
     filterBtns.forEach((b) => {
       const on = b === btn;
       b.classList.toggle('active', on);
@@ -504,11 +518,20 @@ function initPortfolioFilters() {
       }
     });
 
-    const scrollTarget = filter === 'product' ? productSection : filter === 'events' ? showsEvents : null;
-    if (scrollTarget) {
-      scrollTarget.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    if (updateUrl) syncFilmFilterUrl(filter);
+
+    if (scroll) {
+      const scrollTarget = filter === 'product' ? productSection : filter === 'events' ? showsEvents : null;
+      if (scrollTarget) {
+        scrollTarget.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+      }
     }
   }
+
+  window.senseiApplyPortfolioFilter = (filter, opts) => {
+    const btn = filterBtns.find((b) => b.getAttribute('data-filter') === filter);
+    if (btn) applyFilter(btn, opts);
+  };
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => applyFilter(btn));
@@ -527,6 +550,12 @@ function initPortfolioFilters() {
     filterBtns[next].focus();
     applyFilter(filterBtns[next]);
   });
+
+  const nested = nestedIntentFromLocation();
+  if (nested?.filter) {
+    const btn = filterBtns.find((b) => b.getAttribute('data-filter') === nested.filter);
+    if (btn) applyFilter(btn, { scroll: false, updateUrl: false });
+  }
 }
 
 /* ==========================================================================
@@ -628,6 +657,30 @@ function initVideoModal() {
     wrap.innerHTML = `<iframe src="${embedUrl}" title="${escapeHtml(title || 'Video')}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     card.classList.add('is-playing');
   }
+
+  function addOutboundWatchLinks() {
+    document.querySelectorAll('.video-card[data-video-id]').forEach((card) => {
+      if (card.querySelector('.video-watch-link')) return;
+      const type = card.getAttribute('data-video-type');
+      const id = card.getAttribute('data-video-id');
+      if (!type || !id) return;
+      const href = type === 'vimeo' ? `https://vimeo.com/${id}` : `https://www.youtube.com/watch?v=${id}`;
+      const label = type === 'vimeo' ? 'Watch on Vimeo' : 'Watch on YouTube';
+      const host = type === 'vimeo' ? 'Vimeo' : 'YouTube';
+      const title = card.querySelector('.video-title')?.textContent?.trim() || 'this film';
+      const link = document.createElement('a');
+      link.className = 'video-watch-link';
+      link.href = href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = label;
+      link.setAttribute('aria-label', `${title} on ${host}`);
+      const body = card.querySelector('.video-card-body') || card;
+      body.appendChild(link);
+    });
+  }
+
+  addOutboundWatchLinks();
 
   document.querySelectorAll('.video-card').forEach((card) => {
     const activate = () => {
@@ -985,6 +1038,15 @@ const PATH_SECTION = {
   '/contact': 'contact'
 };
 
+const NESTED_PATHS = {
+  '/film/product-animation': { target: 'product-animation', filter: 'product' },
+  '/film/shows-events': { target: 'shows-events', filter: 'events' },
+  '/film/arsenal': { target: 'arsenal' },
+  '/peace-protocol/entropy': { target: 'protocol-entropy' },
+  '/peace-protocol/temples': { target: 'protocol-temples' },
+  '/peace-protocol/initiatives': { target: 'protocol-initiatives' }
+};
+
 const SECTION_SHARE_PATH = {
   work: '/film',
   woodwork: '/wood',
@@ -994,8 +1056,22 @@ const SECTION_SHARE_PATH = {
   protocol: '/peace-protocol',
   estimator: '/estimator',
   contact: '/contact',
-  arsenal: '/film#arsenal'
+  arsenal: '/film/arsenal',
+  'product-animation': '/film/product-animation',
+  'shows-events': '/film/shows-events',
+  'protocol-entropy': '/peace-protocol/entropy',
+  'protocol-temples': '/peace-protocol/temples',
+  'protocol-initiatives': '/peace-protocol/initiatives'
 };
+
+function nestedIntentFromLocation(pathname) {
+  const path = (pathname || location.pathname || '/').replace(/\/+$/, '') || '/';
+  return NESTED_PATHS[path] || null;
+}
+
+function nestedIntentForTarget(id) {
+  return Object.values(NESTED_PATHS).find((entry) => entry.target === id) || null;
+}
 
 function sharePathFor(id) {
   return SECTION_SHARE_PATH[id] || '/';
@@ -1113,6 +1189,8 @@ function homeOpenIntent() {
   const hash = (location.hash || '').replace('#', '');
   const meta = document.querySelector('meta[name="sensei:section"]')?.getAttribute('content') || '';
   const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+  const nested = nestedIntentFromLocation(path);
+  if (nested) return { open, hash, key: nested.target, filter: nested.filter || '' };
   const pathKey = PATH_SECTION[path] || '';
   return { open, hash, key: open || hash || meta || pathKey };
 }
@@ -1165,6 +1243,13 @@ function openHomeSection(key, { scroll = true, exclusive = false, updateUrl = fa
     if (nestedSummary) nestedSummary.setAttribute('aria-expanded', 'true');
   }
 
+  const nestedIntent = nestedIntentForTarget(id);
+  if (nestedIntent?.filter) {
+    window.senseiApplyPortfolioFilter?.(nestedIntent.filter, { scroll: false, updateUrl: false });
+  } else if (id === 'work' || id === 'arsenal') {
+    window.senseiApplyPortfolioFilter?.('all', { scroll: false, updateUrl: false });
+  }
+
   if (updateUrl) {
     const next = sharePathFor(id);
     if ((location.pathname + location.hash) !== next) {
@@ -1206,6 +1291,8 @@ function sectionKeyFromHref(href) {
     const hash = (url.hash || '').replace('#', '');
     if (hash && (SECTION_ALIASES[hash] || document.getElementById(hash))) return hash;
     const path = (url.pathname || '/').replace(/\/+$/, '') || '/';
+    const nested = nestedIntentFromLocation(path);
+    if (nested) return nested.target;
     if (PATH_SECTION[path]) {
       return hash === 'arsenal' ? 'arsenal' : PATH_SECTION[path];
     }

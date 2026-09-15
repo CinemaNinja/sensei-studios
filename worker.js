@@ -77,6 +77,65 @@ const PATH_SECTION = {
   '/contact': 'contact'
 };
 
+const NESTED_ROUTES = {
+  '/film/product-animation': {
+    parent: 'film',
+    title: 'Product Animation | Sensei Studios',
+    description:
+      'Stop-motion unboxings and Cinema 4D product films by Daniel Kelly Brown: f-stop, Sideshow, Gura Gear, eMotimo, Canon, and AeroGarden.',
+    image: '/assets/og-film.jpg?v=2',
+    canonical: '/film/product-animation'
+  },
+  '/film/shows-events': {
+    parent: 'film',
+    title: 'Shows & Events | Sensei Studios',
+    description:
+      'HireUAV Pro drone light shows for Boeing, Kaley Cuoco, Six Flags, San Francisco, and Coachella, plus Aspen and Snowmass event films.',
+    image: '/assets/og-film.jpg?v=2',
+    canonical: '/film/shows-events',
+    unhide: 'shows-events'
+  },
+  '/film/arsenal': {
+    parent: 'film',
+    title: 'Equipment Arsenal | Sensei Studios',
+    description:
+      'Cinema cameras, motion-control robots, aerial drones, vintage glass, and dual RTX render compute owned by Daniel Kelly Brown.',
+    image: '/assets/og-film.jpg?v=2',
+    canonical: '/film/arsenal'
+  },
+  '/peace-protocol/entropy': {
+    parent: 'protocol',
+    title: 'Entropy | Peace Protocol | Sensei Studios',
+    description:
+      'Entropy is the universal tendency toward disorder. Peace Protocol treats robots that build and repair robots as a way to keep water, transit, and machines alive for the next generation.',
+    image: '/assets/protocol/og-protocol.jpg',
+    canonical: '/peace-protocol/entropy'
+  },
+  '/peace-protocol/temples': {
+    parent: 'protocol',
+    title: 'Temples of Practice | Peace Protocol | Sensei Studios',
+    description:
+      'A network of shared sanctuaries for craft, arts, movement, and learning in the Roaring Fork Valley, open to every human.',
+    image: '/assets/protocol/og-protocol.jpg',
+    canonical: '/peace-protocol/temples'
+  },
+  '/peace-protocol/initiatives': {
+    parent: 'protocol',
+    title: 'Core Initiatives | Peace Protocol | Sensei Studios',
+    description:
+      'Robotic fabrication, autonomous transit, community fund, grow pods, and public art sanctuaries in a phased civic blueprint for Old Snowmass.',
+    image: '/assets/protocol/og-protocol.jpg',
+    canonical: '/peace-protocol/initiatives'
+  }
+};
+
+function routeForPath(path) {
+  if (NESTED_ROUTES[path]) return NESTED_ROUTES[path];
+  const section = PATH_SECTION[path];
+  if (!section || !SECTION_META[section]) return null;
+  return { parent: section, ...SECTION_META[section] };
+}
+
 const LEGACY_REDIRECTS = {
   '/woodwork': '/wood',
   '/sculptures': '/wood',
@@ -183,7 +242,7 @@ function isHtmlDocumentRequest(request, path) {
   if (/\.[a-z0-9]{2,5}$/i.test(path) && !/\.html?$/i.test(path)) return false;
   const accept = request.headers.get('accept') || '';
   if (accept.includes('text/html')) return true;
-  if (path === '/' || PATH_SECTION[path]) return !accept || accept.includes('*/*');
+  if (path === '/' || PATH_SECTION[path] || NESTED_ROUTES[path]) return !accept || accept.includes('*/*');
   return false;
 }
 
@@ -416,8 +475,7 @@ class HeadSectionTag {
   }
 }
 
-async function serveSection(request, env, section) {
-  const meta = SECTION_META[section];
+async function serveSection(request, env, route) {
   const origin = publicOrigin(request);
   const indexUrl = new URL(request.url);
   indexUrl.pathname = '/';
@@ -427,13 +485,20 @@ async function serveSection(request, env, section) {
     method: 'GET',
     headers: request.headers
   }));
-  if (!res.ok || !meta) return res;
-  return new HTMLRewriter()
-    .on('title', { element(e) { e.setInnerContent(meta.title); } })
-    .on('meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]', new SectionMeta(meta, origin))
-    .on('link[rel="canonical"]', new CanonicalLink(origin + meta.canonical))
-    .on('head', new HeadSectionTag(section))
-    .transform(res);
+  if (!res.ok || !route) return res;
+  let rewriter = new HTMLRewriter()
+    .on('title', { element(e) { e.setInnerContent(route.title); } })
+    .on('meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]', new SectionMeta(route, origin))
+    .on('link[rel="canonical"]', new CanonicalLink(origin + route.canonical))
+    .on('head', new HeadSectionTag(route.parent));
+  if (route.unhide) {
+    rewriter = rewriter.on(`#${route.unhide}`, {
+      element(e) {
+        e.removeAttribute('hidden');
+      }
+    });
+  }
+  return rewriter.transform(res);
 }
 
 async function handleEvent(request, env) {
@@ -664,10 +729,17 @@ export default {
     if (url.pathname.startsWith('/api/') && request.method === 'OPTIONS') return json({ ok: true });
 
     if (request.method === 'GET' || request.method === 'HEAD') {
-      const legacy = LEGACY_REDIRECTS[path];
-      if (legacy) return Response.redirect(publicOrigin(request) + legacy, 301);
+      const origin = publicOrigin(request);
+      if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+        if (PATH_SECTION[path] || NESTED_ROUTES[path] || LEGACY_REDIRECTS[path]) {
+          return Response.redirect(origin + path + url.search, 301);
+        }
+      }
 
-      const section = PATH_SECTION[path];
+      const legacy = LEGACY_REDIRECTS[path];
+      if (legacy) return Response.redirect(origin + legacy, 301);
+
+      const route = routeForPath(path);
       const acceptsHtml = (request.headers.get('accept') || '').includes('text/html');
       if (request.method === 'GET' && acceptsHtml) {
         track(env, [
@@ -677,13 +749,15 @@ export default {
           clip(request.cf && request.cf.country, 8)
         ]);
       }
-      if (section) {
-        const page = await serveSection(request, env, section);
+      if (route) {
+        const page = await serveSection(request, env, route);
         if (request.method === 'HEAD') {
           return new Response(null, { status: page.status, headers: page.headers });
         }
         return stampPresence(request, env, ctx, page, path);
       }
+      if (path.startsWith('/film/')) return Response.redirect(origin + '/film', 301);
+      if (path.startsWith('/peace-protocol/')) return Response.redirect(origin + '/peace-protocol', 301);
     }
 
     const asset = await env.ASSETS.fetch(request);

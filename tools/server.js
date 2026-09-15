@@ -31,8 +31,31 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let pathname = decodeURIComponent(parsedUrl.pathname);
-
   const apiPath = pathname.replace(/\/+$/, '') || '/';
+
+  const SPA_PATHS = new Set([
+    '/film',
+    '/film/product-animation',
+    '/film/shows-events',
+    '/film/arsenal',
+    '/wood',
+    '/handpan',
+    '/web',
+    '/story',
+    '/peace-protocol',
+    '/peace-protocol/entropy',
+    '/peace-protocol/temples',
+    '/peace-protocol/initiatives',
+    '/protocol',
+    '/vision',
+    '/estimator',
+    '/scope',
+    '/contact',
+    '/work',
+    '/woodwork',
+    '/sculptures',
+    '/bio'
+  ]);
   if (apiPath === '/api/protocol-presence' && (req.method === 'GET' || !req.method)) {
     const payload = {
       ok: true,
@@ -111,6 +134,10 @@ const server = http.createServer((req, res) => {
   }
 
   let filePath = path.join(ROOT, pathname);
+
+  if (SPA_PATHS.has(apiPath)) {
+    filePath = path.join(ROOT, 'index.html');
+  }
 
   // Security check: ensure path stays within ROOT
   if (!filePath.startsWith(ROOT)) {
