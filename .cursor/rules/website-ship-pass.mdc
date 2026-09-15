@@ -1,0 +1,15 @@
+---
+description: Last-pass launch checklist. Do not ship senseistudios.com until every website-ship-pass item is PASS or WAIVED.
+alwaysApply: true
+---
+
+# Website ship pass (Sensei Studios)
+
+Before any **push, go live, make it live, or ship**:
+
+1. Read and follow `.cursor/skills/website-ship-pass/SKILL.md`.
+2. Print the full checklist with PASS / FAIL / WAIVE.
+3. **Do not** `git push` or `npx wrangler deploy` if any item is FAIL.
+4. Only after the report is green, follow `deploy-after-push.mdc` (commit, push, Wrangler deploy, confirm live homepage).
+
+Unknown URLs must be a branded HTTP 404, not a raw asset miss. Form failures need a visible error, not a silent mailto jump. Do not invent Terms or a cookie wall unless the pass requires them; waive those two only with a real reason.

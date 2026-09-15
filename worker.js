@@ -714,6 +714,31 @@ async function handleInstagram() {
   }
 }
 
+function wantsHtml(request) {
+  const accept = request.headers.get('accept') || '';
+  return accept.includes('text/html') || accept === '*/*' || !accept;
+}
+
+async function serveLostPath(request, env) {
+  const url = new URL(request.url);
+  url.pathname = '/404.html';
+  url.search = '';
+  url.hash = '';
+  const page = await env.ASSETS.fetch(new Request(url.toString(), {
+    method: 'GET',
+    headers: request.headers
+  }));
+  const headers = new Headers(page.headers);
+  headers.set('Cache-Control', 'public, max-age=60');
+  if (request.method === 'HEAD' || !page.ok) {
+    return new Response(page.ok ? null : 'Not found', {
+      status: 404,
+      headers: page.ok ? headers : { 'content-type': 'text/plain; charset=utf-8' }
+    });
+  }
+  return new Response(page.body, { status: 404, headers });
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -761,6 +786,14 @@ export default {
     }
 
     const asset = await env.ASSETS.fetch(request);
+    if (
+      asset.status === 404 &&
+      path !== '/404.html' &&
+      !url.pathname.startsWith('/api/') &&
+      wantsHtml(request)
+    ) {
+      return stampPresence(request, env, ctx, await serveLostPath(request, env), path);
+    }
     return stampPresence(request, env, ctx, asset, path);
   }
 };

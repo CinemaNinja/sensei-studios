@@ -161,6 +161,12 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify({ ok: true, status: 'mocked' }));
       return;
     }
+    const lost = path.join(ROOT, '404.html');
+    if (fs.existsSync(lost)) {
+      res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+      fs.createReadStream(lost).pipe(res);
+      return;
+    }
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('404 Not Found');
     return;
