@@ -151,7 +151,7 @@ def footer() -> str:
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-brand-title">SENSEI STUDIOS</div>
+          <img src="/assets/sensei_studios_wordmark.webp?v=4" alt="Sensei Studios" class="footer-brand-title" width="342" height="90">
           <p class="footer-tagline">
             Master cinematography, web design, 8K motion-controlled timelapse, Cinema 4D animation, FPV drones, fine timber woodwork, and live handpan. Colorado based. Worldwide capable — however, cross-state is double the cost and cross-country is 3×.
           </p>
