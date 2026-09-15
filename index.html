@@ -34,7 +34,7 @@
   <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-700.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/assets/fonts/shojumaru-400.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=11">
+  <link rel="stylesheet" href="/styles.css?v=15">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -323,8 +323,9 @@
           <button type="button" class="filter-btn active" data-filter="all" role="tab" id="filter-all" aria-selected="true" aria-controls="video-grid" tabindex="0">All Works</button>
           <button type="button" class="filter-btn" data-filter="reels" role="tab" id="filter-reels" aria-selected="false" aria-controls="video-grid" tabindex="-1">Video &amp; Timelapses</button>
           <button type="button" class="filter-btn" data-filter="vfx" role="tab" id="filter-vfx" aria-selected="false" aria-controls="video-grid" tabindex="-1">3D &amp; Motion</button>
+          <button type="button" class="filter-btn" data-filter="product" role="tab" id="filter-product" aria-selected="false" aria-controls="product-animation" tabindex="-1">Product Animation</button>
           <button type="button" class="filter-btn" data-filter="drone" role="tab" id="filter-drone" aria-selected="false" aria-controls="video-grid" tabindex="-1">FPV &amp; Drone</button>
-          <button type="button" class="filter-btn" data-filter="events" role="tab" id="filter-events" aria-selected="false" aria-controls="video-grid" tabindex="-1">Shows &amp; Events</button>
+          <button type="button" class="filter-btn" data-filter="events" role="tab" id="filter-events" aria-selected="false" aria-controls="shows-events" tabindex="-1">Shows &amp; Events</button>
         </div>
 
         <div class="video-grid film-lead" id="video-grid">
@@ -616,133 +617,469 @@
 
         </div>
 
-        <div class="milestone-box milestone-box--hireuav more-work">
-            <div class="hireuav-feature-head">
-              <div>
-                <div class="milestone-year">More Work</div>
-                <div class="milestone-desc">Deeper archive: drone shows, timelapse, motion graphics, product animation, and Burning Man.</div>
-              </div>
-              <a class="btn btn-gold btn-sm" href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
+        <div class="milestone-box milestone-box--hireuav product-animation" id="product-animation">
+          <div class="hireuav-feature-head">
+            <div>
+              <div class="milestone-year">Product Animation</div>
+              <div class="milestone-desc">Stop-motion unboxings and Cinema 4D product films from the Vimeo Product Animation showcase: f-stop, Sideshow, Gura Gear, eMotimo, Canon, and AeroGarden.</div>
             </div>
-            <div class="more-work-stack">
-            <details class="milestone-gallery">
-              <summary class="hireuav-recap-toggle">
-                <span class="hireuav-recap-pulse" aria-hidden="true">
-                  <span class="hireuav-recap-play">▶</span>
-                </span>
-                <span class="hireuav-recap-copy">
-                  <span class="hireuav-recap-kicker">5 event recaps</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--closed">HireUAV Pro light shows</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide HireUAV Pro recaps</span>
-                </span>
-                <span class="hireuav-recap-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="video-grid hireuav-video-grid">
-                <article class="video-card" data-video-type="youtube" data-video-id="QRo-zI-cq_E">
-                  <button type="button" class="video-play-btn" aria-label="Play Six Flags Drone Show">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-QRo-zI-cq_E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">SIX FLAGS</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">Six Flags Drone Show</h3>
-                    <p class="video-description">Beetlejuice Beetlejuice x Six Flags — aerial light-show recap.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">HireUAV Pro</span>
-                      <span class="video-tag">Six Flags</span>
-                      <span class="video-tag">Drone Show</span>
-                    </div>
-                  </div>
-                </article>
-                <article class="video-card" data-video-type="youtube" data-video-id="YZM5-kKQbxg">
-                  <button type="button" class="video-play-btn" aria-label="Play San Francisco Skyline Drone Show">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-YZM5-kKQbxg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">SAN FRANCISCO</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">San Francisco Skyline</h3>
-                    <p class="video-description">Drone show lighting up the San Francisco skyline.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">HireUAV Pro</span>
-                      <span class="video-tag">Comcast</span>
-                      <span class="video-tag">Event Recap</span>
-                    </div>
-                  </div>
-                </article>
-                <article class="video-card" data-video-type="youtube" data-video-id="aHpeGxorw4c">
-                  <button type="button" class="video-play-btn" aria-label="Play Coachella VIP Drone Party">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-aHpeGxorw4c.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">COACHELLA</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">Coachella VIP Party</h3>
-                    <p class="video-description">350-drone VIP party at Coachella for Jeeter Tao.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">HireUAV Pro</span>
-                      <span class="video-tag">Coachella</span>
-                      <span class="video-tag">Jeeter</span>
-                    </div>
-                  </div>
-                </article>
-                <article class="video-card" data-video-type="youtube" data-video-id="rS58zO-BfZg">
-                  <button type="button" class="video-play-btn" aria-label="Play Kaley Cuoco Drone Light Show">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-rS58zO-BfZg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">CELEBRITY EVENT</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">Kaley Cuoco Light Show</h3>
-                    <p class="video-description">450-drone gender reveal party recap in Los Angeles.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">HireUAV Pro</span>
-                      <span class="video-tag">Kaley Cuoco</span>
-                      <span class="video-tag">Event Recap</span>
-                    </div>
-                  </div>
-                </article>
-                <article class="video-card" data-video-type="youtube" data-video-id="pUYJyEizO3E">
-                  <button type="button" class="video-play-btn" aria-label="Play Boeing Drone Light Show">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-pUYJyEizO3E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">BOEING</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">Boeing Drone Light Show</h3>
-                    <p class="video-description">Massive drone light show for Boeing in Huntington Beach.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">HireUAV Pro</span>
-                      <span class="video-tag">Boeing</span>
-                      <span class="video-tag">Drone Show</span>
-                    </div>
-                  </div>
-                </article>
+            <a class="btn btn-gold btn-sm" href="https://vimeo.com/showcase/1793221" target="_blank" rel="noopener noreferrer">View Vimeo Showcase</a>
+          </div>
+          <div class="video-grid hireuav-video-grid product-animation-grid">
+            <article class="video-card featured-card" data-video-type="vimeo" data-video-id="29009949">
+              <p class="featured-kicker">Product reel</p>
+              <button type="button" class="video-play-btn" aria-label="Play Product Animation Reel">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-29009949.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">REEL</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Product Animation Reel</h3>
+                <p class="video-description">Early product-animation reel: stop-motion unboxings with real product sound.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Reel</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
               </div>
-            </details>
-            <details class="milestone-gallery">
-              <summary class="hireuav-recap-toggle">
-                <span class="hireuav-recap-pulse" aria-hidden="true">
-                  <span class="hireuav-recap-play">▶</span>
-                </span>
-                <span class="hireuav-recap-copy">
-                  <span class="hireuav-recap-kicker">20 films</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--closed">More timelapse work</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide timelapse work</span>
-                </span>
-                <span class="hireuav-recap-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="video-grid hireuav-video-grid">
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="smduaWAkVQg">
+              <button type="button" class="video-play-btn" aria-label="Play Crossman ST1 Animation">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-smduaWAkVQg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">CINEMA 4D</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Crossman ST1</h3>
+                <p class="video-description">Cinema 4D product animation for the Crossman ST1.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Product</span>
+                  <span class="video-tag">Cinema 4D</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="69921147">
+              <button type="button" class="video-play-btn" aria-label="Play F-Stop Product Animations">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-69921147.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">F-STOP</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">F-Stop Product Animations</h3>
+                <p class="video-description">Stop-motion product films for f-stop camera bags and packs.</p>
+                <div class="video-tags">
+                  <span class="video-tag">f-stop</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="41474647">
+              <button type="button" class="video-play-btn" aria-label="Play Sideshow Collectibles">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-41474647.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SIDESHOW</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Sideshow Collectibles</h3>
+                <p class="video-description">Unboxing animations for Sideshow Collectibles, with sounds recorded from the figures themselves.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Sideshow</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="40332469">
+              <button type="button" class="video-play-btn" aria-label="Play eMotimo TB3">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-40332469.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">EMOTIMO</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">eMotimo TB3</h3>
+                <p class="video-description">Stop-motion assembly and motion for the eMotimo TB3 motion-control head.</p>
+                <div class="video-tags">
+                  <span class="video-tag">eMotimo</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="40615290">
+              <button type="button" class="video-play-btn" aria-label="Play Canon 5D Mark III">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-40615290.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">CANON</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Canon 5D Mark III</h3>
+                <p class="video-description">Stop-motion product film for the Canon 5D Mark III.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Canon</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="38183330">
+              <button type="button" class="video-play-btn" aria-label="Play Gura Gear Product Animations">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-38183330.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">GURA GEAR</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Gura Gear Product Animations</h3>
+                <p class="video-description">Contracted stop-motion for Gura Gear Kiboko and Chobe packs.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Gura Gear</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="32594479">
+              <button type="button" class="video-play-btn" aria-label="Play Gura Gear Chobe 19-24L">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-32594479.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">GURA GEAR</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Gura Gear Chobe 19-24L</h3>
+                <p class="video-description">Stop-motion walkthrough of the Gura Gear Chobe 19-24L.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Gura Gear</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="4148322">
+              <button type="button" class="video-play-btn" aria-label="Play AeroGarden Petunia Timelapse">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-4148322.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">AEROGARDEN</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">AeroGarden Petunia Timelapse</h3>
+                <p class="video-description">Time-lapse of petunias growing inside an AeroGarden.</p>
+                <div class="video-tags">
+                  <span class="video-tag">AeroGarden</span>
+                  <span class="video-tag">Timelapse</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="39862913">
+              <button type="button" class="video-play-btn" aria-label="Play AeroGarden Unboxing">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-39862913.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">AEROGARDEN</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">AeroGarden Unboxing</h3>
+                <p class="video-description">One of the first product animations for AeroGrow: unboxing, assembly, and growth.</p>
+                <div class="video-tags">
+                  <span class="video-tag">AeroGarden</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="5250642">
+              <button type="button" class="video-play-btn" aria-label="Play AeroGarden In Action">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-5250642.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">AEROGARDEN</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">AeroGarden In Action</h3>
+                <p class="video-description">HD AeroGarden growth time-lapses sequenced in After Effects.</p>
+                <div class="video-tags">
+                  <span class="video-tag">AeroGarden</span>
+                  <span class="video-tag">Timelapse</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="100524818">
+              <button type="button" class="video-play-btn" aria-label="Play F-Stop Satori">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-100524818.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">F-STOP</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">F-Stop Satori</h3>
+                <p class="video-description">Three-axis stop-motion for the f-stop Satori pack.</p>
+                <div class="video-tags">
+                  <span class="video-tag">f-stop</span>
+                  <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="milestone-box milestone-box--hireuav archive-lane" id="shows-events" hidden>
+          <div class="hireuav-feature-head">
+            <div>
+              <div class="milestone-year">Shows &amp; Events</div>
+              <div class="milestone-desc">HireUAV Pro drone light shows first, then Aspen and Snowmass event films from the Vimeo showcase.</div>
+            </div>
+            <a class="btn btn-gold btn-sm" href="https://vimeo.com/showcase/1793233" target="_blank" rel="noopener noreferrer">View Vimeo Showcase</a>
+          </div>
+          <div class="video-grid hireuav-video-grid archive-lane-grid">
+            <article class="video-card" data-video-type="youtube" data-video-id="pUYJyEizO3E">
+              <button type="button" class="video-play-btn" aria-label="Play Boeing Drone Light Show">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-pUYJyEizO3E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">BOEING</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Boeing Drone Light Show</h3>
+                <p class="video-description">Massive drone light show for Boeing in Huntington Beach.</p>
+                <div class="video-tags">
+                  <span class="video-tag">HireUAV Pro</span>
+                  <span class="video-tag">Boeing</span>
+                  <span class="video-tag">Drone Show</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="rS58zO-BfZg">
+              <button type="button" class="video-play-btn" aria-label="Play Kaley Cuoco Drone Light Show">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-rS58zO-BfZg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">CELEBRITY EVENT</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Kaley Cuoco Drone Light Show</h3>
+                <p class="video-description">450-drone gender reveal party recap in Los Angeles.</p>
+                <div class="video-tags">
+                  <span class="video-tag">HireUAV Pro</span>
+                  <span class="video-tag">Kaley Cuoco</span>
+                  <span class="video-tag">Event Recap</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="QRo-zI-cq_E">
+              <button type="button" class="video-play-btn" aria-label="Play Six Flags Drone Show">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-QRo-zI-cq_E.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SIX FLAGS</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Six Flags Drone Show</h3>
+                <p class="video-description">Beetlejuice Beetlejuice x Six Flags aerial light-show recap.</p>
+                <div class="video-tags">
+                  <span class="video-tag">HireUAV Pro</span>
+                  <span class="video-tag">Six Flags</span>
+                  <span class="video-tag">Drone Show</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="YZM5-kKQbxg">
+              <button type="button" class="video-play-btn" aria-label="Play San Francisco Skyline">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-YZM5-kKQbxg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SAN FRANCISCO</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">San Francisco Skyline</h3>
+                <p class="video-description">Drone show lighting up the San Francisco skyline.</p>
+                <div class="video-tags">
+                  <span class="video-tag">HireUAV Pro</span>
+                  <span class="video-tag">Comcast</span>
+                  <span class="video-tag">Event Recap</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="aHpeGxorw4c">
+              <button type="button" class="video-play-btn" aria-label="Play Coachella VIP Party">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-aHpeGxorw4c.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">COACHELLA</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Coachella VIP Party</h3>
+                <p class="video-description">350-drone VIP party at Coachella for Jeeter Tao.</p>
+                <div class="video-tags">
+                  <span class="video-tag">HireUAV Pro</span>
+                  <span class="video-tag">Coachella</span>
+                  <span class="video-tag">Jeeter</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="57249002">
+              <button type="button" class="video-play-btn" aria-label="Play Sky Hotel Parties Reel">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-57249002.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SKY HOTEL</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Sky Hotel Parties Reel</h3>
+                <p class="video-description">Party coverage compiled for the Sky Hotel in Aspen.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Aspen</span>
+                  <span class="video-tag">Event</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="54906384">
+              <button type="button" class="video-play-btn" aria-label="Play Wheeler Opera House">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-54906384.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">WHEELER</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Wheeler Opera House</h3>
+                <p class="video-description">Live coverage from the Wheeler Opera House, November 12.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Aspen</span>
+                  <span class="video-tag">Event</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="50576208">
+              <button type="button" class="video-play-btn" aria-label="Play Snowmass Balloon Fest">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-50576208.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SNOWMASS</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Snowmass Balloon Fest</h3>
+                <p class="video-description">Motion-controlled time-lapses from three Snowmass balloon festivals.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Snowmass</span>
+                  <span class="video-tag">Timelapse</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="49712059">
+              <button type="button" class="video-play-btn" aria-label="Play Woody Creek Distillers">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-49712059.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">WOODY CREEK</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Woody Creek Distillers</h3>
+                <p class="video-description">Promo film created for Woody Creek Distillers.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Woody Creek</span>
+                  <span class="video-tag">Promo</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="47621106">
+              <button type="button" class="video-play-btn" aria-label="Play Double Diamond Moving">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-47621106.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">DOUBLE DIAMOND</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Double Diamond Moving</h3>
+                <p class="video-description">Promo film for Double Diamond Moving &amp; Storage.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Double Diamond</span>
+                  <span class="video-tag">Promo</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="34415056">
+              <button type="button" class="video-play-btn" aria-label="Play Snowmass Fireworks 2011">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-34415056.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">SNOWMASS</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Snowmass Fireworks 2011</h3>
+                <p class="video-description">Fireworks film created for the Town of Snowmass.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Town of Snowmass</span>
+                  <span class="video-tag">Fireworks</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="26773381">
+              <button type="button" class="video-play-btn" aria-label="Play EMU Festival 2011">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-26773381.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">EMU FESTIVAL</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">EMU Festival 2011</h3>
+                <p class="video-description">Coverage from EMU Festival 2011.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Festival</span>
+                  <span class="video-tag">Event</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="vimeo" data-video-id="24034260">
+              <button type="button" class="video-play-btn" aria-label="Play Theater Aspen Tent">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/vm-24034260.webp" alt="" class="video-thumbnail" width="640" height="360" loading="lazy" decoding="async">
+                  <span class="card-badge">THEATER ASPEN</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Theater Aspen Tent</h3>
+                <p class="video-description">Contracted time-lapse of the Theater Aspen tent.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Theater Aspen</span>
+                  <span class="video-tag">Timelapse</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="milestone-box milestone-box--hireuav archive-lane" id="more-timelapse" hidden>
+          <div class="hireuav-feature-head">
+            <div>
+              <div class="milestone-year">More Timelapse</div>
+              <div class="milestone-desc">Further motion-controlled skies, cities, and landscapes from the archive.</div>
+            </div>
+          </div>
+          <div class="video-grid hireuav-video-grid archive-lane-grid">
                 <article class="video-card" data-video-type="youtube" data-video-id="SFS-WkgGvt8">
                   <button type="button" class="video-play-btn" aria-label="Play Dynamic Denver Hyperlapse">
                     <div class="video-thumbnail-wrapper">
@@ -1084,34 +1421,16 @@
                   </div>
                 </article>
               </div>
-            </details>
-            <details class="milestone-gallery">
-              <summary class="hireuav-recap-toggle">
-                <span class="hireuav-recap-pulse" aria-hidden="true">
-                  <span class="hireuav-recap-play">▶</span>
-                </span>
-                <span class="hireuav-recap-copy">
-                  <span class="hireuav-recap-kicker">Coming soon</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--closed">Car commercials</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide car commercials</span>
-                </span>
-                <span class="hireuav-recap-chevron" aria-hidden="true"></span>
-              </summary>
-              <p class="more-work-empty">Car commercials coming soon. Links land here next.</p>
-            </details>
-            <details class="milestone-gallery">
-              <summary class="hireuav-recap-toggle">
-                <span class="hireuav-recap-pulse" aria-hidden="true">
-                  <span class="hireuav-recap-play">▶</span>
-                </span>
-                <span class="hireuav-recap-copy">
-                  <span class="hireuav-recap-kicker">3 animations</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--closed">More motion graphics</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide motion graphics</span>
-                </span>
-                <span class="hireuav-recap-chevron" aria-hidden="true"></span>
-              </summary>
-              <div class="video-grid hireuav-video-grid">
+        </div>
+
+        <div class="milestone-box milestone-box--hireuav archive-lane" id="more-motion" hidden>
+          <div class="hireuav-feature-head">
+            <div>
+              <div class="milestone-year">More Motion Graphics</div>
+              <div class="milestone-desc">Logo packages and character animation studies beyond the selected 3D &amp; motion grid.</div>
+            </div>
+          </div>
+          <div class="video-grid hireuav-video-grid archive-lane-grid">
                 <article class="video-card" data-video-type="youtube" data-video-id="7QrXJgp30XI">
                   <button type="button" class="video-play-btn" aria-label="Play American Mary Logo Animations">
                     <div class="video-thumbnail-wrapper">
@@ -1164,38 +1483,30 @@
                   </div>
                 </article>
               </div>
-            </details>
+        </div>
+
+        <div class="milestone-box milestone-box--hireuav more-work">
+            <div class="hireuav-feature-head">
+              <div>
+                <div class="milestone-year">More Work</div>
+                <div class="milestone-desc">Burning Man films stay here until that tab lands. Car commercials wait on links.</div>
+              </div>
+              <a class="btn btn-gold btn-sm" href="https://www.youtube.com/@DanielKellyBrown" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
+            </div>
+            <div class="more-work-stack">
             <details class="milestone-gallery">
               <summary class="hireuav-recap-toggle">
                 <span class="hireuav-recap-pulse" aria-hidden="true">
                   <span class="hireuav-recap-play">▶</span>
                 </span>
                 <span class="hireuav-recap-copy">
-                  <span class="hireuav-recap-kicker">1 product film</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--closed">Product animation</span>
-                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide product animation</span>
+                  <span class="hireuav-recap-kicker">Coming soon</span>
+                  <span class="hireuav-recap-label hireuav-recap-label--closed">Car commercials</span>
+                  <span class="hireuav-recap-label hireuav-recap-label--open">Hide car commercials</span>
                 </span>
                 <span class="hireuav-recap-chevron" aria-hidden="true"></span>
               </summary>
-              <div class="video-grid hireuav-video-grid">
-                <article class="video-card" data-video-type="youtube" data-video-id="smduaWAkVQg">
-                  <button type="button" class="video-play-btn" aria-label="Play Crossman ST1 Animation">
-                    <div class="video-thumbnail-wrapper">
-                      <img src="/assets/thumbs/yt-smduaWAkVQg.webp" alt="" class="video-thumbnail" width="480" height="360" loading="lazy" decoding="async">
-                      <span class="card-badge">PRODUCT</span>
-                      <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-                    </div>
-                  </button>
-                  <div class="video-card-body">
-                    <h3 class="video-title">Crossman ST1</h3>
-                    <p class="video-description">Cinema 4D product animation for the Crossman ST1.</p>
-                    <div class="video-tags">
-                      <span class="video-tag">Product</span>
-                      <span class="video-tag">Cinema 4D</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
+              <p class="more-work-empty">Car commercials coming soon. Links land here next.</p>
             </details>
             <details class="milestone-gallery">
               <summary class="hireuav-recap-toggle">
@@ -3333,6 +3644,6 @@
 
   <script src="/sculptures-data.js" defer></script>
   <script src="/protocol-globe.js?v=2" defer></script>
-  <script src="/script.js?v=5" defer></script>
+  <script src="/script.js?v=7" defer></script>
 </body>
 </html>

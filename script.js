@@ -441,8 +441,25 @@ function initTypedText() {
 function initPortfolioFilters() {
   const tablist = document.querySelector('.portfolio-filters');
   const filterBtns = [...document.querySelectorAll('.filter-btn')];
+  const videoGrid = document.getElementById('video-grid');
   const videoCards = document.querySelectorAll('#video-grid .video-card');
+  const productSection = document.getElementById('product-animation');
+  const showsEvents = document.getElementById('shows-events');
+  const moreTimelapse = document.getElementById('more-timelapse');
+  const moreMotion = document.getElementById('more-motion');
+  const moreWork = document.querySelector('.more-work');
   if (!filterBtns.length) return;
+
+  function setBlockVisible(el, show) {
+    if (!el) return;
+    if (show) {
+      el.hidden = false;
+      el.style.display = '';
+    } else {
+      el.style.display = 'none';
+      el.hidden = true;
+    }
+  }
 
   function applyFilter(btn) {
     filterBtns.forEach((b) => {
@@ -453,9 +470,23 @@ function initPortfolioFilters() {
     });
 
     const filter = btn.getAttribute('data-filter');
+    const showProduct = filter === 'all' || filter === 'product';
+    const showMain = filter !== 'product' && filter !== 'events';
+    const showEvents = filter === 'events';
+    const showTimelapse = filter === 'reels';
+    const showMotionArchive = filter === 'vfx';
+    const showMore = filter === 'all';
+
+    setBlockVisible(videoGrid, showMain);
+    setBlockVisible(productSection, showProduct);
+    setBlockVisible(showsEvents, showEvents);
+    setBlockVisible(moreTimelapse, showTimelapse);
+    setBlockVisible(moreMotion, showMotionArchive);
+    setBlockVisible(moreWork, showMore);
+
     videoCards.forEach((card) => {
       const categories = (card.getAttribute('data-category') || '').split(' ');
-      const show = filter === 'all' || categories.includes(filter);
+      const show = showMain && (filter === 'all' || categories.includes(filter));
       if (show) {
         card.hidden = false;
         card.style.display = '';
@@ -472,6 +503,11 @@ function initPortfolioFilters() {
         }, prefersReducedMotion() ? 0 : 280);
       }
     });
+
+    const scrollTarget = filter === 'product' ? productSection : filter === 'events' ? showsEvents : null;
+    if (scrollTarget) {
+      scrollTarget.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    }
   }
 
   filterBtns.forEach((btn) => {
