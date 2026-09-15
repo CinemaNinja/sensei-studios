@@ -1982,7 +1982,7 @@ function payloadFromForm(form) {
   };
 }
 
-function mailtoFallback(payload) {
+function mailtoHref(payload) {
   const subject = encodeURIComponent(
     payload.piece
       ? `Sensei Studios — Sculpture inquiry: ${payload.piece}`
@@ -2004,7 +2004,26 @@ function mailtoFallback(payload) {
       .filter((line) => line !== null)
       .join('\n')
   );
-  window.location.href = `mailto:brown@senseistudios.com?subject=${subject}&body=${body}`;
+  return `mailto:brown@senseistudios.com?subject=${subject}&body=${body}`;
+}
+
+function showFormError(form, payload, message) {
+  let err = form.querySelector('#form-error') || document.getElementById('form-error');
+  if (!err) {
+    err = document.createElement('p');
+    err.id = 'form-error';
+    err.className = 'form-error';
+    err.setAttribute('role', 'alert');
+    form.querySelector('.form-footer')?.prepend(err) || form.prepend(err);
+  }
+  const href = mailtoHref(payload);
+  err.hidden = false;
+  err.innerHTML = `${message} <a href="${href}">Open email to send it</a>, or call <a href="tel:+13037098647">303-709-8647</a>.`;
+}
+
+function hideFormError(form) {
+  const err = form?.querySelector('#form-error') || document.getElementById('form-error');
+  if (err) err.hidden = true;
 }
 
 function initContactForm() {
@@ -2017,14 +2036,8 @@ function initContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('client-name');
-    const email = document.getElementById('client-email');
-    const notes = document.getElementById('project-notes');
-
-    if (!name?.value.trim() || !email?.value.trim() || !notes?.value.trim()) {
-      form.reportValidity();
-      return;
-    }
+    hideFormError(form);
+    if (!form.reportValidity()) return;
 
     const label = submitBtn?.querySelector('.btn-label');
     const loading = submitBtn?.querySelector('.btn-loading');
@@ -2052,15 +2065,23 @@ function initContactForm() {
         return;
       }
 
-      if (data.fallback === 'mailto' && data.mailto) {
-        const m = data.mailto;
-        window.location.href = `mailto:${m.to}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
-        return;
-      }
-
-      throw new Error(data.error || 'Submit failed');
+      const mail = data.fallback === 'mailto' && data.mailto
+        ? {
+            name: payload.name,
+            email: payload.email,
+            phone: payload.phone,
+            project_type: payload.project_type,
+            budget: payload.budget,
+            piece: payload.piece,
+            event_date: payload.event_date,
+            event_location: payload.event_location,
+            message: data.mailto.body || payload.message
+          }
+        : payload;
+      showFormError(form, mail, "Couldn't send from the site.");
+      return;
     } catch (err) {
-      mailtoFallback(payload);
+      showFormError(form, payload, "Couldn't send from the site.");
     } finally {
       if (submitBtn) submitBtn.disabled = false;
       if (label) label.hidden = false;
@@ -2071,6 +2092,7 @@ function initContactForm() {
   resetBtn?.addEventListener('click', () => {
     if (success) success.hidden = true;
     form.hidden = false;
+    hideFormError(form);
   });
 }
 

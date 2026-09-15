@@ -5676,6 +5676,20 @@ details.arsenal-dropdown > summary {
   margin-top: 0.5rem;
 }
 
+.form-error {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 168, 52, 0.45);
+  background: rgba(255, 168, 52, 0.08);
+  color: var(--text-main, #e8e6e1);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.form-error a {
+  color: var(--accent-gold);
+}
+
 .form-privacy {
   margin-top: 1rem;
   font-size: 0.8rem;
