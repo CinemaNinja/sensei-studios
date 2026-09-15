@@ -9,7 +9,7 @@
     "run_worker_first": [
       "/",
       "/api/*",
-      "/film", "/film/", "/film/*",
+      "/film", "/film/*",
       "/wood", "/wood/",
       "/woodwork", "/woodwork/",
       "/sculptures", "/sculptures/",
@@ -19,7 +19,7 @@
       "/bio", "/bio/",
       "/work", "/work/",
       "/protocol", "/protocol/",
-      "/peace-protocol", "/peace-protocol/", "/peace-protocol/*",
+      "/peace-protocol", "/peace-protocol/*",
       "/vision", "/vision/",
       "/estimator", "/estimator/",
       "/scope", "/scope/",
