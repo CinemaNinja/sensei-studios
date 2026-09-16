@@ -1,0 +1,16 @@
+{
+  "name": "sensei-studios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sensei Studios marketing site served by a Cloudflare Worker with static assets.",
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1 --port 8787 --persist-to /tmp/wrangler-state",
+    "start": "wrangler dev --ip 127.0.0.1 --port 8787 --persist-to /tmp/wrangler-state",
+    "preview": "node tools/server.js",
+    "deploy": "wrangler deploy",
+    "test": "python3 tools/test_site.py"
+  },
+  "devDependencies": {
+    "wrangler": "^4.131.2"
+  }
+}
