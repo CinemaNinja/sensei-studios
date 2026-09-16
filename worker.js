@@ -145,6 +145,34 @@ const LEGACY_REDIRECTS = {
   '/vision': '/peace-protocol'
 };
 
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://ajax.cloudflare.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://i.ytimg.com https://img.youtube.com https://i.vimeocdn.com https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com https://api.qrserver.com",
+  "font-src 'self'",
+  "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com",
+  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com https://api.qrserver.com",
+  "media-src 'self' blob:",
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  'upgrade-insecure-requests'
+].join('; ');
+
+const FILM_VIDEO_OBJECTS = [
+  { name: 'Official Video Reel', youtube: '9G1n3BTHkxw' },
+  { name: 'Public Works Reel', vimeo: '794249931' },
+  { name: 'Photoreal 3D Product Render', vimeo: '786699959' },
+  { name: '18 Years in Aspen', vimeo: '990788417' },
+  { name: 'Motion-Controlled Timelapse Reel', youtube: '4DWPPwO02nk' },
+  { name: 'The Aspen Way', youtube: 'xgnLsw2zK3M' },
+  { name: 'Aspen Nova Drone Light Show', youtube: '1R3K2FiUpmY' },
+  { name: 'Coachella VIP Party', youtube: 'aHpeGxorw4c' }
+];
+
 function json(data, status = 200, extraHeaders) {
   return new Response(JSON.stringify(data), {
     status,
@@ -156,6 +184,93 @@ function json(data, status = 200, extraHeaders) {
       ...(extraHeaders || {})
     }
   });
+}
+
+function applyEdgeHeaders(res, request) {
+  if (!res) return res;
+  const headers = new Headers(res.headers);
+  headers.set('X-Content-Type-Options', 'nosniff');
+  headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  try {
+    if (new URL(request.url).protocol === 'https:') {
+      headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    }
+  } catch (_) {
+    /* ignore */
+  }
+  const ct = (headers.get('content-type') || '').toLowerCase();
+  if (ct.includes('text/html')) {
+    headers.set('X-Frame-Options', 'SAMEORIGIN');
+    headers.set('Content-Security-Policy', CONTENT_SECURITY_POLICY);
+  }
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
+function filmSchemaHtml(origin) {
+  const graph = FILM_VIDEO_OBJECTS.map((video) => {
+    const youtube = Boolean(video.youtube);
+    const id = video.youtube || video.vimeo;
+    const contentUrl = youtube ? `https://www.youtube.com/watch?v=${id}` : `https://vimeo.com/${id}`;
+    const embedUrl = youtube ? `https://www.youtube.com/embed/${id}` : `https://player.vimeo.com/video/${id}`;
+    const thumb = `${origin}/assets/thumbs/${youtube ? 'yt' : 'vm'}-${id}.webp`;
+    return {
+      '@type': 'VideoObject',
+      name: video.name,
+      url: `${origin}/film`,
+      thumbnailUrl: thumb,
+      contentUrl,
+      embedUrl,
+      publisher: { '@id': `${origin}/#business` }
+    };
+  });
+  const payload = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+  return `<script type="application/ld+json">${payload}</script>`;
+}
+
+function breadcrumbSchemaHtml(origin, route) {
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${origin}/` }
+  ];
+  if (route.parent && route.canonical !== SECTION_META[route.parent]?.canonical) {
+    const parent = SECTION_META[route.parent];
+    if (parent) {
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: parent.title.replace(' | Sensei Studios', ''),
+        item: origin + parent.canonical
+      });
+      items.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: route.title.replace(' | Sensei Studios', ''),
+        item: origin + route.canonical
+      });
+    }
+  } else {
+    items.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: route.title.replace(' | Sensei Studios', ''),
+      item: origin + route.canonical
+    });
+  }
+  const payload = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items
+  }).replace(/</g, '\\u003c');
+  return `<script type="application/ld+json">${payload}</script>`;
+}
+
+class AppendHeadHtml {
+  constructor(html) {
+    this.html = html;
+  }
+  element(e) {
+    e.append(this.html, { html: true });
+  }
 }
 
 function clip(value, max) {
@@ -490,7 +605,11 @@ async function serveSection(request, env, route) {
     .on('title', { element(e) { e.setInnerContent(route.title); } })
     .on('meta[name="description"], meta[property^="og:"], meta[name^="twitter:"]', new SectionMeta(route, origin))
     .on('link[rel="canonical"]', new CanonicalLink(origin + route.canonical))
-    .on('head', new HeadSectionTag(route.parent));
+    .on('head', new HeadSectionTag(route.parent))
+    .on('head', new AppendHeadHtml(breadcrumbSchemaHtml(origin, route)));
+  if (route.parent === 'film') {
+    rewriter = rewriter.on('head', new AppendHeadHtml(filmSchemaHtml(origin)));
+  }
   if (route.unhide) {
     rewriter = rewriter.on(`#${route.unhide}`, {
       element(e) {
@@ -741,6 +860,11 @@ async function serveLostPath(request, env) {
 
 export default {
   async fetch(request, env, ctx) {
+    return applyEdgeHeaders(await handleRequest(request, env, ctx), request);
+  }
+};
+
+async function handleRequest(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, '') || '/';
 
@@ -795,5 +919,4 @@ export default {
       return stampPresence(request, env, ctx, await serveLostPath(request, env), path);
     }
     return stampPresence(request, env, ctx, asset, path);
-  }
-};
+}

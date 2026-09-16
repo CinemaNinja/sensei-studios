@@ -284,13 +284,15 @@ function initCustomCursor() {
   let mouseY = 0;
   let cursorX = 0;
   let cursorY = 0;
+  let running = true;
 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-  });
+  }, { passive: true });
 
   function animateCursor() {
+    if (!running) return;
     cursorX += (mouseX - cursorX) * 0.25;
     cursorY += (mouseY - cursorY) * 0.25;
     cursor.style.left = `${cursorX}px`;
@@ -298,6 +300,11 @@ function initCustomCursor() {
     requestAnimationFrame(animateCursor);
   }
   animateCursor();
+
+  document.addEventListener('visibilitychange', () => {
+    running = document.visibilityState !== 'hidden';
+    if (running) animateCursor();
+  });
 
   const selector = 'a, button, .video-card, .checkbox-card, input, select, textarea, .lazy-video-poster';
   document.querySelectorAll(selector).forEach((el) => {
@@ -484,12 +491,13 @@ function initPortfolioFilters() {
     });
 
     const filter = btn.getAttribute('data-filter');
-    const showProduct = filter === 'all' || filter === 'product';
+    const showProduct = filter === 'product';
     const showMain = filter !== 'product' && filter !== 'events';
     const showEvents = filter === 'events';
     const showTimelapse = filter === 'reels';
     const showMotionArchive = filter === 'vfx';
-    const showMore = filter === 'all';
+    const showMore = filter === 'reels';
+    const showSelectedOnly = filter === 'all';
 
     setBlockVisible(videoGrid, showMain);
     setBlockVisible(productSection, showProduct);
@@ -497,10 +505,13 @@ function initPortfolioFilters() {
     setBlockVisible(moreTimelapse, showTimelapse);
     setBlockVisible(moreMotion, showMotionArchive);
     setBlockVisible(moreWork, showMore);
+    videoGrid?.classList.toggle('is-selected', showSelectedOnly);
+    document.getElementById('film-selected-note')?.toggleAttribute('hidden', !showSelectedOnly);
 
     videoCards.forEach((card) => {
       const categories = (card.getAttribute('data-category') || '').split(' ');
-      const show = showMain && (filter === 'all' || categories.includes(filter));
+      const isLead = card.hasAttribute('data-lead');
+      const show = showMain && (showSelectedOnly ? isLead : categories.includes(filter));
       if (show) {
         card.hidden = false;
         card.style.display = '';
@@ -657,30 +668,6 @@ function initVideoModal() {
     wrap.innerHTML = `<iframe src="${embedUrl}" title="${escapeHtml(title || 'Video')}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     card.classList.add('is-playing');
   }
-
-  function addOutboundWatchLinks() {
-    document.querySelectorAll('.video-card[data-video-id]').forEach((card) => {
-      if (card.querySelector('.video-watch-link')) return;
-      const type = card.getAttribute('data-video-type');
-      const id = card.getAttribute('data-video-id');
-      if (!type || !id) return;
-      const href = type === 'vimeo' ? `https://vimeo.com/${id}` : `https://www.youtube.com/watch?v=${id}`;
-      const label = type === 'vimeo' ? 'Watch on Vimeo' : 'Watch on YouTube';
-      const host = type === 'vimeo' ? 'Vimeo' : 'YouTube';
-      const title = card.querySelector('.video-title')?.textContent?.trim() || 'this film';
-      const link = document.createElement('a');
-      link.className = 'video-watch-link';
-      link.href = href;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = label;
-      link.setAttribute('aria-label', `${title} on ${host}`);
-      const body = card.querySelector('.video-card-body') || card;
-      body.appendChild(link);
-    });
-  }
-
-  addOutboundWatchLinks();
 
   document.querySelectorAll('.video-card').forEach((card) => {
     const activate = () => {
@@ -1173,7 +1160,7 @@ function allChapterKeys() {
 }
 
 function initialChapterKeys() {
-  return allChapterKeys();
+  return ['work'];
 }
 
 function jumpToShareTarget() {
@@ -1330,6 +1317,7 @@ function initSectionDropdowns() {
     details.addEventListener('toggle', () => {
       syncDropdownAria(details);
       syncEnsoFill();
+      if (details.open) window.dispatchEvent(new Event('resize'));
     });
   });
 
@@ -1349,6 +1337,7 @@ function initSectionDropdowns() {
   }
 
   setPageDropdownsOpen(initialChapterKeys());
+  applyOpenIntent({ scroll: false });
   scheduleDropdownBootReveal();
 
   document.addEventListener('click', (e) => {

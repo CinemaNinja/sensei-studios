@@ -39,7 +39,7 @@ def nav(active: str) -> str:
 {item("/web/", "web", "Web")}
 {item("/film/#arsenal", "arsenal", "Arsenal")}
 {item("/story/", "story", "Story")}
-{item("/#estimator", "scope", "Scope")}
+{item("/estimator", "scope", "Scope")}
         <li class="nav-mobile-cta"><a href="#contact" class="nav-link">Book Project</a></li>
       </ul>
       <div class="nav-actions">
