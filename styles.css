@@ -1892,19 +1892,23 @@ details.arsenal-dropdown > summary {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin: 0 auto 2.5rem;
+  max-width: 68rem;
+  padding-inline: 1rem 3.5rem;
 }
 
 .filter-btn {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  padding: 0.6rem 1.2rem;
+  padding: 0.45rem 0.9rem;
   border-radius: var(--radius-full);
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
   cursor: pointer;
   transition: var(--transition-fast);
   font-family: var(--font-body);
@@ -3871,6 +3875,7 @@ details.arsenal-dropdown > summary {
 }
 
 #product-animation,
+#real-estate,
 #shows-events,
 #more-timelapse,
 #more-motion,
@@ -3887,6 +3892,10 @@ details.arsenal-dropdown > summary {
 
 .archive-lane-grid {
   margin-top: 1.35rem;
+}
+
+#real-estate .archive-lane-grid .video-card:only-child {
+  width: min(28rem, 100%);
 }
 
 .hireuav-feature-head {
@@ -8076,6 +8085,17 @@ main > section:first-child:not(.hero) {
 }
 
 @media (max-width: 720px) {
+  .portfolio-filters {
+    gap: 0.32rem;
+    margin-bottom: 1.75rem;
+    padding-inline: 0.35rem 3.15rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.72rem;
+  }
+
   .float-controls {
     right: 0.75rem;
     bottom: 5.25rem;

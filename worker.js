@@ -86,6 +86,15 @@ const NESTED_ROUTES = {
     image: '/assets/og-film.jpg?v=2',
     canonical: '/film/product-animation'
   },
+  '/film/real-estate': {
+    parent: 'film',
+    title: 'Real Estate Video | Sensei Studios',
+    description:
+      'Buttery-smooth real estate video and virtual tours by Daniel Kelly Brown: professional-grade gimbal and camera work, plus drone and FPV.',
+    image: '/assets/og-film.jpg?v=2',
+    canonical: '/film/real-estate',
+    unhide: 'real-estate'
+  },
   '/film/shows-events': {
     parent: 'film',
     title: 'Shows & Events | Sensei Studios',

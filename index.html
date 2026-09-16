@@ -34,7 +34,7 @@
   <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-700.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/assets/fonts/shojumaru-400.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=25">
+  <link rel="stylesheet" href="/styles.css?v=26">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -353,6 +353,7 @@
           <button type="button" class="filter-btn" data-filter="reels" role="tab" id="filter-reels" aria-selected="false" aria-controls="video-grid" tabindex="-1">Video &amp; Timelapses</button>
           <button type="button" class="filter-btn" data-filter="vfx" role="tab" id="filter-vfx" aria-selected="false" aria-controls="video-grid" tabindex="-1">3D &amp; Motion</button>
           <button type="button" class="filter-btn" data-filter="product" role="tab" id="filter-product" aria-selected="false" aria-controls="product-animation" tabindex="-1">Product Animation</button>
+          <button type="button" class="filter-btn" data-filter="realestate" role="tab" id="filter-realestate" aria-selected="false" aria-controls="real-estate" tabindex="-1">Real Estate Video</button>
           <button type="button" class="filter-btn" data-filter="drone" role="tab" id="filter-drone" aria-selected="false" aria-controls="video-grid" tabindex="-1">FPV &amp; Drone</button>
           <button type="button" class="filter-btn" data-filter="events" role="tab" id="filter-events" aria-selected="false" aria-controls="shows-events" tabindex="-1">Shows &amp; Events</button>
         </div>
@@ -473,30 +474,6 @@
                 <span class="video-tag">Airstream</span>
                 <span class="video-tag">Documentary</span>
                 <span class="video-tag">Made in USA</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="video-card reveal" data-category="reels" data-video-type="youtube" data-video-id="Hqg6IMffrc0">
-            <button type="button" class="video-play-btn" aria-label="Play Cloud X Aspen">
-            <div class="video-thumbnail-wrapper">
-              <img src="/assets/thumbs/yt-Hqg6IMffrc0.webp" alt="Cloud X Aspen" class="video-thumbnail" width="640" height="480" loading="lazy" decoding="async">
-              <span class="card-badge">LUXURY REAL ESTATE</span>
-              <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
-            </div>
-            </button>
-            <div class="video-card-body">
-              <h3 class="video-title">Cloud X Aspen</h3>
-              <p class="video-description">Cinematic estate film for a private Aspen home. Luxury property cinema for Douglas Elliman, Christie’s, and listings that should feel like a feature, not a walkthrough.</p>
-              <div class="case-row">
-                <span><strong>Brief</strong> Estate cinema</span>
-                <span><strong>Role</strong> Director / camera + editing</span>
-                <span><strong>Result</strong> Luxury listing film</span>
-              </div>
-              <div class="video-tags">
-                <span class="video-tag">Aspen</span>
-                <span class="video-tag">Real Estate</span>
-                <span class="video-tag">Luxury Estate</span>
               </div>
             </div>
           </article>
@@ -785,7 +762,7 @@
           </article>
 
         </div>
-        <p class="film-selected-note" id="film-selected-note">More ski, product, drone, and 3D work lives in the tabs.</p>
+        <p class="film-selected-note" id="film-selected-note">More ski, product, real estate, drone, and 3D work lives in the tabs.</p>
 
         <div class="milestone-box milestone-box--hireuav product-animation" id="product-animation" hidden>
           <div class="hireuav-feature-head">
@@ -1065,6 +1042,53 @@
                 <div class="video-tags">
                   <span class="video-tag">f-stop</span>
                   <span class="video-tag">Stop Motion</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="milestone-box milestone-box--hireuav archive-lane" id="real-estate" hidden>
+          <div class="hireuav-feature-head">
+            <div>
+              <div class="milestone-year"><a class="section-share-link" href="/film/real-estate">Real Estate Video</a></div>
+              <div class="milestone-desc">Buttery-smooth real estate video and virtual tours, with professional-grade gimbal and camera work plus drone and FPV.</div>
+            </div>
+          </div>
+          <div class="video-grid hireuav-video-grid archive-lane-grid">
+            <article class="video-card" data-video-type="youtube" data-video-id="Hqg6IMffrc0">
+              <button type="button" class="video-play-btn" aria-label="Play Cloud X Aspen">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-Hqg6IMffrc0.webp" alt="Cloud X Aspen" class="video-thumbnail" width="640" height="480" loading="lazy" decoding="async">
+                  <span class="card-badge">CLOUD X</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Cloud X Aspen</h3>
+                <p class="video-description">Cinematic estate film for a private Aspen home. Luxury property cinema for Douglas Elliman, Christie&rsquo;s, and listings that should feel like a feature, not a walkthrough.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Aspen</span>
+                  <span class="video-tag">Real Estate</span>
+                  <span class="video-tag">VERT</span>
+                </div>
+              </div>
+            </article>
+            <article class="video-card" data-video-type="youtube" data-video-id="j8G2PtKIiMw">
+              <button type="button" class="video-play-btn" aria-label="Play Grove Aspen Virtual Tour">
+                <div class="video-thumbnail-wrapper">
+                  <img src="/assets/thumbs/yt-j8G2PtKIiMw.webp" alt="Grove Aspen Virtual Tour" class="video-thumbnail" width="1280" height="720" loading="lazy" decoding="async">
+                  <span class="card-badge">GROVE ASPEN</span>
+                  <div class="play-overlay"><div class="play-icon-btn" aria-hidden="true">▶</div></div>
+                </div>
+              </button>
+              <div class="video-card-body">
+                <h3 class="video-title">Grove Aspen Virtual Tour</h3>
+                <p class="video-description">A buttery-smooth virtual tour through Grove Aspen: gimbal interiors and cinematic rooms, not a handheld walkthrough.</p>
+                <div class="video-tags">
+                  <span class="video-tag">Aspen</span>
+                  <span class="video-tag">Virtual Tour</span>
+                  <span class="video-tag">Real Estate</span>
                 </div>
               </div>
             </article>
@@ -4021,6 +4045,6 @@
 
   <script src="/sculptures-data.js?v=2" defer></script>
   <script src="/protocol-globe.js?v=2" defer></script>
-  <script src="/script.js?v=14" defer></script>
+  <script src="/script.js?v=15" defer></script>
 </body>
 </html>

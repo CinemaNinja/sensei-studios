@@ -36,6 +36,7 @@ const server = http.createServer((req, res) => {
   const SPA_PATHS = new Set([
     '/film',
     '/film/product-animation',
+    '/film/real-estate',
     '/film/shows-events',
     '/film/arsenal',
     '/wood',

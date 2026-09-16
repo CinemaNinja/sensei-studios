@@ -451,6 +451,7 @@ function initPortfolioFilters() {
   const videoGrid = document.getElementById('video-grid');
   const videoCards = document.querySelectorAll('#video-grid .video-card');
   const productSection = document.getElementById('product-animation');
+  const realEstate = document.getElementById('real-estate');
   const showsEvents = document.getElementById('shows-events');
   const moreTimelapse = document.getElementById('more-timelapse');
   const moreMotion = document.getElementById('more-motion');
@@ -470,6 +471,7 @@ function initPortfolioFilters() {
 
   function filmPathForFilter(filter) {
     if (filter === 'product') return '/film/product-animation';
+    if (filter === 'realestate') return '/film/real-estate';
     if (filter === 'events') return '/film/shows-events';
     return '/film';
   }
@@ -492,7 +494,8 @@ function initPortfolioFilters() {
 
     const filter = btn.getAttribute('data-filter');
     const showProduct = filter === 'product';
-    const showMain = filter !== 'product' && filter !== 'events';
+    const showRealEstate = filter === 'realestate';
+    const showMain = filter !== 'product' && filter !== 'events' && filter !== 'realestate';
     const showEvents = filter === 'events';
     const showTimelapse = filter === 'reels';
     const showMotionArchive = filter === 'vfx';
@@ -501,6 +504,7 @@ function initPortfolioFilters() {
 
     setBlockVisible(videoGrid, showMain);
     setBlockVisible(productSection, showProduct);
+    setBlockVisible(realEstate, showRealEstate);
     setBlockVisible(showsEvents, showEvents);
     setBlockVisible(moreTimelapse, showTimelapse);
     setBlockVisible(moreMotion, showMotionArchive);
@@ -532,7 +536,11 @@ function initPortfolioFilters() {
     if (updateUrl) syncFilmFilterUrl(filter);
 
     if (scroll) {
-      const scrollTarget = filter === 'product' ? productSection : filter === 'events' ? showsEvents : null;
+      const scrollTarget =
+        filter === 'product' ? productSection :
+        filter === 'realestate' ? realEstate :
+        filter === 'events' ? showsEvents :
+        null;
       if (scrollTarget) {
         scrollTarget.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
       }
@@ -1027,6 +1035,7 @@ const PATH_SECTION = {
 
 const NESTED_PATHS = {
   '/film/product-animation': { target: 'product-animation', filter: 'product' },
+  '/film/real-estate': { target: 'real-estate', filter: 'realestate' },
   '/film/shows-events': { target: 'shows-events', filter: 'events' },
   '/film/arsenal': { target: 'arsenal' },
   '/peace-protocol/entropy': { target: 'protocol-entropy' },
@@ -1045,6 +1054,7 @@ const SECTION_SHARE_PATH = {
   contact: '/contact',
   arsenal: '/film/arsenal',
   'product-animation': '/film/product-animation',
+  'real-estate': '/film/real-estate',
   'shows-events': '/film/shows-events',
   'protocol-entropy': '/peace-protocol/entropy',
   'protocol-temples': '/peace-protocol/temples',
