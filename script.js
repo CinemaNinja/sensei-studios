@@ -1148,6 +1148,17 @@ function pageDropdowns() {
   return [...document.querySelectorAll('details.page-dropdown')];
 }
 
+function chapterRailLabel(details) {
+  const explicit = details.getAttribute('data-rail-label');
+  if (explicit) return explicit.trim();
+  const kicker = details.querySelector(':scope > summary .page-dropdown-kicker')?.textContent || '';
+  const fromKicker = kicker.replace(/^Chapter\s*[·•.\-–]\s*/i, '').trim();
+  if (fromKicker) return fromKicker;
+  return details.querySelector(':scope > summary .page-dropdown-title')?.textContent?.trim()
+    || details.getAttribute('data-section')
+    || details.id;
+}
+
 function setPageDropdownsOpen(keys) {
   const wanted = new Set((keys || []).map((k) => sectionIdFromKey(k)));
   pageDropdowns().forEach((details) => {
@@ -1391,7 +1402,7 @@ function initChapterRail() {
 
   const items = dropdowns.map((d, i) => {
     const key = d.getAttribute('data-section') || d.id;
-    const label = d.querySelector('.page-dropdown-title')?.textContent?.trim() || key;
+    const label = chapterRailLabel(d);
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'chapter-rail-btn';
