@@ -1524,6 +1524,147 @@ details.arsenal-dropdown > summary {
   flex-shrink: 0;
 }
 
+.snow-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  min-width: 7.5rem;
+}
+
+.snow-label {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  text-align: center;
+  color: rgba(214, 236, 255, 0.72);
+  white-space: nowrap;
+}
+
+.snow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.snow-toggle {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(186, 230, 253, 0.35);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(214, 236, 255, 0.16), rgba(255, 255, 255, 0.03) 62%);
+  color: #f4fbff;
+  cursor: pointer;
+  transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+
+.snow-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.snow-toggle[aria-pressed="true"] {
+  border-color: rgba(186, 230, 253, 0.85);
+  box-shadow: 0 0 0 1px rgba(186, 230, 253, 0.15), 0 0 16px rgba(186, 230, 253, 0.28);
+  animation: snow-glow 2.8s ease-in-out infinite;
+}
+
+.snow-toggle[aria-pressed="true"] svg {
+  animation: snow-spin 12s linear infinite;
+}
+
+.snow-toggle[aria-pressed="false"] {
+  color: rgba(255, 255, 255, 0.38);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: none;
+}
+
+.snow-toggle:hover {
+  transform: translateY(-1px);
+}
+
+@keyframes snow-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes snow-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(186, 230, 253, 0.12), 0 0 8px rgba(186, 230, 253, 0.16); }
+  50% { box-shadow: 0 0 0 1px rgba(186, 230, 253, 0.28), 0 0 18px rgba(186, 230, 253, 0.45); }
+}
+
+#snow-density {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 72px;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+#snow-density::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(186, 230, 253, 0.2), rgba(255, 255, 255, 0.85));
+}
+
+#snow-density::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -5px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(186, 230, 253, 0.16), 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+#snow-density::-moz-range-track {
+  height: 2px;
+  border: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(186, 230, 253, 0.2), rgba(255, 255, 255, 0.85));
+}
+
+#snow-density::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow-toggle[aria-pressed="true"],
+  .snow-toggle[aria-pressed="true"] svg {
+    animation: none;
+  }
+}
+
+#snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+  pointer-events: none;
+}
+
 .nav-cta-btn {
   display: flex;
   align-items: center;
@@ -1778,7 +1919,7 @@ details.arsenal-dropdown > summary {
   color: var(--text-muted);
   line-height: 1.75;
   margin-bottom: 2rem;
-  max-width: min(40rem, 100%);
+  max-width: min(48rem, 100%);
 }
 
 .hero-cta-group {
@@ -6878,6 +7019,17 @@ body { padding-right: var(--rail-gutter); }
     display: none;
   }
 
+  .snow-control {
+    min-width: 0;
+    padding: 0.15rem 0.35rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  #snow-density {
+    display: none;
+  }
+
   .nav-hamburger {
     display: flex;
   }
@@ -8214,7 +8366,7 @@ main > section:first-child:not(.hero) {
   }
 
   .hero-description {
-    max-width: min(44rem, 100%);
+    max-width: min(48rem, 100%);
   }
 
   .proof-zen {

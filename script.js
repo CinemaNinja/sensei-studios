@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFooterYear();
   initQueryPrefill();
   initInstagramFeed();
+  initSnowscape();
 });
 
 /* ==========================================================================
@@ -2700,4 +2701,260 @@ function initInstagramFeed() {
         .then(apply)
         .catch(() => {});
     });
+}
+
+/* ==========================================================================
+   SNOWSCAPE
+   Ported from Double Diamond (canvas snow, mouse and element repulsion,
+   density slider). The flake is an on/off button; the slider sets amount.
+   ========================================================================== */
+function initSnowscape() {
+  const canvas = document.getElementById('snow-canvas');
+  const slider = document.getElementById('snow-density');
+  const toggle = document.getElementById('snow-toggle');
+  if (!canvas || !slider || !toggle) return;
+
+  const ctx = canvas.getContext('2d');
+  const stored = Number(localStorage.getItem('sensei-snow'));
+  const start = Number.isFinite(stored)
+    ? stored
+    : (prefersReducedMotion() ? 0 : 100);
+  let particleCount = Math.max(0, Math.min(400, start || 0));
+  let lastOn = particleCount > 0 ? particleCount : 100;
+  let particles = [];
+  let mouseX = null;
+  let mouseY = null;
+  let frame = 0;
+  const repulsionSources = [];
+  const REACH = 10;
+  const ROOMS = {
+    film: [255, 255, 255],
+    wood: [255, 177, 66],
+    handpan: [255, 186, 140],
+    protocol: [186, 206, 224]
+  };
+  const look = { r: 255, g: 255, b: 255 };
+
+  const blockSelector = [
+    '.hero-logo-mark', '.hero-title',
+    '.video-card', '.tactical-gear-card', '.sculpture-card',
+    '.handpan-image-box', '.handpan-info-box', '.handpan-pkg-card', '.handpan-video-card',
+    '.web-project-card', '.section-header',
+    '.bio-featured-figure', '.bio-gallery-item',
+    '.protocol-master-card', '.protocol-pillar-card', '.protocol-phil-card',
+    '.protocol-garden-card', '.protocol-temples-card', '.protocol-ropes-card',
+    '.protocol-question-card', '.protocol-entropy-card', '.protocol-friction-card',
+    '.protocol-join-card', '.protocol-belief-card', '.protocol-cta-banner',
+    '.instagram-tile', '.estimator-card', '.contact-card', '.wood-show-stage'
+  ].join(',');
+
+  const scanSources = () => {
+    document.querySelectorAll(blockSelector).forEach((el) => {
+      if (!el || el._snowSrc) return;
+      if (el.closest('nav, #preloader, .snow-control, .hero-bg-wrapper, .sculpture-modal')) return;
+      el._snowSrc = { el };
+      repulsionSources.push(el._snowSrc);
+    });
+  };
+
+  scanSources();
+  document.querySelectorAll('details').forEach((details) => {
+    details.addEventListener('toggle', scanSources);
+  });
+  const snowRoot = document.getElementById('main-content');
+  if (snowRoot && 'MutationObserver' in window) {
+    let scanTimer = 0;
+    new MutationObserver(() => {
+      clearTimeout(scanTimer);
+      scanTimer = setTimeout(scanSources, 40);
+    }).observe(snowRoot, { childList: true, subtree: true });
+  }
+
+  const resize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+
+  const seed = () => {
+    resize();
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2.2 + 0.6,
+        sway: Math.random() * Math.PI * 2,
+        fall: Math.random() * 0.55 + 0.45,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: Math.random() * 0.8 + 0.4,
+        opacity: Math.random() * 0.55 + 0.2
+      });
+    }
+  };
+
+  const paintToggle = () => {
+    const on = particleCount > 0;
+    toggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    toggle.setAttribute('aria-label', 'Make it snow');
+    toggle.title = 'Make it snow';
+    slider.value = String(particleCount);
+  };
+
+  const setCount = (next) => {
+    particleCount = Math.max(0, Math.min(400, next));
+    if (particleCount > 0) lastOn = particleCount;
+    try { localStorage.setItem('sensei-snow', String(particleCount)); } catch (_) {}
+    paintToggle();
+    seed();
+    if (particleCount > 0 && !frame) frame = requestAnimationFrame(draw);
+    if (particleCount === 0) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  };
+
+  const readRoom = () => {
+    const viewH = canvas.height || window.innerHeight;
+    let bestKey = 'film';
+    let bestArea = 0;
+    const open = document.querySelectorAll('details.page-dropdown[open]');
+    for (let i = 0; i < open.length; i++) {
+      const rect = open[i].getBoundingClientRect();
+      const visible = Math.min(rect.bottom, viewH) - Math.max(rect.top, 72);
+      if (visible > bestArea) {
+        bestArea = visible;
+        bestKey = open[i].getAttribute('data-section') || 'film';
+      }
+    }
+    return ROOMS[bestKey] || ROOMS.film;
+  };
+
+  const easeLook = () => {
+    const room = readRoom();
+    const k = 0.02;
+    look.r += (room[0] - look.r) * k;
+    look.g += (room[1] - look.g) * k;
+    look.b += (room[2] - look.b) * k;
+  };
+
+  const draw = () => {
+    frame = requestAnimationFrame(draw);
+    if (document.hidden || particleCount === 0) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    easeLook();
+
+    const fields = [];
+    for (let s = 0; s < repulsionSources.length; s++) {
+      const el = repulsionSources[s].el;
+      if (el.closest('summary')) continue;
+      const box = el.closest('details');
+      if (box && !box.open) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.width < 80 || rect.height < 48) continue;
+      if (rect.height < 120 && rect.width > canvas.width * 0.6) continue;
+      if (rect.width > canvas.width * 0.94 && rect.height > canvas.height * 0.55) continue;
+      if (rect.bottom < -REACH || rect.top > canvas.height + REACH) continue;
+      fields.push({
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom
+      });
+    }
+
+    const now = performance.now();
+    for (let i = 0; i < particleCount; i++) {
+      const p = particles[i];
+      if (!p) continue;
+
+      p.vx += Math.sin(now * 0.00035 + p.sway) * 0.006;
+      p.vy += (p.fall - p.vy) * 0.02;
+
+      if (mouseX !== null && mouseY !== null) {
+        const dx = mouseX - p.x;
+        const dy = mouseY - p.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance > 0 && distance < 180) {
+          const force = ((180 - distance) / 180) ** 2 * 0.55;
+          p.vx -= (dx / distance) * force;
+          p.vy -= (dy / distance) * force * 0.65;
+        }
+      }
+
+      let ax = 0;
+      let ay = 0;
+      let fade = 1;
+      for (let r = 0; r < fields.length; r++) {
+        const field = fields[r];
+        const insideX = p.x >= field.left && p.x <= field.right;
+        const insideY = p.y >= field.top && p.y <= field.bottom;
+        if (insideX && insideY) {
+          const nearest = Math.min(
+            p.x - field.left,
+            field.right - p.x,
+            p.y - field.top,
+            field.bottom - p.y
+          );
+          fade *= Math.max(0.04, 1 - nearest / 20);
+          continue;
+        }
+        const ox = p.x < field.left ? field.left - p.x : p.x > field.right ? p.x - field.right : 0;
+        const oy = p.y < field.top ? field.top - p.y : p.y > field.bottom ? p.y - field.bottom : 0;
+        if (oy > 0 && p.y < field.top) continue;
+        const outside = Math.hypot(ox, oy);
+        if (outside >= REACH || outside === 0) continue;
+        const force = (1 - outside / REACH) ** 2 * 0.05;
+        if (ox > 0) ax += (p.x < field.left ? -1 : 1) * force;
+        if (p.y > field.bottom) ay += force;
+      }
+
+      const mag = Math.hypot(ax, ay);
+      if (mag > 0.2) {
+        ax *= 0.2 / mag;
+        ay *= 0.2 / mag;
+      }
+      p.vx = (p.vx + ax) * 0.988;
+      p.vy = (p.vy + ay) * 0.992;
+      if (p.vy < -0.4) p.vy = -0.4;
+      if (p.vy > 2.1) p.vy = 2.1;
+      if (p.vx > 1.35) p.vx = 1.35;
+      if (p.vx < -1.35) p.vx = -1.35;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.y > canvas.height + 8) {
+        p.x = Math.random() * canvas.width;
+        p.y = -8;
+        p.vy = p.fall;
+      } else if (p.x > canvas.width + 12) {
+        p.x = -8;
+      } else if (p.x < -12) {
+        p.x = canvas.width + 8;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${look.r | 0}, ${look.g | 0}, ${look.b | 0}, ${p.opacity * fade})`;
+      ctx.fill();
+    }
+  };
+
+  slider.addEventListener('input', () => setCount(parseInt(slider.value, 10) || 0));
+  toggle.addEventListener('click', () => setCount(particleCount > 0 ? 0 : lastOn));
+  window.addEventListener('resize', () => { if (particleCount > 0) seed(); });
+  document.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    } else {
+      mouseX = null;
+      mouseY = null;
+    }
+  });
+  document.addEventListener('mouseleave', () => { mouseX = null; mouseY = null; });
+
+  setCount(particleCount);
 }

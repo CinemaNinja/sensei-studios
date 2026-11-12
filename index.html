@@ -34,7 +34,7 @@
   <link rel="preload" as="font" href="/assets/fonts/plus-jakarta-sans-700.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="/assets/fonts/shojumaru-400.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles.css?v=26">
+  <link rel="stylesheet" href="/styles.css?v=30">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -200,6 +200,19 @@
         <li class="nav-mobile-cta"><a href="/contact" class="nav-link">Book Project</a></li>
       </ul>
       <div class="nav-actions">
+        <div class="snow-control">
+          <span class="snow-label">Make it snow</span>
+          <div class="snow-row">
+            <button type="button" class="snow-toggle" id="snow-toggle" aria-pressed="true" aria-label="Make it snow" title="Make it snow">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M12 2.5v19M12 7.2l-2.1-2.1M12 7.2l2.1-2.1M12 16.8l-2.1 2.1M12 16.8l2.1 2.1"/>
+                <path d="M4.2 7.1l15.6 9.8M4.2 7.1l2.4.2M4.2 7.1l.7 2.3M19.8 16.9l-2.4-.2M19.8 16.9l-.7-2.3"/>
+                <path d="M19.8 7.1L4.2 16.9M19.8 7.1l-2.4.2M19.8 7.1l-.7 2.3M4.2 16.9l2.4-.2M4.2 16.9l.7-2.3"/>
+              </svg>
+            </button>
+            <input type="range" id="snow-density" min="0" max="400" value="100" aria-label="Snow amount" title="Snow amount">
+          </div>
+        </div>
         <a href="/contact" class="nav-cta-btn">
           <span class="nav-cta-text">Book Project</span>
           <span class="nav-cta-icon" aria-hidden="true">→</span>
@@ -212,6 +225,7 @@
       </div>
     </div>
   </nav>
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
   <main id="main-content">
     <!-- Hero -->
     <section class="hero" id="hero">
@@ -4064,6 +4078,6 @@
 
   <script src="/sculptures-data.js?v=2" defer></script>
   <script src="/protocol-globe.js?v=2" defer></script>
-  <script src="/script.js?v=15" defer></script>
+  <script src="/script.js?v=23" defer></script>
 </body>
 </html>
