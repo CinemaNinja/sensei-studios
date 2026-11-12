@@ -2086,6 +2086,23 @@ details.arsenal-dropdown > summary {
   color: var(--text-muted);
 }
 
+.proof-names button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: rgba(244, 251, 255, 0.92);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(186, 230, 253, 0.28);
+  padding: 0.12rem 0 0.05rem;
+  cursor: pointer;
+}
+
+.proof-names button:hover,
+.proof-names button:focus-visible {
+  color: #fff;
+  border-bottom-color: var(--accent-gold);
+}
+
 /* ==========================================================================
    PORTFOLIO
    ========================================================================== */
