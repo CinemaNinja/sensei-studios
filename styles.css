@@ -1553,6 +1553,7 @@ details.arsenal-dropdown > summary {
 }
 
 .snow-toggle {
+  position: relative;
   display: grid;
   place-items: center;
   width: 34px;
@@ -1565,6 +1566,16 @@ details.arsenal-dropdown > summary {
   color: #f4fbff;
   cursor: pointer;
   transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+
+.snow-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid rgba(214, 236, 255, 0.85);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .snow-toggle svg {
@@ -1593,8 +1604,56 @@ details.arsenal-dropdown > summary {
   transform: translateY(-1px);
 }
 
+.snow-toggle.is-on-burst {
+  animation: snow-pop 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.snow-toggle.is-on-burst::after,
+.snow-toggle.is-off-burst::after {
+  animation: snow-ring 0.72s ease-out;
+}
+
+.snow-toggle.is-on-burst svg {
+  animation: snow-spin-in 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.snow-toggle.is-off-burst {
+  animation: snow-sink 0.58s ease;
+}
+
+.snow-toggle.is-off-burst svg {
+  animation: snow-spin-out 0.58s ease;
+}
+
 @keyframes snow-spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes snow-pop {
+  0% { transform: scale(0.7); }
+  42% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes snow-spin-in {
+  0% { transform: rotate(-200deg) scale(0.35); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes snow-sink {
+  0% { transform: scale(1); }
+  38% { transform: scale(0.78); }
+  100% { transform: scale(1); }
+}
+
+@keyframes snow-spin-out {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(160deg) scale(0.72); }
+}
+
+@keyframes snow-ring {
+  0% { transform: scale(0.55); opacity: 0.95; }
+  100% { transform: scale(1.9); opacity: 0; }
 }
 
 @keyframes snow-glow {
@@ -1651,7 +1710,13 @@ details.arsenal-dropdown > summary {
 
 @media (prefers-reduced-motion: reduce) {
   .snow-toggle[aria-pressed="true"],
-  .snow-toggle[aria-pressed="true"] svg {
+  .snow-toggle[aria-pressed="true"] svg,
+  .snow-toggle.is-on-burst,
+  .snow-toggle.is-off-burst,
+  .snow-toggle.is-on-burst svg,
+  .snow-toggle.is-off-burst svg,
+  .snow-toggle.is-on-burst::after,
+  .snow-toggle.is-off-burst::after {
     animation: none;
   }
 }

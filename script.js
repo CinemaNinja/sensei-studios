@@ -2715,12 +2715,14 @@ function initSnowscape() {
   if (!canvas || !slider || !toggle) return;
 
   const ctx = canvas.getContext('2d');
-  const stored = Number(localStorage.getItem('sensei-snow'));
+  const DEFAULT_SNOW = 160;
+  const raw = localStorage.getItem('sensei-snow-level');
+  const stored = raw == null ? NaN : Number(raw);
   const start = Number.isFinite(stored)
-    ? stored
-    : (prefersReducedMotion() ? 0 : 100);
-  let particleCount = Math.max(0, Math.min(400, start || 0));
-  let lastOn = particleCount > 0 ? particleCount : 100;
+    ? Math.max(0, Math.min(400, stored))
+    : DEFAULT_SNOW;
+  let particleCount = start;
+  let lastOn = particleCount > 0 ? particleCount : DEFAULT_SNOW;
   let particles = [];
   let mouseX = null;
   let mouseY = null;
@@ -2803,7 +2805,7 @@ function initSnowscape() {
   const setCount = (next) => {
     particleCount = Math.max(0, Math.min(400, next));
     if (particleCount > 0) lastOn = particleCount;
-    try { localStorage.setItem('sensei-snow', String(particleCount)); } catch (_) {}
+    try { localStorage.setItem('sensei-snow-level', String(particleCount)); } catch (_) {}
     paintToggle();
     seed();
     if (particleCount > 0 && !frame) frame = requestAnimationFrame(draw);
@@ -2941,8 +2943,22 @@ function initSnowscape() {
     }
   };
 
+  const burstToggle = (turningOn) => {
+    toggle.classList.remove('is-on-burst', 'is-off-burst');
+    void toggle.offsetWidth;
+    toggle.classList.add(turningOn ? 'is-on-burst' : 'is-off-burst');
+  };
+
   slider.addEventListener('input', () => setCount(parseInt(slider.value, 10) || 0));
-  toggle.addEventListener('click', () => setCount(particleCount > 0 ? 0 : lastOn));
+  toggle.addEventListener('click', () => {
+    const turningOn = particleCount === 0;
+    setCount(turningOn ? lastOn : 0);
+    burstToggle(turningOn);
+  });
+  toggle.addEventListener('animationend', (event) => {
+    if (event.target !== toggle) return;
+    toggle.classList.remove('is-on-burst', 'is-off-burst');
+  });
   window.addEventListener('resize', () => { if (particleCount > 0) seed(); });
   document.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
