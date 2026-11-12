@@ -7742,6 +7742,7 @@ main > section:first-child:not(.hero) {
 #video-grid.is-selected .video-card[data-lead="7"] { order: 7; }
 #video-grid.is-selected .video-card[data-lead="8"] { order: 8; }
 #video-grid.is-selected .video-card[data-lead="9"] { order: 9; }
+#video-grid.is-selected .video-card[data-lead="10"] { order: 10; }
 
 #video-grid:not(.is-selected) .video-card[data-reels-first] {
   order: -1;
