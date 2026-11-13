@@ -2696,8 +2696,8 @@ function initSnowscape() {
   if (!canvas || !slider || !toggle) return;
 
   const ctx = canvas.getContext('2d');
-  const DEFAULT_SNOW = 160;
-  const raw = localStorage.getItem('sensei-snow-level');
+  const DEFAULT_SNOW = 60;
+  const raw = localStorage.getItem('sensei-snow-amount');
   const stored = raw == null ? NaN : Number(raw);
   const start = Number.isFinite(stored)
     ? Math.max(0, Math.min(400, stored))
@@ -2786,7 +2786,7 @@ function initSnowscape() {
   const setCount = (next) => {
     particleCount = Math.max(0, Math.min(400, next));
     if (particleCount > 0) lastOn = particleCount;
-    try { localStorage.setItem('sensei-snow-level', String(particleCount)); } catch (_) {}
+    try { localStorage.setItem('sensei-snow-amount', String(particleCount)); } catch (_) {}
     paintToggle();
     seed();
     if (particleCount > 0 && !frame) frame = requestAnimationFrame(draw);
