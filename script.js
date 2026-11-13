@@ -2649,33 +2649,21 @@ function initInstagramFeed() {
   const statsEl = document.getElementById('instagram-stats');
   const avatarEl = document.querySelector('.instagram-avatar');
 
-  function formatCount(n) {
-    const num = Number(n) || 0;
-    if (num >= 10000) return `${Math.round(num / 100) / 10}k`;
-    return num.toLocaleString();
-  }
-
   function render(data) {
     if (!data || !Array.isArray(data.posts) || !data.posts.length) return;
     const posts = data.posts.slice(0, 6);
-    if (statsEl) {
-      const bits = [`Latest ${posts.length} posts`];
-      if (data.followers) bits.unshift(`${formatCount(data.followers)} followers`);
-      statsEl.textContent = bits.join(' · ');
-    }
-    if (avatarEl && data.profile_pic && !String(data.profile_pic).includes('cdninstagram')) {
+    if (statsEl) statsEl.textContent = 'Six frames';
+    if (avatarEl && data.profile_pic && String(data.profile_pic).startsWith('/')) {
       avatarEl.src = data.profile_pic;
     }
     grid.innerHTML = posts
       .map((p) => {
-        const local = p.shortcode ? `/assets/social/ig-${escapeHtml(p.shortcode)}.webp` : '';
-        const thumb = local || p.thumbnail || '/assets/social/instagram-avatar.webp';
-        const live = p.thumbnail && String(p.thumbnail).startsWith('http') ? p.thumbnail : '';
+        const local = p.shortcode ? `/assets/social/ig-${encodeURIComponent(p.shortcode)}.webp` : '';
+        const src = local || p.thumbnail || '/assets/social/instagram-avatar.webp';
         const video = p.is_video ? ' data-video="true"' : '';
-        const cap = escapeHtml((p.caption || 'Instagram post').slice(0, 90));
-        const src = live || thumb;
+        const cap = escapeHtml(p.caption || 'A frame from the practice');
         return `<a class="instagram-tile" href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer"${video}>
-          <img src="${escapeHtml(src)}" alt="${cap}" width="640" height="640" loading="lazy"${local ? ` onerror="this.onerror=null;this.src='${local}'"` : ''}>
+          <img src="${escapeHtml(src)}" alt="${cap}" width="640" height="800" loading="lazy">
           <span class="instagram-tile-cap">${cap}</span>
         </a>`;
       })
@@ -2690,17 +2678,10 @@ function initInstagramFeed() {
     return false;
   };
 
-  fetch('/api/instagram')
+  fetch('/data/instagram.json')
     .then((r) => (r.ok ? r.json() : Promise.reject()))
-    .then((data) => {
-      if (!apply(data)) return Promise.reject();
-    })
-    .catch(() => {
-      fetch('/data/instagram.json')
-        .then((r) => r.json())
-        .then(apply)
-        .catch(() => {});
-    });
+    .then(apply)
+    .catch(() => {});
 }
 
 /* ==========================================================================
