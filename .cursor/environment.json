@@ -1,0 +1,11 @@
+{
+  "name": "Sensei Studios",
+  "user": "ubuntu",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "wrangler dev",
+      "command": "npm run dev"
+    }
+  ]
+}
