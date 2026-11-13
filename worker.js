@@ -48,9 +48,9 @@ const SECTION_META = {
     canonical: '/peace-protocol'
   },
   estimator: {
-    title: 'Scope Estimator | Sensei Studios',
+    title: 'The Rate | Sensei Studios',
     description:
-      'Transparent, sliding-scale pricing for film, drone, and web projects. Build a scope and get a real starting point.',
+      'Every price is a conversation. Text or call Daniel Kelly Brown. The rate is lower for work that helps the world, and higher for corporate jobs and far travel.',
     image: '/assets/og-web.jpg',
     canonical: '/estimator'
   },
