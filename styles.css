@@ -3408,17 +3408,16 @@ details.arsenal-dropdown > summary {
 }
 
 .web-proposals-block {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 2.25rem;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--border-subtle);
 }
 
 .web-proposal-stack {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
   min-width: 0;
 }
@@ -3475,33 +3474,29 @@ details.arsenal-dropdown > summary {
 }
 
 .web-proposal-card {
-  height: 100%;
+  height: auto;
+  min-height: 0;
 }
 
 .web-proposal-card .web-project-preview {
-  aspect-ratio: auto;
-  margin: 0.85rem 0.85rem 0;
-  border-radius: 16px;
-  border-bottom: none;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-subtle);
   overflow: hidden;
 }
 
 .web-proposal-card .web-project-preview img {
-  position: relative;
-  inset: auto;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: top center;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .web-proposal-card:hover .web-project-preview img {
-  transform: none;
-}
-
-.web-proposal-card .web-project-badge {
-  top: auto;
-  bottom: 0.85rem;
+  transform: scale(1.04);
 }
 
 /* ==========================================================================
@@ -7025,7 +7020,8 @@ body { padding-right: var(--rail-gutter); }
   .testimonials-grid,
   .bio-gallery-grid,
   .web-projects-grid,
-  .web-proposals-block {
+  .web-proposals-block,
+  .web-proposal-stack {
     grid-template-columns: 1fr;
   }
 
