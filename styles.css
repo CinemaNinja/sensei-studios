@@ -3416,6 +3416,13 @@ details.arsenal-dropdown > summary {
   border-top: 1px solid var(--border-subtle);
 }
 
+.web-proposal-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
 .web-proposals-intro {
   display: flex;
   flex-direction: column;
