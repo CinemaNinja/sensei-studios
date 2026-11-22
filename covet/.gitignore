@@ -1,0 +1,7 @@
+.venv/
+.DS_Store
+RAWPHOTOS/
+.vercel
+images/catalog-cut/
+/catalog/
+**/__pycache__/

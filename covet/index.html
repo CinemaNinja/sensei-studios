@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Covet — Aspen</title>
+  <meta name="description" content="Covet Aspen. Jewels chosen by hand, kept for a lifetime. To desire, wish, yearn, or hunger for.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=sense36">
+  <script>
+    (function () {
+      var h = new Date().getHours();
+      document.documentElement.dataset.hour =
+        h < 5 || h >= 20 ? "night" : h < 10 ? "morning" : h < 16 ? "day" : "golden";
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#drift">Skip to the jewels</a>
+
+  <header class="nav" id="nav">
+    <a class="wordmark" href="#top"><img src="images/logo.png" alt="Covet"></a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-panel" id="site-nav">
+      <nav aria-label="Sections">
+        <a href="#drift">Drift</a>
+        <a href="#edit">Edit</a>
+        <a href="#house">House</a>
+        <a href="#collections">Collections</a>
+        <a href="#press">Press</a>
+        <a href="#visit">Visit</a>
+      </nav>
+    </div>
+    <div class="nav-tools">
+      <div class="view-toggle" role="group" aria-label="Choose a view">
+        <button class="view-toggle-btn is-on" type="button" data-view="rooms" aria-pressed="true">Rooms</button>
+        <button class="view-toggle-btn" type="button" data-view="store" aria-pressed="false">Store</button>
+      </div>
+      <button class="bag" id="bag" type="button" aria-label="Open the bag">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M10 12V9a6 6 0 0 1 12 0v3"></path>
+          <path d="M7 12h18l-1.2 14H8.2L7 12z"></path>
+        </svg>
+        <span class="bag-count" id="bag-count" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.06">
+          <div class="plate shell-a"></div>
+        </div>
+        <div class="layer" data-speed="0.09">
+          <div class="plate aspen-gold"></div>
+        </div>
+        <div class="layer" data-speed="0.14">
+          <div class="plate shell-b"></div>
+        </div>
+        <div class="layer" data-speed="0.22">
+          <div class="plate water-gold veil"></div>
+        </div>
+        <div class="scrim"></div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Aspen</p>
+          <h1 class="logo">
+            <img class="logo-feather" src="images/logo-feather.png" alt="">
+            <img class="logo-word" src="images/logo-word.png" alt="Covet">
+          </h1>
+          <p class="spoken">verb · kuhv-it</p>
+          <p class="lede">To desire, wish, yearn, or hunger for.</p>
+          <p class="deck">Jewels chosen by hand. Shell, sun, and warm metal. Something to keep for a lifetime.</p>
+          <a class="enter" href="#drift">Enter the drift</a>
+        </div>
+        <div class="hero-jewel">
+          <img src="images/float/eye-burst-necklace.png?v=4" alt="Opal eye-burst necklace">
+        </div>
+      </div>
+    </section>
+
+    <section class="runway" aria-label="A slow walk in gold">
+      <video class="runway-wash" src="images/film/golden-runway.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+      <video class="runway-figure" src="images/film/golden-runway.mp4" autoplay muted loop playsinline></video>
+    </section>
+
+    <section class="drift" id="drift">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.1">
+          <div class="plate water-gold dim"></div>
+        </div>
+        <div class="layer" data-speed="0.07">
+          <div class="plate aspen-bells"></div>
+        </div>
+        <div class="layer" data-speed="0.2">
+          <div class="plate water-wake"></div>
+        </div>
+        <div class="layer" data-speed="0.05">
+          <div class="plate shell-b edge"></div>
+        </div>
+        <div class="scrim drift-scrim"></div>
+      </div>
+
+      <div class="drift-head">
+        <p class="eyebrow">The drift</p>
+        <h2>Jewels, on the water.</h2>
+      </div>
+
+      <div class="stage" id="stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="A drifting circle of Covet jewelry">
+        <button class="jewel" type="button" data-shape="collar" data-name="Feather collar" data-kind="Necklace" data-designer="New photograph">
+          <img src="images/float/feather-collar.png?v=2" alt="Gold feather collar">
+        </button>
+        <button class="jewel" type="button" data-shape="tall" data-name="Feather bracelet" data-kind="Bracelet" data-designer="New photograph">
+          <img src="images/float/feather-bracelet.png" alt="Gold feather bracelet">
+        </button>
+        <button class="jewel" type="button" data-shape="tall" data-name="Opal Eye Burst" data-kind="Necklace" data-designer="Jacquie Aiche" data-price="$20,000" data-href="https://covetaspen.com/products/opal-geometric-dome-evil-eye-burst-inlay-necklace">
+          <img src="images/float/eye-burst-necklace.png?v=3" alt="Opal eye-burst necklace">
+        </button>
+        <button class="jewel" type="button" data-shape="small" data-name="Oval Pavé Hoop" data-kind="Earring" data-designer="Jacquie Aiche" data-price="$1,300" data-href="https://covetaspen.com/products/oval-3-row-pave-diamond-mini-hoop">
+          <img src="images/float/oval-hoop.png?v=3" alt="Oval pavé diamond mini hoop">
+        </button>
+        <button class="jewel" type="button" data-shape="tall" data-name="Scarab" data-kind="Charm" data-designer="Maura Green" data-price="$1,375" data-href="https://covetaspen.com/products/scarab-charm">
+          <img src="images/float/scarab.png?v=3" alt="Carved green scarab charm in gold">
+        </button>
+        <button class="jewel" type="button" data-shape="wide" data-name="Chevron Cigar Band" data-kind="Ring" data-designer="Jacquie Aiche" data-price="$8,000" data-href="https://covetaspen.com/products/opal-triangle-inlay-cigar-band">
+          <img src="images/float/chevron-band.png?v=3" alt="Opal and lapis chevron cigar band">
+        </button>
+        <button class="jewel" type="button" data-shape="tall" data-name="Aquamarine Crystal" data-kind="Necklace" data-designer="Jacquie Aiche" data-price="$8,000" data-href="https://covetaspen.com/products/aqua-aura-crystal-necklace">
+          <img src="images/float/aquamarine.png?v=3" alt="Aquamarine crystal necklace">
+        </button>
+        <button class="jewel" type="button" data-shape="small" data-name="Baguette Mini Hoop" data-kind="Earring" data-designer="Jacquie Aiche" data-price="$2,800" data-href="https://covetaspen.com/products/full-diamond-baguette-mini-hoop">
+          <img src="images/float/baguette-hoop.png?v=3" alt="Full diamond baguette mini hoop">
+        </button>
+        <button class="jewel" type="button" data-shape="tall" data-name="Crescent Fringe" data-kind="Necklace" data-designer="Covet Private Label" data-price="$2,000" data-href="https://covetaspen.com/products/crescent-fringe-necklace">
+          <img src="images/float/crescent.png?v=3" alt="Crescent fringe necklace">
+        </button>
+        <button class="jewel" type="button" data-shape="small" data-name="Constellation" data-kind="Ring" data-designer="Jacquie Aiche" data-price="$2,000" data-href="https://covetaspen.com/products/constellation-ring">
+          <img src="images/float/constellation.png?v=3" alt="Constellation ring">
+        </button>
+
+        <button class="nudge prev" type="button" id="prev" aria-label="Previous jewel">
+          <span aria-hidden="true">←</span>
+        </button>
+        <button class="nudge next" type="button" id="next" aria-label="Next jewel">
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <div class="caption" id="caption" aria-live="polite">
+        <p class="cap-designer">Jacquie Aiche</p>
+        <h3 class="cap-name">Opal Eye Burst</h3>
+        <p class="cap-meta">Necklace · $20,000</p>
+        <a class="cap-link" id="cap-link" href="https://covetaspen.com/products/opal-geometric-dome-evil-eye-burst-inlay-necklace" target="_blank" rel="noreferrer">View on the current shop</a>
+      </div>
+      <p class="hint">Scroll or drag to turn · click a jewel to shop</p>
+    </section>
+
+    <div class="aspen-breath" aria-hidden="true">
+      <div class="plate aspen-gondola"></div>
+    </div>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="edit" id="edit">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.05">
+          <div class="plate aspen-meadow"></div>
+        </div>
+        <div class="wash warm"></div>
+      </div>
+      <div class="edit-layout">
+        <figure class="shot shot-hand">
+          <img src="images/eye-burst-ring.jpg" alt="A hand wearing four opal inlay eye-burst rings by Jacquie Aiche">
+          <figcaption>Eye-burst rings · Jacquie Aiche</figcaption>
+        </figure>
+        <div class="edit-copy">
+          <p class="eyebrow on-light">The edit</p>
+          <h2>Held to the light.</h2>
+          <p>Opal the color of a shell. Gold the color of the last hour of sun. Diamonds set one by one, for a woman who does not want what everyone else is wearing.</p>
+        </div>
+        <figure class="shot shot-ear">
+          <img src="images/emerald-hoop.jpg" alt="An ear stacked with emerald, diamond, and eye charms">
+          <figcaption>Hoops · Jacquie Aiche</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="heat" aria-label="Leather, pearl, and desert light">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.12">
+          <div class="plate leather"></div>
+        </div>
+        <div class="layer" data-speed="0.05">
+          <div class="plate aspen-storm"></div>
+        </div>
+        <div class="wash heat-wash"></div>
+      </div>
+      <div class="heat-grid">
+        <div>
+          <p class="eyebrow">The grain</p>
+          <h2>Warm as skin.<br>Hard as shell.</h2>
+          <p class="deck">Leather, pearl, and the heat of a desert afternoon. The same light that sits in a piece of abalone.</p>
+        </div>
+        <img class="heat-jewel" src="images/float/scarab.png?v=3" alt="Green scarab charm floating over tooled grain">
+      </div>
+    </section>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="portal" id="house">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.08">
+          <div class="plate window"></div>
+        </div>
+      </div>
+      <div class="portal-copy">
+        <p class="eyebrow">The house</p>
+        <h2>Find something to covet for a lifetime.</h2>
+        <p>Covet Aspen is the eye of Brigid Brumby. Jewels, handbags, home, and art from designers who still make things by hand — feminine, full of story, and not seen on everyone, everywhere.</p>
+        <p class="spoken">verb · kuhv-it · to desire, wish, yearn, or hunger for</p>
+      </div>
+    </section>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="collections" id="collections">
+      <div class="press-head">
+        <p class="eyebrow">Collections</p>
+        <h2>9 rooms.</h2>
+      </div>
+      <div class="section-tabs" id="section-tabs" role="tablist" aria-label="Collections"></div>
+      <div class="press-stage">
+        <button class="nudge prev" id="section-prev" type="button" aria-label="Previous piece"><span aria-hidden="true">←</span></button>
+        <div id="section-rails"></div>
+        <button class="nudge next" id="section-next" type="button" aria-label="Next piece"><span aria-hidden="true">→</span></button>
+      </div>
+      <p class="press-caption" id="section-caption"></p>
+      <p class="section-kind" id="section-kind"></p>
+      <p class="hint">Drag through the pieces · click an image to see it larger</p>
+      <div class="recent" id="recent" hidden>
+        <p class="recent-kicker">Recently viewed</p>
+        <div class="recent-row" id="recent-row"></div>
+      </div>
+    </section>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="press" id="press">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.06">
+          <div class="plate shell-a"></div>
+        </div>
+        <div class="layer" data-speed="0.04">
+          <div class="plate aspen-pines"></div>
+        </div>
+        <div class="scrim press-scrim"></div>
+      </div>
+
+      <div class="press-head">
+        <p class="eyebrow">Press</p>
+        <h2>In the pages.</h2>
+      </div>
+
+      <div class="press-stage">
+        <button class="nudge prev" id="press-prev" type="button" aria-label="Previous page"><span aria-hidden="true">←</span></button>
+        <div class="press-rail" id="press-rail" tabindex="0" aria-label="Pages from the magazines">
+          <button class="leaf" type="button" data-designer="Aspen Peak" data-name="2014">
+            <img src="images/press/peak-2014.jpg" alt="Covet advertisement, bright and shiny things, Aspen Peak 2014">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen Peak" data-name="2015">
+            <img src="images/press/peak-2015.jpg" alt="Covet advertisement with moon jewels, Aspen Peak 2015">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen Peak" data-name="Jacquie Aiche">
+            <img src="images/press/peak-stack.jpg" alt="Covet advertisement, Jacquie Aiche jewels stacked in three frames">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen" data-name="Bright &amp; shiny things">
+            <img src="images/press/hat.jpg" alt="Covet advertisement, a woman in a pale hat wearing Jacquie Aiche">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen" data-name="Meira T">
+            <img src="images/press/meira.jpg" alt="Covet advertisement for Meira T, necklaces, bracelets, and rings">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen Peak" data-name="Winter 2016">
+            <img src="images/press/peak-ad-2016.jpg" alt="Covet advertisement, winter 2016, a feather and a woman in fur wearing Jacquie Aiche">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen Peak" data-name="Shine on">
+            <img src="images/press/shine-2016.jpg" alt="Aspen Peak feature, Shine On, jewels and gems for the holiday season">
+          </button>
+          <button class="leaf" type="button" data-designer="Aspen Sojourner" data-name="Holiday 2016">
+            <img src="images/press/sojourner-2016.jpg" alt="Shoptalk with Brigid Brumby Francis, Aspen Sojourner holiday 2016">
+          </button>
+          <button class="leaf" type="button" data-designer="Hal Williams" data-name="Brigid, 2017">
+            <img src="images/press/brigid-2017.jpg" alt="Brigid in the Covet shop, photographed by Hal Williams in 2017">
+          </button>
+        </div>
+        <button class="nudge next" id="press-next" type="button" aria-label="Next page"><span aria-hidden="true">→</span></button>
+      </div>
+
+      <p class="press-caption" id="press-caption">Aspen Peak · 2014</p>
+      <p class="hint">Drag through the pages · click one to read</p>
+    </section>
+
+    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
+    <section class="visit" id="visit">
+      <div class="layers" aria-hidden="true">
+        <div class="layer" data-speed="0.1">
+          <div class="plate water-gold"></div>
+        </div>
+        <div class="layer" data-speed="0.04">
+          <div class="plate aspen-lights"></div>
+        </div>
+        <div class="scrim visit-scrim"></div>
+      </div>
+      <div class="visit-copy">
+        <p class="eyebrow">Visit</p>
+        <h2>Private shopping, by appointment.</h2>
+        <a class="enter" href="https://covetaspen.com/" target="_blank" rel="noreferrer">The current shop</a>
+      </div>
+    </section>
+  </main>
+
+  <section class="storefront" id="storefront" hidden>
+    <div class="store-head">
+      <p class="eyebrow">The store</p>
+      <h2>Everything, in hand.</h2>
+    </div>
+    <div class="store-filters" id="store-filters" role="tablist" aria-label="Rooms in the store"></div>
+    <div class="store-grid" id="store-grid"></div>
+  </section>
+
+  <footer class="foot">
+    <img class="brand" src="images/logo.png" alt="Covet">
+    <p>Aspen · jewels, handbags, home, art, gifts</p>
+    <p class="fine">Jewel photographs are stand-ins from the current collection, until the new ones are made.</p>
+  </footer>
+
+  <aside class="bag-drawer" id="bag-drawer" hidden>
+    <div class="bag-head">
+      <p class="eyebrow">The bag</p>
+      <button class="look-close" id="bag-close" type="button">Close</button>
+    </div>
+    <ul class="bag-lines" id="bag-lines"></ul>
+    <p class="bag-total" id="bag-total"></p>
+    <p class="bag-note" id="bag-note"></p>
+    <button class="enter" id="bag-checkout" type="button">Checkout</button>
+  </aside>
+
+  <dialog class="look" id="look" aria-label="A close look">
+    <button class="look-close" type="button">Close</button>
+    <p class="look-kicker"></p>
+    <div class="look-stage">
+      <img id="look-img" alt="">
+      <div class="loupe" hidden></div>
+    </div>
+    <p class="look-hint">Move across the piece</p>
+  </dialog>
+
+  <dialog class="shop" id="shop" aria-label="The piece">
+    <button class="look-close" id="shop-close" type="button">Close</button>
+    <p class="shop-kicker" id="shop-kicker"></p>
+    <h3 class="shop-name" id="shop-name"></h3>
+    <div class="shop-stage" id="shop-stage">
+      <button class="shop-flip prev" id="shop-prev" type="button" aria-label="Previous photo" hidden>‹</button>
+      <img id="shop-img" alt="">
+      <button class="shop-flip next" id="shop-next" type="button" aria-label="Next photo" hidden>›</button>
+    </div>
+    <p class="shop-dots" id="shop-dots"></p>
+    <div class="shop-foot">
+      <p class="shop-price" id="shop-price"></p>
+      <button class="enter" id="shop-buy" type="button">Buy now</button>
+    </div>
+  </dialog>
+
+  <div class="glint" aria-hidden="true"></div>
+  <div class="cursor-ring" hidden aria-hidden="true"></div>
+
+  <script src="drift.js?v=sense5"></script>
+  <script src="press.js?v=sense15"></script>
+  <script src="catalog.js?v=sense5"></script>
+  <script src="covet-collection.js?v=sense10"></script>
+  <script src="sections.js?v=sense17"></script>
+  <script src="shop-config.js?v=sense1"></script>
+  <script src="cart.js?v=sense1"></script>
+  <script src="atmosphere.js?v=sense10"></script>
+</body>
+</html>
