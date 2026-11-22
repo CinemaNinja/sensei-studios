@@ -37,6 +37,10 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://senseistudios.com/listing-lab/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://senseistudios.com/story</loc>
     <changefreq>weekly</changefreq>
   </url>
