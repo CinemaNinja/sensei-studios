@@ -29,3 +29,10 @@
 /covet/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: public, max-age=3600
+
+/jackie_aichi
+  X-Robots-Tag: noindex, nofollow
+
+/jackie_aichi/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=3600

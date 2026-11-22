@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Necklaces — Jacquie Aiche</title>
+  <meta name="description" content="Every necklace from Jacquie Aiche, suspended in a white room. Drag to turn.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23191919' stroke-width='1.2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <filter id="bloom" x="-180%" y="-180%" width="460%" height="460%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="56" result="b"></feGaussianBlur>
+      <feComponentTransfer in="b" result="soft">
+        <feFuncA type="linear" slope="0.7"></feFuncA>
+      </feComponentTransfer>
+      <feFlood flood-color="#ffffff" flood-opacity="1" result="f"></feFlood>
+      <feComposite in="f" in2="soft" operator="in"></feComposite>
+    </filter>
+  </svg>
+  <a class="skip" href="#stage">Skip to the necklaces</a>
+
+  <header class="bar">
+    <p class="mark">Jacquie Aiche</p>
+    <h1 class="room">Necklaces</h1>
+    <button class="find" id="find" type="button" aria-expanded="false" aria-controls="finder">Find</button>
+  </header>
+
+  <form class="finder" id="finder" hidden role="search">
+    <label class="finder-label" for="query">Find a necklace</label>
+    <input id="query" type="search" placeholder="Opal, diamond, thunderbird…" autocomplete="off" enterkeyhint="search">
+    <p class="finder-count" id="finder-count"></p>
+  </form>
+
+  <main class="stage" id="stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Necklaces suspended in a circle">
+    <div class="orbit" id="orbit"></div>
+    <button class="nudge prev" id="prev" type="button" aria-label="Previous necklace">
+      <span aria-hidden="true">←</span>
+    </button>
+    <button class="nudge next" id="next" type="button" aria-label="Next necklace">
+      <span aria-hidden="true">→</span>
+    </button>
+  </main>
+
+  <section class="caption" id="caption" aria-live="polite">
+    <div class="scrub" id="scrub">
+      <input id="scrubber" type="range" min="0" max="10000" step="1" value="0" aria-label="Scrub through the necklaces" aria-valuemin="1" aria-valuemax="341" aria-valuetext="1 of 341">
+    </div>
+    <p class="kicker"><span id="cap-index">001</span> <span id="cap-of">of 000</span></p>
+    <h2 class="name" id="cap-name"></h2>
+    <p class="meta"><span id="cap-type"></span><span id="cap-price"></span><span id="cap-ready"></span></p>
+    <a class="view" id="cap-link" href="" target="_blank" rel="noreferrer">View the piece</a>
+  </section>
+
+  <p class="hint" id="hint">Drag to turn</p>
+
+  <dialog class="look" id="look" aria-label="A closer look">
+    <button class="look-close" id="look-close" type="button">Close</button>
+    <p class="kicker look-kicker" id="look-kicker"></p>
+    <div class="look-stage">
+      <img id="look-img" alt="">
+      <div class="loupe" id="loupe" hidden></div>
+    </div>
+    <div class="look-foot">
+      <p class="look-name" id="look-name"></p>
+      <a class="view" id="look-link" href="" target="_blank" rel="noreferrer">View the piece</a>
+    </div>
+  </dialog>
+
+  <script src="catalog.js"></script>
+  <script src="orbit.js?v=12"></script>
+</body>
+</html>
