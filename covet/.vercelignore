@@ -1,8 +1,0 @@
-RAWPHOTOS
-images/catalog-cut
-/catalog
-.venv
-.git
-node_modules
-*.ARW
-images/cards/*.png

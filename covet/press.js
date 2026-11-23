@@ -11,6 +11,10 @@
   let startScroll = 0;
   let moved = 0;
   let current = 0;
+  let scrollAnim = 0;
+  let timer = 0;
+  let paused = reduce;
+  let seen = false;
 
   const maxStart = Math.max(0, leaves.length - 3);
 
@@ -59,20 +63,57 @@
     caption.textContent = el.dataset.designer + "  ·  " + el.dataset.name;
   }
 
+  function easeInOut(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function scrollToLeft(left, smooth) {
+    cancelAnimationFrame(scrollAnim);
+    const target = Math.max(0, left);
+    if (!smooth || reduce) {
+      rail.scrollLeft = target;
+      settling = false;
+      return;
+    }
+    const from = rail.scrollLeft;
+    const delta = target - from;
+    if (Math.abs(delta) < 1) {
+      settling = false;
+      return;
+    }
+    const duration = 1200;
+    const started = performance.now();
+    settling = true;
+    function frame(now) {
+      const t = Math.min(1, (now - started) / duration);
+      rail.scrollLeft = from + delta * easeInOut(t);
+      if (t < 1) scrollAnim = requestAnimationFrame(frame);
+      else settling = false;
+    }
+    scrollAnim = requestAnimationFrame(frame);
+  }
+
+  function arm() {
+    window.clearTimeout(timer);
+    if (paused || !seen || reduce) return;
+    timer = window.setTimeout(() => {
+      go(current + 1, true);
+    }, 5000);
+  }
+
   function go(index, smooth) {
     let center = index;
     if (center > lastCenter) center = firstCenter;
     if (center < firstCenter) center = lastCenter;
     const start = center - firstCenter;
-    settling = true;
     place(start);
     const end = Math.min(start + 2, leaves.length - 1);
     const railBox = rail.getBoundingClientRect();
     const groupMid = (leaves[start].getBoundingClientRect().left + leaves[end].getBoundingClientRect().right) / 2;
     const left = rail.scrollLeft + groupMid - (railBox.left + railBox.width / 2);
-    rail.scrollTo({ left: Math.max(0, left), behavior: smooth && !reduce ? "smooth" : "auto" });
+    scrollToLeft(left, smooth);
     show(center);
-    settling = false;
+    arm();
   }
 
   rail.addEventListener("pointerdown", (event) => {
@@ -123,6 +164,25 @@
       go(current - 1, true);
     }
   });
+
+  const stage = rail.closest(".press-stage") || rail;
+  stage.addEventListener("pointerenter", () => { paused = true; window.clearTimeout(timer); });
+  stage.addEventListener("pointerleave", () => { if (!down) { paused = reduce; arm(); } });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!seen) return;
+    paused = document.hidden || reduce;
+    if (paused) window.clearTimeout(timer);
+    else arm();
+  });
+
+  const watch = new IntersectionObserver((entries) => {
+    seen = entries.some((entry) => entry.isIntersecting);
+    paused = !seen || reduce;
+    if (paused) window.clearTimeout(timer);
+    else arm();
+  }, { threshold: 0.45 });
+  watch.observe(document.getElementById("press") || rail);
 
   window.addEventListener("load", () => go(firstCenter, false));
   window.addEventListener("resize", () => go(current, false));

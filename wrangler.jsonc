@@ -10,6 +10,7 @@
     "run_worker_first": [
       "/",
       "/api/*",
+      "/covet",
       "/film", "/film/*",
       "/wood", "/wood/",
       "/woodwork", "/woodwork/",

@@ -123,7 +123,8 @@
     { id: "house", label: "House" },
     { id: "collections", label: "Collections" },
     { id: "press", label: "Press" },
-    { id: "visit", label: "Visit" }
+    { id: "visit", label: "Visit" },
+    { id: "instagram", label: "Instagram" }
   ].map((item) => ({ ...item, el: document.getElementById(item.id) })).filter((item) => item.el);
 
   if (chapters.length > 2 && !document.querySelector(".chapter-rail")) {

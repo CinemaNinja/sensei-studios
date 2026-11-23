@@ -888,6 +888,10 @@ async function handleRequest(request, env, ctx) {
 
     if (request.method === 'GET' || request.method === 'HEAD') {
       const origin = publicOrigin(request);
+      // Stage COVET under /covet/ (assets). Bare /covet must redirect so relative URLs resolve.
+      if (url.pathname === '/covet') {
+        return Response.redirect(origin + '/covet/' + url.search, 301);
+      }
       if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
         if (PATH_SECTION[path] || NESTED_ROUTES[path] || LEGACY_REDIRECTS[path]) {
           return Response.redirect(origin + path + url.search, 301);

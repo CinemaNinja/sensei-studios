@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Covet — Aspen</title>
   <meta name="description" content="Covet Aspen. Jewels chosen by hand, kept for a lifetime. To desire, wish, yearn, or hunger for.">
-  <meta name="robots" content="noindex, nofollow">
+  <base href="/covet/">
+  <meta name="robots" content="noindex,nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=sense36">
+  <link rel="stylesheet" href="styles.css?v=sense49">
   <script>
     (function () {
       var h = new Date().getHours();
@@ -34,12 +35,14 @@
         <a href="#collections">Collections</a>
         <a href="#press">Press</a>
         <a href="#visit">Visit</a>
+        <a href="#instagram">Instagram</a>
       </nav>
     </div>
     <div class="nav-tools">
       <div class="view-toggle" role="group" aria-label="Choose a view">
         <button class="view-toggle-btn is-on" type="button" data-view="rooms" aria-pressed="true">Rooms</button>
         <button class="view-toggle-btn" type="button" data-view="store" aria-pressed="false">Store</button>
+        <button class="view-toggle-btn" type="button" data-view="canvas" aria-pressed="false">Canvas</button>
       </div>
       <button class="bag" id="bag" type="button" aria-label="Open the bag">
         <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -54,31 +57,29 @@
   <main>
     <section class="hero" id="top">
       <div class="layers" aria-hidden="true">
+        <!-- Photo layers behind the live shell, switched off for now.
         <div class="layer" data-speed="0.06">
           <div class="plate shell-a"></div>
         </div>
         <div class="layer" data-speed="0.09">
           <div class="plate aspen-gold"></div>
         </div>
+        -->
         <div class="layer" data-speed="0.14">
-          <div class="plate shell-b"></div>
-        </div>
-        <div class="layer" data-speed="0.22">
-          <div class="plate water-gold veil"></div>
+          <div class="plate shell-b" data-abalone></div>
         </div>
         <div class="scrim"></div>
       </div>
 
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Aspen</p>
           <h1 class="logo">
             <img class="logo-feather" src="images/logo-feather.png" alt="">
             <img class="logo-word" src="images/logo-word.png" alt="Covet">
           </h1>
           <p class="spoken">verb · kuhv-it</p>
           <p class="lede">To desire, wish, yearn, or hunger for.</p>
-          <p class="deck">Jewels chosen by hand. Shell, sun, and warm metal. Something to keep for a lifetime.</p>
+          <p class="deck">Covet is a unique store that is truly diverse in its designers and tastes. Designers that embody the uniqueness and quality craftsmanship that bring to life pieces that aren't seen on everyone, everywhere.</p>
           <a class="enter" href="#drift">Enter the drift</a>
         </div>
         <div class="hero-jewel">
@@ -88,7 +89,7 @@
     </section>
 
     <section class="runway" aria-label="A slow walk in gold">
-      <video class="runway-wash" src="images/film/golden-runway.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+      <div class="runway-goo" data-golden-goo aria-hidden="true"></div>
       <video class="runway-figure" src="images/film/golden-runway.mp4" autoplay muted loop playsinline></video>
     </section>
 
@@ -111,7 +112,6 @@
 
       <div class="drift-head">
         <p class="eyebrow">The drift</p>
-        <h2>Jewels, on the water.</h2>
       </div>
 
       <div class="stage" id="stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="A drifting circle of Covet jewelry">
@@ -169,47 +169,50 @@
 
     <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
     <section class="edit" id="edit">
-      <div class="layers" aria-hidden="true">
-        <div class="layer" data-speed="0.05">
-          <div class="plate aspen-meadow"></div>
+      <div class="edit-ground" aria-hidden="true"></div>
+      <div class="edit-stage" id="edit-stage" tabindex="0" role="region" aria-roledescription="carousel" aria-label="The edit, a slow sequence of jewels">
+        <div class="edit-slides">
+          <figure class="edit-slide is-on" data-caption="The house · layered gold">
+            <img src="images/layers/house.jpg" alt="A woman layered in gold necklaces, cuffs, and a crescent">
+          </figure>
+          <figure class="edit-slide" data-caption="Eye-burst rings · Jacquie Aiche">
+            <img src="images/eye-burst-ring.jpg" alt="A hand wearing four opal inlay eye-burst rings by Jacquie Aiche">
+          </figure>
+          <figure class="edit-slide" data-caption="Hoops · Jacquie Aiche">
+            <img src="images/emerald-hoop.jpg" alt="An ear stacked with emerald, diamond, and eye charms">
+          </figure>
+          <figure class="edit-slide" data-caption="Abalone feather · the shore">
+            <img src="images/feather.jpg" alt="An abalone feather pendant hanging above the shore">
+          </figure>
+          <figure class="edit-slide is-studio" data-caption="Feather collar">
+            <img src="images/float/feather-collar.png?v=2" alt="Gold feather collar">
+          </figure>
+          <figure class="edit-slide is-studio" data-caption="Eye-burst necklace">
+            <img src="images/float/eye-burst-necklace.png?v=4" alt="Opal eye-burst necklace">
+          </figure>
+          <figure class="edit-slide is-studio" data-caption="Gold feather · Covet">
+            <img src="images/covet-collection/dsc06656.png" alt="A gold feather pendant engraved Covet">
+          </figure>
+          <figure class="edit-slide" data-caption="In the shop · Brigid">
+            <img src="images/press/brigid-2017.jpg" alt="Brigid in the Covet shop, photographed by Hal Williams in 2017">
+          </figure>
+          <button class="edit-arrow prev" type="button" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+          </button>
+          <button class="edit-arrow next" type="button" aria-label="Next image">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 16 12l-6.5 6.5"/></svg>
+          </button>
         </div>
-        <div class="wash warm"></div>
-      </div>
-      <div class="edit-layout">
-        <figure class="shot shot-hand">
-          <img src="images/eye-burst-ring.jpg" alt="A hand wearing four opal inlay eye-burst rings by Jacquie Aiche">
-          <figcaption>Eye-burst rings · Jacquie Aiche</figcaption>
-        </figure>
         <div class="edit-copy">
-          <p class="eyebrow on-light">The edit</p>
+          <p class="eyebrow">The edit</p>
           <h2>Held to the light.</h2>
           <p>Opal the color of a shell. Gold the color of the last hour of sun. Diamonds set one by one, for a woman who does not want what everyone else is wearing.</p>
         </div>
-        <figure class="shot shot-ear">
-          <img src="images/emerald-hoop.jpg" alt="An ear stacked with emerald, diamond, and eye charms">
-          <figcaption>Hoops · Jacquie Aiche</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <div class="mark" aria-hidden="true"><img src="images/logo-feather.png" alt=""></div>
-    <section class="heat" aria-label="Leather, pearl, and desert light">
-      <div class="layers" aria-hidden="true">
-        <div class="layer" data-speed="0.12">
-          <div class="plate leather"></div>
+        <div class="edit-foot">
+          <p class="edit-caption" id="edit-caption"></p>
+          <div class="edit-meter" aria-hidden="true"><span id="edit-meter"></span></div>
+          <div class="edit-dots" id="edit-dots" role="tablist" aria-label="Choose an image"></div>
         </div>
-        <div class="layer" data-speed="0.05">
-          <div class="plate aspen-storm"></div>
-        </div>
-        <div class="wash heat-wash"></div>
-      </div>
-      <div class="heat-grid">
-        <div>
-          <p class="eyebrow">The grain</p>
-          <h2>Warm as skin.<br>Hard as shell.</h2>
-          <p class="deck">Leather, pearl, and the heat of a desert afternoon. The same light that sits in a piece of abalone.</p>
-        </div>
-        <img class="heat-jewel" src="images/float/scarab.png?v=3" alt="Green scarab charm floating over tooled grain">
       </div>
     </section>
 
@@ -223,7 +226,8 @@
       <div class="portal-copy">
         <p class="eyebrow">The house</p>
         <h2>Find something to covet for a lifetime.</h2>
-        <p>Covet Aspen is the eye of Brigid Brumby. Jewels, handbags, home, and art from designers who still make things by hand — feminine, full of story, and not seen on everyone, everywhere.</p>
+        <p>COVET ASPEN embodies unique, high quality creations from designers across the globe, intuitively selected by owner + curator Brigid Brumby. Browse a collection that is beautifully versatile, feminine, filled with story and personal significance.</p>
+        <p>Here, our idea is for you to find something to COVET for a lifetime —</p>
         <p class="spoken">verb · kuhv-it · to desire, wish, yearn, or hunger for</p>
       </div>
     </section>
@@ -318,7 +322,61 @@
       <div class="visit-copy">
         <p class="eyebrow">Visit</p>
         <h2>Private shopping, by appointment.</h2>
-        <a class="enter" href="https://covetaspen.com/" target="_blank" rel="noreferrer">The current shop</a>
+        <button class="enter" type="button" data-view="store">The current shop</button>
+      </div>
+    </section>
+
+    <section class="instagram-section" id="instagram">
+      <div class="ig-inner">
+        <div class="ig-head">
+          <p class="eyebrow">Instagram</p>
+          <h2>On the feed.</h2>
+          <p class="ig-lede">A few frames from <a href="https://www.instagram.com/covetaspen/" target="_blank" rel="noopener noreferrer">@covetaspen</a>.</p>
+        </div>
+        <div class="ig-widget">
+          <div class="ig-widget-bar">
+            <div class="ig-widget-identity">
+              <span class="ig-avatar-wrap">
+                <img class="instagram-avatar" src="images/social/instagram-avatar.webp" alt="" width="56" height="56">
+              </span>
+              <div>
+                <a class="ig-handle" href="https://www.instagram.com/covetaspen/" target="_blank" rel="noopener noreferrer">@covetaspen</a>
+                <p class="instagram-stats" id="instagram-stats">Six frames</p>
+              </div>
+            </div>
+            <a class="enter ig-follow" href="https://www.instagram.com/covetaspen/" target="_blank" rel="noopener noreferrer">Follow</a>
+          </div>
+          <div class="instagram-grid" id="instagram-grid" aria-label="Six frames from Covet">
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DbwKKcmyG5I/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DbwKKcmyG5I.webp" alt="In the shop, under a wide brim." width="361" height="640" loading="lazy">
+              <span class="instagram-tile-cap">In the shop, under a wide brim.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DbvedLNxL3s/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DbvedLNxL3s.webp" alt="Gold, coiled." width="360" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Gold, coiled.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DaGakBYR-fX/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DaGakBYR-fX.webp" alt="Hat and a blue wing." width="361" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Hat and a blue wing.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DaGAT9-RRUe/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DaGAT9-RRUe.webp" alt="Summer light on the counter." width="361" height="640" loading="lazy">
+              <span class="instagram-tile-cap">Summer light on the counter.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DZ_a80CxMXs/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DZ_a80CxMXs.webp" alt="A piece found in motion." width="360" height="640" loading="lazy">
+              <span class="instagram-tile-cap">A piece found in motion.</span>
+            </a>
+            <a class="instagram-tile" href="https://www.instagram.com/reel/DT51OjmEWm2/" target="_blank" rel="noopener noreferrer" data-video="true">
+              <img src="images/social/ig-DT51OjmEWm2.webp" alt="From the feed." width="360" height="640" loading="lazy">
+              <span class="instagram-tile-cap">From the feed.</span>
+            </a>
+          </div>
+          <p class="ig-widget-foot">
+            <span class="ig-widget-foot-note">A few frames from the shop.</span>
+            <a class="ig-widget-foot-link" href="https://www.instagram.com/covetaspen/" target="_blank" rel="noopener noreferrer">See all on Instagram →</a>
+          </p>
+        </div>
       </div>
     </section>
   </main>
@@ -327,14 +385,43 @@
     <div class="store-head">
       <p class="eyebrow">The store</p>
       <h2>Everything, in hand.</h2>
+      <p class="store-note">Pieces made to order are subject to the current price of gold. Everything we have in stock is offered at the price shown.</p>
     </div>
     <div class="store-filters" id="store-filters" role="tablist" aria-label="Rooms in the store"></div>
     <div class="store-grid" id="store-grid"></div>
   </section>
 
+  <section class="canvas-view" id="canvas" aria-label="The canvas" hidden>
+    <div class="cv-top">
+      <p class="cv-count" id="cv-count">The canvas</p>
+      <div class="cv-nav-cols">
+        <div class="cv-rooms" id="cv-rooms" role="group" aria-label="Go to a room"></div>
+        <div class="cv-metal" id="cv-metal" role="group" aria-label="Sort by metal">
+          <button type="button" data-metal="gold" aria-pressed="false">Gold</button>
+          <button type="button" data-metal="silver" aria-pressed="false">Silver</button>
+        </div>
+      </div>
+    </div>
+    <div class="cv-map" id="cv-map" tabindex="0" role="region" aria-label="Every piece on one surface. Scroll or pinch to zoom, drag or use the arrow keys to move.">
+      <div class="cv-world" id="cv-world"></div>
+    </div>
+    <p class="cv-caption" id="cv-caption"></p>
+    <div class="cv-zoom" role="group" aria-label="Zoom">
+      <button id="cv-out" type="button" aria-label="Zoom out">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>
+      </button>
+      <button id="cv-fit" type="button" aria-label="Show the whole collection">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9V5h4M15 5h4v4M19 15v4h-4M9 19H5v-4"/></svg>
+      </button>
+      <button id="cv-in" type="button" aria-label="Zoom in">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg>
+      </button>
+    </div>
+  </section>
+
   <footer class="foot">
     <img class="brand" src="images/logo.png" alt="Covet">
-    <p>Aspen · jewels, handbags, home, art, gifts</p>
+    <p>Jewels, leather goods, home, art, gifts</p>
     <p class="fine">Jewel photographs are stand-ins from the current collection, until the new ones are made.</p>
   </footer>
 
@@ -371,6 +458,7 @@
     <p class="shop-dots" id="shop-dots"></p>
     <div class="shop-foot">
       <p class="shop-price" id="shop-price"></p>
+      <p class="shop-note" id="shop-note" hidden>Subject to the current price of gold.</p>
       <button class="enter" id="shop-buy" type="button">Buy now</button>
     </div>
   </dialog>
@@ -379,12 +467,18 @@
   <div class="cursor-ring" hidden aria-hidden="true"></div>
 
   <script src="drift.js?v=sense5"></script>
-  <script src="press.js?v=sense15"></script>
-  <script src="catalog.js?v=sense5"></script>
-  <script src="covet-collection.js?v=sense10"></script>
-  <script src="sections.js?v=sense17"></script>
-  <script src="shop-config.js?v=sense1"></script>
-  <script src="cart.js?v=sense1"></script>
-  <script src="atmosphere.js?v=sense10"></script>
+  <script src="press.js?v=sense16"></script>
+  <script src="catalog.js?v=sense8"></script>
+  <script src="covet-collection.js?v=sense11"></script>
+  <script src="sections.js?v=sense22"></script>
+  <script src="canvas-data.js?v=1"></script>
+  <script src="canvas.js?v=2"></script>
+  <script src="shop-config.js?v=sense3"></script>
+  <script src="cart.js?v=sense3"></script>
+  <script src="atmosphere.js?v=sense11"></script>
+  <script src="edit.js?v=1"></script>
+  <script src="golden-goo/embed/golden-goo.js?v=5" defer></script>
+  <script src="abalone/embed/abalone.js?v=2" defer></script>
+  <script src="instagram.js?v=1"></script>
 </body>
 </html>

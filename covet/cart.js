@@ -1,6 +1,8 @@
 (function () {
   const shop = window.COVET_SHOP || { domain: "", storefrontToken: "" };
+  const apiVersion = "2025-01";
   const key = "covet-bag";
+  const variantCache = Object.create(null);
   const drawer = document.getElementById("bag-drawer");
   const lines = document.getElementById("bag-lines");
   const count = document.getElementById("bag-count");
@@ -29,6 +31,80 @@
 
   function live() {
     return Boolean(shop.domain && shop.storefrontToken);
+  }
+
+  function endpoint() {
+    return "https://" + shop.domain + "/api/" + apiVersion + "/graphql.json";
+  }
+
+  async function shopify(query, variables) {
+    const response = await fetch(endpoint(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": shop.storefrontToken
+      },
+      body: JSON.stringify({ query: query, variables: variables || {} })
+    });
+    const payload = await response.json();
+    if (!response.ok) {
+      throw new Error("Shopify Storefront request failed (" + response.status + ").");
+    }
+    if (payload.errors && payload.errors.length) {
+      throw new Error(payload.errors.map((err) => err.message).join(" "));
+    }
+    return payload.data;
+  }
+
+  async function variantIdForHandle(handle) {
+    if (variantCache[handle]) return variantCache[handle];
+    const data = await shopify(
+      "query ProductVariant($handle: String!) {" +
+        "  product(handle: $handle) {" +
+        "    title" +
+        "    variants(first: 10) {" +
+        "      nodes { id title availableForSale }" +
+        "    }" +
+        "  }" +
+        "}",
+      { handle: handle }
+    );
+    const product = data && data.product;
+    if (!product) {
+      throw new Error("Shopify has no product for handle \"" + handle + "\".");
+    }
+    const nodes = (product.variants && product.variants.nodes) || [];
+    const pick = nodes.find((node) => node.availableForSale) || nodes[0];
+    if (!pick || !pick.id) {
+      throw new Error("\"" + product.title + "\" has no buyable variant.");
+    }
+    variantCache[handle] = pick.id;
+    return pick.id;
+  }
+
+  async function checkoutUrlForBag(items) {
+    const linesInput = [];
+    for (const item of items) {
+      const merchandiseId = await variantIdForHandle(item.id);
+      linesInput.push({ merchandiseId: merchandiseId, quantity: item.qty });
+    }
+    const data = await shopify(
+      "mutation CartCreate($lines: [CartLineInput!]!) {" +
+        "  cartCreate(input: { lines: $lines }) {" +
+        "    cart { checkoutUrl }" +
+        "    userErrors { field message }" +
+        "  }" +
+        "}",
+      { lines: linesInput }
+    );
+    const result = data && data.cartCreate;
+    const errors = (result && result.userErrors) || [];
+    if (errors.length) {
+      throw new Error(errors.map((err) => err.message).join(" "));
+    }
+    const url = result && result.cart && result.cart.checkoutUrl;
+    if (!url) throw new Error("Shopify did not return a checkout URL.");
+    return url;
   }
 
   function render() {
@@ -65,7 +141,7 @@
     if (live()) {
       note.textContent = "Checkout will open Shopify’s secure payment page.";
     } else {
-      note.textContent = "Add the Storefront token and shop domain in shop-config.js to turn on checkout.";
+      note.textContent = "Domain is set. Paste the public Storefront API token in shop-config.js to turn on checkout.";
     }
   }
 
@@ -109,13 +185,24 @@
     });
   }
 
-  checkout.addEventListener("click", () => {
-    if (!load().length) return;
+  checkout.addEventListener("click", async () => {
+    const items = load();
+    if (!items.length) return;
     if (!live()) {
-      note.textContent = "Checkout is waiting on shop-config.js: set domain and storefrontToken.";
+      note.textContent = "Checkout is waiting on shop-config.js: paste storefrontToken.";
       return;
     }
-    note.textContent = "Storefront cart checkout is ready to connect for " + shop.domain + ".";
+    checkout.disabled = true;
+    note.textContent = "Opening Shopify checkout…";
+    try {
+      const url = await checkoutUrlForBag(items);
+      window.location.assign(url);
+    } catch (err) {
+      note.textContent = err && err.message
+        ? err.message
+        : "Could not reach Shopify checkout. Check the Storefront token and product handles.";
+      checkout.disabled = false;
+    }
   });
 
   render();

@@ -12,7 +12,7 @@
     {
       id: "covet-collection",
       label: "Covet Collection",
-      tab: "images/covet-collection/dsc06656.png",
+      tab: "images/covet-collection/img-0121.jpg",
       gap: "",
       items: window.COVET_COLLECTION || []
     },
@@ -41,6 +41,13 @@
       id: "chains",
       label: "Chains",
       tab: "images/catalog/fine-jewelry/round-cable-chain.jpg",
+      gap: "",
+      items: []
+    },
+    {
+      id: "locks",
+      label: "Locks",
+      tab: "images/catalog/fine-jewelry/midas/large-round-push-lock-bead-element-TM022926-14Y.jpg",
       gap: "",
       items: []
     },
@@ -524,6 +531,8 @@
         : el.dataset.designer;
       document.getElementById("shop-name").textContent = el.dataset.name;
       price.textContent = money(el.dataset.price);
+      const goldNote = document.getElementById("shop-note");
+      if (goldNote) goldNote.hidden = el.dataset.made !== "true";
       buy.dataset.name = el.dataset.name || "";
       buy.dataset.price = el.dataset.price || "";
       buy.dataset.image = frames[0] || "";
@@ -697,21 +706,40 @@
     show("all");
   }
 
+  // canvas.js draws every room on one surface and opens pieces through these.
+  window.covetRooms = sections.filter((section) => section.items.length);
+  window.covetOpenPiece = function (item) {
+    const el = storeTile(item);
+    if (el.dataset.href && window.openShop) window.openShop(el);
+    else {
+      remember(el);
+      openLook(el);
+    }
+  };
+
   function setView(view) {
+    if (view !== "store" && view !== "canvas") view = "rooms";
     const store = view === "store";
+    const canvas = view === "canvas";
     document.body.classList.toggle("is-store", store);
+    document.body.classList.toggle("is-canvas", canvas);
     const panel = document.getElementById("storefront");
     if (panel) panel.hidden = !store;
+    const surface = document.getElementById("canvas");
+    if (surface) surface.hidden = !canvas;
     document.querySelectorAll(".view-toggle-btn").forEach((button) => {
-      const on = button.dataset.view === (store ? "store" : "rooms");
+      const on = button.dataset.view === view;
       button.classList.toggle("is-on", on);
       button.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    if (!store && location.hash === "#store") history.replaceState(null, "", location.pathname + location.search);
+    if (view === "rooms" && (location.hash === "#store" || location.hash === "#canvas")) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
     window.scrollTo(0, 0);
+    if (canvas && window.covetCanvas) window.covetCanvas.open();
   }
 
-  document.querySelectorAll(".view-toggle-btn").forEach((button) => {
+  document.querySelectorAll("button[data-view]").forEach((button) => {
     button.addEventListener("click", () => setView(button.dataset.view));
   });
   document.querySelectorAll(".nav a").forEach((link) => {
@@ -723,6 +751,8 @@
   renderRecent();
   mountStore();
   if (location.hash === "#store") setView("store");
+  // canvas.js loads after this file, so wait for it before opening the canvas.
+  if (location.hash === "#canvas") window.addEventListener("DOMContentLoaded", () => setView("canvas"));
   if (document.readyState === "complete") activate(active, false);
   else window.addEventListener("load", () => activate(active, false));
 })();
